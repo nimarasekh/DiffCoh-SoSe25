@@ -5,7 +5,7 @@ Up until now, we have broadly relied on the following sources (with possibly mor
 - [A short course on ∞-categories](https://arxiv.org/abs/1007.2925) by [Moritz Groth/Rahn](https://www.agtz.mathematik.uni-mainz.de/hoeherekategorientheorie/dr-moritz-rahn/) for some ∞-categorical background material.
 - [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) by [Jacob Lurie](https://www.math.ias.edu/~lurie) for some background on ∞-categorical sheaf theory and some advanced ∞-category theory.
 
-Until now we had the following talks:
-1. *Motivation* by **Konrad Waldorf** on 30.04.2025
-2. *Background on ∞-category theory* by **Matthias Frerichs** on 06.05.2025 & 13.05.2025
-3. *Background on ∞-categorical sheaves* by **Hannes Berkenhagen** on 21.05.2025 & 27.05.2025
+Until now we had the following talks with some modest attempt at live-texing their talks:
+1. [*Motivation*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_1.pdf) by **Konrad Waldorf** on 30.04.2025
+2. [*Background on ∞-category theory*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_2.pdf) by **Matthias Frerichs** on 06.05.2025 & 13.05.2025
+3. [*Background on ∞-categorical sheaves*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_3.pdf) by **Hannes Berkenhagen** on 21.05.2025 & 27.05.2025
