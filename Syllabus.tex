@@ -1,0 +1,69 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2cm]{geometry}
+
+\title{Differential Cohomology Seminar}
+\date{Summer Semester 2025}
+\author{Nima Rasekh}
+
+\begin{document}
+\maketitle
+
+
+Differential cohomology theory wants to be a cohomology theory (so algebraic topology) that incorporates information about differentiable manifolds (so differential geometry). Various framework have been proposed to make this concept precise.
+
+In this learning seminar we want to focus on a modern approach that uses $\infty$-categorical methods and particularly $\infty$-categorical sheaves. The first half introduces differential cohomology from an abstract higher categorical perspective. The second part aims to apply these definitions and results in various contexts.
+% The idea is to learn how higher categorical methods can be used to study differentiable cohomology theories, which combine aspects of homotopy theory and differential geometry.
+
+\section{List of Talks}
+Here is the list of talks, dates and speakers:
+
+\[
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline 
+		& \textbf{Talk} & \textbf{Speaker} & \textbf{Day} & \textbf{Date} \\ \hline 
+		(1) & Motivation & Nima Rasekh & Wednesday & 09.04.2025 \\ \hline 
+		(2) & History & Konrad Waldorf & Wednesday & 30.04.2025 \\ \hline
+		(3) & $\infty$-Categorical Background I &	Matthias Frerichs  & Tuesday & 06.05.2025 \\ \hline
+		(4) & $\infty$-Categorical Background II &	Matthias Frerichs  & Tuesday & 13.05.2025 \\ \hline
+		(5) & Definition I & 	Hannes Berkenhagen & Wednesday & 21.05.2025 \\ \hline
+		(6) & Definition II & 	Hannes Berkenhagen & Tuesday & 27.05.2025 \\ \hline 
+		(7) & Operations & Alessandro Nanto & Wednesday & 03.06.2025 \\ \hline
+		(8) & Examples & Konrad Waldorf & Tuesday & 18.06.2025 \\ \hline
+		(9) & Invariance and Localizations & Christian Becker & Tuesday & 24.06.2025 \\ \hline 
+		(10) & Fracture Square & Matthias Ludewig & Tuesday & 01.07.2025 \\ \hline
+		(11) & & & Wednesday & 09.07.2025 \\ \hline
+		(12) & & & Wednesday &  16.07.2025 \\ \hline
+	\end{tabular}
+\]
+\section{List of Topics}
+Here is a more detailed breakdown of the topics, with relevant citations:
+\begin{enumerate}[itemsep=0.3cm]
+	\item \textbf{Motivation $\&$ History:} Very broad historical overview of the rise of differential cohomology theories out of ordinary cohomologies \cite{hopkinssinger2005differentialcoh,simonssullivan2008diffcoh,stimpson2011diffcoh}, solution via the differential cohomology hexagon in the context of sheaves of spectra \cite[Section 2]{adh2021differentialcohomology}, \cite{debray2023diffcoh}.
+	\item \textbf{Proper History:} More detailed historical development with a focus on the need for more refined invariants in the study of bundles \cite{hopkinssinger2005differentialcoh,simonssullivan2008diffcoh,stimpson2011diffcoh}.
+	\item[] \textbf{\large Part (I) Theory}
+	\item[] The first part focuses on theory with the aim of understanding differential cohomologies and the fracture square. 
+	\item \textbf{Categorical background:} The $\infty$-categorical approach to homotopy theory, analysis of accessible and presentable $\infty$-categories, definition of the $\infty$-category of spectra, relation to cohomology theories, Brown representability theorem \cite[Section 1]{lurie2017ha}, \cite{groth2010inftycats}.
+	\item \textbf{Differential cohomology:} Reviewing the category of manifolds, $\infty$-categorical sheaves \cite[Section 6]{lurie2009htt}, definition of differential cohomology theories via sheaves	of spectra, first relevant properties, first simple examples such as constant sheaves \cite[Section 2]{adh2021differentialcohomology}
+	\item \textbf{Operations on Differential Cohomologies:} Ring structure in differential cohomology via cup product \cite[Section 8]{adh2021differentialcohomology} and fiber integration \cite[Section 9]{adh2021differentialcohomology}
+	\item \textbf{The Main Result in Examples:} Definition, structures and properties of ordinary differential cohomology, differential K-theory \cite[Section 7]{adh2021differentialcohomology}, possibly other examples (such as differential algebraic K-theory, differential complex cobordism, ... ) . Here we take the eventual results (the differential cohomology hexagon) for granted and look how it concretely manifests in those cases of interest.
+	\item \textbf{$\mathbb{R}$-Invariant Sheaves and Localizations:} Proving $\mathbb{R}$-invariant sheaves are trivial \cite[Section 4]{adh2021differentialcohomology} and how to study arbitrary sheaves via $\mathbb{R}$-invariant ones \cite[Section 5]{adh2021differentialcohomology}
+	\item \textbf{Fracture Square:} recollements, fracture squares, recovering differential cohomology hexagon \cite[Section 6]{adh2021differentialcohomology}, \cite{barwickglasman2016recollements,lurie2018sag}.
+	\item[] \textbf{\large Part (II) Applications} 
+	\item[] This part will mostly be determined later. You can also make suggestions!
+	\item \textbf{Characteristic Classes:} Characteristic classes of differential cohomology theories \cite[Section 14]{adh2021differentialcohomology}, \cite{bunkenikolausvoelkl2016differentialcohomology}, \cite[Section 2]{debray2023diffcoh}
+	\item \textbf{Lifting Chern-Weil homomorphism:} \cite[Section 13, Section 15]{adh2021differentialcohomology}
+	\item \textbf{Applications in Physics:} Applications to string theory \cite{freed2002ktheoryqft}.
+	\item \textbf{Other Applications:} ... 
+\end{enumerate}
+
+{\footnotesize
+\bibliographystyle{alpha}
+\bibliography{main}
+}
+\end{document}

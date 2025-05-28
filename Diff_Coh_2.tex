@@ -1,0 +1,435 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+\usepackage{bbold}
+\usepackage[bbgreekl]{mathbbol}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\kC}{\mathfrak{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\s}{\mathscr{S}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Map}{\mathrm{Map}}
+
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+\newcommand{\adjun}[4]{
+\begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+ #1  \arrow[r, shift left=1.8, "#3"] \pgfmatrixnextcell
+ #2 \arrow[l, shift left=1.6, "#4", "\bot"'] 
+\end{tikzcd}
+}
+
+\newcommand{\simpset}[7]{
+ \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+   #1 \arrow[r, shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell #2 
+   \arrow[l, shift left=1.2, "#5"] \arrow[l, shift right=1.2, "#4"'] 
+   \arrow[r, shift right, shorten >=1ex,shorten <=1ex ] \arrow[r, shift left, shorten >=1ex,shorten <=1ex] 
+   \pgfmatrixnextcell #3 
+   \arrow[l] \arrow[l, shift left=2, "#7"] \arrow[l, shift right=2, "#6 "'] 
+   \arrow[r, shorten >=1ex,shorten <=1ex] \arrow[r, shift left=2, shorten >=1ex,shorten <=1ex] \arrow[r, shift right=2, 
+   shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell \cdots 
+   \arrow[l, shift right=1] \arrow[l, shift left=1] \arrow[l, shift right=3] \arrow[l, shift left=3] 
+ \end{tikzcd}
+}
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[equation]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[equation]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+% \newtheorem{queone}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\title{Differential Cohomology Seminar 2}
+\date{06.05.2025 $\&$ 13.05.2025}
+\author{Talk by Matthias Frerichs}
+
+\begin{document}
+\maketitle
+
+In this lecture we want to learn the basics of $\infty$-category theory. For the $\infty$-categorical background, we broadly follow \cite{groth2010inftycats} and a little \cite{lurie2009htt}.
+
+\section{Basics on \texorpdfstring{$(\infty,1)$}{(oo,1)}-categories}
+
+$(\infty,1)$-categories have different models that capture its essence. The first model are \emph{quasi-categories}.
+
+\begin{definition}
+  The \emph{simplex category} $\DD$ is the category whose objects are the non-negative integers and whose morphisms are the non-decreasing maps. 
+\end{definition}
+
+Note, we have in particular maps $d^i \colon [n-1] \to [n]$ for $0 \leq k \leq n$ and $s^i\colon [n] \to [n+1]$, which satisfy the \emph{cosimplicial identities}.
+
+
+\begin{definition}
+  A \emph{simplicial set} is a functor $X \colon \DD^{op} \to \set$, i.e. a contravariant functor from the simplex category to the category of sets. The category is denoted $\sset$.
+\end{definition}
+
+We can depict such a simplicial set as 
+\[
+  \simpset{X_0}{X_1}{X_2}{}{}{}{}
+\]
+
+In order to define $\infty$-categories in this context, we need horns. Let us denote by $\Delta^n\colon\DD^{op} \to \set$ the functor $\Delta^n_m = \Hom_\DD([m],[n])$.
+
+\begin{definition}
+  The $k$-th horn in $\Delta^n$ is defined as a sub-simplicial set $\Lambda^n_k \subseteq \Delta^n$ defined as follows. A morphism $\varphi\colon[m] \to [n]$ in $\Delta^n_m$ is in $(\Lambda^n_k)_m$ precisely when $\varphi$ is not surjective and if the image does not include $k$, it must also not include some other element.
+\end{definition}
+
+\begin{definition}
+  A \emph{quasi-category} is a simplicial set $X$ such that the following conditions hold:
+  \[
+    \begin{tikzcd}
+    \Lambda^n_k \arrow[r] \arrow[d] & X \\
+    \Delta^n \arrow[ur, dashed] 
+    \end{tikzcd}
+  \]
+  for $0 < k < n$.
+\end{definition}
+
+\begin{definition}
+  An \emph{$\infty$-groupoid} is a simplicial set $X$ such that the following conditions hold:
+  \[
+    \begin{tikzcd}
+    \Lambda^n_k \arrow[r] \arrow[d] & X \\
+    \Delta^n \arrow[ur, dashed] 
+    \end{tikzcd}
+  \]
+  for $0 \leq k \leq n$.
+\end{definition}
+
+\begin{example}
+  Let $\C$ be a category. Let $N\C$ (the \emph{nerve of $\C$}) be the simplicial set given by $N\C_n = \Fun([n],\C)$. This defines a functor $N\colon\cat \to \sset$.
+\end{example}
+
+\begin{proposition}
+  $N\C$ is a quasi-category.
+\end{proposition}
+
+\begin{proof}
+Straightforward combinatorics (For example lift of $\Lambda^2_1 \to \Delta^2$ is the composition).
+\end{proof}
+
+\begin{remark}
+ Note $\Lambda^2_0$ does not generally admit lifts, unless the relevant morphism is invertible.
+\end{remark}
+
+Here is an important result, the proof of which is postponed.
+
+\begin{proposition}
+  $N\colon \cat \to \cat_\infty$ is fully faithful.
+\end{proposition}
+
+The nerve functor has a left adjoint, the \emph{fundamental category} or \emph{homotopy category}. Here we observe some general facts about simplicial sets. Namely for every  functor $\DD \to \C$, where $\C$ cocomplete, we have an adjunction between $\sset$ and $\C$.
+
+
+
+\begin{example}
+  Let $\C= \Top$ and $\DD \to \Top$ the functor picking the geometric simplicial complex $|\Delta^n|$. Then the induced adjunction is the classical geometric realization functor $| \cdot | \colon \sset \to \Top$ and singularity functor.
+\end{example}
+
+The nerve is indeed the right adjoint of the adjunctions induced via the functor $\DD \to \cat$, which sends $[n]$ to the category $[n]$. This means we also have a left adjoint. 
+
+\begin{definition}
+  The \emph{homotopy category} $h\colon \sset \to \cat$ is the left adjoint to the nerve functor.
+\end{definition}
+
+\begin{remark}
+ If the simplicial set is a quasi-category, then the homotopy category can be defined directly as the usual homotopy category of an $\infty$-category (i.e. we take equivalence classes of morphisms).
+\end{remark}
+
+We do have significantly more complicated examples of such adjunctions.
+
+\begin{example}
+  Let $\kC\colon \DD \to \scat$ be the functor defined in \cite[Definition 1.1.5.1]{lurie2009htt}. Then we get the adjunction $(\kC,N_\Delta)$ called the homotopy coherent categorification, homotopy coherent nerve.
+\end{example}
+
+  This adjunction incudes an equivalence of $\infty$-categories, if one phrases those notions correctly. In particular, if $\C$ is a Kan-enriched category, then the homotopy coherent nerve is a quasi-category.
+
+\begin{definition}
+  Let $\Kan$ denote the Kan-enriched category of Kan complexes. The quasi-category of spaces is defined as $N_\Delta (\Kan)$.
+\end{definition}
+
+\section{Accessible and Presentable Categories}
+Note, here we benefited from the fact that $\cat,\sset,\Top,\scat$ are all cocomplete categories, hence admitting such adjunctions. We now want to focus on a class of categories where we similarly can construct adjunctions in such straightforward ways.
+
+\begin{definition}
+  A category $\C$ is \emph{locally presentable} if it is cocomplete and $\kappa$-accessible for some $\kappa$.
+\end{definition}
+
+\begin{definition}
+  A category $\C$ is $\kappa$-accessible if there exists a set of $\kappa$-compact objects $\C^0$ in $\C$, such that every object in $\C$ is a $\kappa$-filtered colimit of objects in $\C^0$.
+\end{definition}
+
+\begin{definition}
+  A functor $F\colon \C \to \D$ is $\kappa$-\emph{accessible} if it preserves $\kappa$-filtered colimits.
+\end{definition}
+
+
+\begin{theorem}
+  Let $\C$ be a category. The following are equivalent:
+  \begin{enumerate}
+    \item $\C$ is locally presentable.
+    \item There exists a small category $\C^0$ and a fully faithful accessible right adjoint $\C \to \Fun((\C^0)^{op},\set)$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+  Let $\C,\D$ be locally presentable categories.
+  \begin{enumerate}
+    \item $F\colon \C \to \D$ is a left adjoint if and only if it preserves colimits.
+    \item $F\colon \C \to \D$ is a right adjoint if and only if it preserves limits and is accessible.
+  \end{enumerate}
+\end{theorem}
+
+We now generalize this to $\infty$-categories. 
+
+\begin{definition}
+  Let $K$ be a quasi-category. The quasi-category of simplicial presheaves is defined as $\Fun(K^{op},\s)$.
+\end{definition}
+
+\begin{theorem}[Yoneda]
+  For a given quasi-category $K$, there is a functor $K \to \Fun(K^{op},\s)$ given by $x \mapsto \Fun(-,x)$, which is fully faithful. Every colimit preserving functor out of $\Fun(K^{op},\s)$ is equivalent to a functor out of $K$.
+\end{theorem}
+
+\begin{theorem}
+  Let $K$ be a quasi-category.
+  \begin{enumerate}
+    \item There exists a set of $\kappa$-compact objects $\C^0$ in $K$, such that every object in $K$ is a $\kappa$-filtered colimit of objects in $\C^0$.
+    \item There exists a small category $\C^0$ and a fully faithful accessible right adjoint $\C \to \Fun((\C^0)^{op},\set)$.
+  \end{enumerate}
+\end{theorem}
+
+In those cases we say $K$ is presentable. We now again have the adjoint functor theorem. 
+
+\begin{theorem}
+  Let $\C,\D$ be presentable $\infty$-categories.
+  \begin{enumerate}
+    \item $F\colon \C \to \D$ is a left adjoint if and only if it preserves colimits.
+    \item $F\colon \C \to \D$ is a right adjoint if and only if it preserves limits and is accessible.
+  \end{enumerate}
+\end{theorem}
+
+Note in particular the $\infty$-category of sheaves is a presentable $\infty$-category.
+
+\section{Stable \texorpdfstring{$\infty$}{oo}-Categories and Spectra}
+We now use the $\infty$-categorical framework to study spectra. Let us recall some facts about spectra, to motivate the story. The \emph{Freudenthal suspension theorem} states that the suspension functor $\Sigma \colon \Top \to \Top$ stabilizes the homotopy type. More explicitly, the map
+\[
+ \pi_k(X) \to \pi_{k+1}( \Sigma X) \to \pi_{k+2}(\Sigma^2X) \to ... 
+\]
+stabilizes for $k$ large enough, if $X$ satisfies some connectivity condition. This defined the stable homotopy groups $\pi_n^S(X)$ as the stabilization of this sequence.
+
+There is significant interest in computing these stable homotopy groups, in particular in the case where $X$ is a sphere, given that it helps us understand many phenomena in algebraic topology.
+
+We now want a setting where these stable homotopy groups naturally live and can be studied. We know that $(\Sigma,\Omega)$ induces an adjunction on the category of pointed topological spaces. What we want is an adjustment of this definition such that the adjunction $(\Sigma,\Omega)$  is an equivalence. 
+
+We now take a $\infty$-categorical perspective on this and use it to study such stable phenomena. 
+
+\begin{definition}
+  Let $\C$ be an $\infty$-category with initial and terminal object. $\C$ has a $0$-object if they are equivalent.
+\end{definition}
+
+\begin{example}
+  Let $\C$ be a $1$-category. Then $\C$ is pointed as a $1$-category if and only if it is pointed as an $\infty$-category. 
+\end{example}
+
+\begin{example}
+  Notice $\s$ is not pointed, we hence can define $\s_*$ as the slices under the terminal space, i.e. $\s_* = \s_{*/}$. This $\infty$-category is then pointed by construction.
+\end{example}
+
+Note $\s_*$ is not just some pointed $\infty$-category, it is in some sense the universal one.
+\begin{proposition}
+  Let $\D$ be a pointed $\infty$-category. Then the functor 
+  \[\mathrm{ev}_{S^0}\colon\Fun^L(\s_*,\D) \xrightarrow{ \ \simeq \ } \D \]
+  that evaluates at $S^0$ is an equivalence.
+\end{proposition}
+
+We now generalize from there and define triangles in $\s_*$. 
+
+\begin{definition}
+  Let $\C$ be a pointed $\infty$-category. A \emph{triangle} in $\C$ is a diagram of the form
+  \[
+  \begin{tikzcd}
+   X \arrow[r]  \arrow[d] & Y \arrow[d] \\ 
+   0 \arrow[r] & Z
+  \end{tikzcd}
+  \]
+  where $X$, $X$, and $Z$ are objects in $\C$.
+\end{definition}
+
+\begin{definition}
+  We say a triangle is a \emph{exact} if it is a pullback square and \emph{coexact} if it is a pushout square.
+\end{definition}
+
+\begin{definition}
+  Let $\C$ be a pointed $\infty$-category. Let $\C^{\Sigma}$ be the full subcategory of $\Fun([1] \times [1],\C)$ with objects coexact triangles of the form 
+  \[
+  \begin{tikzcd}
+   X \arrow[r]  \arrow[d] & 0 \arrow[d] \\ 
+   0 \arrow[r] & Y
+  \end{tikzcd},
+  \]
+  meaning $Y$ is the suspension of $X$.
+\end{definition}
+
+\begin{definition}
+  Let $\C$ be a pointed $\infty$-category. Let $\C^{\Omega}$ be the full subcategory of $\Fun([1] \times [1],\C)$ with objects exact triangles of the form 
+  \[
+  \begin{tikzcd}
+   Y \arrow[r]  \arrow[d] & 0 \arrow[d] \\ 
+   0 \arrow[r] & X
+  \end{tikzcd},
+  \]
+  meaning $Y$ is the loop object of $X$.
+\end{definition}
+
+\begin{proposition}
+  If $\C$ is a pointed $\infty$-category with finite (co)limits. Then there exists functors 
+  \[ \Sigma \colon \C \to \C^{\Sigma} \to \C\]
+  \[ \Omega \colon \C \to \C^{\Omega} \to \C\]
+\end{proposition}
+
+\begin{theorem}
+  Let $\C$ be a pointed $\infty$-category with finite (co)limits. The following are equivalent:
+  \begin{enumerate}
+    \item A triangle is exact if and only if it is coexact. 
+    \item The functors $\Sigma$ and $\Omega$ are equivalences and the inverses of each other.
+    \item A square is a pullback square if and only if it is a pushout square.
+  \end{enumerate}
+   
+\end{theorem}
+
+\begin{definition}
+  A pointed $\infty$-category $\C$ is \emph{stable} if it satisfies one of the three equivalent conditions above.
+\end{definition}
+
+Recall that before the rise of $\infty$-categories, \emph{triangulated categories} were used to study stable homotopy theory. Hence, it is unsurprising that we can relate stable $\infty$-categories to triangulated categories.
+
+\begin{proposition}
+  If $\C$ is a stable $\infty$-category, then the homotopy category $h\C$ is a triangulated category.
+\end{proposition}
+
+Of course arbitrary pointed $\infty$-categories will not be stable. We hence want a procedure that stabilizes them. There are several approaches. One approach, that is powerful from a theoretical perspective, is given via reduced $1$-excisive functors out of finite pointed spaces. Here, we focus on explicit spectrum objects, as there are characterized more explicitly. For a comparison of these two approaches see \cite{lurie2017ha}.
+
+\begin{definition}
+  Let $\C$ be a pointed $\infty$-category. A \emph{pre-spectrum object} in $\C$, is a functor $X \colon \bZ \times \bZ \to \C$ such that $X(i,j) = 0$ for $i \neq j$ and all squares are pushout squares. Let $PSp(\C)$ be the $\infty$-category of pre-spectrum objects in $\C$. 
+\end{definition}
+
+For a given pre-spectrum object $X$, let $\alpha_{m-1}\colon \Sigma X_{m-1} \to X_m$ and $\beta_m \colon X_m \to \Omega X_{m+1} = \Omega \Sigma X_m$. 
+
+\begin{definition}
+  Let $\C$ be a pointed $\infty$-category. A \emph{spectrum object} in $\C$ is a pre-spectrum object in $X$, such that $\alpha_{m-1}$ and $\beta_m$ are equivalences for all $m$. Let $\Sp(\C)$ be the $\infty$-category of spectrum objects in $\C$.
+\end{definition}
+
+\begin{definition}
+  Let $\C$ be a pointed $\infty$-category. The stabilization of $\C$ is the $\infty$-category $\Sp(\C)$ of spectrum objects in $\C$. 
+\end{definition}
+Of course $\C$ and $\Sp(\C)$ are suitably related.
+
+\begin{theorem}
+  For a given pointed $\infty$-category $\C$, there is an adjunction
+  \[
+  \begin{tikzcd}
+    \C \arrow[r, shift left=1.8, "\Sigma"] \arrow[r, shift right=1.8, "\Omega"', "\bot", leftarrow] &  \Sp(\C) 
+  \end{tikzcd}
+  \]
+\end{theorem}
+
+Moreover, $\Sp(\C)$ is in some sense the universal stabilization of $\C$.
+
+\begin{theorem}
+ Let $\C$ be a pointed $\infty$-category and $\D$ a stable $\infty$-category. Then $\Sigma^\infty$ induces an equivalence of $\infty$-categories
+ \[(\Sigma^\infty)^* \colon\Fun^L(\Sp(\C),\D) \simeq \Fun^L(\C,\D)\]
+\end{theorem}
+
+Let us now focus on the case $\C = \s_*$.
+
+\begin{example}
+  The stabilization of $\s_*$ is the $\infty$-category of spectra, denoted $\Sp$.
+\end{example}
+
+Similar to $\s_*$, $\Sp$ is also the universal stable $\infty$-category, as a special instance of the result above.
+
+\begin{theorem}
+ If $\D$ is a stable $\infty$-category. Then the functor 
+  \[\mathrm{ev}_{\bS}\colon\Fun^L(\Sp,\D) \xrightarrow{ \ \simeq \ } \D \]
+  that evaluates at $\bS$ is an equivalence. 
+\end{theorem}
+
+
+\section{Generalized Cohomology Theories}
+Cohomology theories were traditionally defined in the context of topological spaces. However, now that we have the tools of $\infty$-categories and stable $\infty$-categories. We can significantly generalize those definitions. This last result follows work in \cite{lurie2017ha}.
+\begin{definition}
+  Let $\C$ be a pointed $\infty$-category with pushouts, and $\Sigma\colon\C \to \C$ and suspension functor. A \emph{generalized cohomology theory} is a functor $H \colon h\C^{op}\to \Ab_\bZ$, such that the following conditions hold:
+  \begin{itemize}
+    \item There is a natural isomorphism $H^\bullet \to H^{\bullet +1} \Sigma$ 
+    \item Coexact sequences maps to exact sequences. 
+    \item Arbitrary coproducts map to products.
+  \end{itemize}
+\end{definition}
+
+We now have the following major result that significantly generalizes the classical Brown representability theorem.
+\begin{theorem}
+ Let $\C$ be a nice $\infty$-category and $(H^\bullet,\delta)$ be a generalized cohomology theory. Then there exists a spectrum object $E$ in $\C$, such that $H^\bullet(X) \cong \Hom_{h\C}(X,E^\bullet)$, where $\delta = (\beta_\bullet)_*$.
+\end{theorem}
+
+\begin{example}
+  Unsurprisingly, $\s_*$ satisfies the niceness conditions, and so we can conclude that every generalized cohomology on $\s_*$ is given by a spectrum, recovering the original Brown representability theorem.
+\end{example}
+
+
+{\footnotesize
+\bibliographystyle{alpha}
+\bibliography{main}
+}
+\end{document}

@@ -1,0 +1,139 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+\newcommand{\Bun}{\mathrm{Bun}}
+\newcommand{\LineBdl}{\mathrm{LineBdl}}
+\newcommand{\curv}{\mathrm{curv}}
+\newcommand{\Grb}{\mathrm{Grb}}
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\title{Differential Cohomology Seminar 1}
+\date{30.04.2025}
+\author{Talk by Konrad	Waldorf}
+
+\begin{document}
+\maketitle
+
+
+We are trying to understand historically why we need differential cohomology as a generalization of the classical cohomology theory.
+Roughly speaking, the story goes through work of Deligne \cite{deligne1971mixedhodge}, Beilinson \cite{beilinson1984regulators}, and Brylinski  \cite{brylinski1993geomquant}. It then proceeds with work of Cheeger--Simons \cite{cheegersimons1985diffchar}, Freed \cite{freed2000diffcoh} and Hopkins--Singer \cite{hopkinssinger2005diffcoh}. It makes significant advances with Simons--Sullivan \cite{simonssullivan2008diffcoh} and Bunke--Schick \cite{bunkeschick2009smoothk} and finally Bunke-Nikolaus-V{\"o}lkl \cite{bunkenikolausvoelkl2016diffcoh}, getting us to our modern definition. 
+
+This talk is primarily a historical overview and motivational talk reviewing some of these concepts and witnessing the needs for more general notions of cohomology. This in particular means that most mathematical details are missing and/or skipped.
+
+\section{Why are Cohomology Theories not Enough?}
+We start with an observation regarding ordinary cohomology and bundles. We know that for a given manifold $M$, we have isomorphisms 
+\[h_0(\bC^\times- \Bun) \cong h_0\LineBdl(M) = H^2(M,\bZ),\]
+meaning a $\bC^\times$-bundle is classified by an element in the second integral cohomology group. How do we prove this? It is well-known that $H^1(M, \bC^\times) \cong H^2(M,\bZ)$ and intuitively for a line bundle we can get such a class via a choice of local sections. \nrnote{There should be more details here?}
+
+This original result focuses on general bundles, but it does not contain any additional geometric information. Let us try to adjust this isomorphism by augmenting it with additional geometric data. Let us denote $h_0(\bC^\times- \Bun)^\nabla$ as the isomorphism classes of $\bC^\times$-bundles with a connection, and $h_0\LineBdl^\nabla(M)$ as the isomorphism classes of line bundles with a connection. We can restrict the isomorphism above to an isomorphism
+\[h_0(\bC^\times- \Bun)^\nabla \cong h_0\LineBdl^\nabla(M) \]
+Here is now a reasonable question: Can we define a cohomology theory $E$, such that $E^2(M)$ classifies $\bC^\times$-bundles with connection? Let us try to better understand this question.
+
+Let $P \to M$ be a $\bC^\times$-bundle with a connection $\nabla$. Let $U_\alpha$ be an open cover of $M$, and let $s_\alpha\colon U_\alpha \to \bC^\times \times U_\alpha$ be local sections. Let $\omega \in \Omega^1(P)$ and $A_\alpha = s_\alpha\omega \in \Omega^1(U_\alpha)$. 
+
+Then for different $\alpha, \beta$ we have \nrnote{Where does this formula come from?} 
+\[A_\beta = A_\alpha d \log g_{\alpha\beta} = g^*_{\alpha\beta}\theta_{C} = \frac{1}{i} g^{-1}_{\alpha\beta}dg_{\alpha\beta}.\]
+
+We want a cohomology theory that an incorporate these computations. One possible solution is to define a chain complex of the following form:
+\[\mathscr{D}(n)=  \bC^\times \xrightarrow{d\log} \Omega^1 \xrightarrow{d} \Omega^2 \to ... \to \Omega^{n-1}\]
+Here we are explicitly truncating at $n$.
+
+By applying this complex to $k$-fold intersections, we can make this complex bigraded, roughly of the following form:
+% If we take this complex and resolve it along $k$-fold intersections we get a bigraded complex. 
+
+\[
+	\begin{tikzcd}
+	C^\infty(U_\alpha \cap U_\beta, \bC^\times) \arrow[r] & \Omega^1(U_\alpha \cap U_\beta) \arrow[r] & \Omega^2(U_\alpha\cap U_\beta) \arrow[r] & \cdots \arrow[r] & \Omega^{n-1}(U_\alpha \cap U_\beta)\\
+ C^\infty(U_\alpha, \bC^\times) \arrow[r] \arrow[u] & \Omega^1(U_\alpha) \arrow[r] \arrow[u] & \Omega^2(U_\alpha) \arrow[r] \arrow[u] & \cdots \arrow[r] &\Omega^{n-1}(U_\alpha)   \arrow[u]
+	\end{tikzcd}
+\]
+As usual we can take the total complex of this diagram:
+
+\[C^\infty(U_\alpha, \bC^\times) \to \Omega^1(U_\alpha) \oplus  C^\infty(U_\alpha \cap U_\beta, \bC^\times) \to \Omega^2(U_\alpha) \oplus \Omega^1(U_\alpha \cap U_\beta) \oplus ... \]
+
+Recall that we defined $A_\alpha \in \Omega^1(U_\alpha)$. We can now directly compute\nrnote{How?} 
+\[A_\alpha \mapsto dA_\alpha = 0,\] 
+which implies\nrnote{How?} that the curvature of the original bundle is $0$ i.e. the connection is flat. So, this diagram would only incorporate flat connections. 
+
+Fortunately, we also included truncated diagrams, in which case the image of every element is $0$. As a result we get the following definition:
+\[
+\check{H}(M,\mathscr{D}(n)) = \begin{cases}
+	H^k(M, U(1)) & if k < n \\
+	\hat{H}^n(M,\mathscr{D}(n)) & k = n \\ 
+	H^k(M, \mathbb{Z}) & k > n 
+\end{cases}
+\] 
+
+This means
+\begin{enumerate}
+	\item $\hat{H}^1(M) = C^\infty(M,\bC^\times)$
+	\item $\hat{H}^2(M) = \bC^\times - \Bun^\nabla(M)$
+	\item $\hat{H}^3(M) = h_0(\Grb^\nabla(M))$ 
+\end{enumerate}
+
+Hence we were able to define a ``cohomology theory'' that indeed classifies bundles with connection. Note here, it is not a cohomology theory in the Eilenberg-Steenrod sense, as it includes non-trivial geometric information and is not pure homotopical. 
+
+\section{From Exact Sequences to the Hexagon}
+While we don't have a cohomology theory in the Eilenberg-Steenrod sense, we still have various exact sequences that relate these differential cohomology theories to usual ones and to differential forms. This permits for an alternative axiomatic treatment. First of all, we have the following exact sequence.
+
+\[ 0 \to \Omega^{n-1}_{cl,\bZ}(M) \to \Omega^{n-1}(M) \to \hat{H}^n(M) \xrightarrow{cc (chern class)} H^n(M,\bZ) \to 0\]
+
+Where $\Omega^{n-1}_{cl,\bZ}(M)$ is the collection of closed forms with integer integral. Let us unwind the exactness condition by analyzing the morphisms. By construction, an element in $\hat{H}^3(M)$ is of the form $(g_{\alpha\beta\gamma, A_{\alpha\beta},B_\alpha})$, and we get a class $[g_{\alpha\beta\gamma}]$ in $H^3(M,\bZ)$. On the other side, $\rho \in \Omega^{n-1}_{cl,\bZ}(M)$ gives us a class in $\hat{H}^3(M,\bZ)$ of the form $(1, 0, \rho_{U_\alpha})$. From this perspective, exactness simply means that if $g_{\alpha\beta\gamma} = 0$, then $(g_{\alpha\beta\gamma, A_{\alpha\beta},B_\alpha}) = (1, 0, \rho_{U_\alpha})$, for some $\rho$. Let us understand sketch an argument. Concretely we have the following computation:
+\[ (g_{\alpha\beta\gamma}, A_{\alpha\beta}, B_\alpha) =  (1, A_{\alpha\beta} + d log h_{\alpha\beta}, B_\alpha) = (1, 0 , B_\alpha + d C_\alpha) = (1, 0, \rho_{U_\alpha}) \]
+
+Having witnessed one interesting exact sequence, let us observe a second one, which is the following:
+\[ 0 \to H^{n-1}(M, \bC^\times) \to \hat{H}^n(M) \xrightarrow{curv} \Omega_{cl,\bZ}^n(M)\to 0 \]
+We will explicate why this diagram is exact, but let us make the following observation. First of all, the kernel is indeed reasonably defined, as $H^{n-1}(M, \bC^\times)$ classifies line bundles with equal curvature, meaning there is a mapping $(g_{\alpha\beta\gamma}, A_{\alpha\beta}, B_\alpha) \mapsto d B_\alpha$  Notice, this is indeed well-defined as $(\delta B)_{\alpha\beta} = d A_{\alpha\beta}$.\nrnote{How does that relate to the previous step?}
+
+It is an amazing fact about $\hat{H}$ that these two seemingly independent exact sequences actually fit together with $\hat{H}$, via two maps from $\Omega^n_{cl,\bZ}(M) \to H^n(M,\bR)$ and $H^n(M,\bZ)  \to H^n(M,\bR)$. This is known as the \emph{hexagonal diagram} in differential cohomology theory. 
+
+\[ 
+\begin{tikzcd}
+	&H^{n-1}(M,\bC^\times) \arrow[rr] \arrow[dr]& & H^n(M,\bZ) \arrow[dr] & \\
+	H^{n-1}(M,\bR) \arrow[ur] \arrow[dr] & & \hat{H}^n(M) \arrow[ur, "cc"] \arrow[dr, "\curv"]  & & H^n(M,\bR) \\ 
+	& \Omega^{n-1} \arrow[rr, "q"] \arrow[ur] & & \Omega^{n}_{cl,\bZ} \arrow[ur] & 
+\end{tikzcd}
+\]
+
+This was first discovered by Simons and Sullivan  in the 2000s \cite{simonssullivan2008diffcoh}.
+
+\section{Holonomy and Characters}
+We have seen that differential cohomology is a generalization of ordinary cohomology. We can hence wonder how differential cohomology interacts with other aspects of ordinary cohomology theory, such as holonomy and characters. 
+Intuitively, holonomy should give us new elements via parallel transport along loops. First of all, we can generalize this to arbitrary dimensions. For example, let $\Phi\colon \Sigma \to M$ be a smooth map, where $\Sigma$ is an $(n-1)$-dimensional closed manifold, and $\xi \in \hat{H}^n(M)$ be a differential cohomology class. Now if we take the pullback $\Phi^*\xi \in \hat{H}^n(\Sigma)$, it lands in the kernel of $cc\colon \hat{H}^n(\Sigma) \to H^n(\Sigma,\bZ)$. By exactness, it hence must be of the form $i(\varphi)$, where $\varphi \in \Omega^{n-1}(\Sigma)$. This allows us to define  
+\[Hol_\xi(\Phi) = e^{2\pi i\int_{\Sigma}\varphi} \in \bC^\times\] 
+Here the exponential is crucial as the integral is only well-defined up to integer multiples of $2\pi i$. Indeed, if $\varphi, \varphi'$ are in the fiber, then $\int_\Sigma \varphi - \int_\Sigma \varphi' \in \bZ$. We can now apply Stokes' theorem to this situation. Concretely, if $\Sigma = \partial B$, where $B$ is an $n$-dimensional manifold and $\phi = \Phi|_\Sigma$, then we have
+
+\[ Hol(\phi) = e^{2\pi i \int_B \Phi^*\curv(\xi)}\]
+
+Let us look at a manifestation thereof. In the WZW (Wess–Zumino–Witten) Model one has a surface $\Sigma$, $\phi\colon \Sigma \to M$, and a $B$-field $B \in \Omega^2(M)$ . Then we have $S(\phi) = \int_\Sigma \phi^*B$. \nrnote{How does that relate to the previous explanation?}  
+
+If $M = G$ is a Lie group, then WZW model is not globally defined i.e. $dB = H = <\theta \wedge [\theta \wedge \theta]>$. The solution is to take a differential cohomology class $\xi \in \hat{H}^3(G)$, such that  $dB = \curv(\xi)$. Then $S(\phi) = Hol_\xi(\phi)$. This indeed matches our intuition, as $Hol_{i(\alpha)}(\phi) = e^{2\pi i \int_\Sigma \phi^*\alpha}$. Witten showed that if $G$ is a simply connected Lie group, then the setup admits an extension to $3$ dimensions (we can skip dimension $2$), which implies that every map $\Sigma \to G$ must be nul-homotopic. Finally, let $[\Sigma]$ be the fundamental class of $\Sigma$. Then $\phi_*[\Sigma] \in H_{n-1}(M)$ and $\xi\colon H_{n-1} \to \bC^\times$, reconstructs differential cohomology classes.
+
+\section{Fiber Integration} 
+We will end with an honorable mention of fiber integration. Recall that, given a bundle $E \to X$, with fiber $F$ closed (compact and no boundary), there is a fiber integration map $\pi_!\colon \hat{H}^n(E) \to \hat{H}^{n-dim(F)}(X)$ with a variety of important properties. One particular application is transgression. In that case $S^1 \times LM \to LM$ is a bundle, with evaluation $S^1 \times LM \to M$. Then $\xi \in \hat{H}^n(M)$ gives us a class $\pi_!(ev^*\xi) \in \hat{H}^{n-1}(LM)$.
+
+
+{\footnotesize
+\bibliographystyle{alpha}
+\bibliography{main}
+}
+\end{document}
