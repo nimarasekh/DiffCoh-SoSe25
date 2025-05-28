@@ -6,6 +6,6 @@ Up until now, we have broadly relied on the following sources (with possibly mor
 - [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) by [Jacob Lurie](https://www.math.ias.edu/~lurie) for some background on ∞-categorical sheaf theory and some advanced ∞-category theory.
 
 Until now we had the following talks:
-1. Motivation by Konrad Waldorf on 30.04.2025
-2. Background on ∞-category theory by Matthias Frerichs on 06.05.2025 & 13.05.2025
-3. Background on ∞-categorical sheaves by Hannes Berkenhagen on 21.05.2025 & 27.05.2025
+1. *Motivation* by **Konrad Waldorf** on 30.04.2025
+2. *Background on ∞-category theory* by **Matthias Frerichs** on 06.05.2025 & 13.05.2025
+3. *Background on ∞-categorical sheaves* by **Hannes Berkenhagen** on 21.05.2025 & 27.05.2025
