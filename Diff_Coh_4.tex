@@ -1,0 +1,306 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\kC}{\mathfrak{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\E}{\mathscr{E}}
+\newcommand{\F}{\mathscr{F}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\I}{\mathscr{I}}
+\newcommand{\s}{\mathscr{S}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathscr{C}\mathrm{h}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Mod}{\mathscr{M}\mathrm{od}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+\newcommand{\adjun}[4]{
+\begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+ #1  \arrow[r, shift left=1.8, "#3"] \pgfmatrixnextcell
+ #2 \arrow[l, shift left=1.6, "#4", "\bot"'] 
+\end{tikzcd}
+}
+
+\newcommand{\simpset}[7]{
+ \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+   #1 \arrow[r, shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell #2 
+   \arrow[l, shift left=1.2, "#5"] \arrow[l, shift right=1.2, "#4"'] 
+   \arrow[r, shift right, shorten >=1ex,shorten <=1ex ] \arrow[r, shift left, shorten >=1ex,shorten <=1ex] 
+   \pgfmatrixnextcell #3 
+   \arrow[l] \arrow[l, shift left=2, "#7"] \arrow[l, shift right=2, "#6 "'] Top
+   \arrow[r, shorten >=1ex,shorten <=1ex] \arrow[r, shift left=2, shorten >=1ex,shorten <=1ex] \arrow[r, shift right=2, 
+   shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell \cdots 
+   \arrow[l, shift right=1] \arrow[l, shift left=1] \arrow[l, shift right=3] \arrow[l, shift left=3] 
+ \end{tikzcd}
+}
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[equation]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[equation]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+% \newtheorem{queone}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\title{Differential Cohomology Seminar 4 (Draft)}
+\date{03.06.2025 $\&$ 17.06.2025}
+\author{Talk by Alessandro Nanto}
+
+\begin{document}
+\maketitle
+
+In the last talk we learned the definition of a differential cohomology theory, as a sheaf valued in spectra on the site of manifolds. This talk continues our journey through differential cohomology theories, and focuses on the following three topics:
+\begin{enumerate}
+  \item We want to learn how to construct non-trivial examples out of sheaves valued in chain complexes.
+  \item We want to understand how we can extend classical cohomology operations to the setting of differential cohomology theories.
+  \item We want to introduce suitable analogues of fiber-wise integration.  
+\end{enumerate}
+
+\section{Abelian Groups, Spectra and the Heart}
+Let us start by reviewing the relation between abelian groups and spectra. 
+
+\begin{definition}
+  Let $A$ be an abelian group. The \emph{Eilenberg-MacLane spectrum} $H(A)$ is defined as the spectrum whose $n$-th space is the Eilenberg-MacLane space $H(A,n)$.
+\end{definition}
+
+Eilenberg-MacLane spectra assemble into a functor $H\colon \Ab \to \Sp$. What can we say about the image of this functor?
+
+\begin{definition}
+  Let $X$ be a spectrum. The $n$-th \emph{homotopy group} of $X$ is defined as 
+  \[\pi_n(X)  = \colim_{k}(X) \pi_{n+k}(X_k).\]
+\end{definition}
+
+\begin{remark}
+  Note if $X$ is a space. Then the homotopy groups of $\Sigma X$ are precisely the stable homotopy groups of $X$, which are well-defined by the Freudenthal suspension theorem.
+\end{remark}
+
+We now have the following basic result. 
+
+\begin{definition}
+  Let $\Sp^{\heartsuit}$ be the full subcategory of $\Sp$ consisting of spectra $X$ such that $\pi_n(X) = 0$ for all $n \neq 0$.
+\end{definition}
+
+We now have the following theorem, relating abelian groups and the heart.
+
+\begin{theorem}
+  The functor $H\colon \Ab \to \Sp$ is fully faithful, and its essential image is $\Sp^{\heartsuit}$. The restricted equivalence $H\colon \Ab \to \Sp^{\heartsuit}$ has as inverse $\pi_0\colon \Sp^{\heartsuit} \to \Ab$, which sends a spectrum $X$ to its $0$-th homotopy group $\pi_0(X)$.
+\end{theorem}
+
+Note $H$ has several important properties.
+
+\begin{proposition}
+  The functor $H\colon (\Ab,\otimes, \bZ) \to (\Sp,\wedge, \bS)$ is a symmetric monoidal functor.  
+\end{proposition}
+
+The monoidality has the following evident implication.
+
+\begin{corollary} \label{cor:rings}
+  $H$ sends rings to ring spectra, and modules over a ring to modules over a ring spectrum, meaning for a given ring $R$, there is a functor $H\colon \Mod_{R} \to \Mod_{H(R)}$.
+\end{corollary}
+
+\section{From Chain Complexes to Spectra via stable Dold-Kan}
+Let $\Omega^\bullet_{dR}\colon \Mfd \to \Ch(R-\Mod)$ be the de Rham chain complex of a manifold, which is indeed a sheaf on the site of manifolds. Moreover, by \cref{cor:rings}, the ring map $\bZ \to \bR$, gives us a map of ring spectra $H\bZ \to H\bR$. Ideally Deligne cohomology should be characterized as the pullback of some sort of truncated deRham complex along the map $H\bZ \to H\bR$. This requires a precise definition of the spectrum associated to the $k$-truncated de Rham complex $\Omega^{\leq k}$. For this we use advanced result from stable homotopy theory.
+
+\begin{theorem}
+Let $R$ be a ring. The functor $H\colon \Mod_{R} \to \Mod_{H(R)}$ lifts
+\[
+\begin{tikzcd}
+ \Mod_R \arrow[r, "H"] \arrow[d] & \Mod_{H(R)} \\
+ \D(R) \arrow[ur, dashed]
+\end{tikzcd}
+\]
+where $\D(R)$ is the derived category of $R$-modules.
+\end{theorem}
+
+Recall that a $\bZ$-module is just an abelian group. Hence, applying this result to $R = \bZ$, we get the following corollary.
+
+\begin{corollary}
+  The functor $H\colon \Mod_{\bZ} \to \Mod_{H\bZ}$ lifts to a functor
+  \[
+  \begin{tikzcd}
+    \Mod_{\bZ} \arrow[r, "H"] \arrow[d] & \Mod_{H\bZ} \\
+    D(\bZ) \arrow[ur, dashed, "DK_{st}"']
+  \end{tikzcd}
+  \]
+  We call this lift $D(\bZ)\to \Mod_{H\bZ}$ the \emph{stable Dold-Kan correspondence}.
+\end{corollary}
+
+One thing one might wonder is how this relates to the more classical Dold-Kan correspondence, which relates chain complexes of abelian groups to simplicial abelian groups. Let $\Ch^+$ be the category of bounded below chain complexes of abelian groups. The classical Dold-Kan correspondence gives us a functor
+\[DK\colon\Ch^+ \to s\Ab \]
+from bounded below chain complexes of abelian groups to simplicial abelian groups. However, every simplicial abelian group comes with an abelian group structure on a simplicial set, meaning it is in particular an $E_\infty$-group in spaces. This means we have a functor \nrnote{What do we know about the properties of this functor?}
+\[s\Ab \to \Grp_{E_\infty}(\s) \]
+However, $\Grp_{E_\infty}(\s)$ fully faithfully embeds in $\Sp$ as connected spectra. Composing all these functors, we get a functor 
+\[DK\colon \Ch^+ \to \Sp,\]
+which is fully faithful and recovers the classical Dold-Kan correspondence\nrnote{Why?}. The stable Dold-Kan correspondence is a lift of this functor to $\D(\bZ)$ i.e. 
+\[
+\begin{tikzcd}
+  \Ch^+ \arrow[r, "DK"] \arrow[d, hookrightarrow] & \Sp \\
+  D(\bZ) \arrow[ur, "DK_{st}"']
+\end{tikzcd} 
+\]
+
+relates to the stable Dold-Kan correspondence.\nrnote{How?} Finally, we can now use stable Dold-Kan to get a functor of sheaves.
+
+% \[
+% \begin{tikzcd}
+%  \Ch^+ \arrow[r] & s\Ab \arrow[r] & \s \\ 
+%  & infinite loop spaces & E_\infty-Alg(\s) \arrow[u] \\ 
+%  & \Sp 
+% \end{tikzcd}
+% \]
+
+\begin{definition} \label{def:EMsheaf}
+  Let 
+  \[H \colon \Shv(Mfd; \D(\bZ)) \to \Shv(\Mfd;\Sp)\]
+  denote the functor that post-composes a sheaf of chain complexes on manifolds with the stable Dold-Kan correspondence and then sheafifies.\nrnote{Do we really need sheafification? This might need some checking.} For a given sheaf of chain complexes $F$, we call the image the associated \emph{Eilenberg-MacLane sheaf}.
+\end{definition}
+
+\section{Deligne Cohomology as a Differential Cohomology Theory}
+Now equipped with \cref{def:EMsheaf}, we can finally define Deligne cohomology as a differential cohomology theory.
+
+\begin{definition}
+  Let $k \geq 0$. The \emph{Deligne cohomology sheaf} $\E(k)$ is defined via the following pullback square in $\Shv(\Mfd; \Sp)$:
+  \[
+  \begin{tikzcd}
+   \E(k) \arrow[r] \arrow[d] & H(\Omega_{dR}^{\leq k}) \arrow[d] \\
+   H\bZ \arrow[r] & H \bR 
+  \end{tikzcd}
+  \]
+  Here $H$ is the  Eilenberg-MacLane sheaf.
+\end{definition}
+
+% Here $\Omega_{dR}$ is the deRham complex and $\Omega_{dR}^{\leq k}$ is its truncation to degrees $0$ to $k$. Here  $H\Omega_{dR}^{\geq k}$ is a black box, which is meant to be a sheaf of spectra. Let us try to better understand it.
+
+
+% We call this $DK$ because it generalizes the classical Dold-Kan correspondence. Recall that the normal Dold-Kan correspondence relates chain complexes of abelian groups and simplicial abelian groups. 
+
+
+% This gives us a functor $\Ch^+ \to \Sp$, which is fully faithful and we can consider the regular Dold-Kan.\nrnote{Why?}
+
+% Now, stable Dold-Kan is a lift from $D(\bZ)^+$ to $D(\bZ)$.
+
+\begin{remark}
+  If we take $k = \infty$, then the map $H(\Omega_{dR}) \to H\bR$ is an equivalence, meaning $\E(\infty)$ is equivalent to $H\bZ$ i.e. singular cohomology. On the other side, the individual $\E(k)$ are highly non-trivial and help classify many geometric invariants of interest (as we saw in the first talk). So, the $\E(k)$ are a non-trivial filtration of $H\bZ$ by differential cohomology theories, in the sense that there are map $\E(k+1) \to \E(k)$, the limit of which is $H\bZ$.
+\end{remark}
+
+% Note that the $\E(k)$ assemble into a filtered diagram the limit of which is $\E$, which is itself equivalent to $H\bZ$. So it is really those intermediate steps are interesting to us.  
+
+\section{Cohomology Operations for Deligne Cohomology}
+Now that we have a rigorous definition of Deligne cohomology, we can start to think about operations on it. First of all, we need a suitable monoidal structure. 
+
+\begin{definition}
+  Let $F, G$ be two differential cohomology theories. The \emph{monoidal product} $F \otimes G$ is defined as the sheafification of the presheaf $F \wedge G$, which is the point-wise wedge product of spectra.\nrnote{It is expected that sheafification is necessary, but example is missing.}
+\end{definition}
+
+Now, recall there is a map of differential forms
+\[ \Omega^{\leq k} \otimes \Omega^{\leq m} \to \Omega^{\leq k + m},\]
+which induces a map of differential cohomology theories
+\[ \E(k) \otimes \E(m) \to \E(k+ m)\]
+Ideally, we would like to describe such an operation in a very explicit manner, however, in the realm of spectra this can be very challenging. This suggests an alternative perspective.
+
+\begin{definition}
+  Let $\sL(k)$ be the sheaf of chain complexes defined as the pullback in $\Shv(\Mfd,D(\bZ))$ of the following diagram
+\[
+\begin{tikzcd}
+  \sL(k) \arrow[d] \arrow[r] & \Omega^{\leq k} \arrow[d, "dR"]\\
+ \bZ \arrow[r] &  \bR
+\end{tikzcd},
+\]
+where $\bZ$ is the functor $M \mapsto C^\bullet(M,\bZ)$ and $\bR$ is the functor $M \mapsto C^\bullet(M,\bR)$
+\end{definition}
+
+\begin{remark} \label{rem:slk chains}
+  We can explicitly describe the chain complex $\sL(k)$ as follows.
+\[\sL(k)^n = \{(c, \omega, h) \in C^n(-\bZ) \oplus \Omega^n(-)\oplus C^{n-1}(-\bR) | \omega = 0 if n > k and c - dR(\omega) = dh\} \] 
+  
+\end{remark}
+ 
+\begin{remark}
+  We expect that $H\sL(k)$ in fact recovers $\E(k)$, meaning operations on $\sL(k)$ help us understand operations on Deligne cohomology.\nrnote{This needs to be checked.}
+\end{remark}
+
+Using the explicit description from \cref{rem:slk chains}, we can define an operation on $\sL(k)$ as follows: 
+\[ (c_1, \omega_1, h_1) \otimes (c_2, \omega_2, h_2) = (c_1 \cup c_2, \omega_1 \wedge \omega_2, (-1)^{|c_1|}c_1 \cup h_2  + h_1 \cup \omega_2 + B(\omega_1,\omega_2)), \]
+where 
+\[dR(\omega_1) \cup dR (\omega_2) =- dR(\omega_1 \wedge \omega_2)  = dB(\omega_1,\omega_2) \] 
+\begin{remark}
+  Intuitively $B(\omega_1,\omega_2)$ measures the failure of $dR$ taking $\wedge$ to $\cup$.\nrnote{Is there a reasonable way to pick $B(\omega_1,\omega_2)$?}
+\end{remark}
+
+\begin{remark}
+  Ideally we would expect this formula to be well-defined, meaning $(c_1, \omega_1, h_1) \otimes (c_2, \omega_2, h_2)$ should satisfy the conditions in \cref{rem:slk chains}. In general, this is only true if $c_1,\omega_2$ satisfy $dc_1 = d\omega_2 = 0$. In particular, it is well-defined at the level of cohomology classes, as any element is closed therein.
+\end{remark}
+
+
+
+
+% {\footnotesize
+% \bibliographystyle{alpha}
+% \bibliography{main}
+% }
+\end{document}
