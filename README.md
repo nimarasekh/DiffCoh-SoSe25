@@ -9,3 +9,4 @@ Until now we had the following talks with some modest attempt at live-texing the
 1. [*Motivation*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_1.pdf) by **Konrad Waldorf** on 30.04.2025
 2. [*Background on ∞-category theory*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_2.pdf) by **Matthias Frerichs** on 06.05.2025 & 13.05.2025
 3. [*Background on ∞-categorical sheaves*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_3.pdf) by **Hannes Berkenhagen** on 21.05.2025 & 27.05.2025
+4. [*Examples, operations and integration of differential cohomology theories*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_4.pdf) by **Alessandro Nanto** on 03.06.2025 & 17.06.2025
