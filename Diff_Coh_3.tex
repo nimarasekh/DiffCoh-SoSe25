@@ -10,7 +10,6 @@
 \usepackage{bbold}
 \usepackage[bbgreekl]{mathbbol}
 \usepackage[textwidth=2.5cm, textsize=small, colorinlistoftodos]{todonotes}
-
 \newcommand{\C}{\mathscr{C}}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\kC}{\mathfrak{C}}
@@ -108,131 +107,119 @@
 \begin{document}
 \maketitle
 
-In this lecture we cover the basics of sheaf theory and learn about differential cohomology theories as sheaves of spectra. 
+	\maketitle
+	
+	In this lecture we cover the basics of sheaf theory and learn about differential cohomology theories as sheaves of spectra. 
+	
+	\section{Sheaves in Category Theory}
+	Let us review sheaves in classical category theory. A good reference remains \cite{maclanemoerdijk1994topos}. We start with  the case of sheaves on a topological space. 
+	
+	\begin{definition}
+		Let $X$ be a topological space. A \emph{presheaf} on $X$ is a contravariant functor $\mathscr{F} : (\Open_X)^{op} \to \set$. A presheaf is a \emph{sheaf} if for every open cover $U_i$ of an open subset $U$, $F(U)$ is the limit of the diagram $F(U_i)$, meaning there is an equalizer diagram 
+		\[
+		\begin{tikzcd}
+			F(U) \arrow[r] & \prod_i F(U_i) \arrow[r, shift left=1] \arrow[r, shift right = 1] &   \prod_{i,j} F(U_i \cap U_j) 
+		\end{tikzcd}
+		\]
+	\end{definition}
+	
+	We can now easily generalize this definition to the case of categories. Naively, we can try the following: Let $\C$ be a category with finite limits. A \emph{presheaf} on $\C$ is a contravariant functor $\mathscr{F} : \C^{op} \to \set$. A presheaf is a \emph{sheaf} if for every (suitably defined notion of) covering family $U_i$ of an object $U$, $F(U)$ is similarly the limit of the diagram $F(U_i)$. Here $U_i \to U$ is a covering $K(C)$. It is given axiomatically for every object $C$ in $\C$.
+	
+	More explicitly, for a given pullback square (assuming $\C$ has pullbacks) 
+	\[
+	\begin{tikzcd} 
+		C_i \times_{C} C_j \arrow[r] \arrow[d] & C_i \arrow[d] \\
+		C_j \arrow[r] & C
+	\end{tikzcd}
+	\]
+	the induced square via $F$ is a pullback square
+	\[
+	\begin{tikzcd} 
+		F(C) \arrow[r] \arrow[d] & F(C_i) \arrow[d] \\
+		F(C_j) \arrow[r] & F(C_i \times_{C} C_j)
+	\end{tikzcd}
+	\]
+	Hence, it suitably determines the elements in $F(C)$. For this naive characterization to work, the covering needs to have some nice properties.
+	
+	This means we need to take a step back and carefully define a correct notion of covering families in arbitrary categories.
+	
+	\section{Sheaves via Grothendieck Topologies}
+	
+	We now generalize from sheaves on a topological space to sheaves on a category via the additional data of a Grothendieck topology. A Grothendieck topology on a category $\C$ specifies for every object $C$ those classes of maps with codomain $C$ that \textit{cover} it. We begin by recalling a few definitions. Denote by $y$ the \textit{Yoneda embedding} $\C\to\PSh(\C)$, mapping $C$ to the presheaf $y(C):=\Hom(-,C)\colon\C\to\set$. 
+	\begin{definition}
+		Given pre-sheaves $G,F\colon\C^{op}\to\set$, we say $G$ is a \textit{sub-functor} of $F$ if $G(C)\subseteq F(C)$, for all objects $C$, and the subset inclusions define a natural transformation $G\to F$. The last condition is equivalent to the following: Given $f\colon D\to C$ and $s\in G(C)$, then $F(f)(s)\in G(D)$. 
+	\end{definition}
+	\begin{definition}
+		Given a presheaf $F\colon\C^{op}\to\set$, denote by $\C_{/F}$ the category of pairs  consisting of an object $C$ and an element $s\in F(C)$. A morphism $(C',\bar s)\to(C,s)$ consists of a morphism $f\colon C'\to C$ such that $F(f)(s)=\bar s$. 
+	\end{definition}
+	\begin{definition}
+		Let $\C$ be a category. A \emph{sieve} on an object $C$ is a sub-functor of $y(C)$, with $y(C)$ being the \textit{maximal sieve}. Given a morphism $f\colon C'\to C$ and a sieve $S$ on $C$, denote by $f^*S$ the \textit{pullback sieve}, mapping $D$ to the set of arrows $g\colon D\to C'$ such that $f\circ g\in S(D)$. 
+	\end{definition}
+	\begin{definition}
+		Let $\C$ be a category. A \emph{Grothendieck topology} on $\C$ is a collection of sieves $J(C)$, called \textit{covering sieves}, on every object $C$ in $\C$ satisfying the following axioms:
+		\begin{enumerate}
+			\item The maximal sieve is a covering sieve.
+			\item If $S$ is a covering sieve and a morphism $f\colon C' \to C$, the pullback sieve $f^*S$ is a covering sieve on $C'$.
+			\item A sieve $S$ on $C$ is a covering sieve if, for some covering sieve $S'$ on $C$ and every map $f\in S'$, the pullback sieve $f^*S$ is also a covering sieve. 
+		\end{enumerate}
+		A \emph{Grothendieck site} is a pair $(\C, J)$ where $\C$ is a category and $J$ is a Grothendieck topology on $\C$.
+	\end{definition}
+	\begin{example}If every sieve is a covering sieve, we obtain the \emph{discrete Grothendieck topology}. If the only covering sieves are the maximal ones, we obtain the \textit{indiscrete Grothendieck topology}.
+	\end{example}
+	\begin{example}
+		Let $X$ be a topological space. A sieve on an object $U$ of $\Open_X$ corresponds to a collection of open subsets of $U$. Define a sieve to be a covering sieve on $U$ if the corresponding family of subsets covers $U$ in the classical sense.
+	\end{example}
+	\begin{example}
+		Let $\Top$ be the category of topological spaces and continuous maps. Given a family $\mathscr O$ open embeddings covering $X$, denote by $S_\mathscr O$ the sieve mapping $T$ to the set of maps $T\rightarrow X$ factoring through a map in $\mathscr O$. Define a sieve $S$ to be a covering sieve if of the form $S_\mathscr O$, for some family $\mathscr O$. 
+	\end{example}
+	\begin{example}Let $\Mfd$ be the category of smooth manifolds and smooth maps. We can define a Grothendieck topology on $\Mfd$ similar to the above Grothendieck topology on $\Top$. 
+	\end{example}
+	
+	We are now ready to define sheaves on a Grothendieck site. Given a sieve $S$ on $C$, notice that the category $\C_{/S}$ can be identified with the full sub-category of $\C_{/C}$ spanned by morphisms $f\in S$. A presheaf $F\colon \C^{op}\to\set$ induces a diagram 
+	\begin{center}
+		\begin{tikzcd}
+			\mathscr J_F:(\C_{/S})^{op}\arrow[r] & \C^{op}\arrow[r,"F"] & \set
+		\end{tikzcd}
+	\end{center}An object $f\colon C'\to C$ in $\C_{/S}$ then induces a map $F(f)\colon F(C)\to F(C')=\mathscr J_F(f)$. In particular, there is an induced map $F(C)\to\lim\mathscr J_F$.  
+	\begin{definition}
+		Let $(\C, J)$ be a Grothendieck site. A {presheaf} $F : \C^{op} \to \set$ is a \emph{sheaf} if, for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
+		\[ F(C) \to \lim((\C_{/S})^{op}\to\C^{op}\xrightarrow F\set)\]
+		is an isomorphism. Explicitly, an object in the limit consists of an element $x_f\in F(C')$, for every map $f\in S$ (where $C'$ is the domain of $f$), such that $x_{fg}=F(g)(x_f)$, for every $g\colon C''\to C'$. The canonical morphism takes $x\in F(X)$ to the tuple $x_f:=F(f)(x)$. 
+	\end{definition}From the above explicit description, we can see that $\lim\mathscr J_F$ is canonically isomorphic to the set $\Nat_\C(S,F)$, of natural transformations $S\to F$. The map $F(C)\to\lim\mathscr J_F$ is induced by restriction along the inclusion $S\to y(C)$ (upon identifying $F(C)$ with $\Nat_\C(y(C),F)$ via Yoneda's lemma). We thus have the following
+	\begin{lemma}
+		A presheaf $F$ on a Grothendieck site $(\C, J)$ is a sheaf if and only if for every covering sieve $S$ of an object $C$, the canonical morphism
+		\[ F(C)  = \Nat_\C(y(c),F)\to \Nat_\C(S,F) \]
+		is an isomorphism. 
+	\end{lemma}
+	
+	\section{Sheaves on \texorpdfstring{$\infty$}{oo}-Categories}
+	Now that we know how  to define sheaves on 1-categories, we generalize the definition of sheaves to the case of $\infty$-categories. Here we largely follow \cite{lurie2009htt}. Recall that a sieve on $C$ determines a full sub-category of $\C_{/C}$. Conversely, a full sub-category $\C'$ of $\C_{/C}$ determines a sieve if $f\in\C'$ implies $fg\in\C'$, for every $g$ (pre-composable with $f$). 
+	\begin{definition}
+		Let $\C$ be an $\infty$-category and $C$ an object of $\C$. A \textit{sieve} on $C$ is a full sub-$\infty$-category $\C'$ of $\C_{/C}$ such that $\Ho(\C')\subseteq\Ho(\C_{/C})\simeq\Ho(\C)_{/C}$ is a sieve over $C$ in the homotopy category. 
+	\end{definition}
+	\begin{definition}
+		Let $\C$ be an $\infty$-category. A \emph{Grothendieck topology} on $\C$ is a collection $J(C)$ of sieves for every object $C$, such that it induces a Grothendieck topology on $\Ho(\C)$. 
+	\end{definition}
+	
+	Notice, we have the following compatibility observation.
+	\begin{lemma}
+		Let $\C$ be a $1$-category. A Grothendieck topology on $\C$ is precisely a Grothendieck topology on $\C$ seen as an $\infty$-category.
+	\end{lemma}
+  
+  %Edited the notes until this point.
 
-\section{Sheaves in Category Theory}
-Let us review sheaves in classical category theory. A good reference remains \cite{maclanemoerdijk1994topos}. We start with  the case of sheaves on a topological space. 
-
-\begin{definition}
-  Let $X$ be a topological space. A \emph{presheaf} on $X$ is a contravariant functor $\mathscr{F} : (\Open_X)^{op} \to \set$. A presheaf is a \emph{sheaf} if for every open cover $U_i$ of an open subset $U$, $F(U)$ is the limit of the diagram $F(U_i)$, meaning there is an equalizer diagram 
-  \[
-    \begin{tikzcd}
-      F(U) \arrow[r] & \prod_i F(U_i) \arrow[r, shift left=1] \arrow[r, shift right = 1] &   \prod_{i,j} F(U_i \cap U_j) 
-    \end{tikzcd}
-  \]
-\end{definition}
-
-We can now easily generalize this definition to the case of categories. Naively, we can try the following: Let $\C$ be a category with finite limits. A \emph{presheaf} on $\C$ is a contravariant functor $\mathscr{F} : \C^{op} \to \set$. A presheaf is a \emph{sheaf} if for every (suitably defined notion of) covering family $U_i$ of an object $U$, $F(U)$ is similarly the limit of the diagram $F(U_i)$. Here $U_i \to U$ is a covering $K(C)$. It is given axiomatically for every object $C$ in $\C$.
-
-More explicitly, for a given pullback square (assuming $\C$ has pullbacks) 
-\[
-  \begin{tikzcd} 
-    C_i \times_{C} C_j \arrow[r] \arrow[d] & C_i \arrow[d] \\
-    C_j \arrow[r] & C
-\end{tikzcd}
-\]
-the induced square via $F$ is a pullback square
-\[
-  \begin{tikzcd} 
-    F(C) \arrow[r] \arrow[d] & F(C_i) \arrow[d] \\
-    F(C_j) \arrow[r] & F(C_i \times_{C} C_j)
-\end{tikzcd}
-\]
-Hence, it suitably determines the elements in $F(C)$. For this naive characterization to work, the covering needs to have some nice properties.
-
-This means we need to take a step back and carefully define a correct notion of covering families in arbitrary categories.
-
-\section{Sheaves via Grothendieck Topologies}
-We now generalize from sheaves on a topological space to sheaves on a category. The idea is to use Grothendieck topologies, which allow us to define a notion of covering families in an arbitrary category. Let us start with the definition of a \emph{sieve}.
-
-\begin{definition}
-  Let $\C$ be a category. A \emph{sieve} on an object $C$ is a full sub-functor of $\Hom(-,C)\colon \C^{op} \to \set$.
-\end{definition}
-
-\begin{definition}
-  Let $\C$ be a category. A \emph{Grothendieck topology} on $\C$ is a collection of sieves $J(C)$ on every object $C$ in $\C$ satisfying the following axioms:
-  \begin{enumerate}
-    \item The maximal sieve is a covering sieve.
-    \item If $S$ is a covering sieve and $f\colon C' \to C$ is a morphism in $\C$, then the pullback sieve $f^*S$ is also a covering sieve.
-    \item If $S$ is a sieve and for some covering sieve $S'$, for all $f^*S$ is a covering sieve for all $f \in S'$, then $S$ is a covering sieve.
-  \end{enumerate}
-\end{definition}
-
-\begin{definition}
-  A \emph{Grothendieck site} is a pair $(\C, J)$ where $\C$ is a category and $J$ is a Grothendieck topology on $\C$.
-\end{definition}
-
-\begin{example}
-  For every category $\C$, there is a Grothendieck topology $J$ on $\C$ given by the collection of all sieves. This is called the \emph{discrete Grothendieck topology}.
-\end{example}
-
-\begin{example}
-  For every category $\C$, there is a Grothendieck topology $J$ on $\C$ given by only maximal sieves. This is known as the \emph{indiscrete Grothendieck topology}.
-\end{example}
-
-\begin{example}
-  Let $\Top$ be the category of topological spaces and continuous maps. There is a covering sieve given by the open covers.
-\end{example}
-
-\begin{example}
-  Let $\Mfd$ be the category of manifolds and smooth maps. There is a covering sieve given by the open embeddings, such that their image is an open cover.
-\end{example}
-
-\begin{example}
-  Let $X$ be a topological space. There is a covering sieve of $U$ is given by a collection of open sets that are a covering. 
-\end{example}
-
-We are now ready to define sheaves on a Grothendieck site.
-
-\begin{definition}
-  Let $(\C, J)$ be a Grothendieck site. A \emph{presheaf} on $\C$ is a contravariant functor $\F : \C^{op} \to \set$. A presheaf is a \emph{sheaf} if for every covering sieve $S$ of an object $C$, the canonical morphism
-  \[ F(C) \to \lim_{f_i\colon C_i \to C \in S} F(C_i) \]
-  is an isomorphism. More explicitly, an element in $\lim_{f_i\colon c_i \to c \in S} F(c_i)$ is a collection of elements $x_i \in F(c_i)$ such that for every morphism $f_{ij}\colon c_i \to c_j$ in $S$, $F(f_{ij})x_j = x_i$ and such a data should correspond  uniquely to an element in $F(c)$. 
-\end{definition}
-
-We can equivalently characterize this limit as a natural transformation $S \to F$, where we here consider $S$ as a sub-functor of $\Hom(-,c)$. This immediately gives us the following lemma.
-
-\begin{lemma}
-  A presheaf $\F$ on a Grothendieck site $(\C, J)$ is a sheaf if and only if for every covering sieve $S$ of an object $C$, the canonical morphism
-  \[ F(C)  = \Nat_\C(\Hom(-,c),F)\to \Nat_\C(S,F) \]
-  is an isomorphism. 
-\end{lemma}
-
-\section{Sheaves on \texorpdfstring{$\infty$}{oo}-Categories}
-Now, that we know hwo  to define sheaves on $1$-categories, we now generalize the definition of sheaves to the case of $\infty$-categories. Here we largely follow \cite{lurie2009htt}.
-
-\begin{definition}
-  Let $\C$ be an $\infty$-category. A sieve on $\C$ is precisely a sieve on $\Ho(\C)$, the homotopy category of $\C$. 
-\end{definition}
-
-Unwinding this, a sieve for an $\infty$-category $\C$ on an object $C$, is a full sub-$\infty$-category of $\C_{/C}$, closed under pre-composition.
-
-\begin{definition}
-  Let $\C$ be an $\infty$-category. A \emph{Grothendieck topology} on $\C$ is a collection of sieves $J(C)$ on every object $C$ in $\C$ satisfying the following axioms:
-  \begin{enumerate}
-    \item The maximal sieve is a covering sieve.
-    \item If $S$ is a covering sieve and $f\colon C' \to C$ is a morphism in $\C$, then the pullback sieve $f^*S$ is also a covering sieve.
-    \item If $S$ is a sieve and for some covering sieve $S'$, for all $f^*S$ is a covering sieve for all $f \in S'$, then $S$ is a covering sieve.
-  \end{enumerate}
-\end{definition}
-
-Notice, we have the following compatibility observation.
-\begin{lemma}
-  Let $\C$ be a $1$-category. A Grothendieck topology on $\C$ is precisely a site on $\C$ seen as an $\infty$-category.
-\end{lemma}
-
-\begin{definition}
-  Let $\C$ be an $\infty$-category. A \emph{presheaf} is a functor $F : \C^{op} \to \s$. A presheaf is a \emph{sheaf} if for every covering sieve $S$ of an object $C$, the canonical morphism
-  \[ F(C) = \Map(\Map_\C(-,c),F) \to \Map(S,F) \]
-  is an equivalence. Denote by $\Shv(\C,J)$ the full sub-$\infty$-category of $\Fun(\C^{op},\s)$ spanned by the sheaves on $(\C,J)$.
-\end{definition}
-
-Note we defined sheaves as local objects in a presentable $\infty$-category. Hence, using the formalism of presentable $\infty$-categories, we immediately have the following result. 
-
-\begin{proposition}
-  Then the $\infty$-category of sheaves on $\Shv(\C,J)$ is presentable.
-\end{proposition}
-
+	\begin{definition}
+		Let $\C$ be an $\infty$-category. A \emph{presheaf} consists of a functor $F : \C^{op} \to \s$. A presheaf is a \emph{sheaf} if for every covering sieve $S$ of an object $C$, the canonical morphism
+		\[ F(C) = \Map(\Map_\C(-,c),F) \to \Map(S,F) \]
+		is an equivalence. Denote by $\Shv(\C,J)$ the full sub-$\infty$-category of $\Fun(\C^{op},\s)$ spanned by the sheaves on $(\C,J)$.
+	\end{definition}
+	
+	Note we defined sheaves as local objects in a presentable $\infty$-category. Hence, using the formalism of presentable $\infty$-categories, we immediately have the following result. 
+	
+	\begin{proposition}
+		Then the $\infty$-category of sheaves on $\Shv(\C,J)$ is presentable.
+	\end{proposition}
+	
 \section{Sheaves with arbitrary Values}
 We started with sheaves valued in sets. Then generalized to $\infty$-categorical sheaves valued in spaces. However, we want $\infty$-categorical sheaves valued in spectra. Hence the next step is to generalize the values of our $\infty$-categorical sheaves. Abstractly we obtain such sheaves via the \emph{tensor product} of presentable $\infty$-categories, which we review now.
 
