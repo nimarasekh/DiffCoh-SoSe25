@@ -145,7 +145,7 @@
 	
 	\section{Sheaves via Grothendieck Topologies}
 	
-	We now generalize from sheaves on a topological space to sheaves on a category via the additional data of a Grothendieck topology. We begin by recalling a few definitions. Denote by $y$ the \textit{Yoneda embedding} $\C\to\PSh(\C)$, mapping $C$ to the presheaf $y(C):=\Hom(-,C)\colon\C\to\set$. 
+	We now generalize from sheaves on a topological space to sheaves on a category via the additional data of a Grothendieck topology. We begin by recalling a few definitions. Denote by $y$ the \textit{Yoneda embedding} $\C\to\PSh(\C)$, mapping $C$ to the presheaf $y(C):=\Hom(-,C)\colon\C^{op}\to\set$. 
 	\begin{definition}
 		Given pre-sheaves $G,F\colon\C^{op}\to\set$, we say $G$ is a \emph{sub-functor} of $F$ if $G(C)\subseteq F(C)$, for all objects $C$, and the subset inclusions define a natural transformation $G\to F$. The last condition is equivalent to the following: Given $f\colon D\to C$ and $s\in G(C)$, then $F(f)(s)\in G(D)$. 
 	\end{definition}
@@ -206,7 +206,7 @@
 	\end{corollary}
 	
 	\section{Sheaves on \texorpdfstring{$\infty$}{oo}-Categories}
-	Now that we know how  to define sheaves on 1-categories, we generalize the definition of sheaves to the case of $\infty$-categories. Here we largely follow \cite{lurie2009htt}. Recall that a sieve on $C$ determines a full sub-category of $\C_{/C}$. Conversely, a full sub-category $\D$ of $\C_{/C}$ determines a sieve if $f\in\D$ implies $fg\in\D$, for every $g$ (pre-composable with $f$). 
+	Now that we know how  to define sheaves on 1-categories, we generalize the definition of sheaves to the case of $\infty$-categories. Here we largely follow \cite{lurie2009htt}. Recall that a sieve on $C$ determines a full sub-category of $\C_{/C}$. Conversely, a full sub-category $\D$ of $\C_{/C}$ determines a sieve if and only if $f\in\D$ implies $fg\in\D$, for every $g$ (composable with $f$). 
 	\begin{definition}
 		Let $\C$ be a $\infty$-category and $\s$ the $\infty$-category of spaces. A \textit{pre-sheaf} on $\C$ is a functor $\C^{op}\to\s$.
 	\end{definition}
@@ -230,7 +230,7 @@
 	\end{definition}
 	\begin{definition}
 		Let $\C$ be an $\infty$-category. A presheaf $F\colon\C^{op}\to\s$ is a \emph{sheaf} if for every object $C$ and covering sieve $\D$ of $C$, the canonical morphism
-		\[ F(C)\simeq\Map(C_{/C},F) \to \Map(\D,F) \]
+		\[ F(C)\simeq\Map(\C_{/C},F) \to \Map(\D,F) \]
 		is an equivalence. Denote by $\Shv(\C,J)$ the full sub-$\infty$-category of $\Fun(\C^{op},\s)$ spanned by the sheaves on $(\C,J)$.
 	\end{definition}
 	
@@ -247,7 +247,7 @@ We started with sheaves valued in sets. Then generalized to $\infty$-categorical
   Let $\C, \D$ be presentable $\infty$-categories. Then there exists a presentable $\infty$-category $\C \otimes \D$ together with a functor $F:\C\times\D\rightarrow\C\otimes\D$ such that 
   \begin{enumerate}
 	\item The functor $F$ preserves colimits component-wise.
-	\item For any presentable $\infty$-category $\E$, pre-composition with $F$ induces an equivalence between the sub-$\infty$-category $\Fun^L(\C \otimes \D , \E)\subseteq\Fun(\C \otimes \D , \E)$ of colimit preserving functors, and the sub-$\infty$-category $\Fun^{L,L}(\C \times \D, \E)\subseteq\Fun(\C\times\D,\E)$ of functors preserving colimits component-wise. 
+	\item For any presentable $\infty$-category $\E$, pre-composition with $F$ induces an equivalence between the sub-$\infty$-category $\Fun^L(\C \otimes \D , \E)\subseteq\Fun(\C \otimes \D , \E)$ of colimit preserving functors, and the sub-$\infty$-category $\Fun^{L,L}(\C \times \D, \E)\subseteq\Fun(\C\times\D,\E)$ of functors preserving colimits in each component. 
   \end{enumerate}
 \end{theorem}
 \begin{theorem}[{\cite[Proposition 4.8.1.17]{lurie2017ha}}]For $\C$ and $\D$ presentable $\infty$-categories, there is a canonical equivalence between $\C\otimes\D$ and $\Fun^R(\C^{op},\D)$, of limit preserving functors $\C^{op}\to\D$. 
@@ -305,7 +305,8 @@ In fact we can check the sheaf condition for sheaves on the site of manifolds wi
 \end{proposition}
 
 \section{Equivalences of Sheaves}
-We now have etsablished a very solid understanding of sheaves on the site of manifolds with arbitrary values as presheaves with suitable limits conditions. We now want to use these explicit descriptions to better understand equivalences of sheaves on the site of manifolds.
+
+We now have established a very solid understanding of sheaves on the site of manifolds with arbitrary values as presheaves with suitable limits conditions. We now want to use these explicit descriptions to better understand equivalences of sheaves on the site of manifolds.
 
 \begin{lemma}
  Let $\varphi\colon G\to F$ be a morphism of sheaves on $\Mfd$. Then $\varphi$ is an equivalence if and only if $\varphi(\bR^n)$ is an equivalence, for every $n\geq0$.
