@@ -93,24 +93,26 @@
   size=\tiny]{#1}}
 \newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
 
-\newtheorem{theorem}[section]{Theorem}
-\newtheorem{lemma}[section]{Lemma}
-\newtheorem{proposition}[section]{Proposition}
-\newtheorem{corollary}[section]{Corollary}
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
 % \newtheorem{statement}[section]{Statement}
 
 \theoremstyle{definition}
-\newtheorem{definition}[section]{Definition}
-\newtheorem{example}[section]{Example}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
 % \newtheorem{attone}[section]{Attention}
 
 \theoremstyle{remark}
-\newtheorem{remark}[section]{Remark}
+\newtheorem{remark}[equation]{Remark}
 % \newtheorem{intone}[section]{Intuition}
-\newtheorem{notation}[section]{Notation}
+\newtheorem{notation}[equation]{Notation}
 % \newtheorem{queone}[section]{Question}
 % \newtheorem{conjone}[section]{Conjecture}
-\newtheorem{warning}[section]{Warning}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
 
 \title{Differential Cohomology Seminar 4 (Draft)}
 \date{03.06.2025 $\&$ 17.06.2025}
@@ -208,9 +210,9 @@ We now use our newly gained understanding of spectra to construct differential c
 \end{lemma}
 \begin{definition}\label{def:forms}
   Denote by $\Omega^*$ the sheaf $\Mfd^{op}\to\Ch(\bZ)$ mapping a manifold to its de Rham complex. 
-\end{definition}\label{def:EMsheaf}
+\end{definition}
 \cref{lem:sheafloc} ensures that the sheaf in \cref{def:forms} and the corresponding naive truncations remain sheaves after post-composition with the localization functor $\Ch(\bZ)\to\D(\bZ)$.  
-\begin{definition}
+\begin{definition}\label{def:EMsheaf}
   Given a sheaf $F:\Mfd^{op}\to\D(\bZ)$, denote by $HF$ the \emph{Eilenberg-Mac Lane sheaf} of $H\bZ$-module spectra obtained by applying point-wise the equivalence of \cref{thm:stabledk}. 
 \end{definition}
 
