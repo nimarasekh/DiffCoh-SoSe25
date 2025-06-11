@@ -216,47 +216,24 @@ We now use our newly gained understanding of spectra to construct differential c
   Given a sheaf $F:\Mfd^{op}\to\D(\bZ)$, denote by $HF$ the \emph{Eilenberg-Mac Lane sheaf} of $H\bZ$-module spectra obtained by applying point-wise the equivalence of \cref{thm:stabledk}. 
 \end{definition}
 
-% It would be nice to see an example of sheaf that is not a sheaf once post-composed with the localization functor, but it's not necessary. 
-
-% comment on the classical statement of Dold-Kan. Namely, Shipley proved an equivalence between the model category of $H\bZ$-module spectra and symmetric spectra objects in $s\Ab$. How does it tie back to infinite loop spaces? 
-
-% Last ingredient to Deligne: Equivalence of $\Omega^*$ and $\bR$. 
+% $\Omega^*$ is equivalent to the constant sheaf $\bR$.
 
 % TO BE CONTINUED 
 
-\section{Deligne Cohomology as a Differential Cohomology Theory}
-Now equipped with \cref{def:EMsheaf}, we can finally define Deligne cohomology as a differential cohomology theory.
+\section{Deligne Cohomology}
 
-% What does it mean for a sheaf of spectra to refine a spectrum. 
 
 \begin{definition}
-  Let $k \geq 0$. The \emph{Deligne cohomology sheaf} $\E(k)$ is defined via the following pullback square in $\Shv(\Mfd; \Sp)$:
-  \[
-  \begin{tikzcd}
-   \E(k) \arrow[r] \arrow[d] & H(\Omega_{dR}^{\leq k}) \arrow[d] \\
-   H\bZ \arrow[r] & H \bR 
-  \end{tikzcd}
-  \]
-  Here $H$ is the  Eilenberg-MacLane sheaf.
+  Given $n\in\bN$, define $\widehat{\bZ}(n):\Mfd^{op}\to\D(\bZ)$ by the pullback 
+  \[\begin{tikzcd}
+    \widehat{\bZ}(n)\arrow[r]\arrow[d] & \Omega^{\geq n}\arrow[d] \\
+    \bZ \arrow[r] & \Omega^*
+  \end{tikzcd}\]We call the corresponding sheaf of $H\bZ$-modules spectra $H\widehat{\bZ}(n)$ the $n$\emph{-th Deligne sheaf}.
 \end{definition}
 
-% Here $\Omega_{dR}$ is the deRham complex and $\Omega_{dR}^{\leq k}$ is its truncation to degrees $0$ to $k$. Here  $H\Omega_{dR}^{\geq k}$ is a black box, which is meant to be a sheaf of spectra. Let us try to better understand it.
+% $\bE_\infty$-algebra structure on $\widehat{\bZ}(n)$ coming from the pullback square. 
 
-
-% We call this $DK$ because it generalizes the classical Dold-Kan correspondence. Recall that the normal Dold-Kan correspondence relates chain complexes of abelian groups and simplicial abelian groups. 
-
-
-% This gives us a functor $\Ch^+ \to \Sp$, which is fully faithful and we can consider the regular Dold-Kan.\nrnote{Why?}
-
-% Now, stable Dold-Kan is a lift from $D(\bZ)^+$ to $D(\bZ)$.
-
-\begin{remark}
-  If we take $k = \infty$, then the Hom $H(\Omega_{dR}) \to H\bR$ is an equivalence, meaning $\E(\infty)$ is equivalent to $H\bZ$ i.e. singular cohomology. On the other side, the individual $\E(k)$ are highly non-trivial and help classify many geometric invariants of interest (as we saw in the first talk). So, the $\E(k)$ are a non-trivial filtration of $H\bZ$ by differential cohomology theories, in the sense that there are Hom $\E(k+1) \to \E(k)$, the limit of which is $H\bZ$.
-\end{remark}
-
-
-
-\section{Cohomology Operations for Deligne Cohomology}
+\section{Unfolding the fracture square of Deligne Cohomology}
 Now that we have a rigorous definition of Deligne cohomology, we can start to think about operations on it. First of all, we need a suitable monoidal structure. 
 
 \begin{definition}
