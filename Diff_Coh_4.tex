@@ -231,7 +231,7 @@ The stable Dold-Kan correspondence allowes us to move freely between sheaves of 
 \begin{remark}\label{rmk:identification}
   We identify the category of cochain complexes with $\Ch(R)$ by reversing grading. Namely, given a cochain $V^*$, we are implicitly identifying it with the chain complex $V_n=V^{-n}$. 
 \end{remark}
-\begin{definition}[{\cite[Definition 7.14]{bunkenikolausvoelkl2016diffcoh}}]Given $n\in\bZ$, denote by $\tau^{\geq n}$, resp. $\tau^{\leq n}$, the \emph{stupid truncation functors}, mapping a cochain complex $V^*$ to \[\cdots\to0\to V^n\to V^{n+1}\to\cdots, \qquad \mbox{resp. }\cdots\to V^{n-1}\to V^n\to0\to\cdots\]Given $F:\Mfd^{op}\to\Ch(\bZ)$, denote by $F^{\geq n}$ the composite $\Mfd^{op}\xrightarrow{F}\Ch(\bZ)\xrightarrow{\tau^{\geq n}}\Ch(\bZ)$, and similarly we define $F^{\leq n}$. If $F$ is a sheaf, then so are its truncations. 
+\begin{definition}[{\cite[Definition 7.14]{bunkenikolausvoelkl2016diffcoh}}]Given $n\in\bZ$, denote by $\tau^{\geq n}$, resp. $\tau^{\leq n}$, the \emph{naive truncation functors}, mapping a cochain complex $V^*$ to \[\cdots\to0\to V^n\to V^{n+1}\to\cdots, \qquad \mbox{resp. }\cdots\to V^{n-1}\to V^n\to0\to\cdots\]Given $F:\Mfd^{op}\to\Ch(\bZ)$, denote by $F^{\geq n}$ the composite $\Mfd^{op}\xrightarrow{F}\Ch(\bZ)\xrightarrow{\tau^{\geq n}}\Ch(\bZ)$, and similarly we define $F^{\leq n}$. If $F$ is a sheaf, then so are its truncations. 
 \end{definition}
 \begin{lemma}[{\cite[Lemma 7.12]{bunkenikolausvoelkl2016diffcoh}}]\label{lem:sheafloc}
   Let $F:\Mfd^{op}\to\Ch(\bZ)$ a sheaf of chain complexes of $C^\infty$-modules, then $\Mfd^{op}\xrightarrow{F}\Ch(\bZ)\to\D(\bZ)$ is a sheaf. 
@@ -244,10 +244,11 @@ The stable Dold-Kan correspondence allowes us to move freely between sheaves of 
   Given a sheaf $F:\Mfd^{op}\to\D(\bZ)$, denote by $HF$ the \emph{Eilenberg-Mac Lane sheaf} of $H\bZ$-module spectra obtained by applying point-wise the equivalence of \cref{thm:stabledk}. 
 \end{definition}
 Recall now the machinery set-up in \cref{sec:baggage}.
-\begin{remark}
-  Since $\D(\bZ)$ is presentable, we know that they is cotensored over $\s$. Given a space $S$ and a chain complex $M_*$, the cotensor $M_*{}^A$ is the chain complex of graded linear maps $C_*(S,\bZ)\to M_*$, from the singular chain complex of $S$ to $M_*$, see \cite[Definition 1.3.2.1]{lurie2017ha}. In particular, let $M_*=M$ be concentrated in degree 0, then $M_*{}^S=C^{-*}(S,M)$, the singular cochain complex with values in $M$.
+\begin{remark}\label{rmk:Dcotensor}
+  Since $\D(\bZ)$ is presentable, we know that they is cotensored over $\s$. Given a space $S$ and a chain complex $M_*$, the cotensor $M_*{}^A$ is the chain complex of graded linear maps $C_*(S,\bZ)\to M_*$, from the singular chain complex of $S$ to $M_*$, see \cite[Definition 1.3.2.1]{lurie2017ha}. In particular, let $M_*=M$ be concentrated in degree 0, then $M_*{}^S$ is the singular cochain complex of $S$ with values in $M$.
 \end{remark}
-\begin{lemma}\label{lem:derham}Let $\dr:\Omega^*\to\flat\bR$ be the \emph{de Rham homomorphism}, defined on a manifold $M$ by mapping a form $\omega\in\Omega^n(M)$ to the cochain $\int_-\omega:C_{n}(M,\bZ)\to\bR$. The homomorphism $\dr$ is an equivalence of sheaves.
+Applying \cref{rmk:Dcotensor}, we see that $(\flat A)(M)$ is the singular cochain complex of (the underlying topological space of) $M$ with values in $A$. In particular for $A=\bR$, consider the natural map $\Omega^*(M)\to C^*(M,\bR)$ taking a form $\omega\in\Omega^n(M)$ to $\int\omega:C_{n}(M,\bZ)\to\bR$. We call the induced natural transformation $\dr:\Omega^*\to\flat\bR$ the \emph{de Rham homomorphism}.
+\begin{lemma}\label{lem:derham} $\dr$ is an equivalence.
 \end{lemma}
 \begin{proof}
   The statement is equivalent to $\dr$ being an equivalence after restriction to the Euclidean site $\Euc$, the conclusion then follows from Poincar\'e lemma. 
@@ -258,67 +259,49 @@ Recall now the machinery set-up in \cref{sec:baggage}.
 \section{Deligne Cohomology}
 
 Finally, we have enough machinery to talk about Deligne cohomology. 
-\begin{definition}
-  Given $\ell\in\bN$, define $\widehat{\bZ}(\ell):\Mfd^{op}\to\D(\bZ)$ by the pullback 
+\begin{definition}\label{def:deligne}
+  Given $\ell\in\bN$, define $\hat{\bZ}(\ell):\Mfd^{op}\to\D(\bZ)$ as the limit of 
   \[\begin{tikzcd}
-    \widehat{\bZ}(\ell)\arrow[r]\arrow[d] & \Omega^{\geq \ell}\arrow[d] \\
+     & \Omega^{\geq \ell}\arrow[d] \\
     \flat\bZ \arrow[r] & \flat\bR
-  \end{tikzcd}\]We call the corresponding sheaf of $H\bZ$-modules spectra $H\widehat{\bZ}(\ell)$ the $\ell$\emph{-th Deligne sheaf}.
-\end{definition}The morphism $\Omega^{\geq \ell}\to\flat\bR$ is the composition of the inclusion $\Omega^{\geq \ell}\subseteq\Omega^*$ followed by the de Rham homomorphism of \cref{lem:sheafloc}. Given a manifold $M$, we give some models for $\widehat{\bZ}(\ell)$ evaluated at $M$.
+  \end{tikzcd}\]
+  The vertical morphism being the composition $\Omega^{\geq \ell}\subseteq\Omega^*\xrightarrow{\dr}\flat\bR$. We call the corresponding sheaf of $H\bZ$-modules spectra $H\hat{\bZ}(\ell)$ the $\ell$\emph{-th Deligne sheaf}.
+\end{definition}
+\begin{remark}[Model A, see {\cite[\S 3.2]{hopkinssinger2005diffcoh}}]\label{rmk:A} Let $\check{C}(\ell)^n(M)\subseteq C^n(M,\bZ)\oplus C^{n-1}(M,\bR)\oplus\Omega^n(M)$ consist of triples $(c,h,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(c,h,\omega)=(\delta c,\dr(\omega)-c-\delta h,d\omega)$. This complex $\check{C}^*(\ell)(M)$ fits into a diagram
+\[\begin{tikzcd}
+    \check{C}^*(\ell)(M) \arrow[d]\arrow[r] & \Omega^{\geq \ell}(M)\arrow[d] \\
+    C^*(M,\bZ) \arrow[r] & C^*(M,\bR)
+  \end{tikzcd}\]which commutes up to homotopy given by the projections $\check{C}^n(\ell)(M)\to C^{n-1}(M,\bR)$. The diagram above model the homotopy pullback of \cref{def:deligne}, hence $\check{C}^*(\ell)(M)$ is a model for $\hat{\bZ}(\ell)(M)$. 
+\end{remark}
+\begin{remark}[Model B]\label{rmk:B} Recall that $\flat$ preserves cofiber sequences, since it is left adjoint, and that fiber sequences are the same a cofiber sequences in stable $\infty$-categories. Consider the diagram
+  \[\begin{tikzcd}
+     & \Omega^{\geq \ell}\arrow[d]\arrow[dd,bend left=5em,color=red] \\
+    \flat\bZ \arrow[r]\arrow[d] & \flat\bR\arrow[d] \\
+    0\arrow[r,color=red] & \flat(\bR/\bZ)
+  \end{tikzcd}\]
+  Since the square is an homotopy pullback, $\hat{\bZ}(\ell)(M)$ is equivalent to the homotopy pullback of the diagram in \textcolor{red}{red}. Let $\hat{C}^{n}(\ell)(M)\subseteq C^{n-1}(M,\bR/\bZ)\oplus\Omega^n(M)$ consist of pairs $(\chi,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(\chi,\omega)=(e^{2\pi i\dr(\omega)}-\delta\chi,d\omega)$. Similar to \cref{rmk:A}, the complex $\hat{C}^*(\ell)(M)$ fits into the above diagram, so that the outer square is an homotopy pullback.
+\end{remark}
+Take an $\ell$-cocycle in the model from \cref{rmk:B}, i.e. $(\chi,\omega)\in C^{\ell-1}(M,\bR/\bZ)\oplus\Omega^{\ell}(M)$ such that $d\omega=0$ and $\delta\chi=e^{2\pi i\dr(\omega)}$. Such a cocycle determines a differential character of degree $\ell-1$ for $M$, in the sense of the following definition:
+\begin{definition}[{\cite[Definition 3.4]{hopkinssinger2005diffcoh}}, see also {\cite[Chapter 5]{barbecker2014diffchar}}] Consider a manifold $M$, a \emph{differential character} of degree $n$ consists of a character $\chi:Z^\infty_{n}(M,\bZ)\to\bR/\bZ$ on the group of smooth $n$-cycles of $M$ together with a $n$-form $\omega\in\Omega^{n+1}(M)$, such that, for every smooth $(n+1)$-chain $c$, \[\chi(\partial c)=e^{2\pi i\int_c\omega}\]
+\end{definition}
 
-% Direct homotopy pullback of the diagram above, via the cofiber of $\flat\bZ\to\flat\bR$ and via the cofiber of $\Omega^{\geq \ell}\to\Omega^*$. 
+\begin{remark}[Model C, see {\cite[Lemma 7.3.4]{amabeldebrayhaine2021diffcoh}}] Consider the following diagram  
+  \[\begin{tikzcd}
+     & \Omega^{\geq \ell}\arrow[d] \arrow[r] & 0\arrow[d] \\
+    C^{\infty}(-,\bZ) \arrow[r] & \Omega^*\arrow[r] & \Omega^{\leq\ell-1}
+  \end{tikzcd}\]
+\end{remark}
+\begin{remark}[Model B'] Consider the following diagram 
+  \[\begin{tikzcd}
+     & \Omega^{\geq \ell}\arrow[d] \\
+    C^\infty(-,\bZ) \arrow[d]\arrow[r] & C^\infty(-,\bR)\arrow[d] \\ 
+    0\arrow[r] & C^\infty(-,S^1)
+  \end{tikzcd}\]
+\end{remark}
+
+% TO BE CONTINUED
 
 \section{Unfolding the fracture square of Deligne Cohomology}
-
-% DESTROY ALL THAT FOLLOWS.
-
-Now that we have a rigorous definition of Deligne cohomology, we can start to think about operations on it. First of all, we need a suitable monoidal structure. 
-
-\begin{definition}
-  Let $F, G$ be two differential cohomology theories. The \emph{monoidal product} $F \otimes G$ is defined as the sheafification of the presheaf $F \wedge G$, which is the point-wise wedge product of spectra.\nrnote{It is expected that sheafification is necessary, but example is missing.}
-\end{definition}
-
-Now, recall there is a Hom of differential forms
-\[ \Omega^{\leq k} \otimes \Omega^{\leq m} \to \Omega^{\leq k + m},\]
-which induces a Hom of differential cohomology theories
-\[ \E(k) \otimes \E(m) \to \E(k+ m)\]
-Ideally, we would like to describe such an operation in a very explicit manner, however, in the realm of spectra this can be very challenging. This suggests an alternative perspective.
-
-\begin{definition}
-  Let $\sL(k)$ be the sheaf of chain complexes defined as the pullback in $\Shv(\Mfd,D(\bZ))$ of the following diagram
-\[
-\begin{tikzcd}
-  \sL(k) \arrow[d] \arrow[r] & \Omega^{\leq k} \arrow[d, "dR"]\\
- \bZ \arrow[r] &  \bR
-\end{tikzcd},
-\]
-where $\bZ$ is the functor $M \mapsto C^\bullet(M,\bZ)$ and $\bR$ is the functor $M \mapsto C^\bullet(M,\bR)$
-\end{definition}
-
-\begin{remark} \label{rem:slk chains}
-  We can explicitly describe the chain complex $\sL(k)$ as follows.
-\[\sL(k)^n = \{(c, \omega, h) \in C^n(-\bZ) \oplus \Omega^n(-)\oplus C^{n-1}(-\bR) | \omega = 0 if n > k and c - dR(\omega) = dh\} \] 
-  
-\end{remark}
- 
-\begin{remark}
-  We expect that $H\sL(k)$ in fact recovers $\E(k)$, meaning operations on $\sL(k)$ help us understand operations on Deligne cohomology.\nrnote{This needs to be checked.}
-\end{remark}
-
-Using the explicit description from \cref{rem:slk chains}, we can define an operation on $\sL(k)$ as follows: 
-\[ (c_1, \omega_1, h_1) \otimes (c_2, \omega_2, h_2) = (c_1 \cup c_2, \omega_1 \wedge \omega_2, (-1)^{|c_1|}c_1 \cup h_2  + h_1 \cup \omega_2 + B(\omega_1,\omega_2)), \]
-where 
-\[dR(\omega_1) \cup dR (\omega_2) =- dR(\omega_1 \wedge \omega_2)  = dB(\omega_1,\omega_2) \] 
-\begin{remark}
-  Intuitively $B(\omega_1,\omega_2)$ measures the failure of $dR$ taking $\wedge$ to $\cup$.\nrnote{Is there a reasonable way to pick $B(\omega_1,\omega_2)$?}
-\end{remark}
-
-\begin{remark}
-  Ideally we would expect this formula to be well-defined, meaning $(c_1, \omega_1, h_1) \otimes (c_2, \omega_2, h_2)$ should satisfy the conditions in \cref{rem:slk chains}. In general, this is only true if $c_1,\omega_2$ satisfy $dc_1 = d\omega_2 = 0$. In particular, it is well-defined at the level of cohomology classes, as any element is closed therein.
-\end{remark}
-
-
-
 
 {\footnotesize
 \bibliographystyle{alpha}
