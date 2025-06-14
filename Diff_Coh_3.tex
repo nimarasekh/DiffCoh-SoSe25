@@ -105,6 +105,8 @@
 \date{21.05.2025 $\&$ 27.05.2025}
 \author{Talk by Hannes Berkenhagen}
 
+\numberwithin{equation}{section}
+
 \begin{document}
 \maketitle
 
@@ -283,7 +285,7 @@ We continue our analysis of sheaves with the aim of providing explicit descripti
 	The functor $i:\I(\mathscr O)\rightarrow\Mfd_{/S}$ is cofinal.
 \end{lemma}
 In particular, since $\Map(\Mfd_{/S},F)$ is defined as the limit $(\Mfd_{/S})^{op}\to\Mfd^{op}\xrightarrow F\s$ and $i^{op}$ is \emph{final}, there is a canonical equivalence \[\Map(\Mfd_{/S},F)\simeq\lim(\I(\mathscr O)^{op}\to\Mfd^{op}\xrightarrow F\s)=\textrm{lim}_{U\in\I(\mathscr O)}F(U)\]
-\begin{proposition}
+\begin{proposition}\label{pro:sheaf}
   A presheaf $F\colon \Mfd^{op} \to \Sp$ is a sheaf if and only if for every manifold $M$ and every open cover $\mathscr O$ of $M$, the canonical morphism $F(M) \to \lim_{U \in \I(\mathscr O)}F(U)$ is an equivalence.
 \end{proposition}
 
