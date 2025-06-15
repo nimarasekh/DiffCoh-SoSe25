@@ -249,9 +249,9 @@ The stable Dold-Kan correspondence allowes us to move freely between sheaves of 
 \end{definition}
 Recall now the machinery set-up in \cref{sec:baggage}.
 \begin{remark}\label{rmk:Dcotensor}
-  Since $\D(\bZ)$ is presentable, we know that they is cotensored over $\s$. Given a space $S$ and a chain complex $M_*$, the cotensor $M_*{}^A$ is the chain complex of graded linear maps $C_*(S,\bZ)\to M_*$, from the singular chain complex of $S$ to $M_*$, see \cite[Definition 1.3.2.1]{lurie2017ha}. In particular, let $M_*=M$ be concentrated in degree 0, then $M_*{}^S$ is the singular cochain complex of $S$ with values in $M$.
+  Since $\D(\bZ)$ is presentable, we know that they is cotensored over $\s$. Given a space $S$ and a chain complex $M_*$, the cotensor $M_*{}^S$ is the chain complex of graded linear maps $C_*(S,\bZ)\to M_*$, from the singular chain complex of $S$ to $M_*$, see \cite[Definition 1.3.2.1]{lurie2017ha}. In particular, let $M_*=M$ be concentrated in degree 0, then $M_*{}^S$ is the singular cochain complex of $S$ with values in $M$.
 \end{remark}
-Applying \cref{rmk:Dcotensor}, we see that $(\flat A)(M)$ is the singular cochain complex of (the underlying topological space of) $M$ with values in $A$. In particular for $A=\bR$, consider the natural map $\Omega^*(M)\to C^*(M,\bR)$ taking a form $\omega\in\Omega^n(M)$ to $\int\omega:C_{n}(M,\bZ)\to\bR$. We call the induced natural transformation $\dr:\Omega^*\to\flat\bR$ the \emph{de Rham homomorphism}.
+Applying \cref{rmk:Dcotensor}, we see that $(\flat A)(M)$ is the singular cochain complex of (the underlying topological space of) $M$ with values in $A$. In particular for $A=\bR$, consider the natural map $\Omega^*(M)\to C^*(M,\bR)$ taking a form $\omega\in\Omega^n(M)$ to the linear map $\int\omega:C_{n}(M,\bZ)\to\bR$. We call the induced natural transformation $\dr:\Omega^*\to\flat\bR$ the \emph{de Rham homomorphism}.
 \begin{lemma}\label{lem:derham} $\dr$ is an equivalence.
 \end{lemma}
 \begin{proof}
@@ -279,27 +279,27 @@ Finally, we have enough machinery to talk about Deligne cohomology.
 \end{remark}
 \begin{remark}[Model B]\label{rmk:B} Recall that $\flat$ preserves cofiber sequences, since it is left adjoint, and that fiber sequences are the same a cofiber sequences in stable $\infty$-categories. Consider the diagram
   \[\begin{tikzcd}
-     & \Omega^{\geq \ell}\arrow[d]\arrow[dd,bend left=5em,color=red] \\
+    \hat{\bZ}(\ell)\arrow[r]\arrow[d] & \Omega^{\geq \ell}\arrow[d]\arrow[dd,bend left=5em,color=red] \\
     \flat\bZ \arrow[r]\arrow[d] & \flat\bR\arrow[d] \\
     0\arrow[r,color=red] & \flat(\bR/\bZ)
   \end{tikzcd}\]
-  Since the square is an homotopy pullback, $\hat{\bZ}(\ell)(M)$ is equivalent to the homotopy pullback of the diagram in \textcolor{red}{red}. Let $\breve{C}^{n}(\ell)(M)\subseteq C^{n-1}(M,\bR/\bZ)\oplus\Omega^n(M)$ consist of pairs $(\chi,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(\chi,\omega)=(e^{2\pi i\dr(\omega)}-\delta\chi,d\omega)$. Similar to \cref{rmk:A}, the complex $\breve{C}^*(\ell)(M)$ fits into the above diagram, so that the outer square is an homotopy pullback.
+  Since the bottom square is an homotopy pullback, $\hat{\bZ}(\ell)(M)$ is equivalent to the homotopy pullback of the diagram in \textcolor{red}{red}. Let $\breve{C}^{n}(\ell)(M)\subseteq C^{n-1}(M,\bR/\bZ)\oplus\Omega^n(M)$ consist of pairs $(\chi,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(\chi,\omega)=(e^{2\pi i\dr(\omega)}-\delta\chi,d\omega)$. Similar to \cref{rmk:A}, the complex $\breve{C}^*(\ell)(M)$ fits into the above diagram, so that the outer square is an homotopy pullback, hence it is equivalent to $\hat{\bZ}(\ell)(M)$.
 \end{remark}
 Take an $n$-cocycle ($n\geq\ell$) in the model from \cref{rmk:B}, i.e. $(\chi,\omega)\in C^{n-1}(M,\bR/\bZ)\oplus\Omega^{n}(M)$ such that $d\omega=0$ and $\delta\chi=e^{2\pi i\dr(\omega)}$. Such a cocycle determines a differential character of degree $n-1$ for $M$, in the sense of the following definition:
 \begin{definition}[{\cite[Definition 3.4]{hopkinssinger2005diffcoh}}, see also {\cite[Chapter 5]{barbecker2014diffchar}}] Consider a manifold $M$, a \emph{differential character} of degree $n$ consists of a character $\chi:Z^\infty_{n}(M,\bZ)\to\bR/\bZ$ on the group of smooth $n$-cycles of $M$ together with a $n$-form $\omega\in\Omega^{n+1}(M)$, such that, for every smooth $(n+1)$-chain $c$, \[\chi(\partial c)=e^{2\pi i\int_c\omega}\]
 \end{definition}
 
-\begin{remark}[Model C, see {\cite[Lemma 7.3.4]{amabeldebrayhaine2021diffcoh}}]\label{rmk:C} Consider the following diagram  
+\begin{remark}[Model C, see {\cite[Lemma 7.3.4]{amabeldebrayhaine2021diffcoh}}]\label{rmk:C} Consider the following diagram in the category of {sheaves} on $\Euc$
   \[\begin{tikzcd}
-     & \Omega^{\geq \ell}\arrow[d] \arrow[r] & 0\arrow[d,color=red] \\
+     j_*\hat{\bZ}(\ell)\arrow[d]\arrow[r] & \Omega^{\geq \ell}\arrow[d] \arrow[r] & 0\arrow[d,color=red] \\
     \bZ \arrow[r]\arrow[rr,bend right=2.5em,color=red] & \Omega^*\arrow[r] & \Omega^{\leq\ell-1}
-  \end{tikzcd}\] in the category of {sheaves} on $\Euc$ valued in chain complexes. Similar to \cref{rmk:B}, we construct the homotopy pullback of the diagram in \textcolor{red}{red}. Let $\check{C}^*(\ell)$ be the sheaf of chain complexes $\bZ\to\Omega^0\to\cdots\cdots\to\Omega^{\ell-1}\to0\to\cdots$, where $\bZ$ is in degree 0. The complex $\check{C}^*(\ell)$ fits into the above diagram, so that the outer square is an homotopy pullback. Finally, the extension of $\check{C}^*(\ell)$ to the full site of manifolds is also a model for $\hat{\bZ}(\ell)$.
+  \end{tikzcd}\] The left square is the pullback square of $\hat{\bZ}(\ell)$ restricted to $\Euc$. Since the right square is a pullback, $j_*\hat{\bZ}(\ell)$ is equivalent to the pullback of the diagram in \textcolor{red}{red}. Let $\check{C}^*(\ell)$ be the sheaf of chain complexes $\bZ\to\Omega^0\to\cdots\cdots\to\Omega^{\ell-1}\to0\to\cdots$, where $\bZ$ is in degree 0. The complex $\check{C}^*(\ell)$ fits into the above diagram, so that the outer square is an homotopy pullback, and thus $j_*\hat{Z}(\ell)\simeq\check{C}^*(\ell)$ and $j^*\check{C}^*(\ell)\simeq\hat{\bZ}(\ell)$. 
 
-  To evaluate $\hat{\bZ}(\ell)$ at a manifold $M$ using $\check{C}^*(\ell)$, let $\mathscr{O}$ be a good open cover and $\I(\mathscr O)$ the closure of $\mathscr{O}$ under finite intersections, then
+  Given a manifold $M$, let $\mathscr{O}$ be a good open cover and $\I(\mathscr O)$ the closure of $\mathscr{O}$ under finite intersections, then
 \[
     \hat{\bZ}(\ell)(M) \simeq\lim_{U\in\I(\mathscr O)} \check{C}^*(\ell)(U)\simeq\lim_{n\in\Delta}\prod_{U_1,\cdots,U_n\in\mathscr{O}}\check{C}^*(\ell)(U_1\cap\cdots\cap U_n) 
   \]
-  Finally, we can apply \cite[Lemma 7.10]{bunkenikolausvoelkl2016diffcoh} to calculate the last limit as a the total complex functor applied to the bicomplex $\check{C}^{m,n}(\ell)(\mathscr{O}):=\prod_{U_1,\cdots,U_n\in\mathscr{O}}\check{C}^m(\ell)(U_1\cap\cdots\cap U_n)$.
+  Finally, we can apply \cite[Lemma 7.10]{bunkenikolausvoelkl2016diffcoh} to calculate the last limit as a the total complex functor applied to the bicomplex \[\check{C}^{m,n}(\ell)(\mathscr{O}):=\prod_{U_1,\cdots,U_n\in\mathscr{O}}\check{C}^m(\ell)(U_1\cap\cdots\cap U_n)\]
 \end{remark}
 
 % TO BE CONTINUED
