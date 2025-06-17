@@ -16,6 +16,7 @@
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
+\newcommand{\bA}{\mathbb{A}}
 \newcommand{\C}{\mathscr{C}}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\kC}{\mathfrak{C}}
@@ -227,6 +228,9 @@ Explicitly, given an object $C\in\C$, the associated pre-sheaf $\flat C$ maps a 
 \begin{proof}
   The composition $\C\xrightarrow{\flat}\Shv(\Mfd,\C)\xrightarrow{j_*}\Shv(\Euc,\C)$ maps an object $C$ to the sheaf $\flat C$ restricted to Euclidean spaces. Since $\bR^n$ is contractible, $(\flat C)(\bR^n)=C^{\Sing(\bR^n)}\simeq C$ and so $\flat$ restricted to $\Euc$ is equivalent to $\mathrm{Const}$, the functor taking $C$ to the the pre-sheaf with constant value $C$, which is left adjoint to $\Gamma$ restricted to $\Euc$.
 \end{proof}
+\begin{remark}\label{rmk:constsheaf}
+  Notice that the proof of \cref{thm:stabledk} also shows that given an object $C\in\C$, the pre-sheaf on $\Euc$ with constant value $C$ is already a sheaf and $C$, viewed as a constant sheaf on $\Euc$, is equivalent to $j_*\flat C$.
+\end{remark}
 
 \section{Sheaves of complexes and spectra}
 
@@ -254,24 +258,29 @@ Recall now the machinery set-up in \cref{sec:baggage}.
 \begin{definition}\label{def:derhammorf}
 Consider the morphism $\Omega^*(M)\to (\flat\bR)(M)=C^*(M,\bR)$ taking a form $\omega\in\Omega^n(M)$ to the linear map $\int\omega:C_{n}(M,\bZ)\to\bR$. We call the induced transformation $\dr:\Omega^*\to\flat\bR$ the \emph{de Rham morphism}.  
 \end{definition}
-\begin{lemma}[{\cite[Theorem 3.25]{abad2010ainftyrhamtheoremintegration}}]\label{lem:derham} $\dr$ is point-wise an equivalence of $A_\infty$-algebras.
+\begin{lemma}[{\cite[Theorem 3.25]{abad2010ainftyrhamtheoremintegration}}]\label{lem:derham} $\dr:\Omega^*\to\flat\bR$ is point-wise an $\bA_\infty$-quasi-isomorphism of DG algebras.
 \end{lemma}
+
+% Separate de Rham theorem from sheaves of chain complexes and spectra. 
+
+% Definition of $\bA_\infty$-quasi-isomorphism (cite Algebraic Operads). 
+
 \section{Deligne Cohomology}
 
 Finally, we have enough machinery to talk about Deligne cohomology. 
 \begin{definition}\label{def:deligne}
-  Given $\ell\in\bN$, define $\hat{\bZ}(\ell):\Mfd^{op}\to\D(\bZ)$ as the limit of 
+  Given $\ell\in\bN$, define $\hat{\bZ}(\ell):\Mfd^{op}\to\D(\bZ)$ as the pullback of 
   \[\begin{tikzcd}
-     & \Omega^{\geq \ell}\arrow[d] \\
+    \hat{\bZ}(\ell)\arrow[r]\arrow[d] & \Omega^{\geq \ell}\arrow[d] \\
     \flat\bZ \arrow[r] & \flat\bR
   \end{tikzcd}\]
-  The vertical morphism being the composition $\Omega^{\geq \ell}\subseteq\Omega^*\xrightarrow{\dr}\flat\bR$. We call the corresponding sheaf of $H\bZ$-modules spectra $H\hat{\bZ}(\ell)$ the $\ell$\emph{-th Deligne sheaf}.
+  The vertical morphism being the composition $\Omega^{\geq \ell}\subseteq\Omega^*\xrightarrow{\dr}\flat\bR$. We call the corresponding Eilenberg-Mac Lane spectrum $H\hat{\bZ}(\ell)$ the $\ell$\emph{-th Deligne sheaf} (see \cref{def:EMsheaf}).
 \end{definition}
 \begin{remark}[Model A, see {\cite[\S 3.2]{hopkinssinger2005diffcoh}}]\label{rmk:A} Let $\acute{C}(\ell)^n(M)\subseteq C^n(M,\bZ)\oplus C^{n-1}(M,\bR)\oplus\Omega^n(M)$ consist of triples $(c,h,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(c,h,\omega)=(\delta c,\dr(\omega)-c-\delta h,d\omega)$. This complex $\acute{C}^*(\ell)(M)$ fits into a diagram
 \[\begin{tikzcd}
     \acute{C}^*(\ell)(M) \arrow[d]\arrow[r] & \Omega^{\geq \ell}(M)\arrow[d] \\
     C^*(M,\bZ) \arrow[r] & C^*(M,\bR)
-  \end{tikzcd}\]which commutes up to homotopy given by the projections $\acute{C}^n(\ell)(M)\to C^{n-1}(M,\bR)$. The diagram above model the homotopy pullback of \cref{def:deligne}, hence $\acute{C}^*(\ell)(M)$ is a model for $\hat{\bZ}(\ell)(M)$. 
+  \end{tikzcd}\]which commutes up to homotopy given by the projections $\acute{C}^n(\ell)(M)\to C^{n-1}(M,\bR)$. The diagram above model the pullback of \cref{def:deligne}, hence $\acute{C}^*(\ell)(M)$ is a model for $\hat{\bZ}(\ell)(M)$. 
 \end{remark}
 \begin{remark}[Model B]\label{rmk:B} Recall that $\flat$ preserves cofiber sequences, since it is left adjoint, and that fiber sequences are the same a cofiber sequences in stable $\infty$-categories. Consider the diagram
   \[\begin{tikzcd}
@@ -279,7 +288,7 @@ Finally, we have enough machinery to talk about Deligne cohomology.
     \flat\bZ \arrow[r]\arrow[d] & \flat\bR\arrow[d] \\
     0\arrow[r,color=red] & \flat(\bR/\bZ)
   \end{tikzcd}\]
-  Since the bottom square is an homotopy pullback, $\hat{\bZ}(\ell)(M)$ is equivalent to the homotopy pullback of the diagram in \textcolor{red}{red}. Let $\breve{C}^{n}(\ell)(M)\subseteq C^{n-1}(M,\bR/\bZ)\oplus\Omega^n(M)$ consist of pairs $(\chi,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(\chi,\omega)=(e^{2\pi i\dr(\omega)}-\delta\chi,d\omega)$. Similar to \cref{rmk:A}, the complex $\breve{C}^*(\ell)(M)$ fits into the above diagram so that the outer square is an homotopy pullback, hence it is equivalent to $\hat{\bZ}(\ell)(M)$.
+  Since the bottom square is an pullback, $\hat{\bZ}(\ell)(M)$ is equivalent to the pullback of the diagram in \textcolor{red}{red}. Let $\breve{C}^{n}(\ell)(M)\subseteq C^{n-1}(M,\bR/\bZ)\oplus\Omega^n(M)$ consist of pairs $(\chi,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(\chi,\omega)=(e^{2\pi i\dr(\omega)}-\delta\chi,d\omega)$. Similar to \cref{rmk:A}, the complex $\breve{C}^*(\ell)(M)$ fits into the above diagram so that the outer square is an pullback, hence it is equivalent to $\hat{\bZ}(\ell)(M)$.
 \end{remark}
 Take an $n$-cocycle ($n\geq\ell$) in the model from \cref{rmk:B}, i.e. $(\chi,\omega)\in C^{n-1}(M,\bR/\bZ)\oplus\Omega^{n}(M)$ such that $d\omega=0$ and $\delta\chi=e^{2\pi i\dr(\omega)}$. Such a cocycle determines a differential character of degree $n-1$ for $M$, in the sense of the following definition:
 \begin{definition}[{\cite[Definition 3.4]{hopkinssinger2005diffcoh}}, see also {\cite[Chapter 5]{barbecker2014diffchar}}] Consider a manifold $M$, a \emph{differential character} of degree $n$ consists of a character $\chi:Z^\infty_{n}(M,\bZ)\to\bR/\bZ$ on the group of smooth $n$-cycles of $M$ together with a $n$-form $\omega\in\Omega^{n+1}(M)$, such that, for every smooth $(n+1)$-chain $c$, \[\chi(\partial c)=e^{2\pi i\int_c\omega}\]
@@ -287,18 +296,20 @@ Take an $n$-cocycle ($n\geq\ell$) in the model from \cref{rmk:B}, i.e. $(\chi,\o
 
 \begin{remark}[Model C, see {\cite[Lemma 7.3.4]{amabeldebrayhaine2021diffcoh}}]\label{rmk:C} Consider the following diagram in the category of {sheaves} on $\Euc$
   \[\begin{tikzcd}
-     j_*\hat{\bZ}(\ell)\arrow[d]\arrow[r] & \Omega^{\geq \ell}\arrow[d] \arrow[r] & 0\arrow[d,color=red] \\
-    \bZ \arrow[r]\arrow[rr,bend right=2.5em,color=red] & \Omega^*\arrow[r] & \Omega^{\leq\ell-1}
-  \end{tikzcd}\] The left square is the pullback square of $\hat{\bZ}(\ell)$ restricted to $\Euc$. Since the right square is a pullback, $j_*\hat{\bZ}(\ell)$ is equivalent to the pullback of the diagram in \textcolor{red}{red}. Let $\check{C}^*(\ell)$ be the sheaf of chain complexes $\bZ\to\Omega^0\to\cdots\cdots\to\Omega^{\ell-1}\to0\to\cdots$, where $\bZ$ is in degree 0. The complex $\check{C}^*(\ell)$ fits into the above diagram, so that the outer square is an homotopy pullback, and thus $j_*\hat{\bZ}(\ell)\simeq\check{C}^*(\ell)$ and $j^*\check{C}^*(\ell)\simeq\hat{\bZ}(\ell)$. 
-
-  Given a manifold $M$, let $\mathscr{O}$ be a good open cover and $\I(\mathscr O)$ the closure of $\mathscr{O}$ under finite intersections, then
+     j_*\hat{\bZ}(\ell)\arrow[d]\arrow[r] & j_*\Omega^{\geq \ell}\arrow[d] \arrow[r] & 0\arrow[d,color=red] \\
+    \bZ \arrow[r]\arrow[rr,bend right=2.5em,color=red] & j_*\Omega^*\arrow[r] & j_*\Omega^{\leq\ell-1}
+  \end{tikzcd}\] The left square is obtained by: $\Circled{1}$ Apply the restriction functor $j_*$ to the pullback diagram of \cref{def:deligne} $\Circled{2}$ Substitute $j^*\flat\bR$ with $j_*\Omega^*$ (see \cref{lem:derham}) and $j_*\flat\bZ$ with $\bZ$ (see \cref{rmk:constsheaf}). Since the right square is a pullback, $j_*\hat{\bZ}(\ell)$ is equivalent to the pullback of the diagram in \textcolor{red}{red}. Let $\check{C}^*(\ell)$ be the sheaf of chain complexes $\bZ\to\Omega^0\to\cdots\cdots\to\Omega^{\ell-1}\to0\to\cdots$, where $\bZ$ is in degree 0 includes into $\Omega^0$ as constant functions. The complex $\check{C}^*(\ell)$ fits into the above diagram, so that the outer square is an pullback, therefore $j_*\hat{\bZ}(\ell)\simeq\check{C}^*(\ell)$ and $j^*\check{C}^*(\ell)\simeq\hat{\bZ}(\ell)$. Since $\hat{\bZ}(\ell)$ is equivalent to $\check{C}^*(\ell)$ on Euclidean manifolds, consider a manifold $M$, let $\mathscr{O}$ be a good open cover and $\I(\mathscr O)$ the closure of $\mathscr{O}$ under finite intersections, then
 \[
     \hat{\bZ}(\ell)(M) \simeq\lim_{U\in\I(\mathscr O)} \check{C}^*(\ell)(U)\simeq\lim_{n\in\Delta}\prod_{U_1,\cdots,U_n\in\mathscr{O}}\check{C}^*(\ell)(U_1\cap\cdots\cap U_n) 
   \]
-  Finally, we can apply \cite[Lemma 7.10]{bunkenikolausvoelkl2016diffcoh} to calculate the last limit as a the total complex functor applied to the bicomplex \[\check{C}^{m,n}(\ell)(\mathscr{O}):=\prod_{U_1,\cdots,U_n\in\mathscr{O}}\check{C}^m(\ell)(U_1\cap\cdots\cap U_n)\]
+  We then apply \cite[Lemma 7.10]{bunkenikolausvoelkl2016diffcoh} to calculate the last limit as a the total complex functor applied to the bicomplex \[\check{C}^{m,n}(\ell)(\mathscr{O}):=\prod_{U_1,\cdots,U_n\in\mathscr{O}}\check{C}^m(\ell)(U_1\cap\cdots\cap U_n)\]
 \end{remark}
 
 % TO BE CONTINUED
+
+% Multiplicative structure on Deligne cohomology, connection to de Rham theorem above. 
+
+% Special case $\ell=2$, write $2$-cocycle for model C and connect to line bundles with connection. 
 
 \section{Unfolding the fracture square of Deligne Cohomology}
 
