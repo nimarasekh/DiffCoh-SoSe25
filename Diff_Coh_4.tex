@@ -233,7 +233,7 @@ Explicitly, given an object $C\in\C$, the associated pre-sheaf $\flat C$ maps a 
 \end{remark}
 
 \section{Sheaves of complexes and spectra}
-The stable Dold-Kan correspondence allows us to move freely between sheaves of $H\bZ$-module spectras and sheaves valued in $\D(\bZ)$.
+The stable Dold-Kan correspondence allows us to move freely between sheaves of $H\bZ$-module spectras and sheaves valued in $\D(\bZ)$. In this section, we introduce definition and some technical lemmas regarding sheaves on manifolds valued in the derived category. 
 
 \begin{remark}\label{rmk:identification}
   We identify the category of cochain complexes with $\Ch(R)$ by reversing grading. Namely, given a cochain $V^*$, we are implicitly identifying it with the chain complex $V_n=V^{-n}$. 
@@ -252,7 +252,7 @@ The stable Dold-Kan correspondence allows us to move freely between sheaves of $
 \end{definition}
 
 \section{Higher de Rham Theorem}
-Recall that de Rham's theorem gives us an isomorphism between de Rham cohomology and singular cohomology with real coefficients. Using the modern perspective we can recover this equivalence using a more general equivalence of $A_\infty$-algebras. Here we use the machinery set-up in \cref{sec:constant sheaves}.
+The classical de Rham theorem gives an explicit ring isomorphism between the de Rham cohomology of a manifold $M$ and its singular cohomology with real coefficients. Using the modern perspective we can recover de Rham theorem as a corollary of a more general equivalence of $\bA_\infty$-algebras. Here we use the machinery set-up in \cref{sec:constant sheaves}.
 \begin{remark}\label{rmk:Dcotensor}
   Since $\D(\bZ)$ is presentable, we know that it is cotensored over $\s$. Given a space $S$ and a chain complex $M_*$, the cotensor $M_*{}^S$ is the chain complex of graded linear maps $C_*(S,\bZ)\to M_*$, from the (normalized) singular chain complex of $S$ to $M_*$, see \cite[Definition 1.3.2.1]{lurie2017ha}. In particular, let $M_*=M$ be concentrated in degree 0, then $M_*{}^S$ is the singular cochain complex of $S$ with values in $M$. 
 \end{remark}
@@ -263,11 +263,13 @@ Consider the morphism $\Omega^*(M)\to (\flat\bR)(M)=C^*(M,\bR)$ taking a form $\
 We can now state the main theorem. 
 
 \begin{theorem}[{\cite[Theorem 3.25]{abad2010ainftyrhamtheoremintegration}}]\label{thm:derham} 
-  $\dr:\Omega^*\to\flat\bR$ is point-wise an $\bA_\infty$-quasi-isomorphism of DG algebras.
+  $\dr:\Omega^*\to\flat\bR$ point-wise lifts to an $\bA_\infty$-quasi-isomorphism of DG algebras.
 \end{theorem}
-
-Using this result, we can recover the classical de Rham theorem by computing the cohomology of this chain complex, and using the fact that quasi-isomorphisms of chain complexes induce isomorphisms on cohomology.
-% Separate de Rham theorem from sheaves of chain complexes and spectra. 
+A chain morphism between DG algebras lifts to an $\bA_\infty$-morphism if it is compatible with the DG algebra structures \emph{up to coherent homotopies}. These homotopies are a sequence of graded linear maps $\psi_n$ satisfying a specific sequence of coherence conditions, see \cite[Proposition 10.2.12]{loday2012algebraic}. One such conditions in the case of $\dr$ is that 
+\begin{equation}\label{eq:hom}
+  \dr(\omega\wedge\eta)-\dr(\omega)\cup\dr(\eta)=\psi_2(d\omega,\eta)+(-1)^{|\omega|}\psi_2(\omega,d\eta)-d\psi_2(\omega,\eta)
+\end{equation}
+In cohomology, \cref{eq:hom} together with $\dr$ being a quasi-isomorphism, recover the classical de Rham theorem. An $\bA_\infty$-quasi-isomorphism is an $\bA_\infty$-morphism where the underlying chain morphism is a quasi-isomorphism. 
 
 % Definition of $\bA_\infty$-quasi-isomorphism (cite Algebraic Operads). 
 
