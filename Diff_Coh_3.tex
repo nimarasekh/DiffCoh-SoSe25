@@ -316,9 +316,8 @@ In fact we can check the sheaf condition for sheaves on the site of manifolds wi
   \end{enumerate}
 \end{proposition}
 
-\section{Equivalences of Sheaves}
-
-We now have established a very solid understanding of sheaves on the site of manifolds with arbitrary values as presheaves with suitable limits conditions. We now want to use these explicit descriptions to better understand equivalences of sheaves on the site of manifolds.
+\section{Enough Points and Equivalences of Sheaves}
+We now have established a very solid understanding of sheaves on the site of manifolds with arbitrary values as presheaves with suitable limit conditions. We now want to use these explicit descriptions to better understand equivalences of sheaves on the site of manifolds.
 \begin{definition}[{\cite[Remark 6.5.4.8]{lurie2009htt}}]\label{def:point}
 	Given a site $\C$, a \emph{point} of $\Shv(\C)$ is a functor $p:\s\to\Shv(\C)$ admitting a left exact left adjoint $p^*$. We say $\Shv(\C)$ has \emph{enough points} if the following holds: Given a morphism $f$, if $p^*(f)$ is an equivalence for every point $p$, then $f$ is an equivalence.
 \end{definition}
@@ -336,7 +335,7 @@ We now have established a very solid understanding of sheaves on the site of man
 	Let $X$ be a smooth manifold, then $\Shv(X)$ has enough points. 
 \end{theorem}
 \begin{proof}
-	\cite[Corollary 7.2.1.17]{lurie2009htt} and \cite[Theorem 7.2.3.6]{lurie2009htt} reduce the claim to $X$ having finite Lebesgue covering dimension.
+	\cite[Corollary 7.2.1.17]{lurie2009htt} and \cite[Theorem 7.2.3.6]{lurie2009htt} reduce the claim to $X$ having finite Lebesgue covering dimension.\nrnote{Here is a reduction, but how can one finish the proof?}
 \end{proof}
 \begin{remark}\label{rmk:geopoints}
 	The proof of \cite[Corollary 7.2.1.17]{lurie2009htt} actually shows that the collection of points $x_*:\s\to\Shv(X)$, for all $x\in X$, are enough to detect equivalences, namely $f$ is an equivalence if $x^*(f)$ is an equivalence, for every $x\in X$. 
@@ -346,7 +345,7 @@ We now have established a very solid understanding of sheaves on the site of man
 	The $\infty$-category $\Shv(\Mfd)$ has enough points. 
 \end{theorem}
 \begin{proof}
-	Let $M$ be a smooth manifold, there is a clear faithful functor $\Open_M\to\Mfd$ that is a morphism of sites (see \cite[Definition A.10]{pstragowski2022syntheticspectracellularmotivic}) and satisfies the \emph{covering lifting property} (see \cite[Definition A.12]{pstragowski2022syntheticspectracellularmotivic}), therefore the restriction functor $-|_{M}:\Shv(\Mfd)\to\Shv(M)$ is a right adjoint (hence left exact) and right adjoint (see \cite[Proposition A.13]{pstragowski2022syntheticspectracellularmotivic}). In particular, a point $p:\s\to\Shv(M)$, for any manifold $M$, induces a point of $\Shv(\Mfd)$ as the composition of $p:\s\to\Shv(M)$ with the right adjoint $\Shv(M)\to\Shv(\Mfd)$. The left adjoint is then $p^*(-|_{M})$. 
+	Let $M$ be a smooth manifold, there is a faithful functor $\Open_M\to\Mfd$ that is a morphism of sites (see \cite[Definition A.10]{pstragowski2022syntheticspectracellularmotivic}) and satisfies the \emph{covering lifting property} (see \cite[Definition A.12]{pstragowski2022syntheticspectracellularmotivic}), therefore the restriction functor $-|_{M}:\Shv(\Mfd)\to\Shv(M)$ is a right adjoint (hence left exact) and right adjoint (see \cite[Proposition A.13]{pstragowski2022syntheticspectracellularmotivic}).\nrnote{Here there is right adjoint twice?} In particular, a point $p:\s\to\Shv(M)$, for any manifold $M$, induces a point of $\Shv(\Mfd)$ as the composition of $p:\s\to\Shv(M)$ with the right adjoint $\Shv(M)\to\Shv(\Mfd)$. The left adjoint is then $p^*(-|_{M})$. 
 	
 	Let $f$ be a morphism such that $p^*(f)$ is an equivalence for every point $p$ of $\Shv(\Mfd)$. In particular, $p^*(f|_M)$ is an equivalence for every point of $\Shv(M)$, hence $f|_M$ is an equivalence in $\Shv(M)$, by \cref{thm:enougpoints}. Finally, if $f|_M$ is an equivalence, for every $M$, then $f$ is an equivalence. 
 \end{proof}
@@ -354,35 +353,41 @@ The proof of \cref{thm:mfdenoughpoints} together with \cref{rmk:geopoints} impli
 \begin{corollary}
   A morphism $f$ in $\Shv(\Mfd)$ is an equivalence if and only if for every manifold $M$ and every point $x \in M$, the map on stalks $x^*(f)$ is an equivalence.
 \end{corollary}
-Note, the general condition above is equivalent to the following simpler condition. Denote by $0_n$ the origin of $\bR^n$. 
+Note, the general condition above is equivalent to the following simpler condition. Denote by $0_n$ the origin of $\bR^n$.\nrnote{It seems to me the next result requires knowing about the Euclidean site, which comes later, or is there an easy way to see this?} 
 \begin{corollary}
   A morphism $f$ of sheaves on $\Mfd$ is an equivalence if and only if for all $n \geq 0$, the induced map on stalks $(0_n)^*(f) $ is an equivalence.
 \end{corollary}
+
+\section{Sheaves of Manifolds via the Euclidean site}
+While we often focus on sheaves on the site of manifolds, sometimes it is more convenient to work with a restriction of this site which still contains the same amount of information. We in particular want to see how we can use this alternative description to establish \emph{hypercompleteness}, a useful property that helps manage sheaves on a site.
+
 \begin{definition}
 	Denote by $\Euc$ the full sub-category of $\Mfd$ generated by the Euclidean manifolds $\bR^n$, for every $n\geq0$. The category $\Euc$ inherits a Grothendieck topology from $\Mfd$ according to \cref{def:indtop}.
 \end{definition}
 \begin{definition}[{\cite[Definition 3.12.2]{barwick2020exodromy}}]\label{def:dense}
 	Let $\C$ be a site. A full sub-category $\B\subseteq\C$ is \emph{dense} if for every object $C\in\C$ there is a family $\F$ of morphisms with codomain $C$ and domain in $\B$, such that $S_\F$ (see \cref{def:generatedsieve}) is a covering sieve. 
 \end{definition}
-$\Euc\subseteq\Mfd$ is dense in the sense of \cref{def:dense}. 
+
+$\Euc\subseteq\Mfd$ is dense in the sense of \cref{def:dense}. For the next result recall that an $\infty$-category of sheaves is hypercomplete if for every map that is $n$-connected for all $n$ is in fact an equivalence. See \cite[\S\S 6.5.2]{lurie2009htt} or \cite{dugger2003hypercoverssimplicialpresheaves}. for a more detailed discussion and several other equivalent characterizations.\nrnote{Isn't it in fact true that this site is Postnikov complete? If you want to mention hypercompleteness, why not add that?}
+
 \begin{theorem}
 Let $j:\Euc\subseteq\Mfd$ be the inclusion functor. Let $\C$ be a presentable $\infty$-category, the following hold:
 \begin{enumerate}
 	\item The functor $j_*:\Fun(\Euc^{op},\C)\to\Fun(\Mfd^{op},\C)$ preserves sheaves. 
-	\item $\Shv(\Mfd)$ and $\Shv(\Euc)$ are hypercomplete (see \cite[\S\S 6.5.4]{lurie2009htt}) and $j_*:\Shv(\Euc,\C)\to\Shv(\Mfd,\C)$ is an equivalence. 
+	\item $\Shv(\Mfd)$ and $\Shv(\Euc)$ are hypercomplete and $j_*:\Shv(\Euc,\C)\to\Shv(\Mfd,\C)$ is an equivalence. 
 	\item The functor $j^*:\Fun(\Mfd^{op},\C)\to\Fun(\Euc^{op},\C)$ right adjoint to $j_*$, preserves sheaves. In particular, $(j_*,j^*):\Shv(\Euc,\C)\to\Shv(\Mfd,\C)$ is an adjoint equivalence.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 	\begin{enumerate}
-		\item \cite[Lemma 3.12.7]{barwick2020exodromy}.
-		\item Hypercompleteness of $\Shv(\Mfd)$ is a consequence of \cref{thm:mfdenoughpoints}, since having enough points imply hypercompleteness, see \cite[Example 3.11.10]{barwick2020exodromy}. \cite[Corollary 3.12.13]{barwick2020exodromy} implies Hypercompleteness of $\Shv(\Euc)$ and that $j_*$ induces an equivalence $\Shv(\Euc,\s)\to\Shv(\Mfd,\s)$ (to generalize from $\s$ to any presentable $\infty$-category $\C$, simply tensor with $\C$)
+		\item This is proven in \cite[Lemma 3.12.7]{barwick2020exodromy}.
+		\item Hypercompleteness of $\Shv(\Mfd)$ is a consequence of \cref{thm:mfdenoughpoints}, since having enough points implies hypercompleteness, see \cite[Example 3.11.10]{barwick2020exodromy}. \cite[Corollary 3.12.13]{barwick2020exodromy} implies Hypercompleteness of $\Shv(\Euc)$ and that $j_*$ induces an equivalence $\Shv(\Euc,\s)\to\Shv(\Mfd,\s)$ (to generalize from $\s$ to any presentable $\infty$-category $\C$, simply tensor with $\C$).
 		\item Hypercompleteness implies every sheaf is an hypercomplete sheaf and by \cite[Proposition 3.12.11]{barwick2020exodromy}, $j^*$ preserves hypercomplete sheaves. 
 	\end{enumerate}
 \end{proof}
-\begin{remark}
-	Some background on hypercovers and hypercompleteness can be found in \cite[\S\S 6.5.3]{lurie2009htt} and \cite{dugger2003hypercoverssimplicialpresheaves}.
-\end{remark}
+% \begin{remark}
+% 	Some background on hypercovers and hypercompleteness can be found in \cite[\S\S 6.5.3]{lurie2009htt} and \cite{dugger2003hypercoverssimplicialpresheaves}.
+% \end{remark}
 
 
 {\footnotesize
