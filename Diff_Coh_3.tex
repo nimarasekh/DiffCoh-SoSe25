@@ -8,7 +8,7 @@
 
 \usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
 \usepackage[margin=2.5cm]{geometry}
-\usepackage[textwidth=2.5cm, textsize=small, colorinlistoftodos]{todonotes}
+\usepackage[textwidth=\marginparwidth,textsize=small, colorinlistoftodos]{todonotes}
 
 \usepackage[nameinlink,capitalise,noabbrev]{cleveref}
 
@@ -335,7 +335,11 @@ We now have established a very solid understanding of sheaves on the site of man
 	Let $X$ be a smooth manifold, then $\Shv(X)$ has enough points. 
 \end{theorem}
 \begin{proof}
-	\cite[Corollary 7.2.1.17]{lurie2009htt} and \cite[Theorem 7.2.3.6]{lurie2009htt} reduce the claim to $X$ having finite Lebesgue covering dimension.\nrnote{Here is a reduction, but how can one finish the proof?}
+	\cite[Corollary 7.2.1.17]{lurie2009htt} and \cite[Theorem 7.2.3.6]{lurie2009htt} reduce the claim to $X$ having finite Lebesgue's covering dimension (see \cite[Definition 7.2.3.1]{lurie2009htt}). The Fundamental Urysohn's Identity states that, for separable metric spaces (such as smooth paracompact manifolds), Lebesgue's covering dimension coincides with the \emph{small inductive dimension}, or SID, for short. The SID of a space $X$, denoted by $\mathrm{ind}X$, is defined inductively as follows: 
+	\begin{enumerate}
+		\item $\mathrm{ind}\emptyset=-1$.
+		\item $\mathrm{Ind}X=n$ is the smallest natural number such that every point has a neighborhood basis of open sets $U$ such that $\mathrm{ind}\partial U\leq n-1$. If no such natural number $n$ exists, we set $\mathrm{ind}X=\infty$.
+	\end{enumerate}One can check by induction that $\mathrm{ind} X=n$, for every $n$-dimensional topological manifold $X$.
 \end{proof}
 \begin{remark}\label{rmk:geopoints}
 	The proof of \cite[Corollary 7.2.1.17]{lurie2009htt} actually shows that the collection of points $x_*:\s\to\Shv(X)$, for all $x\in X$, are enough to detect equivalences, namely $f$ is an equivalence if $x^*(f)$ is an equivalence, for every $x\in X$. 
@@ -345,7 +349,7 @@ We now have established a very solid understanding of sheaves on the site of man
 	The $\infty$-category $\Shv(\Mfd)$ has enough points. 
 \end{theorem}
 \begin{proof}
-	Let $M$ be a smooth manifold, there is a faithful functor $\Open_M\to\Mfd$ that is a morphism of sites (see \cite[Definition A.10]{pstragowski2022syntheticspectracellularmotivic}) and satisfies the \emph{covering lifting property} (see \cite[Definition A.12]{pstragowski2022syntheticspectracellularmotivic}), therefore the restriction functor $-|_{M}:\Shv(\Mfd)\to\Shv(M)$ is a right adjoint (hence left exact) and right adjoint (see \cite[Proposition A.13]{pstragowski2022syntheticspectracellularmotivic}).\nrnote{Here there is right adjoint twice?} In particular, a point $p:\s\to\Shv(M)$, for any manifold $M$, induces a point of $\Shv(\Mfd)$ as the composition of $p:\s\to\Shv(M)$ with the right adjoint $\Shv(M)\to\Shv(\Mfd)$. The left adjoint is then $p^*(-|_{M})$. 
+	Let $M$ be a smooth manifold, there is a faithful functor $\Open_M\to\Mfd$ that is a morphism of sites (see \cite[Definition A.10]{pstragowski2022syntheticspectracellularmotivic}) and satisfies the \emph{covering lifting property} (see \cite[Definition A.12]{pstragowski2022syntheticspectracellularmotivic}), therefore the restriction functor $-|_{M}:\Shv(\Mfd)\to\Shv(M)$ is a right adjoint (hence left exact) and a left adjoint (see \cite[Proposition A.13]{pstragowski2022syntheticspectracellularmotivic}). In particular, a point $p:\s\to\Shv(M)$, for any manifold $M$, induces a point of $\Shv(\Mfd)$ as the composition of $p:\s\to\Shv(M)$ with the right adjoint $\Shv(M)\to\Shv(\Mfd)$. The left adjoint is then $\Shv(\Mfd)\xrightarrow{-|_M}\Shv(M)\xrightarrow{p^*}\s$. 
 	
 	Let $f$ be a morphism such that $p^*(f)$ is an equivalence for every point $p$ of $\Shv(\Mfd)$. In particular, $p^*(f|_M)$ is an equivalence for every point of $\Shv(M)$, hence $f|_M$ is an equivalence in $\Shv(M)$, by \cref{thm:enougpoints}. Finally, if $f|_M$ is an equivalence, for every $M$, then $f$ is an equivalence. 
 \end{proof}
@@ -353,7 +357,7 @@ The proof of \cref{thm:mfdenoughpoints} together with \cref{rmk:geopoints} impli
 \begin{corollary}
   A morphism $f$ in $\Shv(\Mfd)$ is an equivalence if and only if for every manifold $M$ and every point $x \in M$, the map on stalks $x^*(f)$ is an equivalence.
 \end{corollary}
-Note, the general condition above is equivalent to the following simpler condition. Denote by $0_n$ the origin of $\bR^n$.\nrnote{It seems to me the next result requires knowing about the Euclidean site, which comes later, or is there an easy way to see this?} 
+Note, for every $n$-manifold $M$ and $x\in M$, there is an open embedding $x':\bR^n\to M$ such that $x'(0)=x$. The induced map $\Open_{\bR^n,0}{}^{op}\to\Open_{M,x}{}^{op}$ is final (since $\{x'(U)|0\in U\subseteq\bR^n\}$ forms a neighborhood basis for $x$), therefore it induces a natural equivalence $0^*\simeq x^*$. Denote by $0_n$ the origin of $\bR^n$. 
 \begin{corollary}
   A morphism $f$ of sheaves on $\Mfd$ is an equivalence if and only if for all $n \geq 0$, the induced map on stalks $(0_n)^*(f) $ is an equivalence.
 \end{corollary}
@@ -368,7 +372,9 @@ While we often focus on sheaves on the site of manifolds, sometimes it is more c
 	Let $\C$ be a site. A full sub-category $\B\subseteq\C$ is \emph{dense} if for every object $C\in\C$ there is a family $\F$ of morphisms with codomain $C$ and domain in $\B$, such that $S_\F$ (see \cref{def:generatedsieve}) is a covering sieve. 
 \end{definition}
 
-$\Euc\subseteq\Mfd$ is dense in the sense of \cref{def:dense}. For the next result recall that an $\infty$-category of sheaves is hypercomplete if for every map that is $n$-connected for all $n$ is in fact an equivalence. See \cite[\S\S 6.5.2]{lurie2009htt} or \cite{dugger2003hypercoverssimplicialpresheaves}. for a more detailed discussion and several other equivalent characterizations.\nrnote{Isn't it in fact true that this site is Postnikov complete? If you want to mention hypercompleteness, why not add that?}
+$\Euc\subseteq\Mfd$ is dense in the sense of \cref{def:dense}. For the next result recall that an $\infty$-category of sheaves is hypercomplete if for every map that is $n$-connected for all $n$ is in fact an equivalence. See \cite[\S\S 6.5.2]{lurie2009htt} or \cite{dugger2003hypercoverssimplicialpresheaves}. for a more detailed discussion and several other equivalent characterizations. \todo{Isn't it in fact true that this site is Postnikov complete? If you want to mention hypercompleteness, why not add that?
+
+A. Sure, why not.}
 
 \begin{theorem}
 Let $j:\Euc\subseteq\Mfd$ be the inclusion functor. Let $\C$ be a presentable $\infty$-category, the following hold:
