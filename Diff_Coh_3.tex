@@ -320,14 +320,15 @@ In fact we can check the sheaf condition for sheaves on the site of manifolds wi
 \section{Enough Points and Equivalences of Sheaves}
 We now have established a very solid understanding of sheaves on the site of manifolds with arbitrary values as presheaves with suitable limit conditions. We now want to use these explicit descriptions to better understand equivalences of sheaves on the site of manifolds.
 \begin{definition}[{\cite[Remark 6.5.4.8]{lurie2009htt}}]\label{def:point}
-	Given a site $\C$, a \emph{point} of $\Shv(\C)$ is a functor $p:\s\to\Shv(\C)$ admitting a left exact left adjoint $p^*$. We say $\Shv(\C)$ has \emph{enough points} if the following holds: Given a morphism $f$, if $p^*(f)$ is an equivalence for every point $p$, then $f$ is an equivalence.
+	Given a $\infty$-topos $\X$, a \emph{point} of $\X$ is a functor $p:\s\to\X$ admitting a left exact left adjoint $p^*$. We say $\X$ has \emph{enough points} if the following holds: Given a morphism $f$, if $p^*(f)$ is an equivalence for every point $p$, then $f$ is an equivalence.
 \end{definition}
+Here we are mainly interested in $\infty$-topoi of sheaves, i.e. $\X=\Shv(\C)$, for some site $\C$.
 \begin{remark}
-	A functor $p:\s\to\Shv(\C)$ admitting a left exact left adjoint is called a \emph{geometric morphism}, see \cite[Definition 6.3.1.1]{lurie2009htt}. 
+	A functor $p:\s\to\X$ admitting a left exact left adjoint is called a \emph{geometric morphism}, see \cite[Definition 6.3.1.1]{lurie2009htt}. 
 \end{remark}
 \begin{definition}\label{def:stalk}
 	Let $X$ be a topological space and $\C$ a presentable category. Given a point $x\in X$, denote by $x^*$ the functor $\Shv(X,\C)\to\C$ given by $x^*(F)=\colim_{x\in U}F(U)$. The functor $x^*$ is called 
-	\emph{stalk at $x$} and is left adjoint to the \emph{skyscraper at $x$} functor $x_*$ given by $x_*(S)(U)=S$, if $x\in U$, and $=1$, otherwise (where $1\in\C$ is the terminal object).
+	\emph{stalk at $x$} and is left adjoint to the \emph{skyscraper at $x$} functor, denoted as $x_*$ and given by $x_*(S)(U)=S$, if $x\in U$, and $=1$, otherwise (where $1\in\C$ is the terminal object).
 \end{definition}
 \begin{remark}\label{rmk:pointsheaf}
 	Using that filtered colimits commute with finite limits (see \cite[Example 7.3.4.7]{lurie2009htt}), one can prove that $x^*$ is left exact and $x_*$ is a point of $\Shv(X)$ according to \cref{def:point}. In particular, every point $x\in X$ induces a point of $\Shv(X)$. 
@@ -343,14 +344,14 @@ We now have established a very solid understanding of sheaves on the site of man
 	\end{enumerate}One can check by induction that $\mathrm{ind} X=n$, for every $n$-dimensional topological manifold $X$.
 \end{proof}
 \begin{remark}\label{rmk:geopoints}
-	The proof of \cite[Corollary 7.2.1.17]{lurie2009htt} actually shows that the collection of points $x_*:\s\to\Shv(X)$, for all $x\in X$, are enough to detect equivalences, namely $f$ is an equivalence if $x^*(f)$ is an equivalence, for every $x\in X$. 
+	The proof of \cite[Corollary 7.2.1.17]{lurie2009htt} actually shows that the collection of points $x_*:\s\to\Shv(X)$, for all $x\in X$, is enough to detect equivalences, namely $f$ is an equivalence if $x^*(f)$ is an equivalence, for every $x\in X$. 
 \end{remark}
 % Do smooth manifolds have finite Lebesgue dimension or am I tripping?
 \begin{theorem}\label{thm:mfdenoughpoints}
 	The $\infty$-category $\Shv(\Mfd)$ has enough points. 
 \end{theorem}
 \begin{proof}
-	Let $M$ be a smooth manifold, there is a faithful functor $\Open_M\to\Mfd$ that is a morphism of sites (see \cite[Definition A.10]{pstragowski2022syntheticspectracellularmotivic}) and satisfies the \emph{covering lifting property} (see \cite[Definition A.12]{pstragowski2022syntheticspectracellularmotivic}), therefore the restriction functor $-|_{M}:\Shv(\Mfd)\to\Shv(M)$ is a right adjoint (hence left exact) and a left adjoint (see \cite[Proposition A.13]{pstragowski2022syntheticspectracellularmotivic}). In particular, a point $p:\s\to\Shv(M)$, for any manifold $M$, induces a point of $\Shv(\Mfd)$ as the composition of $p:\s\to\Shv(M)$ with the right adjoint $\Shv(M)\to\Shv(\Mfd)$. The left adjoint is then $\Shv(\Mfd)\xrightarrow{-|_M}\Shv(M)\xrightarrow{p^*}\s$. 
+	Let $M$ be a smooth manifold, there is a faithful functor $\Open_M\to\Mfd$ that is a morphism of sites (see \cite[Definition A.10]{pstragowski2022syntheticspectracellularmotivic}) and satisfies the \emph{covering lifting property} (see \cite[Definition A.12]{pstragowski2022syntheticspectracellularmotivic}), therefore the restriction functor $-|_{M}:\Shv(\Mfd)\to\Shv(M)$ is a left adjoint (see \cite[Proposition A.13]{pstragowski2022syntheticspectracellularmotivic}) and a right adjoint (hence left exact). In particular, a point $p:\s\to\Shv(M)$, for any manifold $M$, induces a point of $\Shv(\Mfd)$ as the composition of $p:\s\to\Shv(M)$ with the right adjoint $\Shv(M)\to\Shv(\Mfd)$. The left adjoint is then $\Shv(\Mfd)\xrightarrow{-|_M}\Shv(M)\xrightarrow{p^*}\s$. 
 	
 	Let $f$ be a morphism such that $p^*(f)$ is an equivalence for every point $p$ of $\Shv(\Mfd)$. In particular, $p^*(f|_M)$ is an equivalence for every point of $\Shv(M)$, hence $f|_M$ is an equivalence in $\Shv(M)$, by \cref{thm:enougpoints}. Finally, if $f|_M$ is an equivalence, for every $M$, then $f$ is an equivalence. 
 \end{proof}
