@@ -22,6 +22,7 @@
 \newcommand{\I}{\mathscr{I}}
 \newcommand{\s}{\mathscr{S}}
 \newcommand{\bR}{\mathbb{R}}
+\newcommand{\rP}{\mathscr{P}}
 \newcommand{\bS}{\mathbb{S}}
 \newcommand{\X}{\mathscr{X}}
 \newcommand{\bZ}{\mathbb{Z}}
@@ -50,6 +51,7 @@
 \newcommand{\Open}{\mathscr{O}\mathrm{pen}}
 \newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
 \newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\disc}{\mathrm{Disc}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -122,11 +124,11 @@
 	\section{Sheaves in Category Theory}
 	Let us review sheaves in classical category theory. A good reference remains \cite{maclanemoerdijk1994topos}. We start with  the case of sheaves on a topological space. 
 	\begin{definition}
-		Let $X$ be a topological space, denote by $\Open_X$ the poset of open subsets of $X$, viewed as a category. A \emph{presheaf} on $X$ is a functor $F:(\Open_X)^{op}\to\set$. 
+		Let $X$ be a topological space, denote by $\Open_X$ the poset of open subsets of $X$, viewed as a category. A \emph{pre-sheaf} on $X$ is a functor $F:(\Open_X)^{op}\to\set$. 
 	\end{definition}
 	
 	\begin{definition}
-		Let $X$ be a topological space. A presheaf is a \emph{sheaf} if for every open $U\subseteq M$ and open cover $\{U_\alpha\subseteq U\}_{\alpha}$, the following is an equalizer diagram:
+		Let $X$ be a topological space. A pre-sheaf is a \emph{sheaf} if for every open $U\subseteq M$ and open cover $\{U_\alpha\subseteq U\}_{\alpha}$, the following is an equalizer diagram:
 		\[
 		\begin{tikzcd}
 			F(U) \arrow[r] & \prod_\alpha F(U_\alpha) \arrow[r, shift left=1] \arrow[r, shift right = 1] &   \prod_{\alpha,\beta} F(U_\alpha \cap U_\beta) 
@@ -134,7 +136,7 @@
 		\]
 	\end{definition}
 	\begin{definition}
-		Let $\C$ be a category. A \emph{presheaf} on $\C$ consists of a contravariant functor $F\colon\C^{op}\to\set$. 
+		Let $\C$ be a category. A \emph{pre-sheaf} on $\C$ consists of a contravariant functor $F\colon\C^{op}\to\set$. 
 	\end{definition}
 	Now, for every object $C$ we specify a class of maps $\{f_\alpha:C_\alpha\to C\}$ that \emph{cover} $C$. Finally, in the sheaf condition, we replace intersections $U_\alpha\cap U_\beta$ with fiber products (assuming $\C$ has the necessary limits):
 	\[
@@ -143,7 +145,7 @@
 		C_\beta\arrow[r] & C
 	\end{tikzcd}
 	\]
-	Similar to presheaves on a topological space, we have a similar diagram as before:\[
+	Similar to pre-sheaves on a topological space, we have a similar diagram as before:\[
 		\begin{tikzcd}
 			F(C) \arrow[r] & \prod_\alpha F(C_\alpha) \arrow[r, shift left=1] \arrow[r, shift right = 1] &   \prod_{\alpha,\beta} F(C_\alpha \times_C C_\beta) 
 		\end{tikzcd}
@@ -152,12 +154,12 @@
 	
 	\section{Sheaves via Grothendieck Topologies}
 	
-	We now generalize from sheaves on a topological space to sheaves on a category via the additional data of a Grothendieck topology. We begin by recalling a few definitions. Denote by $y$ the \textit{Yoneda embedding} $\C\to\PSh(\C)$, mapping $C$ to the presheaf $y(C):=\Hom(-,C)\colon\C^{op}\to\set$. 
+	We now generalize from sheaves on a topological space to sheaves on a category via the additional data of a Grothendieck topology. We begin by recalling a few definitions. Denote by $y$ the \textit{Yoneda embedding} $\C\to\PSh(\C)$, mapping $C$ to the pre-sheaf $y(C):=\Hom(-,C)\colon\C^{op}\to\set$. 
 	\begin{definition}
 		Given pre-sheaves $G,F\colon\C^{op}\to\set$, we say $G$ is a \emph{sub-functor} of $F$ if $G(C)\subseteq F(C)$, for all objects $C$, and the subset inclusions define a natural transformation $G\to F$. The last condition is equivalent to the following: Given $f\colon D\to C$ and $s\in G(C)$, then $F(f)(s)\in G(D)$. 
 	\end{definition}
 	\begin{definition}
-		Given a presheaf $F\colon\C^{op}\to\set$, denote by $\C_{/F}$ the category of pairs  consisting of an object $C$ and an element $x\in F(C)$. A morphism $(C',c')\to(C,c)$ consists of a morphism $f\colon C'\to C$ such that $F(f)(c)=c'$. 
+		Given a pre-sheaf $F\colon\C^{op}\to\set$, denote by $\C_{/F}$ the category of pairs  consisting of an object $C$ and an element $x\in F(C)$. A morphism $(C',c')\to(C,c)$ consists of a morphism $f\colon C'\to C$ such that $F(f)(c)=c'$. 
 	\end{definition}By Yoneda's lemma, an element $c\in F(C)$ corresponds to a natural transformation $y(C)\rightarrow F$. Taking the colimit over $(C,c)\in\C_{/F}$ of the pre-sheaves $y(C)$, we get a natural transformation $\colim_{(C,c)\in\C_{/F}}y(C)\rightarrow F$. The following theorem is called \textit{density theorem}:
 	\begin{theorem}\label{density}
 		For every pre-sheaf $F$, the map $\colim_{(C,c)\in\C_{/F}}y(C)\rightarrow F$ is a natural isomorphism.
@@ -188,11 +190,14 @@
 	\begin{example}Let $\Mfd$ be the category of smooth manifolds and smooth maps. We can define a topology in the same way as \cref{ex:top}, using families of jointly surjective, smooth open embeddings. 
 	\end{example}
 	\begin{definition}\label{def:indtop}
-		Let $(\C,J)$ be a site and $\D\subseteq\C$ a full sub-category. The \emph{induced Grothendieck topology} on $\D$ assigns to each object $C\in\D$ the collection of sieves $S\subseteq\Hom_{\D}(-,C)$ that are the restriction to $\D$ of covering sieves of $C$ in $\C$.
+		Let $(\C,J)$ be a site and $\D\subseteq\C$ a full sub-category. The \emph{sub-category Grothendieck topology} on $\D$ assigns to each object $C\in\D$ the collection of sieves $S\subseteq\Hom_{\D}(-,C)$ that are the restriction to $\D$ of covering sieves of $C$ in $\C$.
 	\end{definition}
-	We are now ready to define sheaves on a Grothendieck site. Given a sieve $S$ on $C$, notice that the category $\C_{/S}$ can be identified with the full sub-category of $\C_{/C}$ spanned by morphisms $f\in S$. 
+	We are now ready to define sheaves on a Grothendieck site. Given a sieve $S$ on $C$, notice that the category $\C_{/S}$ can be identified with the full sub-category of $\C_{/C}$ spanned by morphisms $f\in S$. On the other hand, a full sub-category $\D\subseteq\C_{/C}$ determines a sieve if $f\in\D$ implies $fg\in\D$, for every $g$ composable with $f$. 
+	\begin{definition}\label{def:slicetop}
+		Let $(\C,J)$ be a site and $C\in\C$. Given $f:D\to C$, there is a canonical identification $\alpha_f:(\C_{/C})_{/f}\simeq\C_{/D}$. The \emph{slice Grothendieck topology} on $\C_{/C}$ assigns to each object $f:D\to C$ the collection of sieves $\D\subseteq(\C_{/C})_{/f}$ that correspond to covering sieves of $D$ under $\alpha_f$. 
+	\end{definition}
 	\begin{definition}\label{map}
-		Given a presheaf $F\colon \C^{op}\to\set$, denote by $\Map(\C_{/S},F)$ the limit of the following diagram:
+		Given a pre-sheaf $F\colon \C^{op}\to\set$, denote by $\Map(\C_{/S},F)$ the limit of the following diagram:
 	\begin{center}
 		\begin{tikzcd}
 			(\C_{/S})^{op}\arrow[r] & \C^{op}\arrow[r,"F"] & \set
@@ -201,7 +206,7 @@
 	\end{definition}
 	 Notice that $\Map(\C_{/C},F)$ is the limit of a diagram indexed by the category $(\C_{/C})^{op}$, which has an initial object, the identity of $C$, therefore the limit is canonically isomorphic to $F(C)$, the value of the diagram at the initial object.
 	\begin{definition}
-		Let $(\C, J)$ be a Grothendieck site. A {presheaf} $F : \C^{op} \to \set$ is a \emph{sheaf} if, for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
+		Let $(\C, J)$ be a Grothendieck site. A {pre-sheaf} $F : \C^{op} \to \set$ is a \emph{sheaf} if, for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
 		\[ F(C)\cong\Map(\C_{/C},F) \to \Map(\C_{/S},F)\]
 		is an isomorphism. Explicitly, an object in $\Map(\C_{/S},F)$ consists of an element $x_f\in F(C')$, for every map $f\in S$ (where $C'$ is the domain of $f$), such that $x_{fg}=F(g)(x_f)$, for every $g\colon C''\to C'$. The canonical morphism takes $x\in F(C)$ to the tuple $x_f:=F(f)(x)$. 
 	\end{definition}Using the density theorem and Yoneda's lemma, we have the following chain of natural isomorphisms:
@@ -212,7 +217,7 @@
 		&\simeq \Nat_\C(S,F)
 	\end{align*}One can then check that under the above isomorphism, the comparison map $\Map(\C_{/C},F)\to\Map(\C_{/S},F)$ corresponds to the restriction map $\Nat_\C(y(C),F)\to\Nat_\C(S,F)$ induced by the inclusion $S\subseteq y(C)$. In particular, we can rephrase the sheaf condition as follows:
 	\begin{corollary}
-		A presheaf $F$ on a Grothendieck site $(\C, J)$ is a sheaf if and only if for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
+		A pre-sheaf $F$ on a Grothendieck site $(\C, J)$ is a sheaf if and only if for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
 		\[ F(C)  = \Nat_\C(y(c),F)\to \Nat_\C(S,F) \]
 		is an isomorphism. 
 	\end{corollary}
@@ -242,7 +247,7 @@
 	\end{center}where the first functor is the opposite of the canonical projection $\C_{/C}\to\C$ restricted to $\D$. Using the same argument as in the 1-categorical case, there is a comparison map $\Map(\C_{/C},F)\to\Map(\D,F)$ and a canonical equivalence $\Map(\C_{/C},F)\simeq F(C)$. 
 	\end{definition}
 	\begin{definition}
-		Let $\C$ be an $\infty$-category. A presheaf $F\colon\C^{op}\to\s$ is a \emph{sheaf} if for every object $C$ and covering sieve $\D$ of $C$, the canonical morphism
+		Let $\C$ be an $\infty$-category. A pre-sheaf $F\colon\C^{op}\to\s$ is a \emph{sheaf} if for every object $C$ and covering sieve $\D$ of $C$, the canonical morphism
 		\[ F(C)\simeq\Map(\C_{/C},F) \to \Map(\D,F) \]
 		is an equivalence. Denote by $\Shv(\C,J)$ the full sub-$\infty$-category of $\Fun(\C^{op},\s)$ spanned by the sheaves on $(\C,J)$.
 	\end{definition}
@@ -282,7 +287,7 @@ We have given a formal definition of sheaves valued in spectra, via the tensor p
 We can recall from our previous talk that the stabilization of a presentable $\infty$-category $\C$ is given by the $\infty$-category $\Sp(\C)$ of spectrum objects in $\C$, therefore $\C\otimes\Sp  \simeq \Sp(\C)$, for every presentable $\infty$-category $\C$. In particular, the $\infty$-category $ \Shv(\C,J)\otimes \Sp$ is equivalent to the category of spectrum objects in $\Shv(\C,J)$. Finally, since the inclusion $\Shv(\C,J) \to \Fun(\C^{op},\s)$ preserves and reflects limits, a commutative square in $\Shv(\C,J)$ is a pullback square if and only if it is a pullback square in $\Fun(\C^{op},\s)$.
 
 \begin{proposition}
-  A spectrum object in sheaves on the Grothendieck site $(\C,J)$ is given by a spectrum object in presheaves on $(\C,J)$ that is point-wise a sheaf.
+  A spectrum object in sheaves on the Grothendieck site $(\C,J)$ is given by a spectrum object in pre-sheaves on $(\C,J)$ that is point-wise a sheaf.
 \end{proposition}
 
 This gives us the following explicit description of sheaves valued in spectra. Recall that $\Omega^{\infty-n}\colon\Sp\to\s$ is the functor mapping a spectrum object into its $n$-th component.
@@ -297,13 +302,13 @@ We continue our analysis of sheaves with the aim of providing explicit descripti
 \end{lemma}
 In particular, since $\Map(\Mfd_{/S},F)$ is defined as the limit $(\Mfd_{/S})^{op}\to\Mfd^{op}\xrightarrow F\s$ and $i^{op}$ is \emph{final}, there is a canonical equivalence \[\Map(\Mfd_{/S},F)\simeq\lim(\I(\mathscr O)^{op}\to\Mfd^{op}\xrightarrow F\s)=\textrm{lim}_{U\in\I(\mathscr O)}F(U)\]
 \begin{proposition}\label{pro:sheaf}
-  A presheaf $F\colon \Mfd^{op} \to \Sp$ is a sheaf if and only if for every manifold $M$ and every open cover $\mathscr O$ of $M$, the canonical morphism $F(M) \to \lim_{U \in \I(\mathscr O)}F(U)$ is an equivalence.
+  A pre-sheaf $F\colon \Mfd^{op} \to \Sp$ is a sheaf if and only if for every manifold $M$ and every open cover $\mathscr O$ of $M$, the canonical morphism $F(M) \to \lim_{U \in \I(\mathscr O)}F(U)$ is an equivalence.
 \end{proposition}
 
 In fact we can check the sheaf condition for sheaves on the site of manifolds with a very specific type of covering families. For a proof of the following result, we refer to \cite[Proposition 3.6.6]{amabeldebrayhaine2021diffcoh}.
 
 \begin{proposition}
-  A presheaf $F\colon \Mfd^{op} \to \Sp$ is a sheaf if and only if
+  A pre-sheaf $F\colon \Mfd^{op} \to \Sp$ is a sheaf if and only if
   \begin{enumerate}
     \item $F(\emptyset)$ is terminal.
     \item For every $M = U \cup V$, the canonical square
@@ -318,7 +323,7 @@ In fact we can check the sheaf condition for sheaves on the site of manifolds wi
 \end{proposition}
 
 \section{Enough Points and Equivalences of Sheaves}
-We now have established a very solid understanding of sheaves on the site of manifolds with arbitrary values as presheaves with suitable limit conditions. We now want to use these explicit descriptions to better understand equivalences of sheaves on the site of manifolds.
+We now have established a very solid understanding of sheaves on the site of manifolds with arbitrary values as pre-sheaves with suitable limit conditions. We now want to use these explicit descriptions to better understand equivalences of sheaves on the site of manifolds.
 \begin{definition}[{\cite[Remark 6.5.4.8]{lurie2009htt}}]\label{def:point}
 	Given a $\infty$-topos $\X$, a \emph{point} of $\X$ is a functor $p:\s\to\X$ admitting a left exact left adjoint $p^*$. We say $\X$ has \emph{enough points} if the following holds: Given a morphism $f$, if $p^*(f)$ is an equivalence for every point $p$, then $f$ is an equivalence.
 \end{definition}
@@ -394,7 +399,7 @@ Let $j:\D\subseteq\Mfd$ be the inclusion functor of dense sub-site. Let $\C$ be 
 	\end{enumerate}
 \end{proof}
 % \begin{remark}
-% 	Some background on hypercovers and hypercompleteness can be found in \cite[\S\S 6.5.3]{lurie2009htt} and \cite{dugger2003hypercoverssimplicialpresheaves}.
+% 	Some background on hypercovers and hypercompleteness can be found in \cite[\S\S 6.5.3]{lurie2009htt} and \cite{dugger2003hypercoverssimplicialpre-sheaves}.
 % \end{remark}
 
 
