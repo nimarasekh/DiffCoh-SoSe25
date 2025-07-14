@@ -1,0 +1,325 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+\usepackage{circledsteps}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\kC}{\mathfrak{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\E}{\mathscr{E}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\F}{\mathscr{F}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\mN}{\mathrm{N}}
+\newcommand{\I}{\mathscr{I}}
+\newcommand{\s}{\mathscr{S}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathrm{Ch}}
+\newcommand{\cCh}{\mathrm{cCh}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\dg}{\mathrm{dg}}
+\newcommand{\Sing}{\mathrm{Sing}}
+\newcommand{\const}{\mathrm{L}}
+\newcommand{\dr}{\mathrm{dR}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\Cyc}{\mathrm{Cyc}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+\newcommand{\adjun}[4]{
+\begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+ #1  \arrow[r, shift left=1.8, "#3"] \pgfmatrixnextcell
+ #2 \arrow[l, shift left=1.6, "#4", "\bot"'] 
+\end{tikzcd}
+}
+
+\newcommand{\simpset}[7]{
+ \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+   #1 \arrow[r, shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell #2 
+   \arrow[l, shift left=1.2, "#5"] \arrow[l, shift right=1.2, "#4"'] 
+   \arrow[r, shift right, shorten >=1ex,shorten <=1ex ] \arrow[r, shift left, shorten >=1ex,shorten <=1ex] 
+   \pgfmatrixnextcell #3 
+   \arrow[l] \arrow[l, shift left=2, "#7"] \arrow[l, shift right=2, "#6 "'] Top
+   \arrow[r, shorten >=1ex,shorten <=1ex] \arrow[r, shift left=2, shorten >=1ex,shorten <=1ex] \arrow[r, shift right=2, 
+   shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell \cdots 
+   \arrow[l, shift right=1] \arrow[l, shift left=1] \arrow[l, shift right=3] \arrow[l, shift left=3] 
+ \end{tikzcd}
+}
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[section]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[section]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+% \newtheorem{queone}[section]{Question}
+% \newtheorem{conjone}[section]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
+
+\title{Differential Cohomology Seminar 5}
+\date{16.07.2025}
+\author{Talk by Nima Rasekh}
+
+\begin{document}
+
+\maketitle
+
+In this talk we summarize what we covered until now and discuss possible future directions.
+
+\section {Summary}
+We established that in the modern point of view a differential cohomology theory is an $\infty$-categorical sheaf on the site of manifolds valued in the $\infty$-category of spectra. This approach naturally leads to several relevant questions, that were the focus of our talks:
+\begin{enumerate}
+  \item What kind of theoretical framework is needed to work with such a theory?
+  \item How does this framework relate to other approaches to differential cohomology?
+  \item How can we construct differential cohomology theories in this framework?
+  \item[] There are also questions, we did not address, but could be focus of future talks:
+  \item What are concrete benefits of this approach in contrast to others?
+\end{enumerate} 
+
+\section{Theoretical framework}
+We saw that the theoretical framework is fundamentally that of presentable $\infty$-categories, stable $\infty$-categories, and $\infty$-categorical sheaves, as developed by Lurie \cite{lurie2009htt}, among others. 
+
+As it primarily a background, for what follows we will take it for granted, and refer to the relevant sources.
+
+\section{Relation to other approaches}
+A lot of historical development of differential cohomology theories has focused on constructing them via specific data, and concretely the input often consists of an ordinary cohomology theory and some geometric data. This perspective is completely absent in the definition we just gave, so how can we reconcile them? This is the central theme of the ``fracture square''. This already came up so let us quickly summarize.
+
+\begin{definition}
+  A sheaf is called \emph{$\mathbb{R}$-invariant} if for all manifolds $M$, $M \times \bR^1 \to M$ is mapped to an equivalence of spectra. We denote the full subcategory of $\mathbb{R}$-invariant sheaves by $\Shv_{\bR}(\Mfd)$.
+\end{definition}
+
+Note $\mathbb{R}$-invariant sheaves are closed under limits and colimits. Hence, due to the abstract theory of presentable $\infty$-categories, we have the following result:
+
+\begin{theorem}
+ There is a diagram of adjunctions
+ \[
+ \begin{tikzcd}[column sep=2cm]
+ \Shv_{\bR}(\Mfd) \arrow[r, shift left = 2, leftarrow, "L_{hi}"] \arrow[r, hookrightarrow] \arrow[r, shift right = 2, leftarrow, "R_{hi}"'] & \Shv(\Mfd) 
+ \end{tikzcd}
+ \]
+\end{theorem}
+
+\begin{definition}
+  A sheaf is \emph{pure} if the value at the point is the terminal spectrum. We denote the full subcategory of pure sheaves by $\Shv_{\mathrm{pure}}(\Mfd)$.
+\end{definition}
+
+Similarly, the category of pure sheaves is closed under limits and colimits, so we have the following result:
+
+\begin{theorem}
+ There is a diagram of adjunctions
+ \[
+ \begin{tikzcd}[column sep=2cm]
+ \Shv_{\mathrm{pure}}(\Mfd) \arrow[r, shift left = 2, "\Def", hookrightarrow] \arrow[r, leftarrow, "\Cyc" description] \arrow[r, shift right = 2, hookrightarrow] & \Shv(\Mfd)
+ \end{tikzcd}
+ \]
+\end{theorem}
+
+Notice we obviously have the following result.
+
+\begin{lemma}
+  A sheaf is \emph{trivial} if it is $\mathbb{R}$-invariant and pure.
+\end{lemma}
+
+So, pure and $\bR$-invariant sheaves are ``disjoint''. Even better, they cover everything, which is the gist of the fracture square.
+
+\begin{remark}
+Notice in both adjunction diagrams there is one fully faithful functor that is not named and we will abuse notation and directly consider objects in the full subcategory as objects in the larger category.
+\end{remark}
+\begin{theorem}
+ Let $E$ be a differential cohomology theory. Then the following is a pullback square
+ \[
+  \begin{tikzcd}
+    E \arrow[r] \arrow[d] & \Cyc E \arrow[d] \\ 
+    L_{hi}E \arrow[r] & L_{hi}\Cyc E
+  \end{tikzcd}
+ \]
+\end{theorem}
+
+In fact we can further expand this pullback square to several other pullback squares:
+ \[
+  \begin{tikzcd}
+    \Sigma^{-1}L_{hi}\Cyc E \arrow[d] \arrow[r] & R_{hi}E \arrow[r] \arrow[d] & 0 \arrow[d] \\ 
+    \Def E \arrow[r] \arrow[d] & E \arrow[r] \arrow[d] & \Cyc E \arrow[d] \\ 
+    0 \arrow[r] & L_{hi}E \arrow[r] & L_{hi}\Cyc E
+  \end{tikzcd}
+ \]
+
+The proof of all these results has as of yet been postponed.
+
+\section{Construction of differential cohomology theories}
+Having advanced theory is of course interesting, but not enough, we also want explicit examples. Indeed we saw in past weeks several ways to explicitly construct differential cohomology theories.
+
+\begin{example}
+  Given a spectrum (cohomology theory), we can define the constant sheaf, which is by definition a differential cohomology theory. Even better, it is an $\bR$-invariant sheaf, and every $\bR$-invariant sheaf is obtained this way.
+\end{example}
+
+This means we have a very good understanding of $\bR$-invariant sheaves, using classical algebraic topology. However, of course these examples have no geometric content, so we want to go beyond them.
+
+\begin{example}
+  Given a sheaf of abelian groups, we can construct the differential cohomology theory given by post-composing with the functor that takes an abelian group $A$ to the associated Eilenberg-MacLane spectrum $H(A)$. 
+\end{example}
+
+\begin{example}
+  There is a non-trivial way to extend a functor from abelian groups to spectra to one from chain complexes to spectra, which is called the \emph{stable Dold-Kan embedding}. Hence, again via post-composition, every sheaf of chain complexes gives rise to a differential cohomology theory.
+\end{example}
+
+\begin{example}
+ An important example of the previous example are truncated forms. Given $k \geq 0$, $\Omega^{\geq k}$ is a sheaf that associates to a manifold $M$ the chain complex of $k$-truncated forms on $M$. Using the previous example we hence get a differential cohomology theory which we also denote $\Omega^{\geq k }$.
+
+ Notice, if $k > 0$ then $\Omega^{\geq k}$ is in fact pure, and also not trivial, which means it cannot be $\bR$-invariant.
+\end{example}
+
+The approach we used until now helps us generate examples that either pure or $\bR$-invariant, but we would also like to mix them. Here we use the fracture square. The fracture square is not only an abstract theoretical tool, it also gives us very explicit ways to construct differential cohomology theories, using methods closer to the historical approaches. Concretely, we now have the following results:
+
+\begin{corollary}
+  A differential cohomology theory is uniquely determined by the following three pieces of data:
+  \begin{enumerate}
+    \item An $\bR$-invariant sheaf $E_{\bR}$, which is equivalently a spectrum, or equivalently a cohomology theory.
+    \item A pure sheaf $E_{\mathrm{pure}}$. 
+    \item A morphism of spectra $E_{\bR} \to L_{hi}E_{\mathrm{pure}}$.
+  \end{enumerate}
+\end{corollary}
+
+More specifically, we often face the situation that we have a fixed cohomology theory $E$, and want to find a lift of sorts.
+
+\begin{definition}
+  Let $E$ be a cohomology theory. A \emph{differential refinement of $E$} is a differential cohomology $\hat{E}$, such that $L_{hi}\hat{E} \simeq E$.
+\end{definition}
+
+Putting the definition and corollary together, we get the final result to generate examples of interest.
+
+\begin{corollary}
+ Let $E$ be a cohomology theory (spectrum). The differential refinement $\hat{E}$ is uniquely determined by the following pieces of data:
+\begin{enumerate}
+  \item A pure sheaf $E_{\mathrm{pure}}$.
+  \item A morphism of spectra $E \to L_{hi}E_{\mathrm{pure}}$.
+\end{enumerate}
+\end{corollary}
+
+These results suggests the following algorithm for constructing differential cohomology theories of interest:
+\begin{enumerate}
+  \item Pick a pure sheaf $E_{\mathrm{pure}}$, that encodes geometric data of interest.
+  \item Compute the spectrum $L_{hi}E_{\mathrm{pure}}$.
+  \item Then for an arbitrary spectrum $E$, every map of spectra $E \to L_{hi}E_{\mathrm{pure}}$ gives rise to a differential refinement of $E$.
+\end{enumerate}
+
+Let us implement this algorithm in practice. As we saw, the key example a pure sheaf is $\Omega^{k \geq}$, the sheaf of $k$-truncated forms. We now have the following result due to \cite{bunkenikolausvoelkl2016diffcoh}.
+% With these results at hand, we can look at non-trivial examples of interest. The key step is hence to pick a pure sheaf and compute its associated $\bR$-invariant sheaf.
+
+\begin{theorem}
+  Let $\Omega^{k \geq}$ be the pure sheaf of $k$-truncated forms. Then, $L_{hi}\Omega^{k \geq} \simeq H\bR$. 
+\end{theorem}
+
+\begin{example}
+ Let $E$ be a spectrum with a map of spectra $E \to H\bR$. Then there is a differential refinement, $\hat{E}$, given via the pullback square 
+ \[ 
+ \begin{tikzcd}
+ \hat{E} \arrow{r} \arrow{d} & \Omega^{k \geq}  \arrow{d} \\
+ E \arrow{r} & H\bR
+ \end{tikzcd}
+ \]
+\end{example}
+
+\begin{example}
+ Let us see an example of the example. Let $E = H\bZ$, i.e. singular cohomology, and $H\bZ \to H\bR$ the evident inclusion. Then the resulting differential refinement of singular cohomology recovers \emph{Deligne cohomology}. This can either be taken as a definition, or, if one uses historical approaches, proven as a result.
+\end{example}
+
+So, in hindsight the fact that historically people have been looking at maps into $H\bR$ is not a coincidence, every differential cohomology theory whose pure part is $\Omega^{k \geq}$ is obtained this way.
+
+\section{Future Directions}
+We can (at least) look at the following topics:
+
+\subsection{Proofs}
+One question is whether we want to explicitly go through the proof of the fracture square, and the fact that $\bR$-invariant sheaves are precisely spectra. This involves understanding advanced aspects of sheaf theory, such as \emph{recollements}.
+
+\subsection{Examples}
+One particular case are further examples of interest:
+\begin{enumerate}
+  \item We could look at differential $K$-theory. It should be a differential refinement of $ku$, the $K$-theory spectrum. Following the algorithm we want:
+  \begin{itemize}
+   \item A pure sheaf $\Omega^{\geq k}(- ;\mathbb{C}[u^{\pm 1}])$.
+   \item The computation $L_{hi}\Omega^{\geq k}(- ;\mathbb{C}[u^{\pm 1}]) \simeq H\bC[u^{\pm 1}]$.
+   \item A map of spectra $ku \to H\bC[u^{\pm 1}]$, which is the \emph{Chern character}. This was studied with classical means by Hopkins--Singer \cite{hopkinssinger2005diffcoh}.
+  \end{itemize}
+  This was studied with classical means by Hopkins--Singer \cite{hopkinssinger2005diffcoh}.
+  \item There is the example of twisted differential cohomology due to Bunke--Nikolaus \cite{bunkenikolaus2019twisted}.
+  \item There are various examples of differential cohomologies in the work of Schreiber et al., with suggested applications in physics \cite{fiorenzasatischreiber2024charactermap}. 
+  \item There appears to be other versions of differential cohomology, such as \emph{differential algebraic $K$-theory} \cite{bunkegepner2021diffktheory} or \emph{differential complex cobordism} \cite{bunkeschickschroederwiethaup2009landweber}, however, they seem to have been studied before the sheaf-theoretic framework was developed.
+\end{enumerate}
+
+\subsection{Applications to geometry and/or physics}
+Can we recover classical results in this setting using the modern framework? The book \cite{amabeldebrayhaine2021diffcoh} does provide some ideas and references, Examples include \emph{Chern-Weil theory}, classifying (equivariant) bundles with connection, differential characteristic classes, relation to invertible field theories, ... 
+
+However, those should be explored based on interest and feasibility.
+
+{\footnotesize
+\bibliographystyle{alpha}
+\bibliography{main}
+}
+
+
+\end{document}
