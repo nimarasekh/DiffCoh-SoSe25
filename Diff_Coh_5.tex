@@ -21,11 +21,13 @@
 \newcommand{\E}{\mathscr{E}}
 \newcommand{\bE}{\mathbb{E}}
 \newcommand{\F}{\mathscr{F}}
+\newcommand{\G}{\mathscr{G}}
 \newcommand{\sL}{\mathscr{L}}
 \newcommand{\bN}{\mathbb{N}}
 \newcommand{\mN}{\mathrm{N}}
 \newcommand{\I}{\mathscr{I}}
 \newcommand{\s}{\mathscr{S}}
+\newcommand{\T}{\mathscr{T}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bS}{\mathbb{S}}
 \newcommand{\bZ}{\mathbb{Z}}
@@ -295,6 +297,37 @@ We can (at least) look at the following topics:
 
 \subsection{Proofs}
 One question is whether we want to explicitly go through the proof of the fracture square, and the fact that $\bR$-invariant sheaves are precisely spectra. This involves understanding advanced aspects of sheaf theory, such as \emph{recollements}.
+
+The essential step in the proof is the following very technical result.
+
+\begin{proposition}
+  Assume we have the following data and assumptions:
+  \begin{enumerate}
+    \item A Grothendieck site $(\C,J)$, such that $\C$ has a terminal object.
+    \item A stable $\infty$-category $\T$.
+    \item The inclusion functor $\Delta\colon \T \to \Shv_\T(\C,J)$ is fully faithful and admits a left adjoint $L_{const}$. 
+  \end{enumerate}
+  Then the following holds:
+  \begin{enumerate}
+    % \item $\Delta$ admits a right adjoint $R_{const}$, given by evaluation at the terminal object.
+    \item The full subcategory of $\Shv_\T(\C,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\T(\C,J) \to \Shv_\T(\C,J)^\bot$.
+    \item For every sheaf $P$ in $\Shv_\T(\C,J)$, there is a pullback square
+    \[
+    \begin{tikzcd}
+      P \arrow[r] \arrow[d] & L^{\bot}P \arrow[d] \\
+      L_{const}P \arrow[r] & L_{const}L^{\bot}P
+    \end{tikzcd},
+    \]
+    inside $\Shv_\T(\C,J)$, where the inclusions are left implicit.
+  \end{enumerate} 
+\end{proposition}
+
+This is a very general result. We use it for the following specific case:
+\begin{lemma}
+ Let $(\Euc,J)$ be the Euclidean site and $\Sp$ the stable $\infty$-category of spectra. Then the inclusion functor $\Delta\colon \Sp \to \Shv_\Sp(\Euc,J)$ is given by the constant presheaf functor.
+\end{lemma}
+
+In other words, the constant presheaf is already a sheaf. This directly implies that $\Delta$ is fully faithful and that it admits a left adjoint via colimit. So we can directly apply the result above to get the fracture square.
 
 \subsection{Examples}
 One particular case are further examples of interest:
