@@ -116,14 +116,14 @@
 \newtheorem{remark}[equation]{Remark}
 % \newtheorem{intone}[section]{Intuition}
 \newtheorem{notation}[equation]{Notation}
-% \newtheorem{queone}[section]{Question}
+\newtheorem{question}[section]{Question}
 % \newtheorem{conjone}[section]{Conjecture}
 \newtheorem{warning}[equation]{Warning}
 
 \numberwithin{equation}{section}
 
 \title{Differential Cohomology Seminar 5}
-\date{16.07.2025}
+\date{16.07.2025 $\&$ 23.07.2025}
 \author{Talk by Nima Rasekh}
 
 \begin{document}
@@ -166,6 +166,10 @@ Note $\mathbb{R}$-invariant sheaves are closed under limits and colimits. Hence,
 \end{theorem}
 
 \begin{definition}
+  Let $\Def\colon \Shv(\Mfd) \to \Shv(\Mfd)$ be the functor that takes $E$ to the fiber over $E \to L_{hi}E$. 
+\end{definition}
+
+\begin{definition}
   A sheaf is \emph{pure} if the value at the point is the terminal spectrum. We denote the full subcategory of pure sheaves by $\Shv_{\mathrm{pure}}(\Mfd)$.
 \end{definition}
 
@@ -179,6 +183,10 @@ Similarly, the category of pure sheaves is closed under limits and colimits, so 
  \end{tikzcd}
  \]
 \end{theorem}
+
+\begin{remark}
+  The notational choice is not coincidental. The left adjoint to $\Cyc$ is precisely the functor $\Def$, where the domain is restricted to pure sheaves.
+\end{remark}
 
 Notice we obviously have the following result.
 
@@ -210,7 +218,17 @@ In fact we can further expand this pullback square to several other pullback squ
   \end{tikzcd}
  \]
 
-The proof of all these results has as of yet been postponed.
+We can restructure this diagram to more resemble the fracture square, which is the following:
+\[
+\begin{tikzcd}
+ & R_{hi}(E) \arrow[dr] \arrow[rr] & & L_{hi}(E) \arrow[dr] & \\
+ \Sigma^{-1}L_{hi}\Cyc E \arrow[ur] \arrow[dr ]& & E \arrow[ur] \arrow[dr] & & L_{hi}\Cyc E \\
+  & \Def(E) \arrow[ur] \arrow[rr] & & \Cyc E \arrow[ur] & 
+\end{tikzcd}
+\]
+
+ The proof of all these results has as of yet been postponed.
+
 
 \section{Construction of differential cohomology theories}
 Having advanced theory is of course interesting, but not enough, we also want explicit examples. Indeed we saw in past weeks several ways to explicitly construct differential cohomology theories.
@@ -287,10 +305,15 @@ Let us implement this algorithm in practice. As we saw, the key example a pure s
 \end{example}
 
 \begin{example}
- Let us see an example of the example. Let $E = H\bZ$, i.e. singular cohomology, and $H\bZ \to H\bR$ the evident inclusion. Then the resulting differential refinement of singular cohomology recovers \emph{Deligne cohomology}. This can either be taken as a definition, or, if one uses historical approaches, proven as a result.
+ Let us see an example of the example. Let $E = H\bZ$, i.e. singular cohomology, and $H\bZ \to H\bR$ the evident inclusion. Then the resulting differential refinement of singular cohomology recovers \emph{Deligne cohomology} $\hat{\bZ}[l]$. It has the property that the $k$-th sheaf cohomology group recovers the classical Deligne cohomology group $\hat{H}^k(M)$, however at other degrees we get trivial groups. This means the classical Deligne cohomology groups sit inside short exact sequences.
 \end{example}
 
 So, in hindsight the fact that historically people have been looking at maps into $H\bR$ is not a coincidence, every differential cohomology theory whose pure part is $\Omega^{k \geq}$ is obtained this way.
+
+\begin{question}
+ Given the example, here is a natural question one might wonder. Is there a single differential cohomology theory, such that its $k$-th sheaf cohomology group recovers the classical Deligne cohomology group $\hat{H}^k(M)$ for all $k \geq 0$? It seems the answer would have to be no, because one single cohomology theory would not decompose into a collection of short exact sequences.
+\end{question}
+
 
 \section{Future Directions}
 We can (at least) look at the following topics:
