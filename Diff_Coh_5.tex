@@ -123,7 +123,7 @@
 \numberwithin{equation}{section}
 
 \title{Differential Cohomology Seminar 5}
-\date{16.07.2025 $\&$ 23.07.2025}
+\date{16.07.2025 $\&$ 28.07.2025}
 \author{Talk by Nima Rasekh}
 
 \begin{document}
@@ -234,7 +234,16 @@ We can restructure this diagram to more resemble the fracture square, which is t
 Having advanced theory is of course interesting, but not enough, we also want explicit examples. Indeed we saw in past weeks several ways to explicitly construct differential cohomology theories.
 
 \begin{example}
-  Given a spectrum (cohomology theory), we can define the constant sheaf, which is by definition a differential cohomology theory. Even better, it is an $\bR$-invariant sheaf, and every $\bR$-invariant sheaf is obtained this way.
+  Given a spectrum (cohomology theory) $E$, we can define the constant sheaf, which is by definition a differential cohomology theory. Even better, it is an $\bR$-invariant sheaf, and every $\bR$-invariant sheaf is obtained this way.
+
+  Notice in this case the pure part is trivial, meaning we get the following, somewhat trivial, diagram of pullback squares:
+  \[
+  \begin{tikzcd}
+    0 \arrow[d] \arrow[r] & E \arrow[r] \arrow[d] & 0 \arrow[d] \\ 
+     0 \arrow[r] \arrow[d] & E \arrow[r] \arrow[d] & 0 \arrow[d] \\ 
+    0 \arrow[r] & E \arrow[r] & 0
+  \end{tikzcd}
+ \]
 \end{example}
 
 This means we have a very good understanding of $\bR$-invariant sheaves, using classical algebraic topology. However, of course these examples have no geometric content, so we want to go beyond them.
@@ -310,15 +319,36 @@ Let us implement this algorithm in practice. As we saw, the key example a pure s
 
 So, in hindsight the fact that historically people have been looking at maps into $H\bR$ is not a coincidence, every differential cohomology theory whose pure part is $\Omega^{k \geq}$ is obtained this way.
 
-\begin{question}
+\begin{question} \label{que:deligne}
  Given the example, here is a natural question one might wonder. Is there a single differential cohomology theory, such that its $k$-th sheaf cohomology group recovers the classical Deligne cohomology group $\hat{H}^k(M)$ for all $k \geq 0$? It seems the answer would have to be no, because one single cohomology theory would not decompose into a collection of short exact sequences.
 \end{question}
 
 
 \section{Future Directions}
-We can (at least) look at the following topics:
+For future talks we can consider the following topics.
 
-\subsection{Proofs}
+\subsection{Fancy Definition of Cohomology Groups}
+
+As we saw in \cref{que:deligne}, we might wonder whether it is possible to recover all Deligne cohomology groups out of one differential cohomology. 
+
+While this might not be possible with the naive regular definition of cohomology groups, there appears to be an alternative definition due to Bunke--Gepner \cite{bunkegepner2021diffktheory}, which is able to recover all Deligne cohomology groups, via a refined method.
+
+Understanding this approach can help us understand ways to extract cohomological data in a non-formal way that is more helpful in geometrically motivated applications.
+
+\subsection{Further Examples of Differential Cohomology Theories}
+We already saw Deligne cohomology as a differential refinement of singular cohomology. However, many other cohomologies also admit differential refinements, that merit further study.
+\begin{enumerate}
+  \item We could look at differential $K$-theory. It is understood as the differential refinement of $ku$, the $K$-theory spectrum. Following the algorithm we want:
+  \begin{itemize}
+   \item A pure sheaf $\Omega^{\geq k}(- ;\mathbb{C}[u^{\pm 1}])$.
+   \item The computation $L_{hi}\Omega^{\geq k}(- ;\mathbb{C}[u^{\pm 1}]) \simeq H\bC[u^{\pm 1}]$.
+   \item A map of spectra $ku \to H\bC[u^{\pm 1}]$, which is the \emph{Chern character}.
+  \end{itemize}
+  This was studied with classical means by Hopkins--Singer \cite{hopkinssinger2005diffcoh}.
+  \item There are further differential refinements, such as \emph{differential algebraic $K$-theory} \cite{bunkegepner2021diffktheory} or \emph{differential complex cobordism} \cite{bunkeschickschroederwiethaup2009landweber}, however, they seem to have been studied before the sheaf-theoretic framework was developed.
+\end{enumerate}
+
+\subsection{Abstract Proof and further Applications of Fracture Square}
 One question is whether we want to explicitly go through the proof of the fracture square, and the fact that $\bR$-invariant sheaves are precisely spectra. This involves understanding advanced aspects of sheaf theory, such as \emph{recollements}.
 
 The essential step in the proof is the following very technical result.
@@ -352,25 +382,34 @@ This is a very general result. We use it for the following specific case:
 
 In other words, the constant presheaf is already a sheaf. This directly implies that $\Delta$ is fully faithful and that it admits a left adjoint via colimit. So we can directly apply the result above to get the fracture square.
 
-\subsection{Examples}
-One particular case are further examples of interest:
+Beyond looking at the proof, we can also look at manifestations of this general result in the context of other sites, such as:
 \begin{enumerate}
-  \item We could look at differential $K$-theory. It should be a differential refinement of $ku$, the $K$-theory spectrum. Following the algorithm we want:
-  \begin{itemize}
-   \item A pure sheaf $\Omega^{\geq k}(- ;\mathbb{C}[u^{\pm 1}])$.
-   \item The computation $L_{hi}\Omega^{\geq k}(- ;\mathbb{C}[u^{\pm 1}]) \simeq H\bC[u^{\pm 1}]$.
-   \item A map of spectra $ku \to H\bC[u^{\pm 1}]$, which is the \emph{Chern character}.
-  \end{itemize}
-  This was studied with classical means by Hopkins--Singer \cite{hopkinssinger2005diffcoh}.
-  \item There is the example of twisted differential cohomology due to Bunke--Nikolaus \cite{bunkenikolaus2019twisted}.
-  \item There are various examples of differential cohomologies in the work of Schreiber et al., with suggested applications in physics \cite{fiorenzasatischreiber2024charactermap}. 
-  \item There appears to be other versions of differential cohomology, such as \emph{differential algebraic $K$-theory} \cite{bunkegepner2021diffktheory} or \emph{differential complex cobordism} \cite{bunkeschickschroederwiethaup2009landweber}, however, they seem to have been studied before the sheaf-theoretic framework was developed.
+  \item The site of topological spaces.
+  \item The site of coarse spaces.
+  \item The site of diffeological spaces.
+  \item The site of Lie groupoids.
 \end{enumerate}
 
-\subsection{Applications to geometry and/or physics}
-Can we recover classical results in this setting using the modern framework? The book \cite{amabeldebrayhaine2021diffcoh} does provide some ideas and references, Examples include \emph{Chern-Weil theory}, classifying (equivariant) bundles with connection, differential characteristic classes, relation to invertible field theories, ... 
+Concretely, we can pursue the following questions:
+\begin{enumerate}
+  \item Do these Grothendieck sites satify the assumptions of the proposition?
+  \item If yes, what does the existence of a fracture square imply in these cases?
+  \item If not, what are are the obstructions inherent to the theory?
+\end{enumerate}
 
-However, those should be explored based on interest and feasibility.
+\subsection{Twisted (differential) cohomology}
+Twisted cohomology theories further generalize cohomology theories. They have been refined to a differential version by Bunke--Nikolaus \cite{bunkenikolaus2019twisted}. Given their myriad applications, both twisted cohomology and its differential version merit a careful analysis.
+
+\subsection{Applications to Physics}
+Twisted differential cohomology theories have found concrete applications in physics, which we should explore.
+
+\subsection{Further Differential Refinements of Cohomological Notions}
+Twisted K-theory has known connections to the concept of \emph{loop group representations} \cite{freedhopkinsteleman2011loopgroupsi}. While twisted K-theory has successfully been lifted to a differential cohomology theory, the loop group representations have not. This is an interesting open problem that should be further explored.
+
+
+\subsection{Differential Cohomology in Cohesive \texorpdfstring{$\infty$}{oo}-Topoi}
+The collective work of Grady, Sati, Schreiber, et al. has focused on developing differential cohomology theories in the context of cohesive $\infty$-topoi and study their applications to physics \cite{schreiber2013differentialcohomology,fiorenzasatischreiber2024charactermap}, which merits further study.
+  
 
 {\footnotesize
 \bibliographystyle{alpha}
