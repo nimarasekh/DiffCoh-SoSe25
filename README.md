@@ -4,7 +4,7 @@ Up until now, we have broadly relied (or want to rely) on the following sources 
 - [Differential Cohomology: Categories, Characteristic Classes, and Connections](https://arxiv.org/abs/2109.12250) by [Araminta Amabel](https://amabel3.github.io/), [Arun Debray](https://adebray.github.io/), [Peter J. Haine](https://math.berkeley.edu/~phaine/) for an ∞-categorical approach to differential cohomology via sheaves of spectra.
 - [A short course on ∞-categories](https://arxiv.org/abs/1007.2925) by [Moritz Groth/Rahn](https://www.agtz.mathematik.uni-mainz.de/hoeherekategorientheorie/dr-moritz-rahn/) for some ∞-categorical background material.
 - [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) by [Jacob Lurie](https://www.math.ias.edu/~lurie) for some background on ∞-categorical sheaf theory and some advanced ∞-category theory.
-- [Twisted differential cohomology](https://arxiv.org/abs/1406.3231) by [Ulrich Bunke](https://bunke.app.uni-regensburg.de/) and [Thomas Nikolaus](https://www.uni-muenster.de/FB10srvi/persdb/MM-member.php?id=1304) for an introduection and study of twisted differential cohomology.
+- [Twisted differential cohomology](https://arxiv.org/abs/1406.3231) by [Ulrich Bunke](https://bunke.app.uni-regensburg.de/) and [Thomas Nikolaus](https://www.uni-muenster.de/FB10srvi/persdb/MM-member.php?id=1304) for an introduction and study of twisted differential cohomology.
 
 Until now we had the following talks with some modest attempt at live-texing their talks:
 1. [*Motivation*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_1.pdf) by **Konrad Waldorf** on 30.04.2025
