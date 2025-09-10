@@ -63,6 +63,7 @@
 \newcommand{\tot}{\mathrm{tot}}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\sm}{\mathrm{sm}}
+\newcommand{\Dr}{\D\mathrm{r}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -184,7 +185,7 @@ Similar to the heart of spectra, given an $\bE_\infty$-ring spectrum $R$, denote
   Let $R$ be a commutative ring. 
   \begin{enumerate}
     \item $\Mod_{R}\simeq \Mod_{HR}^\heartsuit$ via taking Eilenberg-Mac Lane spectra.
-    \item The equivalence in (1) extends to an equivalence $H:\D(R)\simeq \Mod_{HR}$ of symmetric monoidal $\infty$-categories.
+    \item The above equivalence extends to an equivalence $H:\D(R)\simeq \Mod_{HR}$ of symmetric monoidal $\infty$-categories.
   \end{enumerate} 
 \end{theorem}
 \begin{proof}
@@ -214,7 +215,7 @@ Evaluation at $\{0\}$ induces an adjunction $(\const,\Gamma):\C\to\Shv(\Mfd,\C)$
 \begin{remark}\label{rmk:cotensor}
 Every presentable $\infty$-category $\C$ is uniquely \emph{cotensored over} $\s$, see \cite[Remark 5.5.2.6]{lurie2009htt}. More explicitly, for every space $S$ and object $C$, there is an object $C^S$ together with a natural equivalence $$\Hom_\s(S,\Hom_\C(-,C))\simeq\Hom_\C(-,C^S)$$
 \end{remark}
-\begin{definition}
+\begin{definition}\label{def:flat}
   Denote by $\Sing$ the functor $\Mfd\to\s$ mapping a manifold to its underlying space of \emph{smooth} simplexes. Given a presentable $\infty$-category $\C$, denote by $\flat$ the composition $\C\to\Fun(\s^{\op},\C)\to\Fun(\Mfd^{\op},\C)$, the first functor coming from \cref{rmk:cotensor}, the second being pre-composition with $\Sing^{\op}$.
 \end{definition}
 Explicitly, given an object $C\in\C$, the associated pre-sheaf $\flat C$ maps a manifold $M$ to $C^{\Sing(M)}$.
@@ -240,39 +241,41 @@ Explicitly, given an object $C\in\C$, the associated pre-sheaf $\flat C$ maps a 
 
 \section{Chain complexes and sheaves}
 
-The stable Dold-Kan correspondence allows us to move freely between sheaves of $H\bZ$-module spectras and sheaves valued in the derived category $\D(\bZ)$ of abelian groups. In this section, we introduce definition and some technical lemmas regarding sheaves on manifolds valued in the derived category. We identify a cochain complex $M^*$ of abelian groups with the chain complex $M_*\in\Ch(\bZ)$ defined as $M_n=M^{-n}$.
-\begin{definition}[{\cite[Definition 7.14]{bunkenikolausvoelkl2016diffcoh}}]Given $n\in\bZ$ and a cochain complex $M^*$, denote by $M^{\geq n}$, resp. $M^{\leq n}$, the \emph{naive truncations} of $M$ \[\cdots\to0\to M^n\to M^{n+1}\to\cdots, \qquad \mbox{resp. }\cdots\to M^{n-1}\to M^n\to0\to\cdots\]
+Denote by $\Ch$ the category of chain complexes of abelian groups and $\Dr$ the associated derived category. Moreover, denote by $\Mod$ the category of $H\bZ$-module spectra. The equivalence of \cref{thm:stabledk} applied point-wise induces an equivalence of sheaf categories
+\[\Shv(\Mfd,\Dr)\simeq\Shv(\Mfd,\Mod)\] 
+\begin{definition}\label{def:EMsheaf}
+  Given a sheaf $V:\Mfd^{\op}\to\Dr$, denote by $HV$ the corresponding sheaf of $H\bZ$-module spectra, called \emph{Eilenberg-Mac Lane sheaf}. 
 \end{definition}
-
-\begin{definition}
-  A \emph{smooth module} is a sheaf $F:\Mfd^{op}\to\Mod_\bZ$ such that $F(M)$ is naturally a $C^\infty(M)$-module, for every $M$.  
+In this section, we introduce some technical lemmas regarding sheaves on manifolds valued in $\Dr$. We implicitly identify (sheaves of) cochain complexes $V^*$ with (sheaves of) chain complexes with reversed indexing, i.e. $V_n:=V^{-n}$.
+\begin{definition}[{\cite[Definition 7.14]{bunkenikolausvoelkl2016diffcoh}}]Given $n\in\bZ$ and a (sheaf of) cochain complex $V^*$, denote by $V^{\geq n}$, resp. $V^{\leq n}$, the \emph{naive truncations} of $V^*$ \[\cdots\to0\to V^n\to V^{n+1}\to\cdots, \qquad \mbox{resp. }\cdots\to V^{n-1}\to V^n\to0\to\cdots\]
 \end{definition}
+Denote by $\widehat{\bR}$ the sheaf of {sets} associated to $\bR$ by the Yoneda embedding, mapping a manifold $M$ to the set of smooth maps $M\to\bR$. The sheaf $\widehat{\bR}$ is a ring object in $\Shv(\Mfd,\set)$, a $\widehat{\bR}$-module is called a \emph{smooth module}. Explicitly, a smooth module is a sheaf $V$ together with a natural $C^\infty(M)$-module structure on $V(M)$, for every $M$.
 \begin{lemma}[{\cite[Lemma 7.12]{bunkenikolausvoelkl2016diffcoh}}]\label{lem:sheafloc}
-  Let $F:\Mfd^{\op}\to\Ch(\bZ)$ a sheaf of chain complexes of smooth modules, then $\Mfd^{\op}\xrightarrow{F}\Ch(\bZ)\to\D(\bZ)$ is a sheaf. 
+  Let $V:\Mfd^{\op}\to\Ch$ a sheaf of chain complexes of smooth modules, then the composition $\Mfd^{\op}\xrightarrow{V}\Ch\to\Dr$ is a sheaf. 
 \end{lemma}
 \begin{definition}\label{def:forms}
-  Denote by $\Omega^*$ the sheaf $\Mfd^{\op}\to\Ch(\bZ)$ mapping a manifold to its de Rham complex. Given $n\in\bN$, denote by $\Omega^{\geq n}$ and $\Omega^{\leq n}$ the point-wise naive truncations of $\Omega^*$. 
+  Denote by $\Omega^*$ the sheaf $\Mfd^{\op}\to\Ch$ mapping $M$ to its de Rham complex $\Omega^*(M)$. 
 \end{definition}
-\cref{lem:sheafloc} ensures that the sheaves in \cref{def:forms} remain sheaves after post-composition with the localization functor $\Ch(\bZ)\to\D(\bZ)$.  
-\begin{definition}\label{def:EMsheaf}
-  Given a sheaf $F:\Mfd^{\op}\to\D(\bZ)$, denote by $HF$ the \emph{Eilenberg-Mac Lane sheaf} of $H\bZ$-module spectra obtained by applying point-wise the equivalence of \cref{thm:stabledk}. 
-\end{definition}
+\cref{lem:sheafloc} ensures that the sheaves in \cref{def:forms} is a sheaf after post-composition with the localization functor $\Ch\to\Dr$. 
 
-\section{Higher de Rham Theorem}
-The classical de Rham theorem gives an explicit ring isomorphism between the de Rham cohomology of a manifold $M$ and its singular cohomology with real coefficients. Using the modern perspective we can recover de Rham theorem as a corollary of a more general ${\bA}_\infty$-quasi-isomorphism of differential graded algebras. 
-\begin{remark}
-  \cite[Proposition 10.2.12]{loday2012algebraic} spells out the data of a $\bA_\infty$-morphism between general $\bA_\infty$-algebras. An $\bA_\infty$-morphism is a $\bA_\infty$\emph{-quasi-isomorphism} if the underlying map of chain complexes is an equivalence.  
-\end{remark}
-Here we use the machinery set-up in \cref{sec:constant sheaves}. 
-\begin{remark}\label{rmk:Dcotensor}
-  Since $\D(\bZ)$ is presentable, we know that it is cotensored over $\s$. Given a space $S$ and a chain complex $M_*$, the cotensor $M_*{}^S$ is the chain complex of graded linear maps $C_*(S,\bZ)\to M_*$, from the (normalized) singular chain complex of $S$ to $M_*$, see \cite[Definition 1.3.2.1]{lurie2017ha}. In particular, let $M_*=M$ be concentrated in degree 0, then $M_*{}^S$ is the singular cochain complex of $S$ with values in $M$. 
-\end{remark}
+\section{Higher de Rham theorem}
+
 \begin{remark}
   Given a smooth manifold $M$, denote by $C_*^\sm(M,\bZ)$ the \emph{smooth} singular complex generated by $\Sing(M)$. Given an abelian group $A$, denote by $C^*_\sm(M,A)$ the singular cochain complex valued in $A$ associated to $C_*^\sm(M,\bZ)$. 
 \end{remark}
+The de Rham homomorphism is a cochain homorphism $\Omega^*(M)\to C_\sm^*(M,\bR)$. Restriction to smooth cycles induces a quasi-isomorphism $C^*(M,\bR)\simeq C^*_\sm(M,\bR)$, the de Rham theorem states that the de Rham homomorphism induces an isomorphism of graded rings between de Rham cohomology and smooth singular cohomology with real coefficients, therefore $H_\dr^*(M)\simeq H^*(M,\bR)$, as graded rings. In this section, we rephrase the de Rham homomorphism as a morphism of sheaves valued in $\Dr$ and reference a result generalizing the de Rham theorem.
+\begin{remark}\label{rmk:Dcotensor}
+  Since $\D(\bZ)$ is presentable, we know that it is cotensored over $\s$. Given a space $S$ and a chain complex $V_*$, the cotensor $V_*{}^S$ is the cochain complex (viewed as a chain complex) of graded linear maps $C_*(S,\bZ)\to V_*$, from the (normalized) singular chain complex of $S$ to $V_*$, see \cite[Definition 1.3.2.1]{lurie2017ha}. In particular, let $V_*=V$ be concentrated in degree 0, then $V_*{}^S$ is the singular cochain complex of $S$ with values in $V$. 
+\end{remark}
+Recall the functor $\flat$ defined in \cref{def:flat}. By definition of $\Sing:\Mfd\to\s$ and \cref{rmk:Dcotensor}, given $V_*$ chain complex, $\flat V$ maps a manifold $M$ to the cochain complex of graded linear maps $C_*^\sm(M,\bZ)=C_*(\Sing(M),\bZ)\to V_*$. 
 \begin{definition}\label{def:derhammorf}
-Consider the natural morphism $\Omega^*(M)\to (\flat\bR)(M)=C_\sm^*(M,\bR)$ taking a form $\omega\in\Omega^n(M)$ to the linear map $\int\omega:C^\sm_{n}(M,\bZ)\to\bR$. We call the induced transformation $\dr:\Omega^*\to\flat\bR$ the \emph{de Rham morphism}.  
+Consider the natural morphism $\Omega^*(M)\to (\flat\bR)(M)=C_\sm^*(M,\bR)$ taking a form $\omega\in\Omega^n(M)$ to the linear map $\int\omega:C^\sm_{n}(M,\bZ)\to\bR$. We call the natural transformation $\dr:\Omega^*\to\flat\bR$ the \emph{de Rham morphism}.  
 \end{definition}
+\begin{remark}
+  \cite[Proposition 10.2.12]{loday2012algebraic} spells out the data of a $\bA_\infty$-morphism between general $\bA_\infty$-algebras. An $\bA_\infty$-morphism is a $\bA_\infty$\emph{-quasi-isomorphism} if the underlying map of chain complexes is an equivalence.  
+\end{remark}
+
+
 We can now state the main theorem.  
 \begin{theorem}[{\cite[Theorem 3.25]{abad2010ainftyrhamtheoremintegration}}]\label{thm:derham} 
   $\dr:\Omega^*\to\flat\bR$ underlies a natural $\bA_\infty$-quasi-isomorphism of sheaves of differential graded algebras. 
@@ -280,49 +283,49 @@ We can now state the main theorem.
 
 \section{Deligne Cohomology}
 
-In this section, we give the definition of the $\ell$-th Deligne sheaf as the Eilenberg-Mac Lane spectrum (see \cref{def:EMsheaf}) associated to a sheaf $F:\Mfd^{\op}\to\D(\bZ)$. Following that, we give explicit cochain complexes that are quasi-isomorphic to the value of $F$ at a manifold $M$.
+In this section, we give the definition of the $k$-th Deligne sheaf as the Eilenberg-Mac Lane spectrum (see \cref{def:EMsheaf}) associated to a sheaf $V:\Mfd^{\op}\to\Dr$. Following that, we give explicit cochain complexes that are quasi-isomorphic to the value of $V$ at a manifold $M$. 
 \begin{definition}\label{def:deligne}
-  Given $\ell\in\bN$, define $\hat{\bZ}(\ell):\Mfd^{\op}\to\D(\bZ)$ as the pullback 
+  Given $k\in\bN$, define $\widehat{\bZ}(k):\Mfd^{\op}\to\Dr$ as the pullback 
   \[\begin{tikzcd}
-    \hat{\bZ}(\ell)\arrow[r]\arrow[d] & \Omega^{\geq \ell}\arrow[d] \\
+    \widehat{\bZ}(k)\arrow[r]\arrow[d] & \Omega^{\geq k}\arrow[d] \\
     \flat\bZ \arrow[r] & \flat\bR
   \end{tikzcd}\]
-  The vertical morphism being the composition $\Omega^{\geq \ell}\hookrightarrow\Omega^*\xrightarrow{\dr}\flat\bR$. We call the corresponding Eilenberg-Mac Lane spectrum $H\hat{\bZ}(\ell)$ the $\ell$\emph{-th Deligne sheaf}.
+  The vertical morphism being the composition $\Omega^{\geq k}\hookrightarrow\Omega^*\xrightarrow{\dr}\flat\bR$. We call the corresponding Eilenberg-Mac Lane spectrum $H\hat{\bZ}(k)$ the $k$\emph{-th Deligne sheaf}.
 \end{definition}
-\begin{remark}[Model A, see {\cite[\S 3.2]{hopkinssinger2005diffcoh}}]\label{rmk:A} Let $\acute{C}(\ell)^n(M)\subseteq C_\sm^n(M,\bZ)\oplus C_\sm^{n-1}(M,\bR)\oplus\Omega^n(M)$ consist of triples $(c,h,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(c,h,\omega)=(\delta c,\dr(\omega)-c-\delta h,d\omega)$. This complex $\acute{C}^*(\ell)(M)$ fits into a diagram
+\begin{remark}[Model A, see {\cite[\S 3.2]{hopkinssinger2005diffcoh}}]\label{rmk:A} Let $\acute{C}(k)^n(M)\subseteq C_\sm^n(M,\bZ)\oplus C_\sm^{n-1}(M,\bR)\oplus\Omega^n(M)$ consist of triples $(c,h,\omega)$ for which $\omega=0$ if $n<k$, with differential $\delta(c,h,\omega)=(\delta c,\dr(\omega)-c-\delta h,d\omega)$. This complex $\acute{C}^*(k)(M)$ fits into a diagram
 \[\begin{tikzcd}
-    \acute{C}^*(\ell)(M) \arrow[d]\arrow[r] & \Omega^{\geq \ell}(M)\arrow[d] \\
+    \acute{C}^*(k)(M) \arrow[d]\arrow[r] & \Omega^{\geq k}(M)\arrow[d] \\
     C_\sm^*(M,\bZ) \arrow[r] & C_\sm^*(M,\bR)
-  \end{tikzcd}\]which commutes up to homotopy given by the projections $\acute{C}^n(\ell)(M)\to C_\sm^{n-1}(M,\bR)$. The diagram above model the pullback of \cref{def:deligne}, hence $\acute{C}^*(\ell)(M)\simeq\hat{\bZ}(\ell)(M)$. 
+  \end{tikzcd}\]which commutes up to homotopy given by the projections $\acute{C}^n(k)(M)\to C_\sm^{n-1}(M,\bR)$. The diagram above model the pullback of \cref{def:deligne}, hence $\acute{C}^*(k)(M)\simeq\hat{\bZ}(k)(M)$. 
 \end{remark}
 \begin{remark}[Model B]\label{rmk:B} Recall that $\flat$ preserves cofiber sequences, since it is left adjoint, and that fiber sequences are the same a cofiber sequences in stable $\infty$-categories. Consider the diagram
   \[\begin{tikzcd}
-    \hat{\bZ}(\ell)\arrow[r]\arrow[d] & \Omega^{\geq \ell}\arrow[d]\arrow[dd,bend left=5em,color=red] \\
+    \hat{\bZ}(k)\arrow[r]\arrow[d] & \Omega^{\geq k}\arrow[d]\arrow[dd,bend left=5em,color=red] \\
     \flat\bZ \arrow[r]\arrow[d] & \flat\bR\arrow[d] \\
     0\arrow[r,color=red] & \flat(\bR/\bZ)
   \end{tikzcd}\]
-  Since the bottom square is an pullback, $\hat{\bZ}(\ell)(M)$ is equivalent to the pullback of the diagram in \textcolor{red}{red}. Let $\breve{C}^{n}(\ell)(M)\subseteq C_\sm^{n-1}(M,\bR/\bZ)\oplus\Omega^n(M)$ consist of pairs $(\chi,\omega)$ for which $\omega=0$ if $n<\ell$, with differential $\delta(\chi,\omega)=(e^{2\pi i\dr(\omega)}-\delta\chi,d\omega)$. Similar to \cref{rmk:A}, the complex $\breve{C}^*(\ell)(M)$ fits into the above diagram so that the outer square is an pullback, hence it is equivalent to $\hat{\bZ}(\ell)(M)$.
+  Since the bottom square is an pullback, $\hat{\bZ}(k)(M)$ is equivalent to the pullback of the diagram in \textcolor{red}{red}. Let $\breve{C}^{n}(k)(M)\subseteq C_\sm^{n-1}(M,\bR/\bZ)\oplus\Omega^n(M)$ consist of pairs $(\chi,\omega)$ for which $\omega=0$ if $n<k$, with differential $\delta(\chi,\omega)=(e^{2\pi i\dr(\omega)}-\delta\chi,d\omega)$. Similar to \cref{rmk:A}, the complex $\breve{C}^*(k)(M)$ fits into the above diagram so that the outer square is an pullback, hence it is equivalent to $\hat{\bZ}(k)(M)$.
 \end{remark}
-Take an $n$-cocycle ($n\geq\ell$) in the model from \cref{rmk:B}, i.e. $(\chi,\omega)\in C_\sm^{n-1}(M,\bR/\bZ)\oplus\Omega^{n}(M)$ such that $d\omega=0$ and $\delta\chi=e^{2\pi i\dr(\omega)}$. Such a cocycle determines a differential character of degree $n-1$ for $M$, in the sense of the following definition:
+Take an $n$-cocycle ($n\geq k$) in the model from \cref{rmk:B}, i.e. $(\chi,\omega)\in C_\sm^{n-1}(M,\bR/\bZ)\oplus\Omega^{n}(M)$ such that $d\omega=0$ and $\delta\chi=e^{2\pi i\dr(\omega)}$. Such a cocycle determines a differential character of degree $n-1$ for $M$, in the sense of the following definition:
 \begin{definition}[{\cite[Definition 3.4]{hopkinssinger2005diffcoh}}, see also {\cite[Chapter 5]{barbecker2014diffchar}}] Consider a manifold $M$, a \emph{differential character} of degree $n$ consists of a character $\chi:Z^\sm_{n}(M,\bZ)\to\bR/\bZ$ on the group of smooth $n$-cycles of $M$ together with a $n$-form $\omega\in\Omega^{n+1}(M)$, such that, for every smooth $(n+1)$-chain $c$, \[\chi(\partial c)=e^{2\pi i\int_c\omega}\]
 \end{definition}
 \begin{definition}
   Given a full sub-site $\B\subseteq\Mfd$ and a manifold $M$, a $\B$\emph{-good open cover} of $M$ consists of an open cover $\mathscr{O}$ such that every finite intersection of elements in $\mathscr{O}$ is either empty or diffeomorphic to an object of $\B$. If $\B=\Euc$ the sub-site of Euclidean spaces, we call a $\B$-good open cover a \emph{differentiably good open cover}, see \cite[Definition 6.3.9]{fiorenza2011cechcocyclesdifferentialcharacteristic}. 
-\end{definition}If $\B$ is the sub-site of contractible manifolds, we recover the notion of a \emph{good open cover}. In our next model, we will construct a sheaf $F$ equivalent to $\hat{\bZ}(\ell)$ on a dense sub-site $\B$. Given a generic manifold $M$, we can evaluate $\hat{\bZ}(\ell)(M)$ using $F$, if we assume the existence of a $\B$-good open cover. Here we care mainly about $\B=\Euc$ and so we require the following result. 
+\end{definition}If $\B$ is the sub-site of contractible manifolds, we recover the notion of a \emph{good open cover}. In our next model, we will construct a sheaf $F$ equivalent to $\hat{\bZ}(k)$ on a dense sub-site $\B$. Given a generic manifold $M$, we can evaluate $\hat{\bZ}(k)(M)$ using $F$, if we assume the existence of a $\B$-good open cover. Here we care mainly about $\B=\Euc$ and so we require the following result. 
 \begin{theorem}[{\cite[Theorem A.1]{fiorenza2011cechcocyclesdifferentialcharacteristic}}]
   Every paracompact smooth manifold admits a differentiably good open cover. 
 \end{theorem}
 \begin{remark}[Model C, see {\cite[Lemma 7.3.4]{amabeldebrayhaine2021diffcoh}}]\label{rmk:C} Let $\B\subseteq\Mfd$ be a dense sub-site of contractible manifolds, consider the following diagram in the category of {sheaves} on $\B$
   \[\begin{tikzcd}
-     \hat{\bZ}(\ell)|_\B\arrow[d]\arrow[r] & \Omega^{\geq \ell}|_\B\arrow[d] \arrow[r] & 0\arrow[d,color=red] \\
-    \bZ \arrow[r]\arrow[rr,bend right=2.5em,color=red] & \Omega^*|_\B\arrow[r] & \Omega^{\leq\ell-1}|_\B
-  \end{tikzcd}\] The left square is obtained by: $\Circled{1}$ Apply the restriction to $\B$ functor to the pullback diagram of \cref{def:deligne} $\Circled{2}$ Substitute $\flat\bR|_\B$ with $\Omega^*|_\B$ (see \cref{thm:derham}) and $\flat\bZ|_\B$ with $\bZ$ (see \cref{rmk:constsheaf}). Since the right square is a pullback, $\hat{\bZ}(\ell)|_\B$ is equivalent to the pullback of the diagram in \textcolor{red}{red}. Let $\check{C}^*(\ell)$ be the sheaf of chain complexes $\bZ\to\Omega^0\to\cdots\to\Omega^{\ell-1}\to0\to\cdots$, where $\bZ$ is in degree 0 includes into $\Omega^0$ as constant functions. The complex $\check{C}^*(\ell)$ fits into the above diagram, so that the outer square is an pullback, therefore $\hat{\bZ}(\ell)|_\B\simeq\check{C}^*(\ell)$. 
+     \hat{\bZ}(k)|_\B\arrow[d]\arrow[r] & \Omega^{\geq k}|_\B\arrow[d] \arrow[r] & 0\arrow[d,color=red] \\
+    \bZ \arrow[r]\arrow[rr,bend right=2.5em,color=red] & \Omega^*|_\B\arrow[r] & \Omega^{\leq k-1}|_\B
+  \end{tikzcd}\] The left square is obtained by: $\Circled{1}$ Apply the restriction to $\B$ functor to the pullback diagram of \cref{def:deligne} $\Circled{2}$ Substitute $\flat\bR|_\B$ with $\Omega^*|_\B$ (see \cref{thm:derham}) and $\flat\bZ|_\B$ with $\bZ$ (see \cref{rmk:constsheaf}). Since the right square is a pullback, $\hat{\bZ}(k)|_\B$ is equivalent to the pullback of the diagram in \textcolor{red}{red}. Let $\check{C}^*(k)$ be the sheaf of chain complexes $\bZ\to\Omega^0\to\cdots\to\Omega^{k-1}\to0\to\cdots$, where $\bZ$ is in degree 0 includes into $\Omega^0$ as constant functions. The complex $\check{C}^*(k)$ fits into the above diagram, so that the outer square is an pullback, therefore $\hat{\bZ}(k)|_\B\simeq\check{C}^*(k)$. 
 \end{remark}
-\begin{remark}[Model C, Continued]Since $\hat{\bZ}(\ell)$ is equivalent to $\check{C}^*(\ell)$ restricted to $\B$, consider a manifold $M$ having a $\B$-good open cover $\mathscr{O}$ and let $\I(\mathscr O)$ the closure of $\mathscr{O}$ under finite intersections, then recall
+\begin{remark}[Model C, Continued]Since $\hat{\bZ}(k)$ is equivalent to $\check{C}^*(k)$ restricted to $\B$, consider a manifold $M$ having a $\B$-good open cover $\mathscr{O}$ and let $\I(\mathscr O)$ the closure of $\mathscr{O}$ under finite intersections, then recall
 \[
-    \hat{\bZ}(\ell)(M)\simeq\lim_{U\in\I(\mathscr{O})}\hat{\bZ}(\ell)(U)\simeq\lim_{U\in\I(\mathscr O)} \check{C}^*(\ell)(U)
+    \hat{\bZ}(k)(M)\simeq\lim_{U\in\I(\mathscr{O})}\hat{\bZ}(k)(U)\simeq\lim_{U\in\I(\mathscr O)} \check{C}^*(k)(U)
   \]
-  By rearranging the limit, we see it is equivalent to the limit of the cosimplicial object taking $n$ to the product over all tuples $(U_0,\cdots,U_n)\in\mathscr{O}^{n+1}$ of $\check C^*(\ell)(U_0\cap\cdots\cap U_n)$. We can then apply \cite[Lemma 7.10]{bunkenikolausvoelkl2016diffcoh} to calculate the limit of this cosimplicial cochain complex as the total cochain complex of \[\check{C}^{n,m}(\ell):=\prod_{\mathscr{O}^{n+1}}\check{C}^m(\ell)(U_0\cap\cdots\cap U_n)\]The differential in the $m$-direction simply comes from $\check C^*(\ell)$. The differential in the $n$-direction is the alternating sum of the morphisms $\delta^i:\check C^{n,m}(\ell)\to\check C^{n+1,m}(\ell)$, for $0\leq i\leq n+1$, described in components as follows: Given $\mu\in\check C^{n,m}(\ell)$, the $(U_0,\cdots,U_{n+1})$-component of $\delta^i\mu$ is the $(U_0,\cdots,\widehat{U_i},\cdots,U_{n+1})$-component of $\mu$ restricted to $U_0\cap\cdots\cap U_{n+1}$, where the hat under $U_i$ means we're removing it from the tuple. 
+  By rearranging the limit, we see it is equivalent to the limit of the cosimplicial object taking $n$ to the product over all tuples $(U_0,\cdots,U_n)\in\mathscr{O}^{n+1}$ of $\check C^*(k)(U_0\cap\cdots\cap U_n)$. We can then apply \cite[Lemma 7.10]{bunkenikolausvoelkl2016diffcoh} to calculate the limit of this cosimplicial cochain complex as the total cochain complex of \[\check{C}^{n,m}(k):=\prod_{\mathscr{O}^{n+1}}\check{C}^m(k)(U_0\cap\cdots\cap U_n)\]The differential in the $m$-direction simply comes from $\check C^*(k)$. The differential in the $n$-direction is the alternating sum of the morphisms $\delta^i:\check C^{n,m}(k)\to\check C^{n+1,m}(k)$, for $0\leq i\leq n+1$, described in components as follows: Given $\mu\in\check C^{n,m}(k)$, the $(U_0,\cdots,U_{n+1})$-component of $\delta^i\mu$ is the $(U_0,\cdots,\widehat{U_i},\cdots,U_{n+1})$-component of $\mu$ restricted to $U_0\cap\cdots\cap U_{n+1}$, where the hat under $U_i$ means we're removing it from the tuple. 
 \end{remark}
 
 {\footnotesize
