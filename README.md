@@ -14,3 +14,4 @@ Until now we had the following talks with some modest attempt at live-texing the
 3. [*Background on ∞-categorical sheaves*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_3.pdf) by **Hannes Berkenhagen** on 21.05.2025 & 27.05.2025
 4. [*Examples, operations and integration of differential cohomology theories*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_4.pdf) by **Alessandro Nanto** on 03.06.2025 & 17.06.2025
 5. [*Summary and Future Steps*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_5.pdf) by **Nima Rasekh** on 16.07.2025 & 28.07.2025
+6. [*Next Step Planning*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_6.pdf) by **Nima Rasekh** on 14.10.2025

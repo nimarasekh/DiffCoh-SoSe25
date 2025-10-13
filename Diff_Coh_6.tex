@@ -1,0 +1,299 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+\usepackage{circledsteps}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\kC}{\mathfrak{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\E}{\mathscr{E}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\F}{\mathscr{F}}
+\newcommand{\G}{\mathscr{G}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\mN}{\mathrm{N}}
+\newcommand{\I}{\mathscr{I}}
+\newcommand{\s}{\mathscr{S}}
+\newcommand{\T}{\mathscr{T}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathrm{Ch}}
+\newcommand{\cCh}{\mathrm{cCh}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\dg}{\mathrm{dg}}
+\newcommand{\Sing}{\mathrm{Sing}}
+\newcommand{\const}{\mathrm{L}}
+\newcommand{\dr}{\mathrm{dR}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\Cyc}{\mathrm{Cyc}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+\newcommand{\adjun}[4]{
+\begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+ #1  \arrow[r, shift left=1.8, "#3"] \pgfmatrixnextcell
+ #2 \arrow[l, shift left=1.6, "#4", "\bot"'] 
+\end{tikzcd}
+}
+
+\newcommand{\simpset}[7]{
+ \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+   #1 \arrow[r, shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell #2 
+   \arrow[l, shift left=1.2, "#5"] \arrow[l, shift right=1.2, "#4"'] 
+   \arrow[r, shift right, shorten >=1ex,shorten <=1ex ] \arrow[r, shift left, shorten >=1ex,shorten <=1ex] 
+   \pgfmatrixnextcell #3 
+   \arrow[l] \arrow[l, shift left=2, "#7"] \arrow[l, shift right=2, "#6 "'] Top
+   \arrow[r, shorten >=1ex,shorten <=1ex] \arrow[r, shift left=2, shorten >=1ex,shorten <=1ex] \arrow[r, shift right=2, 
+   shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell \cdots 
+   \arrow[l, shift right=1] \arrow[l, shift left=1] \arrow[l, shift right=3] \arrow[l, shift left=3] 
+ \end{tikzcd}
+}
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[section]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[section]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+\newtheorem{question}[equation]{Question}
+% \newtheorem{conjone}[section]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
+
+\title{Differential Cohomology Seminar 6}
+\date{14.10.2025}
+\author{Talk by Nima Rasekh}
+
+\begin{document}
+
+\maketitle
+
+This talk is a quick review and plans for this semester.
+
+% In this talk we summarize what we covered until now and discuss possible future directions.
+
+\section{Summary}
+In our last talk we already did a rather detailed summary of what we covered until now \cite{rasekh2025diffcoh5}, so here do a quick bullet point summary.
+\begin{itemize}
+  \item Differential cohomology theories should be defined as sheaves valued in the $\infty$-category of spectra valued on the site of manifolds. 
+  \item We can use abstract $\infty$-topos theoretic properties to prove that every differential cohomology theory decomposes into an $\bR$-invariant part (a purely homotopical differential cohomology) and a pure part (a purely geometric differential cohomology), via a pullback square called the \emph{fracture square}. 
+  \item This fracture square relates the original definition to the ``hexagon approach'' going back to Simons--Sullivan and others \cite{simonssullivan2008diffcoh,bunkeschick2009smoothk}.
+  \item Using this abstract approach we can construct examples of interest, such as Deligne cohomology, which refines integral homology.
+\end{itemize}
+
+\section{Talk Topics}
+Here is an overview of the possible talk topics we can cover this semester. There is some dependency, but many talks are independent of each other giving us significant flexibility, if we want to rearrange things.
+
+\[
+\begin{tabular}{|l|l|l|l|}
+  \hline 
+  \textbf{Topic} & \textbf{Section} & \textbf{Exp.~vs.~Research} & \# \textbf{Talks}\\ \hline
+  Further Examples of Differential Cohomology Theories & \cref{subsec:examples} & Expository & 1 \\ \hline
+  Twisted (differential) cohomology and applications & \cref{subsec:twisted} & Expository & 2\\ \hline
+  Differential Cohomology in Cohesive $\infty$-Topoi & \cref{subsec:cohesion} & Expository & 2\\ \hline
+  Differential Refinements of Loop Group Representations & \cref{subsec:loopgroup} & Research & 2\\ \hline
+  Cohomology Groups out of Differential Cohomology Theories & \cref{subsec:groups} & Research & 2\\ \hline
+  Abstract Proof and further Applications of the Fracture Square & \cref{subsec:abstract} & Research & 2\\ \hline
+\end{tabular}
+\]
+% \begin{enumerate}
+%   \item Further Examples of Differential Cohomology Theories (\cref{subsec:examples})
+%   \item Twisted (differential) cohomology and applications (\cref{subsec:twisted})
+%   \item Differential Refinements of Loop Group Representations (\cref{subsec:loopgroup})
+%   \item Differential Cohomology in Cohesive \texorpdfstring{$\infty$}{oo}-Topoi (\cref{subsec:cohesion})
+%   \item Cohomology Groups out of Differential Cohomology Theories (\cref{subsec:groups})
+%   \item Abstract Proof and further Applications of the Fracture Square (\cref{subsec:abstract})
+% \end{enumerate}
+
+Here are further details on each topic.
+
+\subsection{Further Examples of Differential Cohomology Theories} \label{subsec:examples}
+We already saw how to can use the methods of the fracture square to construct $\hat{\bZ}[l]$. However, the literature contains many other examples, constructed with different methods. How do these examples fit into our framework? Concrete examples are:
+\begin{enumerate}
+  \item Differential $K$-theory, as a differential refinement of $ku$  \cite{hopkinssinger2005diffcoh}.
+  \item  \emph{differential algebraic $K$-theory} as a differential refinement of algebraic $K$-theory \cite{bunkegepner2021diffktheory}
+  \item \emph{differential complex cobordism} as a differential refinement of complex cobordisms \cite{bunkeschickschroederwiethaup2009landweber}
+\end{enumerate}
+
+Beyond these already considered examples, it would be interesting if we could find some content about differential refinements of tmf.
+
+\subsection{Twisted (differential) cohomology and applications} \label{subsec:twisted}
+Twisted cohomology theories further generalize cohomology theories. They have been refined to a differential version. Given their myriad applications, both twisted cohomology and its differential version merit a careful analysis.
+
+This topics would involve two parts (and hence probably two talks):
+\begin{enumerate}
+  \item The development of twisted cohomology theory, and its applications in geometry and physics \cite{rosenberg2024twistedcohomology}. 
+  \item The differential refinement due to Bunke--Nikolaus, and its applications \cite{bunkenikolaus2019twisted}.
+\end{enumerate}
+
+\subsection{Differential Cohomology in Cohesive \texorpdfstring{$\infty$}{oo}-Topoi} \label{subsec:cohesion}
+Schreiber has introduced a notion of differential cohomology in the abstract concept of a cohesive $\infty$-topos \cite{schreiber2013differentialcohomology}. This has then be applied to physical settings \cite{fiorenzasatischreiber2024charactermap}. This suggest a $2$-part talk with the following topics:
+
+\begin{itemize}
+  \item Background on $\infty$-topos theory and cohesion, introducing differential cohomology in this setting, comparison to our approach \cite{lurie2009htt,schreiber2013differentialcohomology}
+  \item Applications to physics \cite{fiorenzasatischreiber2024charactermap}
+\end{itemize}
+
+\subsection{Differential Refinements of Loop Group Representations} \label{subsec:loopgroup}
+Building on work of Freed and Hopkins, twisted K-theory has known connections to the concept of \emph{loop group representations}.  As a follow up to the talks in \cref{subsec:twisted}, we can explore the following question:
+
+\begin{question}
+ Is there a differential analogue of loop group representations and their connection to twisted differential K-theory?
+\end{question}
+
+
+\subsection{Cohomology Groups out of Differential Cohomology Theories} \label{subsec:groups}
+Recall that the Deligne cohomology groups do not arise as the homotopy groups of a single differential cohomology theory. Instead, there is a collection of differential cohomology theories, one for each degree, whose homotopy groups give the Deligne cohomology groups.
+
+On the other hand, there are alternative methods to extract cohomology groups out of a single differential cohomology theory, as proposed by Bunke--Gepner \cite[Definition 2.23]{bunkegepner2021diffktheory}. This naturally results in the following question and possible talk topic:
+
+\begin{question}
+ Can we use the methods from \cite{bunkegepner2021diffktheory} to extract Deligne cohomology out of $\hat{\bZ}[1]$?
+\end{question}
+
+Understanding this approach can help us understand ways to extract cohomological data in a non-formal way that is more helpful in geometrically motivated applications.
+
+\subsection{Abstract Proof and further Applications of the Fracture Square} \label{subsec:abstract}
+One question is whether we want to explicitly go through the proof of the fracture square, and the fact that $\bR$-invariant sheaves are precisely spectra. This involves understanding advanced aspects of sheaf theory, such as \emph{recollements}.
+
+The essential step in the proof is the following very technical result.
+
+\begin{proposition}
+  Assume we have the following data and assumptions:
+  \begin{enumerate}
+    \item A Grothendieck site $(\C,J)$, such that $\C$ has a terminal object.
+    \item A stable $\infty$-category $\T$.
+    \item The inclusion functor $\Delta\colon \T \to \Shv_\T(\C,J)$ is fully faithful and admits a left adjoint $L_{const}$. 
+  \end{enumerate}
+  Then the following holds:
+  \begin{enumerate}
+    % \item $\Delta$ admits a right adjoint $R_{const}$, given by evaluation at the terminal object.
+    \item The full subcategory of $\Shv_\T(\C,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\T(\C,J) \to \Shv_\T(\C,J)^\bot$.
+    \item For every sheaf $P$ in $\Shv_\T(\C,J)$, there is a pullback square
+    \[
+    \begin{tikzcd}
+      P \arrow[r] \arrow[d] & L^{\bot}P \arrow[d] \\
+      L_{const}P \arrow[r] & L_{const}L^{\bot}P
+    \end{tikzcd},
+    \]
+    inside $\Shv_\T(\C,J)$, where the inclusions are left implicit.
+  \end{enumerate} 
+\end{proposition}
+
+This is a very general result. We use it for the following specific case:
+\begin{lemma}
+ Let $(\Euc,J)$ be the Euclidean site and $\Sp$ the stable $\infty$-category of spectra. Then the inclusion functor $\Delta\colon \Sp \to \Shv_{\Sp}(\Euc,J)$ is given by the constant presheaf functor.
+\end{lemma}
+
+In other words, the constant presheaf is already a sheaf. This directly implies that $\Delta$ is fully faithful and that it admits a left adjoint via colimit. So we can directly apply the result above to get the fracture square.
+
+Beyond looking at the proof, we can also look at manifestations of this general result in the context of other sites, such as:
+\begin{enumerate}
+  \item The site of topological spaces.
+  \item The site of coarse spaces.
+  \item The site of diffeological spaces.
+  \item The site of Lie groupoids.
+\end{enumerate}
+
+Concretely, we can pursue the following questions:
+\begin{enumerate}
+  \item Do these Grothendieck sites satify the assumptions of the proposition?
+  \item If yes, what does the existence of a fracture square imply in these cases?
+  \item If not, what are are the obstructions inherent to the theory?
+\end{enumerate}
+
+
+% \subsection{Applications to Physics}
+% Twisted differential cohomology theories have found concrete applications in physics, which we should explore.
+  
+\section{Talk Dates}
+Here are some of the proposed dates for the talks.
+\[
+ \begin{tabular}{|l|l|l|l|}
+  \hline 
+  & \textbf{Date} & \textbf{Speaker} & \textbf{Topic} \\ \hline 
+  (0) & 14.10.2025 & Nima Rasekh & Review and Talk Distribution \\ \hline
+  (1) & 21.10.2025 & & Further Examples\\ \hline
+  (2) & 28.10.2025 & & Twisted Cohomology Theories\\ \hline
+  (3) & 04.11.2025 & & Twisted Diff. Cohomology Theories\\ \hline
+  (4) & 11.11.2025 & & $\infty$-Topoi and Cohesion\\ \hline
+  (5) & 18.11.2025 & & Differential Cohomology and Cohesion\\ \hline
+  (6) & 25.11.2025 & & \\ \hline
+  (7) & 02.12.2025 & & \\ \hline
+  (8) & 09.12.2025 & & \\ \hline
+  (9) & 16.12.2025 & & \\ \hline
+  (10) & 06.01.2026 & & \\ \hline
+  (11) & 13.01.2026 & & \\ \hline
+  (12) & 20.01.2026 & & \\ \hline
+  (13) & 27.01.2026 & & \\ \hline
+ \end{tabular} 
+\]
+{\footnotesize
+\bibliographystyle{alpha}
+\bibliography{main}
+}
+
+
+\end{document}
