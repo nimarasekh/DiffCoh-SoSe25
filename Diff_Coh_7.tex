@@ -1,0 +1,233 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+\usepackage{circledsteps}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\kC}{\mathfrak{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\E}{\mathscr{E}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\F}{\mathscr{F}}
+\newcommand{\G}{\mathscr{G}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\mN}{\mathrm{N}}
+\newcommand{\I}{\mathscr{I}}
+\newcommand{\s}{\mathscr{S}}
+\newcommand{\T}{\mathscr{T}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathrm{Ch}}
+\newcommand{\cCh}{\mathrm{cCh}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\dg}{\mathrm{dg}}
+\newcommand{\Sing}{\mathrm{Sing}}
+\newcommand{\const}{\mathrm{L}}
+\newcommand{\dr}{\mathrm{dR}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\cLine}{\mathcal{L}\mathrm{ine}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+\newcommand{\adjun}[4]{
+\begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+ #1  \arrow[r, shift left=1.8, "#3"] \pgfmatrixnextcell
+ #2 \arrow[l, shift left=1.6, "#4", "\bot"'] 
+\end{tikzcd}
+}
+
+\newcommand{\simpset}[7]{
+ \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
+   #1 \arrow[r, shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell #2 
+   \arrow[l, shift left=1.2, "#5"] \arrow[l, shift right=1.2, "#4"'] 
+   \arrow[r, shift right, shorten >=1ex,shorten <=1ex ] \arrow[r, shift left, shorten >=1ex,shorten <=1ex] 
+   \pgfmatrixnextcell #3 
+   \arrow[l] \arrow[l, shift left=2, "#7"] \arrow[l, shift right=2, "#6 "'] Top
+   \arrow[r, shorten >=1ex,shorten <=1ex] \arrow[r, shift left=2, shorten >=1ex,shorten <=1ex] \arrow[r, shift right=2, 
+   shorten >=1ex,shorten <=1ex]
+   \pgfmatrixnextcell \cdots 
+   \arrow[l, shift right=1] \arrow[l, shift left=1] \arrow[l, shift right=3] \arrow[l, shift left=3] 
+ \end{tikzcd}
+}
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[section]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[section]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+\newtheorem{question}[equation]{Question}
+% \newtheorem{conjone}[section]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
+
+\title{Differential Cohomology Seminar 7}
+\date{29.10.2025 $\&$ 05.11.2025}
+\author{Talk by Matthias Ludewig}
+
+\begin{document}
+
+\maketitle
+
+We now aim to learn about differential $K$-theory, which is a differential refinement of topological $K$-theory.
+
+\section{Reviewing differential cohomology}
+Before we proceed to the main objective, we recall the following example.
+
+\begin{example}
+  Let $C$ be a real chain complex. Then $\Omega \otimes_\bR C$ is a sheaf defined as
+
+  \[ (\Omega \otimes_\bR C)^n(M)  = \bigoplus_{p + q = n} \Omega^p(M) \otimes_\bR C^q\]
+\end{example}
+
+We similarly have the following generalization.
+
+\begin{example}
+  Let $C$ be a real chain complex and $m$ an integer. Then $(\Omega \otimes_\bR C)^{\geq m}$ is the sheaf of $m$-truncated forms.
+\end{example}
+
+
+We now have the following result, where we use notation from the previous talks.
+
+\begin{theorem}[{\cite[Lemma 4.4]{bunkenikolausvoelkl2016diffcoh}}]
+  For $E = (\Omega \otimes_\bR C)^{\geq n}$, we have
+  \begin{itemize}
+    \item $R_{hi}(E)(*) = C^{\geq n}$
+    \item $L_{hi}(E)(*) = C$
+    \item $L_{hi}\Cyc(E)(*) = C^{\leq n - 1}$
+    \item $\Cyc(E) = (\Omega \otimes_{\bR} C^{\leq n -1})^{\geq n}$
+    \item $\Def(E) = \Sigma (\Omega \otimes_\bR C)^{\leq n-1}$
+    \item $\Phi\colon C \to C^{\leq n -1}$ is the truncation map.
+  \end{itemize}
+\end{theorem}
+
+
+Note that the sheaf $E$ is uniquely determined by the computation $L_{hi}(E)(*) = C$, $L_{hi}\Cyc(E)(*) = C^{\leq n - 1}$, and the map $\Phi\colon C \to C^{\leq n -1}$.
+% From the standard hexagon diagram we then get the following, 
+
+% \[
+% \begin{tikzcd}
+%  & C^n_{cl} \arrow[dr] \arrow[rr] & & H^n(M,C) \arrow[dr] & \\
+%  C^{n-1}/dC^{n-2} \arrow[ur] \arrow[dr ]& & \Omega^n_{cl}(M,C) \arrow[ur] \arrow[dr] & & H^n(M,C^{\leq n-1}) \\
+%   & \Omega^{n-1}(M,C)/im d \arrow[ur] \arrow[rr] & & \Omega^n_{cl}(M,C^{\leq n-1}) \arrow[ur] & 
+% \end{tikzcd}
+% \]
+
+% Could also be 
+
+% \[
+% \begin{tikzcd}
+%  & \oplus_{p+ q = n , q < n} H^{p}(M,C^q) \oplus \Omega^0(M,C^n_{cl}) \arrow[dr] \arrow[rr] & & H^n(M,C) \arrow[dr] & \\
+%  H^{n-1}(M,C^{\leq n-1}) \arrow[ur] \arrow[dr ]& & \Omega^n_{cl}(M,C) \arrow[ur] \arrow[dr] & & H^n(M,C^{\leq n-1}) \\
+%   & \Omega^{n-1}(M,C)/im d \arrow[ur] \arrow[rr] & & \Omega^n_{cl}(M,C^{\leq n-1}) \arrow[ur] & 
+% \end{tikzcd}
+% \]
+
+\section{Line Bundles with Connection}
+Having reviewed the general machinery, we will move towards differential $K$-theory by first considering the simpler case of line bundles with connection. For this we need some definitions.
+
+\begin{definition}
+  Let $\cLine^\nabla$ be the sheaf valued in the symmetric monoidal groupoids of complex line bundles with connection, with monoidal structure given by tensor product.
+\end{definition}
+
+\begin{theorem}
+  We have 
+  \begin{itemize}
+    \item $R_{hi}(\cLine^\nabla)(*) \simeq \Sigma^{-1}H\bC^\times_\delta$
+    \item $L_{hi}(\cLine^\nabla)(*) \simeq \Sigma^{-1}H\bC^\times_{top} \simeq \Sigma^{-2} H\bZ$
+    \item $L_{hi}\Cyc(\cLine^\nabla)(*) \simeq \Sigma^{-2}H\bC_{\delta}$
+    \item $\Cyc(\cLine^\nabla) \simeq \Sigma^{-2}H(\Omega^{\geq 2} \otimes_\bR \bC)$
+    \item $\Def(\cLine^\nabla) \simeq \Sigma^{-1} H(\Omega^{\leq 1} \otimes_\bR \bC)$
+  \end{itemize}
+  Here $\bC_\delta$ is the complex numbers with the discrete topology and $\bC_{top}$ is the complex numbers with the usual topology.
+\end{theorem}
+
+This theorem implies that we only need a map $\Sigma^{-2}H\bZ \to \Sigma^{-2}H\bC_\delta$ to define a differential refinement of these line bundles, which is given by the evident inclusion $\bZ \to \bC$. 
+
+Now at the level of $\pi_0$ we have the following hexagon diagram.
+\[
+\begin{tikzcd}
+ & H^1(M,\bC^\times) \arrow[dr] \arrow[rr] & & H^2(M,\bZ) \arrow[dr] & \\
+ H^1(M,\bC) \arrow[ur] \arrow[dr, "\beta"']& & \pi_0(\cLine^\nabla(M)) \arrow[ur, "chern class"] \arrow[dr, "curv"] & & H^{2}(M,\bC) \\
+  & \Omega^{1}(M,\bC)/im d \arrow[ur, "def"] \arrow[rr, "deRham"] & & \Omega^{2}_{cl}(M,\bC) \arrow[ur] & 
+\end{tikzcd}
+\]
+This diagram has several implications:
+\begin{enumerate}
+  \item $H^1(M,\bC^\times)$ classifies line bundles with trivial curvature (flat line bundles).
+  \item $c_1$ is the usual first Chern class of a line bundle.
+  \item The fiber of $c_1$ are given by geometric deformations of line bundles with connection keeping the chern character fixed.
+\end{enumerate}
+
+\section{Differential \texorpdfstring{$K$}{K}-Theory}
+We now want to generalize this perspective to differential $K$-theory. Here we face several choices that we need to consider. Here \cite{hopkinssinger2005diffcoh} take one approach and \cite{bunkenikolausvoelkl2016diffcoh} take another.
+
+{\footnotesize
+\bibliographystyle{alpha}
+\bibliography{main}
+}
+
+
+\end{document}
