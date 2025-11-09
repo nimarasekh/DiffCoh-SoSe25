@@ -15,3 +15,4 @@ Until now we had the following talks with some modest attempt at live-texing the
 4. [*Examples, operations and integration of differential cohomology theories*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_4.pdf) by **Alessandro Nanto** on 03.06.2025 & 17.06.2025
 5. [*Summary and Future Steps*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_5.pdf) by **Nima Rasekh** on 16.07.2025 & 28.07.2025
 6. [*Next Step Planning*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_6.pdf) by **Nima Rasekh** on 14.10.2025
+7. [*Differential K-Theory*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_7.pdf) by **Matthias Ludewig** on 29.10.2025 & 05.11.2025
