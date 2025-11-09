@@ -3,68 +3,67 @@
 \usepackage[mathscr]{euscript}
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usepackage{enumerate}
 \usepackage{enumitem}
+\usepackage{mathtools}
 \usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
 \usepackage[margin=2.5cm]{geometry}
 \setlength{\marginparwidth}{2cm}
-\usepackage{circledsteps}
 
 \usepackage[nameinlink,capitalise,noabbrev]{cleveref}
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
-\newcommand{\bA}{\mathbb{A}}
-\newcommand{\C}{\mathscr{C}}
-\newcommand{\bC}{\mathbb{C}}
-\newcommand{\kC}{\mathfrak{C}}
-\newcommand{\D}{\mathscr{D}}
-\newcommand{\E}{\mathscr{E}}
-\newcommand{\bE}{\mathbb{E}}
-\newcommand{\F}{\mathscr{F}}
-\newcommand{\G}{\mathscr{G}}
-\newcommand{\sL}{\mathscr{L}}
-\newcommand{\bN}{\mathbb{N}}
-\newcommand{\mN}{\mathrm{N}}
-\newcommand{\I}{\mathscr{I}}
-\newcommand{\s}{\mathscr{S}}
-\newcommand{\T}{\mathscr{T}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sS}{\mathscr{S}}
+
 \newcommand{\bR}{\mathbb{R}}
-\newcommand{\bS}{\mathbb{S}}
 \newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bC}{\mathbb{C}}
 
+\newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\curv}{\mathrm{curv}}
+\newcommand{\CS}{\mathrm{CS}}
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\dKU}{\smash{\widehat{ku}}}
+\newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
+\renewcommand{\sp}{\mathrm{sp}}
 
-\newcommand{\Hom}{\mathrm{Hom}}
+\DeclareMathOperator{\tr}{tr}
 \newcommand{\Map}{\mathrm{Map}}
+\newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Ho}{\mathrm{Ho}}
 \newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\CMon}{{\normalfont\texttt{CMon}}}
+\newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
+\newcommand{\fib}{{\normalfont\texttt{fib}}}
+\newcommand{\cofib}{{\normalfont\texttt{cofib}}}
+\newcommand{\Bun}{{\normalfont\texttt{Bun}}}
 \newcommand{\Sp}{\mathscr{S}\mathrm{p}}
-\newcommand{\Ch}{\mathrm{Ch}}
-\newcommand{\cCh}{\mathrm{cCh}}
+\newcommand{\Ch}{\mathscr{C}\mathrm{h}}
 \newcommand{\cat}{\mathscr{C}\mathrm{at}}
 \newcommand{\scat}{s\mathscr{C}\mathrm{at}}
 \newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Line}{\mathscr{L}\mathrm{ine}}
 \newcommand{\Fun}{\mathrm{Fun}}
 \newcommand{\Nat}{\mathrm{Nat}}
 \newcommand{\colim}{\mathrm{colim}}
 \newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grpd}{\mathscr{G}\mathrm{rpd}}
 \newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
 \newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
 \newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
 \newcommand{\Kan}{\mathscr{K}\mathrm{an}}
-\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\Vect}{\mathscr{V}\mathrm{ect}}
+\newcommand{\Mod}{\mathscr{M}\mathrm{od}}
+\newcommand{\Proj}{\mathscr{P}\mathrm{roj}}
 \newcommand{\Ab}{\mathscr{A}\mathrm{b}}
 \newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
 \newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
 \newcommand{\Open}{\mathscr{O}\mathrm{pen}}
 \newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
-\newcommand{\dg}{\mathrm{dg}}
-\newcommand{\Sing}{\mathrm{Sing}}
-\newcommand{\const}{\mathrm{L}}
-\newcommand{\dr}{\mathrm{dR}}
-\newcommand{\tot}{\mathrm{tot}}
-\newcommand{\Def}{\mathrm{Def}}
-\newcommand{\Cyc}{\mathrm{Cyc}}
-\newcommand{\cLine}{\mathcal{L}\mathrm{ine}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -73,27 +72,6 @@
 \def\DDelta{{\mathbbe{\Delta}}}
 \newcommand{\DD}{\DDelta}
 
-\newcommand{\adjun}[4]{
-\begin{tikzcd}[row sep=0.5in, column sep=0.5in]
- #1  \arrow[r, shift left=1.8, "#3"] \pgfmatrixnextcell
- #2 \arrow[l, shift left=1.6, "#4", "\bot"'] 
-\end{tikzcd}
-}
-
-\newcommand{\simpset}[7]{
- \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
-   #1 \arrow[r, shorten >=1ex,shorten <=1ex]
-   \pgfmatrixnextcell #2 
-   \arrow[l, shift left=1.2, "#5"] \arrow[l, shift right=1.2, "#4"'] 
-   \arrow[r, shift right, shorten >=1ex,shorten <=1ex ] \arrow[r, shift left, shorten >=1ex,shorten <=1ex] 
-   \pgfmatrixnextcell #3 
-   \arrow[l] \arrow[l, shift left=2, "#7"] \arrow[l, shift right=2, "#6 "'] Top
-   \arrow[r, shorten >=1ex,shorten <=1ex] \arrow[r, shift left=2, shorten >=1ex,shorten <=1ex] \arrow[r, shift right=2, 
-   shorten >=1ex,shorten <=1ex]
-   \pgfmatrixnextcell \cdots 
-   \arrow[l, shift right=1] \arrow[l, shift left=1] \arrow[l, shift right=3] \arrow[l, shift left=3] 
- \end{tikzcd}
-}
 
 
 %% N.R. notes
@@ -111,14 +89,14 @@
 \theoremstyle{definition}
 \newtheorem{definition}[equation]{Definition}
 \newtheorem{example}[equation]{Example}
-% \newtheorem{attone}[section]{Attention}
+% \newtheorem{attone}[equation]{Attention}
 
 \theoremstyle{remark}
 \newtheorem{remark}[equation]{Remark}
-% \newtheorem{intone}[section]{Intuition}
+% \newtheorem{intone}[equation]{Intuition}
 \newtheorem{notation}[equation]{Notation}
-\newtheorem{question}[equation]{Question}
-% \newtheorem{conjone}[section]{Conjecture}
+% \newtheorem{queone}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
 \newtheorem{warning}[equation]{Warning}
 
 \numberwithin{equation}{section}
@@ -128,106 +106,924 @@
 \author{Talk by Matthias Ludewig}
 
 \begin{document}
-
 \maketitle
 
-We now aim to learn about differential $K$-theory, which is a differential refinement of topological $K$-theory.
+\section{Recollection: Twisted cohomology}
+A differential cohomology theory is a sheaf $\hat{E}$ on manifolds taking values in some stable $\infty$-category $\sC$, usually chain complexes or spectra. It is called \emph{$\bR$-invariant} or \emph{homotopy invariant} if the projection map $M \times \bR \to M$ induces an equivalence. In this case, it is the sheafification of the presheaf constant equal to $\hat{E}(*)$, in formulas $\smash{\hat{E} \simeq \underline{\hat{E}(*)}}$. A differential cohomology theory is called \emph{pure} if $\hat{E}(*) \simeq 0$.
 
-\section{Reviewing differential cohomology}
-Before we proceed to the main objective, we recall the following example.
-
-\begin{example}
-  Let $C$ be a real chain complex. Then $\Omega \otimes_\bR C$ is a sheaf defined as
-
-  \[ (\Omega \otimes_\bR C)^n(M)  = \bigoplus_{p + q = n} \Omega^p(M) \otimes_\bR C^q\]
-\end{example}
-
-We similarly have the following generalization.
-
-\begin{example}
-  Let $C$ be a real chain complex and $m$ an integer. Then $(\Omega \otimes_\bR C)^{\geq m}$ is the sheaf of $m$-truncated forms.
-\end{example}
-
-
-We now have the following result, where we use notation from the previous talks.
-
-\begin{theorem}[{\cite[Lemma 4.4]{bunkenikolausvoelkl2016diffcoh}}]
-  For $E = (\Omega \otimes_\bR C)^{\geq n}$, we have
-  \begin{itemize}
-    \item $R_{hi}(E)(*) = C^{\geq n}$
-    \item $L_{hi}(E)(*) = C$
-    \item $L_{hi}\Cyc(E)(*) = C^{\leq n - 1}$
-    \item $\Cyc(E) = (\Omega \otimes_{\bR} C^{\leq n -1})^{\geq n}$
-    \item $\Def(E) = \Sigma (\Omega \otimes_\bR C)^{\leq n-1}$
-    \item $\Phi\colon C \to C^{\leq n -1}$ is the truncation map.
-  \end{itemize}
-\end{theorem}
-
-
-Note that the sheaf $E$ is uniquely determined by the computation $L_{hi}(E)(*) = C$, $L_{hi}\Cyc(E)(*) = C^{\leq n - 1}$, and the map $\Phi\colon C \to C^{\leq n -1}$.
-% From the standard hexagon diagram we then get the following, 
-
-% \[
-% \begin{tikzcd}
-%  & C^n_{cl} \arrow[dr] \arrow[rr] & & H^n(M,C) \arrow[dr] & \\
-%  C^{n-1}/dC^{n-2} \arrow[ur] \arrow[dr ]& & \Omega^n_{cl}(M,C) \arrow[ur] \arrow[dr] & & H^n(M,C^{\leq n-1}) \\
-%   & \Omega^{n-1}(M,C)/im d \arrow[ur] \arrow[rr] & & \Omega^n_{cl}(M,C^{\leq n-1}) \arrow[ur] & 
-% \end{tikzcd}
-% \]
-
-% Could also be 
-
-% \[
-% \begin{tikzcd}
-%  & \oplus_{p+ q = n , q < n} H^{p}(M,C^q) \oplus \Omega^0(M,C^n_{cl}) \arrow[dr] \arrow[rr] & & H^n(M,C) \arrow[dr] & \\
-%  H^{n-1}(M,C^{\leq n-1}) \arrow[ur] \arrow[dr ]& & \Omega^n_{cl}(M,C) \arrow[ur] \arrow[dr] & & H^n(M,C^{\leq n-1}) \\
-%   & \Omega^{n-1}(M,C)/im d \arrow[ur] \arrow[rr] & & \Omega^n_{cl}(M,C^{\leq n-1}) \arrow[ur] & 
-% \end{tikzcd}
-% \]
-
-\section{Line Bundles with Connection}
-Having reviewed the general machinery, we will move towards differential $K$-theory by first considering the simpler case of line bundles with connection. For this we need some definitions.
-
-\begin{definition}
-  Let $\cLine^\nabla$ be the sheaf valued in the symmetric monoidal groupoids of complex line bundles with connection, with monoidal structure given by tensor product.
-\end{definition}
-
-\begin{theorem}
-  We have 
-  \begin{itemize}
-    \item $R_{hi}(\cLine^\nabla)(*) \simeq \Sigma^{-1}H\bC^\times_\delta$
-    \item $L_{hi}(\cLine^\nabla)(*) \simeq \Sigma^{-1}H\bC^\times_{top} \simeq \Sigma^{-2} H\bZ$
-    \item $L_{hi}\Cyc(\cLine^\nabla)(*) \simeq \Sigma^{-2}H\bC_{\delta}$
-    \item $\Cyc(\cLine^\nabla) \simeq \Sigma^{-2}H(\Omega^{\geq 2} \otimes_\bR \bC)$
-    \item $\Def(\cLine^\nabla) \simeq \Sigma^{-1} H(\Omega^{\leq 1} \otimes_\bR \bC)$
-  \end{itemize}
-  Here $\bC_\delta$ is the complex numbers with the discrete topology and $\bC_{top}$ is the complex numbers with the usual topology.
-\end{theorem}
-
-This theorem implies that we only need a map $\Sigma^{-2}H\bZ \to \Sigma^{-2}H\bC_\delta$ to define a differential refinement of these line bundles, which is given by the evident inclusion $\bZ \to \bC$. 
-
-Now at the level of $\pi_0$ we have the following hexagon diagram.
+\subsection{The basic maps}
+To begin with, the inclusion of homotopy invariant into all sheaves has both a left and right adjoint, 
 \[
-\begin{tikzcd}
- & H^1(M,\bC^\times) \arrow[dr] \arrow[rr] & & H^2(M,\bZ) \arrow[dr] & \\
- H^1(M,\bC) \arrow[ur] \arrow[dr, "\beta"']& & \pi_0(\cLine^\nabla(M)) \arrow[ur, "chern class"] \arrow[dr, "curv"] & & H^{2}(M,\bC) \\
-  & \Omega^{1}(M,\bC)/im d \arrow[ur, "def"] \arrow[rr, "deRham"] & & \Omega^{2}_{cl}(M,\bC) \arrow[ur] & 
+\begin{tikzcd}[row sep=0.2cm]
+L_{hi} : \Shv(\Mfd, \sC)
+\ar[r, shift left=1]
+&
+\Shv^{hi}(\Mfd, \sC)
+\ar[l, shift left=1] : \mathrm{incl}
+\\
+\mathrm{incl} : \Shv^{hi}(\Mfd, \sC)
+\ar[r, shift left=1]
+&
+\Shv(\Mfd, \sC)
+\ar[l, shift left=1] : R_{hi}.
+\end{tikzcd} 
+\]
+The right adjoint evaluates a differential cohomology theory at the point (which is an object $\hat{E}(*)$ of $\mathscr{C}$) and then sheafifying the constant presheaf given by $\hat{E}(*)$. We may then take the fiber, respectively cofiber of the canonical maps of these adjunctions,
+\[
+\begin{tikzcd}[row sep=0.2cm]
+\Def(\hat{E}) \ar[r, "\mathrm{def}"] & \hat{E} \ar[r] & L_{hi}(\hat{E})
+\\
+R_{hi}(\hat{E}) \ar[r] & \hat{E} 
+\ar[r, "\curv"] & \Cyc(\hat{E}),
 \end{tikzcd}
 \]
-This diagram has several implications:
-\begin{enumerate}
-  \item $H^1(M,\bC^\times)$ classifies line bundles with trivial curvature (flat line bundles).
-  \item $c_1$ is the usual first Chern class of a line bundle.
-  \item The fiber of $c_1$ are given by geometric deformations of line bundles with connection keeping the chern character fixed.
-\end{enumerate}
+where we omitted the inclusion functor of homotopy invariant sheaves into all sheaves in notation. These are called the \emph{homotopification}, respectively \emph{geometric cycles} functors. Since point evaluation is a right adjoint (to the functor that sheafifies the constant sheaf given by an object of $\sC$), it preserves fiber/cofiber sequences, hence we see that $\Cyc(\hat{E})$ is a pure sheaf. It turns out that it is in fact the left adjoint of the inclusion functor from pure sheaves
+\[
+\begin{tikzcd}[row sep=0.2cm]
+\Cyc : \Shv(\Mfd, \sC)
+\ar[r, shift left=1]
+&
+\Shv^{pure}(\Mfd, \sC)
+\ar[l, shift left=1] : \mathrm{incl}.
+\end{tikzcd} 
+\]
+Moreover, the restriction of $\Def$ to pure sheaves turns out to be left adjoint to the $\Cyc$ functor, 
+\[
+\begin{tikzcd}
+\Def : \Shv^{pure}(\Mfd, \sC)
+\ar[r, shift left=1]
+&
+\Shv(\Mfd, \sC)
+\ar[l, shift left=1] : \Cyc.
+\end{tikzcd} 
+\]
+The functor $\Def$ and $\Cyc$ have the properties that
+\[
+L_{hi}\Def(\hat{E}) \simeq 0 \qquad \text{and} \qquad R_{hi}\Cyc(\hat{E}) \simeq 0.
+\]
+See \cite[\S3]{bunkenikolausvoelkl2016diffcoh} for the general discussion of these results.
 
-\section{Differential \texorpdfstring{$K$}{K}-Theory}
-We now want to generalize this perspective to differential $K$-theory. Here we face several choices that we need to consider. Here \cite{hopkinssinger2005diffcoh} take one approach and \cite{bunkenikolausvoelkl2016diffcoh} take another.
+\subsection{Differential cohomology diamond}
+We may organize these data into a $3 \times 3$ grid, where every square is a pullback square,
+\begin{equation*}
+\begin{tikzcd}
+\Sigma^{-1} L_{hi}\Cyc(\hat{E}) 
+\ar[r] \ar[d] 
+& 
+R_{hi}(\hat{E})
+\ar[r] \ar[d] 
+&
+0
+ \ar[d] 
+\\
+\Def(\hat{E})
+\ar[r] \ar[d] 
+&
+\hat{E}
+\ar[r] \ar[d] 
+&
+\Cyc(\hat{E})
+\ar[d] 
+\\
+0 \ar[r]
+&
+L_{hi}(\hat{E}) \ar[r, "\phi"] &
+L_{hi}\Cyc(\hat{E}).
+\end{tikzcd}
+\end{equation*}
+Note that the short sequences in the middle are \emph{not} fiber sequences; instead the composition yields interesting maps. We may twist the diagram in the middle and turn it on the side, to obtain the diamond shaped diagram
+\begin{equation*}
+\begin{tikzcd}[column sep=0.5cm]
+& 
+R_{hi}(\hat{E}) 
+\ar[dr]\ar[rr]
+& & 
+L_{hi}(\hat{E}) 
+\ar[dr, "\phi"] 
+&
+\\ 	
+\Sigma^{-1} L_{hi}\Cyc(\hat{E})
+\ar[ur]
+\ar[dr]
+& & 
+\hat{E} 
+\ar[ur]
+\ar[dr, "\curv"]
+& & 
+L_{hi}\Cyc(\hat{E})
+\\
+& 
+\Def(\hat{E})
+\ar[ur, "\mathrm{def}"]
+\ar[rr, "d"']
+& & 
+\Cyc(\hat{E}) 
+\ar[ur]
+&
+\end{tikzcd}
+\end{equation*}
+which has the property that the two diagonal sequences are fiber sequences, and that the top and bottom row each are fiber sequences as well (by using the pasting law for Cartesian squares on the previous diagram). The naming of the diagram $d$ comes from the example of differential forms, where it corresponds to the exterior derivative.
 
-{\footnotesize
-\bibliographystyle{alpha}
-\bibliography{main}
-}
+\subsection{Fracture square}
+Any differential cohomology theory $\hat{E}$ is determined by its cycles $\Cyc(\hat{E})$ (which is pure), its homotopification $L_{hi}(\hat{E})$ (which is homotopy invariant), and the map
+\[
+\phi : L_{hi}(\hat{E}) \longrightarrow L_{hi}\Cyc(\hat{E}),
+\]
+which by homotopy invariance is fully determined on the underlying map in $\sC$ over the point. \cite{bunkenikolausvoelkl2016diffcoh} call this map the \emph{characteristic map}.
+
+Conversely, if we are given an object $E$ of $\sC$, a pure sheaf $P \in \Shv^{pure}(\Mfd, \sC)$ and a map $\phi: E \to L_{hi}(P)$ in $\sC$, then we may define a differential cohomology theory as the pullback
+\[
+\begin{tikzcd}
+	\hat{E} \ar[r] \ar[d] & P
+	\ar[d]
+	\\
+	E \ar[r, "\phi"] & L_{hi}(P).
+\end{tikzcd}
+\]
+This theory satisfies
+\[
+L_{hi}(\hat{E}) = E, \qquad \Cyc(\hat{E}) = P, 
+\]
+and the map $\phi$ canonically extracted from $\hat{E}$ agrees with the previously given map $\phi$.
 
 
+\section{Basic example: Differential forms with values in a chain complex}
+Consider the sheaf
+\[
+\Omega : \Mfd^{\mathrm{op}} \longrightarrow \Ch_\bR
+\]
+of cochain complexes that assigns to a manifold $M$ the cochain complex $\Omega(M)$ of differential forms on $M$. If $C \in \Ch_\bR$ is any real cochain complex and $n$ is a natural number, we may define a new sheaf $\Omega \otimes_\bR C$, given by
+\[
+\Omega^n(M, C) := (\Omega \otimes_\bR C)^n(M) = \bigoplus_{p + q = n} \Omega^p(M) \otimes_{\bR} C^q,
+\]
+as well as its truncations $(\Omega \otimes_{\bR} C)^{\geq n}$, which are obtained by setting the complex to zero of $k < n$ over each manifold. Inverting quasi-isomorphisms, this remains a sheaf\footnote{Why again?} which we again denote by $(\Omega \otimes_{\bR} C)^{\geq n}$, valued in the derived category $\Ch_\bR[W^{-1}]$ of chain complexes.
+ 
+\begin{theorem}\cite[Lemma~4.4]{bunkenikolausvoelkl2016diffcoh}
+With $\hat{E} = (\Omega \otimes_\bR C)^{\geq n}$, we have
+ \begin{align*}
+R_{hi}(\hat{E})(*) &\simeq C^{\geq n}
+\\
+L_{hi}(\hat{E})(*) &\simeq C
+\\
+L_{hi}\Cyc(\hat{E})(*) &\simeq C^{\leq n-1}
+\\
+\Cyc(\hat{E}) &\simeq (\Omega \otimes_\bR C^{\leq n-1})^{\geq n})
+\\
+\Def(\hat{E}) &\simeq \Sigma \bigl(\Omega \otimes_\bR C)^{\leq n-1}\bigr).
+ \end{align*}	
+Moreover, the characteristic map $\phi$ is the truncation map $C \to C^{\leq n-1}$.
+ \end{theorem}
+ 
+We determine the differential cohomology diamond for this theory.
+ 
+ \medskip
+
+Given a chain complex $C \in \Ch_\bR$, there is a unique homotopy invariant differential cohomology theory $E_C$ valued in chain complexes. To calculate the differential cohomology diamond in this case, we have to understand what this differential cohomology theory assigns to an arbitrary manifold $M$. The answer\footnote{Maybe better: One answer, as the theory is only determined up to equivalence of chain complexes. But this is the answer that best fits our current considerations.} is
+\[
+E_C(M) = \Omega(M) \otimes_\bR C,
+\]
+the tensor product chain complex. One can see this from the fact that this is a differential cohomology theory which is homotopy invariant (by the Poincar\'e lemma) and clearly evaluates to $C$ on the point. The cohomology groups of this chain complex will be denoted by $H^n(M, C)$. We moreover observe that 
+\[
+H^n(R_{hi}(E)(M)) = H^0(M, C^n_{\mathrm{cl}}),
+\]
+where $C^n_{\mathrm{cl}} \subseteq C^n$ denotes the space of closed cochains of degree $n$ in the complex $C$. Indeed, we need to take the cohomology of the complex
+\[
+0 \longrightarrow \Omega^0(M, C^n) \longrightarrow \Omega^0(M, C^{n+1}) \oplus \Omega^1(M, C^n) \longrightarrow \cdots.
+\]
+The differential is $D = d\otimes 1 + 1 \otimes \delta$ (with $\delta$ the differential of $C$), so since the components in each of the two summands have to vanish separately, we obtain that $D(f \otimes c) = 0$ if and only if $df$ and $\delta c$ are individually closed.
+
+To determine the non-homotopy invariant terms in the diamond, notice that the chain complex $\Cyc(\hat{E})$ starts with
+\[
+0 \longrightarrow \bigl(\Omega \otimes_\bR C^{\leq n-1}\bigr)^n \longrightarrow \bigl(\Omega \otimes_\bR C^{\leq n-1}\bigr)^{n+1},
+\]
+its degree $n$ cohomology is therefore
+\[
+\Omega_{\mathrm{cl}}^n(M, C^{\leq n-1}) = \left(\bigoplus_{p=2}^\infty \Omega^p(M, C^{n-p})\right)_{\mathrm{cl}} \oplus \Omega^1_{\mathrm{cl}}(M, C^{n-1}).
+\]
+Notice here that in the first sum, the de Rham differential mixes with the differential of $C$, and the bif sum of the left is generally \emph{not} equal to direct sum of the terms $\Omega^p_{\mathrm{cl}}(M, C^{n-p})$ or $\Omega^p_{\mathrm{cl}}(M, C_{\mathrm{cl}}^{n-p})$, which would mean closed de Rham forms valued in the vector space $C^{n-p}$, respectively $C^{n-p}_{\mathrm{cl}}$).
+The last term above comes from the fact that we truncated the complex $C$ also.
+
+The complex $\Def(\hat{E})$ is unbounded from the left and ends at
+\[
+\cdots \longrightarrow \Omega^{n-2}(M, C) \longrightarrow \Omega^{n-1}(M, C) \longrightarrow 0,
+\]
+the last non-zero term sitting in degree $n$. The result is therefore
+\[
+\Def(\hat{E})^n(M) = \Omega^{n-1}(M, C)/d\Omega^{n-2}(M, C).
+\]
+In total, the differential cohomology diamond in degree $n$ becomes
+\begin{equation*}
+\begin{tikzcd}[column sep=0.4cm]
+&[-1.2cm] 
+H^0(M, C^n_{\mathrm{cl}})
+\ar[dr]\ar[rr]
+& & 
+H^n(M, C) 
+\ar[dr, "\phi"] 
+&
+\\ 	
+H^{n-1}(M, C^{\leq n-1})
+\ar[ur]
+\ar[dr]
+& & 
+\Omega^n_{\mathrm{cl}}(M, C)  
+\ar[ur]
+\ar[dr, "\curv"]
+& & 
+H^n(M, C^{\leq n-1})
+\\
+& 
+\Omega^{n-1}(M, C)/\mathrm{im}(d)
+\ar[ur, "\mathrm{def}"]
+\ar[rr, "D"']
+& & 
+\Omega^n_{\mathrm{cl}}(M, C^{\leq n-1}) 
+\ar[ur]
+&
+\end{tikzcd}
+\end{equation*}
+
+Above, we constructed a differential cohomology theory valued in chain complexes. We may turn this into a spectrum valued differential cohomology theory using the Eilenberg-McLane functor
+\[
+H : \Ch_\bR[W^{-1}] \longrightarrow \Mod_{H\bR}(\Sp) \subseteq \Sp,
+\]
+which preserves limits, hence also the sheaf condition. It has the property
+\[
+\pi_n(HC) = (HC)^{-n}(\mathrm{pt}) = H^{-n}(C),
+\]
+where the second term denotes the $n$-th $HC$-cohomology of the point and the third term denotes the cohomology of the chain complex $C$. This is enforced by the requirement that for a short exact sequences of cochain complexes, the resulting long exact sequence of cohomology groups is sent to the short exact sequence of homotopy groups.
+
+\section{Differential \texorpdfstring{$K$}{K}-theory}
+Following \cite[Def.~3.6]{bunkenikolausvoelkl2016diffcoh} a \emph{differential refinement} of a  cohomology theory $E$ is a differential cohomology theory $\hat{E}$ together with an equivalence $E \simeq L_{hi}(\hat{E})$. In general, there may be many differential refinements of a given cohomology theory $E$. The fracture square
+\[
+\begin{tikzcd}
+	\hat{E} \ar[d]\ar[r] & P
+	\ar[d]
+	\\
+	\underline{E} \ar[r, "\phi"] &L_{hi}\Cyc(P)
+\end{tikzcd}
+\] 
+gives a characterization: A differential refinement of $E$ is ``the same'' as a pure sheaf $P$ together with a map of spectra $E \to L_{hi}\Cyc(P)(*)$. So there are generally plenty differential refinements of a theory and one is interested in ``geometrically interesting'' ones.
+
+For complex $K$-theory, one is interested in differential refinements of $ku$ or $KU$ (the connective, respectively non-connective complex $K$-theory spectrum) which have something to do with vector bundles with connection. There are at least two different constructions in the literature, one given in \cite{hopkinssinger2005diffcoh}, one given in \cite{bunkenikolausvoelkl2016diffcoh}. Before discussing any of these, we give the case of line bundles, where the discussion is cleanest, to get a feeling for what to expect.
+
+\subsection{The case of line bundles}
+Consider the functor $\Line^\nabla : \Mfd^{\mathrm{op}} \to \Grpd$ that takes a manifold $M$ to the symmetric monoidal groupoid of line bundles with connection over $M$. This is a stack in symmetric monoidal groupoids on manifolds. Symmetric monoidal groupoids are the same thing as 1-truncated spectra, so we may view this directly as a sheaf of spectra\footnote{In \cite[Eq.~(39)]{bunkenikolausvoelkl2016diffcoh}, they sheafify, but it seems that this is not necessary on $\Mfd$ with values in $\sS$},
+\[
+\Line^\nabla \in \Shv(\Mfd, \Sp).
+\]
+
+\begin{remark}
+\label{RemComMon}
+This identification is somewhat non-trivial. The problem is that symmetric monoidal categories are \emph{not} monoid objects in the 1-category $\cat$ of categories, so the nerve functor does not take them to monoid objects in $\sS$.
+\end{remark}
+
+\begin{theorem}
+We have
+\begin{align*}
+R_{hi}(\Line^\nabla)(*) 
+&\simeq \Sigma H\bC^\times
+\\
+L_{hi}(\Line^\nabla)(*) &\simeq \Sigma H\bC^\times_{\mathrm{top}} 
+\simeq \Sigma^2 H\bZ
+\\
+L_{hi}\Cyc(\Line^\nabla)(*) &\simeq \Sigma H\bC_\delta
+\\
+\Cyc(\Line^\nabla) &\simeq \Sigma H(\Omega^{\geq 2} \otimes_\bR \bC)
+\\
+\Def(\Line^\nabla) &\simeq \Sigma H(\Omega^{\leq 1} \otimes_\bR \bC ).
+\end{align*}
+The characteristic map is given by $\Sigma H\bC^\times \simeq \Sigma^2 H\bZ \to \Sigma^2 H \bC$, where the first is the boundary map of the exponential sequence and the second is induced by the inclusion map.
+\end{theorem}
+
+\begin{proof}
+The first two statements are \cite[Lemma~5.2]{bunkenikolausvoelkl2016diffcoh}, observing that $\Line^\nabla \cong \Bun^\nabla(\bC^\times)$. If $\Line^\nabla$ meant ``Hermitian line bundles with compatible connection'', then the last three statements would literally follow from \cite[Lemma 5.4]{bunkenikolausvoelkl2016diffcoh} combined with \cite[Lemma 4.5]{bunkenikolausvoelkl2016diffcoh} (where the right hand side does not involve tensoring with $\bC$). In our current setting, the results have to be slightly adapted.
+\end{proof}
+
+The differential cohomology diamond is most interesting in degree zero; in all other degrees, it is purely topological. There we get
+\begin{equation*}
+\begin{tikzcd}[column sep=0.4cm]
+&[-0.2cm] 
+H^1(M, \bC^\times)
+\ar[dr]\ar[rr]
+&[-1cm] & 
+H^2(M, \bZ)
+\ar[dr, "\phi"] 
+&
+\\ 	
+H^1(M, \bC)
+\ar[ur, "\exp_*"]
+\ar[dr]
+& & 
+\pi_0\bigl(\Line^\nabla(M)\bigr)
+\ar[ur, "\ch"]
+\ar[dr, "\curv"]
+& & 
+H^2(M, \bC)
+\\
+& 
+\Omega^{1}(M, \bC)/\mathrm{im}(d)
+\ar[ur, "\mathrm{def}"]
+\ar[rr, "d"']
+& & 
+\Omega^2_{\mathrm{cl}}(M, \bC) 
+\ar[ur]
+&
+\end{tikzcd}
+\end{equation*}
+Here the diagonal map starting at $H^1(M, \bC^\times) \cong \Hom(\pi_1(M), \bC^\times)$ is the inclusion of flat line bundles, the map $\mathrm{def}$ sends a class $[\alpha]$ to the trivial line bundle with connection $d + \alpha$ (here changing $\alpha$ to $\alpha' = \alpha + df$ does not change the isomorphism class, as multiplication by $e^f$ is a gauge transformation from $d + \alpha$ to $d+ \alpha'$). The curvature map takes the curvature 2-form.
+
+\subsection{Hopkins--Singer differential \texorpdfstring{$K$}{K}-theory.}
+In \cite[\S{4.4}]{bunkenikolausvoelkl2016diffcoh}, Bunke--Nikolaus--V{\"o}lkl give the following construction, which they implicitly claim produces the same result as that of Hopkins-Singer \cite{hopkinssinger2005diffcoh}, although this is not clear to me.
+
+The construction more generally produces differential refinements of arbitrary cohomology theories by mixing with differential forms. The input is a spectrum $E$, a number $n \in \bZ$, a chain complex $C \in \Ch_{\bR}$ and a map of spectra $c : E \to HC$. Then a differential cohomology theory $\hat{E}$ is defined as the pullback
+\[
+\begin{tikzcd}
+\hat{E} 
+\ar[r] \ar[d] & H((\Omega \otimes_\bR C)^{\geq n})\ar[d]
+\\
+\underline{E} \ar[r, "\underline{c}"]
+& \underline{HC}.
+\end{tikzcd}
+\]
+
+\begin{theorem}\cite[Thm.~4.7]{bunkenikolausvoelkl2016diffcoh}
+\label{DiffRefinementThm}
+We have
+\begin{align*}
+	L_{hi}(\hat{E})(*)
+	&\simeq E
+	\\
+	L_{hi}\Cyc(\hat{E})(*) &\simeq H(C^{\leq n-1})
+	\\
+	\Cyc(\hat{E}) 
+	&\simeq H((\Omega \otimes_\bR C^{\leq n-1})^{\geq n})
+	\\
+	\Def(\hat{E})
+	&\simeq \Sigma H((\Omega \otimes_\bR C)^{\leq n-1})
+\end{align*}
+and $R_{hi}(\hat{E})(*)$ fits into the pullback square
+\[
+\begin{tikzcd}
+	R_{hi}(\hat{E})(*)
+	\ar[r]
+	\ar[d] &
+	H(C^{\geq n})
+	\ar[d]
+	\\
+	E \ar[r, "c"] & HC
+\end{tikzcd}
+\]
+Moreover, the characteristic map of the theory is the composition
+\[
+\begin{tikzcd}
+\phi : E \ar[r, "c"] & HC \ar[r] & H(C^{\leq n-1}),
+\end{tikzcd}
+\]
+where the last map is the truncation map. In particular, $\hat{E}$ is a differential refinement of $E$. 
+\end{theorem}
+
+To obtain a differential refinement of complex $K$-theory, we take $E = ku$ the complex connective $K$-theory functor, $C = \bC[x]$, where $x$ is a formal variable of degree $-2$ ($C$ is viewed as a chain complex with a trivial differential), $c$ is the Chern character map
+\[
+\ch : ku \longrightarrow H(\bC[x])
+\]
+and the integer $n \in \bZ$ is taken to be zero. In other words, we make the following definition, which specializes the Hopkins--Singer construction to this case.
+
+\begin{definition}
+The differential cohomology theory 	$\widehat{ku}_{\mathrm{HS}}$ is defined as the pullback
+\[
+\begin{tikzcd}
+\widehat{ku}_{\mathrm{HS}}
+\ar[r, dashed] 
+\ar[d, dashed]
+&
+H\bigl((\Omega \otimes_\bR \bC[x])^{\geq 0}\bigr)
+\ar[d]
+\\
+\underline{ku} \ar[r, "\ch"] 
+& 
+\underline{H(\bC[x])}.
+\end{tikzcd}
+\]
+\end{definition}
+
+To describe $R_{hi}(\widehat{ku}_{\mathrm{HS}})$, we need $\bC^\times$-valued $K$-theory, which is defined as the Chern cofiber of the Chern character map $\ch : KU \to H(\bC[x, x^{-1}])$. Its connective version is defined as the cofiber of the connective Chern character map,
+\[
+ku_{\bC^\times} := \cofib\bigl(ku \stackrel{\ch}{\longrightarrow} H(\bC[x])\bigr), \quad \text{equivalently}
+\quad
+\Sigma^{-1} ku_{\bC^\times} = \fib\bigl(ku \stackrel{\ch}{\longrightarrow} H(\bC[x])\bigr).
+\]
+We may also define a spectrum $\widetilde{ku}_{\bC^\times}$ in the same way, but using the reduced Chern character, 
+\[
+\widetilde{ku}_{\bC^\times} := \cofib\bigl(ku \stackrel{\widetilde{\ch}}{\longrightarrow} H(x\bC[x])\bigr), \quad \text{equivalently}
+\quad
+\Sigma^{-1} \widetilde{ku}_{\bC^\times} = \fib\bigl(ku \stackrel{\widetilde{\ch}}{\longrightarrow} H(x\bC[x])\bigr).
+\]
+As the cofiber of connective spectra, both these spectra are again connective. In non-positive degrees, the $ku$-cohomology groups coincide with the classical $K$-theory groups, and similarly, the non-positive $ku_{\bC^\times}$-cohomology groups coincide with the $\bC^\times$-valued cohomology groups considered in Karoubi \cite{karoubi1987cyclichomology} or Lott \cite{lott1994rzindextheory}. The long exact sequence of homotopy groups yields that the homotopy groups are given by
+\[
+\pi_n(ku_{\bC^\times}) = \begin{cases}
+ \bC^\times	& n \geq 0 ~\text{even}
+ \\
+ 0 & \text{else}.
+ \end{cases}
+ \qquad
+ \pi_n(\widetilde{ku}_{\bC^\times}) = \begin{cases}
+ \bC^\times	& n \geq 2 ~\text{even}
+ \\
+ \bZ & n=1
+ \\
+ 0 & \text{else}.
+ \end{cases}
+\]
+In other words, the the comparison map $ku_{\bC^\times} \to \widetilde{ku}_{\bC^\times}$ induces an isomorphism on homotopy groups. We denote by $K^n(M, \bC^\times)$, $k^n(M, \bC^\times)$, respectively $\tilde{k}^n(M, \bC^\times)$ the cohomology groups of the non-connective, connective, respectively reduced connective $\bC^\times$-valued $K$-theory. We have
+\begin{align*}
+K^n(M, \bC^\times) \cong k^n(M, \bC^\times)\rlap{\qquad$n\leq -1$}
+\\ k^n(M, \bC^\times) \cong \tilde{k}^n(M, \bC^\times) \rlap{\qquad$n\leq -2$}
+\end{align*}
+The Atiyah-Hirzebruch spectral sequence should then yield that there is a short exact sequence
+\[
+\begin{tikzcd}
+0
+\ar[r]
+&
+k^{-1}(M, \bC^\times)	
+\ar[r]
+&
+\tilde{k}^{-1}(M, \bC^\times) \ar[r] 
+& 
+H^0(M, \bZ)
+\ar[r]
+&
+0.
+\end{tikzcd}
+\]
+
+\begin{remark}
+The reason for this terminology is that due to the fact that the Chern character is an isomorphism after tensoring with $\bC$, $H(\bC[x)$ may be viewed as ``$\bC$-valued $K$-theory'', and the cofiber of the map from $\bZ$-valued $K$-theory to $\bR$-valued $K$-theory deserves to be named ``$\bC^\times$-valued $K$-theory''.
+\end{remark}
+
+\begin{theorem}
+We have
+\begin{align*}
+R_{hi}(\widehat{ku}_{\mathrm{HS}})(*) &\simeq \Sigma^{-1} ku_{\bC^\times}
+\\
+L_{hi}(\widehat{ku}_{\mathrm{HS}})(*)
+&\simeq ku
+\\
+L_{hi}\Cyc(\widehat{ku}_{\mathrm{HS}})(*)
+&\simeq H(x\bC[x])
+\\
+\Cyc(\widehat{ku}_{\mathrm{HS}})
+&\simeq H\bigl((\Omega \otimes_\bR x\bC[x])^{\geq 0}\bigr)
+\\
+\Def(\widehat{ku}_{\mathrm{HS}})
+&\simeq \Sigma H\bigl((\Omega \otimes_\bR \bC[x])^{\leq -1}\bigr)
+\end{align*}
+The characteristic map is given by the reduced connective Chern character,
+\[
+\widetilde{\ch} : ku \stackrel{\ch}{\longrightarrow} H(\bC[x]) \longrightarrow H(x\bC[x]).
+\]
+\end{theorem}
+
+\begin{proof}
+All claims follow directly from \cref{DiffRefinementThm} except for the calculation of $R_{hi}(\widehat{ku}_{\mathrm{HS}})(*)$, which is, also by \cref{DiffRefinementThm}, given as a pullback; concretely, it fits into the left square of the following diagram
+\[
+\begin{tikzcd}
+	R_{hi}(\widehat{ku}_{\mathrm{HS}})(*)
+	\ar[r]
+	\ar[d] &
+	H\bC
+	\ar[d]
+	\ar[r] & * \ar[d]
+	\\
+	ku \ar[r, "\ch"] & H(\bC[x]) \ar[r] & H(x\bC[x]).
+\end{tikzcd}
+\]
+The second diagram comes from the short exact sequence $\bC \to \bC[x] \to x\bC[x]$ of $\bC$-vector spaces. Since $H$ preserves limits, it is also a pullback diagram. By the pasting law, also the exterior diagram is a pullback diagram, which implies that
+\[
+R_{hi}(\widehat{ku}_{\mathrm{HS}}) = \fib\bigl(ku \stackrel{\widetilde{\ch}}{\longrightarrow} H(x\bC[x])\bigr).
+\]
+Notice here that the bottom composition of the above diagram is the reduced Chern character. By definition, this fiber is the de-suspension of $ku_{\bC^\times}$.
+\end{proof}
+
+The negative even degree cohomology groups for $H(\bC[x])$ may be identified with the direct sum of all even degree ordinary cohomology groups. The differential cohomology diamond for Hopkins-Singer differential $K$-theory therefore becomes
+\begin{equation*}
+\begin{tikzcd}[column sep=0cm]
+&[-0.2cm] 
+\widetilde{k}{}^{-1}(M, \bC^\times)
+\ar[dr]\ar[rr]
+& &[0.9cm]
+K^0(M) 
+\ar[dr, "\widetilde{\ch}"] 
+&
+\\ 	
+H^{\mathrm{odd}}(M, \bC)
+\ar[ur]
+\ar[dr]
+& & 
+\widehat{ku}{}_{\mathrm{HS}}^0(M) 
+\ar[ur]
+\ar[dr, "\curv"]
+& & 
+H^{\mathrm{ev} \geq 2}(M, \bC)
+\\
+& 
+\Omega^{\mathrm{odd}}(M, \bC)/\mathrm{im}(d)
+\ar[ur, "\mathrm{def}"]
+\ar[rr, "d"']
+& & 
+\Omega_{\mathrm{cl}}^{\mathrm{ev} \geq 2}(M, \bC)
+\ar[ur]
+&
+\end{tikzcd}
+\end{equation*}
+%Another diamond, which looks somewhat more reasonable, is
+%\begin{equation*}
+%\begin{tikzcd}[column sep=0cm]
+%&[-0.2cm] 
+%K^{-1}(M, \bC^\times)
+%\ar[dr]\ar[rr]
+%& &[0.9cm]
+%K^0(M) 
+%\ar[dr, "{\ch}"] 
+%&
+%\\ 	
+%H^{-1}(M, \bC[x])
+%\ar[ur]
+%\ar[dr]
+%& & 
+%\widehat{ku}{}_{\mathrm{HS}}^0(M) 
+%\ar[ur]
+%\ar[dr, "\curv"]
+%& & 
+%H^0(M, \bC[x]))
+%\\
+%& 
+%\Omega^{-1}(M, \bC[x])/\mathrm{im}(d)
+%\ar[ur, "\mathrm{def}"]
+%\ar[rr, "d"']
+%& & 
+%\Omega_{\mathrm{cl}}^0(M, \bC[x])
+%\ar[ur]
+%&
+%\end{tikzcd}
+%\end{equation*}
+
+%The Atiyah-Hirzebruch spectral sequence should then yield that there is a short exact sequence
+%\[
+%\begin{tikzcd}
+%0
+%\ar[r]
+%&
+%K^{-1}(M, \bC^\times)	
+%\ar[r]
+%&
+%P^0(M) \ar[r] 
+%& 
+%H^0(M, \bZ)
+%\ar[r]
+%&
+%0
+%\end{tikzcd}
+%\]
+
+\subsection{Universal differential \texorpdfstring{$K$}{K}-theory}
+In \cite{bunkenikolausvoelkl2016diffcoh}, a differential cohomology theory is defined directly from vector bundles with connection. For each manifold $M$, we obtain a symmetric monoidal groupoid $\Vect^\nabla(M)$ of vector bundles with connection. The functor
+\[
+M \longmapsto \Vect^\nabla(M)
+\]
+is a sheaf valued in symmetric monoidal groups on the site $\Mfd$ of manifolds. Taking nerves, we view groupoids as elements of the $\infty$-category $\sS$ of spaces. This promotes $\Vect^\nabla$ to a sheaf valued in the category $\CMon(\sS)$ of commutative monoid objects in spaces.
+
+We may now apply the group completion functor $\texttt{Grp}$ which is the left adjoint in the adjunction
+\[
+\begin{tikzcd}
+\mathrm{grp} : \CMon(\sS)
+\ar[r, shift left=1]
+&
+\CMon^{\mathrm{grp}}(\sS)
+\ar[l, shift left=1] : \mathrm{incl},
+\end{tikzcd} 
+\]
+where $\sS$ is the $\infty$-category of spaces and the map from right to left is the inclusion of group-like commutative monoids in $\sS$ into all commutative monoids. Recall further that $\CMon^{\mathrm{grp}}(\mathcal{S})
+\simeq \Sp_{\geq 0},$
+the $\infty$-category of connective spectra. However, group completion, as a left adjoint functor, only preserves colimits and not generally limits, hence applying it to the sheaf $M \mapsto \Vect^\nabla(M)$ generally destroys the sheaf condition.
+
+\begin{definition}
+We define $\widehat{ku}{}_{\mathrm{uni}}$ as the sheafification of the functor 
+\[
+\Mfd^{\mathrm{op}} \longrightarrow \CMon^{\mathrm{grp}}(\sS) \simeq \Sp_{\geq 0} \subseteq \Sp, \qquad
+M \longmapsto \mathrm{grp}(\Vect^\nabla(M))
+\]
+\end{definition}
+
+
+
+\begin{theorem}\cite[Lemma~6.3]{bunkenikolausvoelkl2016diffcoh}
+We have
+\begin{align*}
+R_{hi}(\widehat{ku}_{\mathrm{uni}})(*)
+&\simeq K\bC
+\\
+L_{hi}(\widehat{ku}_{\mathrm{uni}})(*) 
+&\simeq ku,
+\end{align*}
+where $ku$ is the connective complex $K$-theory spectrum and $K\bC$ is the algebraic $K$-theory spectrum of $\bC$.\footnote{There is no non-connective algebraic $K$-theory spectrum of $\bC$ as the algebraic $K$-theory of fields vanishes in negative degrees.} Moreover, the canonical map $\smash{R_{hi}(\widehat{ku}_{\mathrm{uni}}) \to L_{hi}(\widehat{ku}_{\mathrm{uni}})}$ is the comparison map between algebraic and topological $K$-theory.
+\end{theorem}
+
+\begin{remark}
+In \cite{bunkenikolausvoelkl2016diffcoh}, Lemma~6.3, it is also proved that the same statement also holds when 	$\widehat{ku}_{\mathrm{uni}}$ is replaced by the differential cohomology theory defined using vector bundles without Hermitian metrics and connections.
+\end{remark}
+
+\begin{remark}
+Both $\Def(\widehat{ku}{}^\nabla_{\mathrm{uni}})$ and $\Cyc(\widehat{ku}{}^\nabla_{\mathrm{uni}})$ seem generally hard to understand. Since $\Cyc(\widehat{ku}{}^\nabla_{\mathrm{uni}})$ is pure, evaluating the right square at the point yields a fiber sequence
+\[
+K\bC \longrightarrow ku \longrightarrow L_{hi}\Cyc(\widehat{ku}{}^\nabla_{\mathrm{uni}})(*).
+\]
+We obtain that
+\[
+L_{hi}\Cyc(\widehat{ku}{}^\nabla_{\mathrm{uni}})(*) \simeq \cofib(K\bC \to ku) \simeq \Sigma\fib(K\bC \to ku) =: \Sigma k^{\mathrm{rel}}\bC,
+\]
+the relative connective $K$-theory spectrum of $\bC$. Hence $\Cyc(\widehat{ku}{}^\nabla_{\mathrm{uni}})$ is a pure differential refinement of a suspension of the relative $K$-theory spectrum $ k^{\mathrm{rel}}\bC$. 
+\end{remark}
+
+The diamond is therefore
+\begin{equation*}
+\begin{tikzcd}[column sep=0.5cm]
+& 
+K\bC 
+\ar[dr]\ar[rr]
+& & 
+ku 
+\ar[dr, "\phi"] 
+&
+\\ 	
+\Sigma^{-1} k^{\mathrm{rel}}\bC
+\ar[ur]
+\ar[dr]
+& & 
+\widehat{ku}_{\mathrm{uni}}
+\ar[ur]
+\ar[dr, "\curv"]
+& & 
+k^{\mathrm{rel}}\bC
+\\
+& 
+\Def(\widehat{ku}{}_{\mathrm{uni}})
+\ar[ur, "\mathrm{def}"]
+\ar[rr, "d"']
+& & 
+\Cyc(\widehat{ku}{}_{\mathrm{uni}}) 
+\ar[ur]
+&
+\end{tikzcd}
+\end{equation*}
+
+
+
+\begin{definition}\cite[Remark 6.6]{bunkenikolausvoelkl2016diffcoh}
+Let $T$ be a differential cohomology theory. An \emph{additive $T$-valued differential characteristic class for complex vector bundles} is a map
+\[
+\Vect^\nabla \longrightarrow T
+\]
+of $\CMon(\sS)$-valued sheaves on $\Mfd$.
+\end{definition}
+
+\begin{remark}
+\label{RemarkUniqueFactorization}
+Any additive $T$-valued differential characteristic class for complex vector bundles factors uniquely through $\widehat{ku}_{\mathrm{uni}}$, as
+\begin{align*}
+\Map(\Vect^\nabla,  T)
+&\cong 
+\Map(\mathrm{grp}(\Vect^\nabla),  T)
+\\
+&\cong 
+\Map(\mathrm{shv}(\mathrm{grp}(\Vect^\nabla)),  T)
+\\
+&\cong 
+\Map(\widehat{ku}{}_{\mathrm{uni}},  T),
+\end{align*}
+using that $T$ is group complete and a sheaf.
+\end{remark}
+
+
+\begin{example}
+If $T$ is the $\bR$-invariant differential cohomology theory defined by the spectrum $\Sigma^n HA$ for some abelian group $A$, then by \cref{RemarkUniqueFactorization}, we have
+\begin{align*}
+\Map(\Vect^\nabla,  \Sigma^n \underline{HA})
+&\cong 
+\Map(\widehat{ku}{}_{\mathrm{uni}},  \Sigma^n \underline{HA})
+\\
+&\cong 
+\Map(L_{hi}(\widehat{ku}{}_{\mathrm{uni}}),  \Sigma^n \underline{HA})
+\\
+&\cong 
+\Map(L_{hi}(\widehat{ku}{}_{\mathrm{uni}})(*),  \Sigma^n HA)
+\\
+&\cong 
+\Map(ku,  \Sigma^n HA).
+\end{align*}
+Hence a homotopy class of such maps assigns, for each manifold $M$, a map
+\[
+\varphi : K^0(M) \longrightarrow H^n(M, A)
+\]
+with the property that $\varphi(V \oplus W) = \varphi(V) + \varphi(W)$; in other words, an $A$-valued additive characteristic class of degree $n$ in the classical sense.
+\end{example}
+
+
+
+
+
+We construct a transformation of differential cohomology theories
+\[
+\widehat{ku}{}_{\mathrm{uni}} \longrightarrow \widehat{ku}_{\mathrm{HS}}.
+\]
+To this end, we observe that we have a commutative diagram
+\[
+\begin{tikzcd}
+	\widehat{ku}_{\mathrm{uni}} \ar[r] \ar[d] & H((\Omega \otimes_\bR \bC[x])^{\geq 0})
+	\ar[d]
+	\\
+	\underline{ku} \ar[r, "\ch"] 
+	& \underline{H(\bC[x])}
+\end{tikzcd}
+\]
+where the top horizontal map is given as follows. First, we have a map of monoids
+\[
+\widehat{\ch} : \Vect^\nabla(M) \longrightarrow \Omega^0(M, \bC[x]), \qquad (V, \nabla) \longmapsto \ch(\nabla)
+\]
+sending a vector bundle with connection to its Chern character form. This yields a map of functors $\Mfd^{\mathrm{op}} \to \CMon(\sS)$, when the right hand side is considered as a discrete abelian category. Generally, under the identification of $\CMon(\sS) \simeq \Sp_{\geq 0}$, an abelian group $A$, viewed as a discrete space is sent to $HA$. Applying this to the map above, we get a map
+\[
+\mathrm{grp}(\Vect^\nabla(M)) \longrightarrow H\bigl(\Omega^{0}(M, \bC[x])\bigr) \hookrightarrow H\bigl(\Omega^{\geq 0}(M, \bC[x])\bigr).
+\]
+Varying the manifold $M$, the right hand side is a sheaf, hence we get the desired map of sheaves $\widehat{ku}_{\mathrm{uni}} \to H((\Omega \otimes_\bR \bC[x])^{\geq 0})$. The left vertical map is the canonical map that forgets the connection data. Commutativity of the diagram on homotopy groups follows from Chern-Weil theory. To get a fully coherent filler of the diagram, one has to work a little bit, see \cite[\S6.1]{bunkenikolausvoelkl2016diffcoh}.
+
+\begin{remark}
+There is a non-trivial consequence of this. The transformation constructed above yields a map of spectra
+\[
+K\bC \simeq R_{hi}(\widehat{ku}_{\mathrm{uni}})(*) \longrightarrow R_{hi}(\widehat{ku}_{\mathrm{HS}})(*) = \Sigma^{-1}\widetilde{ku}_{\bC^\times}.
+\]
+In particular, we have $\pi_{2n+1}(R_{hi}(\widehat{ku}_{\mathrm{HS}})(*)) \cong \bC^\times$ for $n \geq 0$, hence we obtain maps
+\[
+K_{2n+1}(\bC) \longrightarrow \bC^\times.
+\]
+These are so-called \emph{regulator} maps. They can be verified to be non-trivial.
+\end{remark}
+
+\appendix
+
+\section{\texorpdfstring{$\bC^\times$}{C}-valued \texorpdfstring{$K$}{K}-theory}
+Let $KU_{\bC^\times}$ be the spectrum which is the cofiber of the non-connective Chern character $\ch : KU \longrightarrow H\bC[x, x^{-1}]$. The corresponding $K$-theory groups $K^n(M, \bC^\times)$ fit into a long exact sequence
+\[
+\begin{tikzcd}
+K^{\mathrm{ev}}(M) \ar[r]
+& 
+H^{\mathrm{ev}}(M, \bC[x, x^{-1}])
+\ar[r]
+&
+K^{\mathrm{ev}}(M, \bC^\times)
+\ar[d]
+\\
+K^{\mathrm{odd}}(M, \bC^\times) \ar[u] & H^{\mathrm{odd}}(M, \bC[x, x^{-1}]) \ar[l]& K^{\mathrm{odd}}(M) 
+\ar[l]
+\end{tikzcd}
+\]
+All these groups are 2-periodic. We aim to describe this long exact sequence and all its maps (although this is mainly guesswork).
+
+\subsection{Chern-Simons forms.}
+
+Let $\nabla$ and $\nabla'$ be two connections on a manifold. Then there is an odd differential form $\CS(\nabla, \nabla')$ with the property that
+\begin{equation}
+\label{DefiningPropertyChernCharacter}
+d \CS(\nabla, \nabla') = \ch(\nabla') - \ch(\nabla),
+\end{equation}
+where $\ch(\nabla')$ and $\ch(\nabla)$ are the Chern character forms of the connections. It may be defined as follows: On the manifold $M \times [0, 1]$, take the connection $\tilde{\nabla} = (1-t)\mathrm{pr}_M^*\nabla + t\mathrm{pr}_M^*\nabla'$ and let
+\[
+\CS(\nabla, \nabla') := \int_{[0, 1]}\ch(\tilde{\nabla}) \in \Omega^{\mathrm{odd}}(M, \bC) 
+\]
+be defined by integration over the fiber. More generally, we may replace the convex interpolation of $\nabla$ and $\nabla'$ by a general connection on $M \times [0, 1]$ that restricts to $\nabla$, respectively $\nabla'$ at $\partial [0, 1]$. In this case, the Chern-Simons form $\CS(\tilde{\nabla})$ is defined in a similar fashion and it also satisfies \cref{DefiningPropertyChernCharacter}. Notice that if two connections $\tilde{\nabla}$ and $\tilde{\nabla}'$ on $M \times [0, 1]$ are gauge equivalent, then $\ch(\tilde{\nabla}) = \ch(\tilde{\nabla}')$, hence $\CS(\tilde{\nabla}) = \CS(\tilde{\nabla})$. Moreover, if the connection $\tilde{\nabla}$ is constant in $t$, then $\CS(\tilde{\nabla}) = 0$.
+
+%More generally, an arbitrary connection $\tilde{\nabla}$ on $M \times \Delta_2$ induces three paths of connections by restricting to $\partial \Delta_2$, which we denote by $\tilde{\nabla}^{01}$, $\tilde{\nabla}^{12}$ and $\tilde{\nabla}^{02}$.
+%We may then define
+%\[
+%\CS_2(\tilde{\nabla}) := \int_{\Delta_2} \ch(\tilde{\nabla}) \in \Omega^{\mathrm{ev}}(M, \bC), 
+%\]
+%satisfying
+%\[
+%d\CS_2(\tilde{\nabla}) = \CS(\tilde{\nabla}^{01}) + \CS(\tilde{\nabla}^{12}) - \CS(\tilde{\nabla}^{02}).
+%\]
+%In particular, if $\tilde{\nabla}^{12}$ is constant so that $\tilde{\nabla}^{01}$ and $\tilde{\nabla}^{02}$ restrict to the same connections at the end point, then $\CS(\tilde{\nabla}^{12}) = 0$.
+%Hence the above formula shows that if we interpolate between a pair of connections using two different paths, then the corresponding Chern-Simons forms differ by an exact term.
+
+%Given three connections $\nabla, \nabla'$ and $\nabla''$ on $M$, convex interpolation defines a connection $\tilde{\nabla}$ on $M$ and we may define
+%\[
+%\CS_2(\nabla, \nabla', \nabla'') := \int_{\Delta_2} \ch(\tilde{\nabla}) \in \Omega^{\mathrm{ev}}(M).
+%\]
+%Then
+%\[
+%d\CS_2(\nabla, \nabla', \nabla'') = \CS(\nabla, \nabla') + \CS(\nabla', \nabla'') - \CS(\nabla, \nabla'').
+%\]
+
+\medskip
+
+
+
+If $g : M \to U(\infty)$ is a smooth map (in the sense that it factors through some $U(m)$ and is smooth there), it has an odd Chern character, which is the differential form
+\[
+\ch(g) := -\CS(d, d+g^{-1}dg) \in \Omega^{\mathrm{odd}}_{\mathrm{cl}}(M, \bC).
+\]
+Here we view $d$ and $d+ g^{-1}dg$ as connections on the trivial vector bundle $\underline{\bC}^m$. Notice here that the connection $d+ g^{-1}dg$ is gauge equivalent to $d$, hence has the same Chern character as $d$, namely zero. From \cref{DefiningPropertyChernCharacter}, we therefore see that $\ch(g)$ is a closed form. Including the minus sign in the definition will be important later.
+
+If $g, h : M \to U(\infty)$ are homotopic via a homotopy $(g_t)_{t \in [0, 1]}$ (which we require to factor through some finite $U(m)$), this yields a map $\tilde{g} : M \times [0, 1] \to U(m)$. The \emph{odd Chern/Simons form} is then defined as
+\[
+\CS((g_t)_{t \in [0, 1]}) = \int_{[0, 1]} \ch(\tilde{g}) \in \Omega^{\mathrm{ev}}(M),
+\]
+which satisfies
+\[
+d \CS(g, h) = \ch(h) - \ch(g).
+\]
+One may check that the Chern-Simons forms for two different homotopies differ by an exact form.
+%
+% then we may consider the connection $\tilde{\nabla}$ on $M \times \Delta_2$ which on $\partial_{01}\Delta_2$ is given by the convex interpolation between $d$ and $d + g^{-1}dg$, on $\partial_{02}\Delta_2$ by the convex interpolation between $d$ and $d + h^{-1} dh$ and on $\partial_{12} \Delta_2$ the path of connections $d + g_t^{-1} dg_t$.
+%This last connection is gauge equivalent constant one, so $\CS(\tilde{\nabla}^{12}) = 0$.
+%We therefore obtain that
+%\[
+%\CS(g, h) := \CS_2(\tilde{\nabla}) \in \Omega^{\mathrm{ev}}(M, \bC)
+%\]
+%satisfies
+%\[
+%d \CS(g, h) = \ch(h) - \ch(g).
+%\]
+%We call it the \emph{odd Chern-Simons form}.
+
+
+
+\subsection{The \texorpdfstring{$\bC^\times$}{C}-valued \texorpdfstring{$K$}{K}-theory groups.}
+We first describe the group $\tilde{K}^{\mathrm{odd}}(M, \bC^\times)$ for $n$ odd. Consider equivalence classes $(V, \nabla, \eta)$, where $V$ is a complex vector bundle, $\nabla$ is a connection on $V$ and $\eta$ is an odd differential form such that $d\eta = \smash{\widetilde{\ch}}(V) = \ch(V) - \mathrm{rk}(V)$. In particular, the reduced Chern character of $V$ vanishes. Two such triples $(V, \nabla, \eta)$ and $(V', \nabla', \eta')$ are equivalent if there exists a vector bundle isomorphism $\phi : V \to V'$ (not necessarily connection preserving) such that
+\[
+\CS(\nabla, \phi^*\nabla') = \eta' - \eta \mod \text{exact forms}.
+\]
+The set of equivalence classes of these triples form a monoid under direct sum and addition of differential forms, and we denote by $\tilde{K}^{\mathrm{odd}}(M, \bC^\times)$ the Grothendieck group of this monoid. Then
+\[
+K^{\mathrm{odd}}(M, \bC^\times) \subset \tilde{K}^{\mathrm{odd}}(M, \bC^\times)
+\] 
+is the subgroup consisting of those elements with virtual dimension zero.
+
+\begin{remark}
+Of course, a vector bundle with vanishing Chern character is not necessarily flat. For example, the Chern character already vanishes when all Chern classes are torsion (because the classifying map lifts along $BU_\delta \to BU$). On the other hand, if the manifold is simply connected, any flat vector bundle must be trivial. 
+\end{remark}
+
+The group $K^{\mathrm{ev}}(M, \bC^\times)$ consists of pairs $(g, \eta)$, where $g : M \to U(\infty)$ is a smooth, and $\eta$ is an even differential form satisfying $d\eta = \ch(g)$, the odd Chern character of $g$. Two pairs $(g, \eta)$ and $(g', \eta')$ are equivalent if $g$ and $g'$ are homotopic and 
+\[
+\CS(g, g') = \eta' - \eta \mod \text{exact forms}.
+\]
+The set of such triples is a monoid under direct sum and $K^{\mathrm{ev}}(M, \bC^\times)$ is the Grothendieck group of this monoid.
+
+The maps $K^{\mathrm{odd}}(M, \bC^\times) \to K^{\mathrm{ev}}(M)$ forgets the connection and differential form data and the map $K^{\mathrm{ev}}(M, \bC^\times) \to K^{\mathrm{odd}}(M)$ forgets the differential form data. The map $H^{\mathrm{odd}}(M, \bC) \to K^{\mathrm{odd}}(M, \bC^\times)$ takes a class $[\rho]$ and sends it to the triple $(0, 0, \rho)$. This is well-defined by the equivalence relation in $K^{\mathrm{ev}}(M, \bC^\times)$ (we need to specify $\eta$ only up to exact forms). Similarly, $H^{\mathrm{ev}}(M, \bC) \to K^{\mathrm{ev}}(M, \bC^\times)$ sends $[\rho]$ to $(1, \rho)$.
+
+\subsection{We have a complex}
+Then $[g] \in K^{\mathrm{odd}}(M)$ is sent to $[\ch(g)]$ in $H^{\mathrm{odd}}(M, \bC)$. Its image in $K^{\mathrm{odd}}(M, \bC^\times)$ is $(0, 0, \ch(g))$. Stabilizing, this is equivalent to $(\underline{\bC}^m, d, \ch(g)) - (\underline{\bC}^m, d, 0)$. But we have
+\[
+(\underline{\bC}^m, d, \ch(g)) \sim (\underline{\bC}^m, d, 0)
+\]
+Indeed, the vector bundle automorphism $g: \underline{\bC}^m \to \underline{\bC}^m$ yields
+\[
+- \ch(g) = \CS(d, d + g^{-1}dg) = \CS(d, g^*d).
+\]
+
+$[V] \in K^{\mathrm{ev}}(M)$ is sent to $\ch([V]) \in H^{\mathrm{ev}}(M, \bC)$.
+This is sent to $(1, \ch(V))\in K^{\mathrm{odd}}(M, \bC^\times)$, where $\ch(V)$ is an arbitrary differential form representative of the Chern class of $V$.{\color{red}[Why is this zero?]}
+
+\subsection{Exactness.}
+We show exactness at $K^{\mathrm{odd}}(M, \bC^\times)$. Consider the kernel of the map $K^{\mathrm{odd}}(M, \bC^\times) \to K^{\mathrm{ev}}(M)$ in the case that $n$ is odd. A formal difference $[V, \nabla, \eta] - [V', \nabla', \eta']$ is in the kernel if and only if $[V] - [V'] = 0$ in $K^{\mathrm{ev}}(M)$. By changing representatives, we may assume that $V'$ is trivial, which implies that $V$ is stably trivial. By changing representatives again, we may assume that $V$ is trivial as well. Hence elements in the kernel are represented by triples of the form $(\underline{\bC}^m, d+\alpha, \eta)$, where $\alpha \in \Omega^1(M, M_m(\bC))$ and $\eta$ is an odd differential form (minus a trivial bundle with trivial connection data that sets the virtual rank to zero). Now, 
+\[
+d\bigl(\CS(d, d+\alpha) - \eta\bigr) =  d\CS(d, d+\alpha) - d\eta = \ch(d+\alpha) - \ch(d+\alpha) = 0
+\]
+and $\CS(d, d+\alpha) - \eta$ is an odd closed form, hence in the image of the map from de Rham cohomology.
+
+Now consider the map $K^{\mathrm{ev}}(M, \bC^\times) \to K^{\mathrm{odd}}(M)$.
+Suppose that $(g, \eta)$ is in the kernel of this map. Then $g$ is null homotopic, hence after choosing representatives, we may assume that $g$ is constant, so $\ch(g) = 0$. That means that $\eta$ is closed, so it is again in the map from de Rham cohomology.
+
+\section{The Hopkins-Singer differential \texorpdfstring{$K$}{K}-theory groups}
+
+The following should now be a valid description of the group $\widehat{ku}{}^0_{\mathrm{HS}}(M)$: Elements are represented by triples $(V, \nabla, \eta)$, where $\eta \in \Omega^{\mathrm{odd}}(M, \bC)$ (with no further condition on $\eta$). The geometric equivalence relation is $(V, \nabla, \eta) \sim (V', \nabla', \eta')$ iff there exists a vector bundle isomorphism $\phi : V \to V'$ such that $ \mathrm{CS}(\nabla, \phi^*\nabla') = \eta - \eta'$. Again, taking the Grothendieck completion of the resulting monoid yields an abelian group.
+
+In this description, the arrow from $\tilde{k}^{-1}(M, \bC^\times)$ is the obvious inclusion, the map to $K^0(M)$ is the projection onto the $K$-theory class and
+\[
+\mathrm{def}([\eta]) = (0, 0, -\eta), \qquad \curv(V, \nabla, \eta) = \ch(\nabla) - d\eta.
+\]
+
+\begin{remark}
+Hopkins--Singer \cite{hopkinssinger2005diffcoh} give the following cocycle description of the group $\widehat{ku}_{\mathrm{HS}}(M)$. Let $BU$ the classifying space of the infinite unitary group $U = \colim_n U(n)$. Then $\cF = \bZ \times BU$ is a classifying space for the functor $K^0$. We denote by $C^*(\cF, \bR[x])$ the singular cochains on $\cF$ with values in $\bR[x]$, where $x$ has degree $-2$. Let $\ch_{\mathrm{univ}} \in C^0(\cF, \bR[x])$ be a singular cochain representative of the universal Chern class (for some reason denoted by $\iota$ by Hopkins--Singer). The elements of the group $\smash{\widehat{ku}}{}^0_{\mathrm{HS}}(M)$ are then represented by triples $(h, c, \omega)$, where   $c: M \to \cF$ is a continuous map, $\omega \in \Omega^0(M, \bR[x])$ is a de Rham form and $h \in C^{-1}(M, \bR[x])$ is such that
+\[
+dh = c^*\ch_{\mathrm{univ}} - \omega.
+\]
+Here $\omega$ is viewed as a singular cochain using the de Rham map. Two elements $(c, h, \omega)$ and $(c', h', \omega')$ represent the same element if there exists a triple $(\tilde{h}, \tilde{c}, \tilde{\omega})$ over $M \times [0, 1]$ such that $\tilde{\omega} = \mathrm{pr}_M^*\omega$ and that restricts to the given cocycles at zero and one.
+
+This description should correspond to ours by choosing a universal Hermitian connection on $BU$ and taking $\ch_{\mathrm{uni}}$ to be its Chern character form, see \cite{narasimhanramanan1961universalconnections}.
+\end{remark}
+
+ {\footnotesize
+ \bibliographystyle{alpha}
+ \bibliography{main}
+ }
 \end{document}
