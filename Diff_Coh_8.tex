@@ -1,0 +1,252 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\bS}{\mathbb{S}}
+
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bC}{\mathbb{C}}
+
+\newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\curv}{\mathrm{curv}}
+\newcommand{\CS}{\mathrm{CS}}
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\dKU}{\smash{\widehat{ku}}}
+\newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
+\renewcommand{\sp}{\mathrm{sp}}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\CMon}{{\normalfont\texttt{CMon}}}
+\newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
+\newcommand{\fib}{{\normalfont\texttt{fib}}}
+\newcommand{\cofib}{{\normalfont\texttt{cofib}}}
+\newcommand{\Bun}{{\normalfont\texttt{Bun}}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathscr{C}\mathrm{h}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Line}{\mathscr{L}\mathrm{ine}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grpd}{\mathscr{G}\mathrm{rpd}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Vect}{\mathscr{V}\mathrm{ect}}
+\newcommand{\Mod}{\mathscr{M}\mathrm{od}}
+\newcommand{\Proj}{\mathscr{P}\mathrm{roj}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\Pic}{\mathscr{P}\mathrm{ic}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[equation]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[equation]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+% \newtheorem{queone}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
+
+\title{Differential Cohomology Seminar 8}
+\date{12.11.2025 \& 26.11.2025}
+\author{Talk by Hannes Berkenhagen}
+
+\begin{document}
+\maketitle
+
+The aim of this talk is to review twisted cohomology theory with the aim of later discussing twisted differential cohomology theories \cite{bunkegepner2021differential}. For these talks the main source is \cite{abghr2014infty,abg2018thom}.
+
+\section{Twisted Cohomology}
+Let $R$ be a ring spectrum, meaning a monoid object in the $\infty$-category of spectra $\Sp$. From this we get a presentable stable $\infty$-category $\Mod_R$ of right $R$-module spectra. Objects therein are morphisms of the form $R \wedge M \to M$ satisfying the usual associativity and unit conditions up to coherent homotopies.
+
+Note we have an adjunction diagram 
+\[
+\begin{tikzcd}[column sep = 2cm]
+\Sp \arrow[r, shift left=1.8, "R \wedge -", "\bot"'] & \Mod_R \arrow[l, shift left=1.8, "{\Hom_R(R,-)}"]
+\end{tikzcd}, 
+\]
+where the right adjoint is in fact the forgetful functor. This in particular means $\Mod_R$  has a distinguished object $R$ i.e. the free $R$-module of rank $1$. We now refine these constructions. 
+
+\begin{definition}
+	Let $R$ be a ring spectrum. An \emph{$R$-line} is an $R$-module $L$ such that $L \simeq R$.
+\end{definition}
+
+\begin{definition}
+	Let $\Line_R$ be the full sub-$\infty$-groupoid of $\Mod_R$ spanned by the $R$-lines.
+\end{definition}
+
+Note by construction this is equivalent to $BGL_1(R)$.
+
+\begin{definition}
+	Let $X$ be a space. Then we denote by $\Mod_R(X)$ the $\infty$-category of $R$-module spectra parametrized over $X$, i.e. the functor category $\Fun(X^{op},Mod_R)$.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a space. Then we denote by $\Line_R(X)$ the	full subcategory of $\Mod_R(X)$ spanned by those functors $L \colon X^{op} \to \Line_R$, meaning it is $\Fun(X^{op},\Line_R)$.
+\end{definition}
+
+Recall this generalization of local systems of abelian groups, which map out of groupoids instead of $\infty$-groupoids.
+
+\begin{example}
+	Let $R_X\colon X^{op} \to \Line_R$ be the constant functor, then this is an object in $\Line_R(X)$.
+\end{example}
+
+We now proceed to the Thom construction.
+
+\begin{definition}[{Thom spectrum}] \label{def:thom}
+	The \emph{Thom $R$-module spectrum} is the functor
+	\[
+	M \colon \Grpd_{\infty}^{op}/\Line_R \to \Mod_R,
+	\]
+	which sends $f\colon X^{op} \to \Line_R$ to the $R$-module spectrum $\colim(X^{op} \xrightarrow{f} \Line_R \to \Mod_R)$.
+\end{definition}
+
+Let us note an alternative characterization that will be important later.
+\begin{remark}
+	For a given map $f\colon X \to Y$, we get a map $f^*\colon \Mod_R(Y) \to \Mod_R(X)$ by precomposition with $f^{op}$. By the adjoint functor theorem,	this functor admits a left adjoint $f_! \colon \Mod_R(X) \to \Mod_R(Y)$ and a right adjoint $f_* \colon \Mod_R(X) \to \Mod_R(Y)$. Now for $p\colon X \to *$, we have \[Mf \simeq p_!(i \circ f).\]
+\end{remark}
+
+We now proceed to define twisted cohomology theories.
+
+\begin{definition}[{Twisted cohomology}] \label{def:twistedcohomology}
+	Let $R$ be a ring spectrum, $X$ be a space and let $p\colon X \to *$ be the projection map, and let $f\colon X^{op} \to \Line_R$ be an $R$-line bundle over $X$.  The \emph{$f$-twisted $R$-cohomology of $X$} is defined as the mapping spectrum 
+	\[ R_f(X)	\coloneqq \Map_{\Mod_R}(Mf, R) \simeq \Map_{\Mod_R(X)}(f,p^*R) \simeq \Map_{\Mod_R(X)}(f,R_x) .\]
+	Similarly, we have \emph{$f$-twisted $R$-homology of $X$} defined as
+	\[ R^f(X) \coloneqq \Map_{\Mod_R}(R,Mf) \simeq Mf. \]
+\end{definition}
+
+In particular we can define the twisted cohomology groups of a space $X$ with twist given by a map $f\colon X \to \Line_R$, by 
+\[ R^n_f(X) \coloneqq \pi_0(\Map_{\Mod_R}(Mf, \Sigma^n R)) \cong \pi_n(\Map_{\Mod_R}(f,R)). \]
+Similarly we define the twisted homology groups by
+\[ R_n^f(X) \coloneqq \pi_0(\Map_{\Mod_R}(\Sigma^n R, Mf)) \cong \pi_n(Mf). \]
+
+\begin{remark}
+	 Note that if $f$ is the constant map with value $R$, then we recover ordinary $R$-cohomology and $R$-homology. Concretely, we have 
+	\[ Mf \simeq R \wedge \Sigma^{\infty}_+ X\]
+	and so it follows that 
+	
+	\[ R_f(X) \simeq \Map_{\Mod_R}(R \wedge \Sigma^{\infty}_+ X, R) \simeq \Map_{\Sp}(\Sigma^{\infty}_+ X, R) \]
+	Applying $\pi_n$ this recovers the regular $R$-cohomology groups of $X$, and analogous for homology.
+\end{remark}
+
+Let us	look at some examples of twisted cohomology theories.
+
+\begin{example}
+Recall that we have a diagram characterizing $BString$
+\[ K(\bZ,3) \to BString \to BSpin \to BGL_1(\bS) = \Line_{\bS}\] 
+then applying the Thom construction to this diagram we get 
+\[\Sigma^\infty_+ K(\bZ,3) \to MString \to MSpin .\] 
+Here we use the fact that the map $K(\bZ,3) \to \Line_{\bS}$ factors through the point, and hence its Thom spectrum is $\Sigma^\infty_+ K(\bZ,3)$.
+
+As a next step we have a string orientation map $MString \to \mathrm{tmf}$, where $\mathrm{tmf}$ is the spectrum of topological modular forms, following the computation in \cite{ahr2010tmforientation}. Using the fact that $\Sigma^\infty_+$ is monoidal, we know that the units of $K(\bZ,3)$ include $K(\bZ,3)$ itself, meaning we get a map $K(\bZ,3) \to GL_1(\mathrm{tmf})$. Applying $B$ gives us a map $f\colon K(\bZ,4) \to BGL_1(\mathrm{tmf}) = \Line_{\mathrm{tmf}}$, classifying the twist of $\mathrm{tmf}$-cohomology. Further details can be found in \cite{andoblumberggepner2010twistedktmf}.
+\end{example}
+
+Let us try a more feasible example.
+
+\begin{example}
+	Let 
+	\[K(1,\bZ/2\bZ) \to BSpin \to BSO\] 
+	be the fiber sequence and let 
+	\[K(\bZ,2) \to BSpin^c \to BSO  \to BGL_1\bS = \Line_\bS.\]
+	Applying the Thom construction	to the second sequence and again using the fact that $K(\bZ,2) \to \Line_\bS$ factors through the point, we get the sequence 
+	\[ \Sigma^\infty_+ K(\bZ,2) \to MSpin^c \to MSO .\]
+	Now, using Atiyah--Bott--Shapiro orientation $MSpin^c \to KU$ \cite{atiyahbottshapiro1964clifford}, we get a map $K(\bZ,2) \to GL_1 KU$, which induces a map $K(\bZ,3) \to \Line_{KU}$. This gives us twisted $KU$-cohomology of $K(\bZ,3)$. As $K(\bZ,3)$ classifies bundle gerbes, this is the twist of $KU$-theory by bundle gerbes. 
+\end{example}
+
+\section{Twists via Picard Groupoids and Grading}
+This section requires some some further details. Up until now we defined everything via $\Line_R$, however for many applications we need to work with $\Pic_R$ instead.
+
+\begin{definition}
+	Let $R$ be a ring spectrum. The \emph{Picard $\infty$-groupoid} $\Pic_R$ is the full sub-$\infty$-groupoid of $\Mod_R$ spanned by the invertible $R$-modules, i.e. those $R$-modules $M$ such that there exists an $R$-module $N$ with $M \wedge_R N \simeq R$.
+\end{definition}
+
+\begin{remark}
+	It is a common fact that the $\infty$-groupoid	$\Pic_R$ is equivalent to $\pi_0(R) \times \Line_R$, meaning that the invertible $R$-modules are given by the $R$-lines together with a shift by an element in $\pi_0(R)$. Here it is important to note that this equivalence does not respect the monoidal structure is only an equivalence of underlying $\infty$-groupoids.
+\end{remark}
+
+We can now generalize \cref{def:thom} to $\Pic_R$.
+
+\begin{definition}[{Thom spectrum}] 
+	The \emph{Thom $R$-module spectrum} is the functor
+	\[
+	M \colon \Grpd_{\infty}^{op}/\Pic_R \to \Mod_R,
+	\]
+	which sends $f\colon X^{op} \to \Pic_R$ to the $R$-module spectrum $\colim(X^{op} \xrightarrow{f} \Pic_R \to \Mod_R)$.
+\end{definition}
+
+We can now generalize \cref{def:twistedcohomology}	to $\Pic_R$.
+
+\begin{definition}[{Twisted cohomology}] 
+	Let $R$ be a ring spectrum, $X$ be a space and let $p\colon X \to *$ be the projection map, and let $f\colon X^{op} \to \Pic_R$.  The \emph{$f$-twisted $R$-cohomology of $X$} is defined as the mapping spectrum 
+	\[ R_f(X)	\coloneqq \Map_{\Mod_R}(Mf, R) \simeq \Map_{\Mod_R(X)}(f,p^*R) \simeq \Map_{\Mod_R(X)}(f,R_x) .\]
+	Similarly, we have \emph{$f$-twisted $R$-homology of $X$} defined as
+	\[ R^f(X) \coloneqq \Map_{\Mod_R}(R,Mf) \simeq Mf. \]
+\end{definition}
+
+Let us see how this additional generality helps us. Let $f \colon X \to \Line_R$, then we get a map $\Sigma^n f \colon \Sigma^n X \to \Pic_R$, which induces a cohomology $R^{* + n}(X)$. Now we have  
+\[ R_{\Sigma^nf}(X) \simeq \Map(M\Sigma^nf,R) \simeq \Map(\Sigma^nf,R_x) \simeq \Map(f,\Omega^n R_x)\simeq \Omega^n \Map(f,R_x) \simeq \Omega^n R_f(X) \]
+This equivalence can only work via $\Pic_R$. Indeed even though $R$ is in $\Line_R$, $\Sigma^n R$ is not in $\Line_R$. However, it is in $\Pic_R$, with inverse $\Sigma^{-n} R$.
+
+This show that gradings can be recovered via twisted cohomology theories using $\Pic_R$ as twists.
+
+{\footnotesize
+ \bibliographystyle{alpha}
+ \bibliography{main}
+ }
+\end{document}
