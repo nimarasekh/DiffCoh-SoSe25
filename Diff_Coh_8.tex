@@ -195,13 +195,17 @@ Similarly we define the twisted homology groups by
 \end{remark}
 
 Let us	look at some examples of twisted cohomology theories.
-\begin{example}Let $BO(n)$ be the topological groupoid of $n$-dimensional, inner product spaces and orthogonal morphisms, viewed as a $\infty$-groupoid. Consider the composition
-\begin{center}
+\begin{example}
+	Let $BO(n)$ be the topological groupoid of $n$-dimensional, inner product spaces and orthogonal morphisms, viewed as an $\infty$-groupoid. Consider the composition
+\[
 	\begin{tikzcd}
-		f_n:BO(n) \arrow[r,"\Th_n"] & \sS_* \arrow[r,"\Sigma^{\infty-n}"] & \Sp
+		f_n\colon BO(n) \arrow[r,"\Th_n"] & \sS_* \arrow[r,"\Sigma^{\infty-n}"] & \Sp
 	\end{tikzcd}
-\end{center}	
-where the first functor maps a inner product space $V$ to its one-point compactification. Choosing a orthonormal basis for $V$, we get an isomorphism $\bR^n\simeq V$, then $\Sigma^{\infty-n}\Th(V)\simeq\Sigma^{\infty-n}\Th(\bR^n)\simeq\Sigma^{\infty-n}S^n\simeq\bS$, so that $f_n$ factors through $\Line_\bS$. Let $p:BO(n)\to*$, then $$Mf_n\simeq p_!\Sigma^{\infty-n}\Th_n\simeq\Sigma^{\infty-n}p_!\Th_n\simeq\Sigma^{\infty-n}\Th(E_n)$$
+\]	
+where the first functor maps an inner product space $V$ to its one-point compactification. Choosing an orthonormal basis for $V$, we get an isomorphism $\bR^n\simeq V$, which induces an equivalence of spectra
+\[\Sigma^{\infty-n}\Th(V)\simeq\Sigma^{\infty-n}\Th(\bR^n)\simeq\Sigma^{\infty-n}S^n\simeq\bS.\] 
+In particular, $f_n$ factors through $\Line_\bS$. Let $p:BO(n)\to*$, then 
+\[Mf_n\simeq p_!\Sigma^{\infty-n}\Th_n\simeq\Sigma^{\infty-n}p_!\Th_n\simeq\Sigma^{\infty-n}\Th(E_n),\]
 where $E_n\to BO(n)$ is the universal $n$-dimensional vector bundle and $\Th(E_n)$ is the one-point compactification of the total space $E_n$. To prove the last equivalence, consider the following facts:
 \begin{enumerate}
 	\item Given a inner product space $V$, the Thom space of $V$ is homotopy equivalent to the homotopy cofiber of the inclusion $V\setminus\{0\}\subseteq V$. 
