@@ -18,10 +18,10 @@
 \newcommand{\sC}{\mathscr{C}}
 \newcommand{\sS}{\mathscr{S}}
 \newcommand{\bS}{\mathbb{S}}
-
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bZ}{\mathbb{Z}}
 \newcommand{\bC}{\mathbb{C}}
+\newcommand{\fO}{\mathbf{O}}
 
 \newcommand{\Cyc}{\mathrm{Cyc}}
 \newcommand{\Def}{\mathrm{Def}}
@@ -66,6 +66,12 @@
 \newcommand{\Open}{\mathscr{O}\mathrm{pen}}
 \newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
 \newcommand{\Pic}{\mathscr{P}\mathrm{ic}}
+\newcommand{\triv}{\mathscr{T}\mathrm{riv}}
+\newcommand{\aut}{\mathrm{Aut}}
+\newcommand{\Th}{\mathrm{Th}}
+\newcommand{\fr}{\mathrm{Fr}}
+\newcommand{\Arr}{\mathrm{Arr}}
+\newcommand{\ev}{\mathrm{ev}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -113,7 +119,7 @@
 The aim of this talk is to review twisted cohomology theory with the aim of later discussing twisted differential cohomology theories \cite{bunkegepner2021differential}. For these talks the main source is \cite{abghr2014infty,abg2018thom}.
 
 \section{Twisted Cohomology}
-Let $R$ be a ring spectrum, meaning a monoid object in the $\infty$-category of spectra $\Sp$. From this we get a presentable stable $\infty$-category $\Mod_R$ of right $R$-module spectra. Objects therein are morphisms of the form $R \wedge M \to M$ satisfying the usual associativity and unit conditions up to coherent homotopies.
+Let $R$ be a ring spectrum, meaning a monoid object in the $\infty$-category of spectra $\Sp$. From this we get a presentable stable $\infty$-category $\Mod_R$ of left $R$-module spectra. Objects therein are morphisms of the form $R \wedge M \to M$ satisfying the usual associativity and unit conditions up to coherent homotopies.
 
 Note we have an adjunction diagram 
 \[
@@ -130,15 +136,13 @@ where the right adjoint is in fact the forgetful functor. This in particular mea
 \begin{definition}
 	Let $\Line_R$ be the full sub-$\infty$-groupoid of $\Mod_R$ spanned by the $R$-lines.
 \end{definition}
-
-Note by construction this is equivalent to $BGL_1(R)$.
-
+Note by construction this is equivalent to $BGL_1(R)$, the $\infty$-group of $R$-linear automorphisms of $R$.
 \begin{definition}
-	Let $X$ be a space. Then we denote by $\Mod_R(X)$ the $\infty$-category of $R$-module spectra parametrized over $X$, i.e. the functor category $\Fun(X^{op},Mod_R)$.
+	Let $X$ be a space. Then we denote by $\Mod_R(X)$ the $\infty$-category of $R$-module spectra parametrized over $X$, i.e. the functor category $\Fun(X^{op},\Mod_R)$.
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a space. Then we denote by $\Line_R(X)$ the	full subcategory of $\Mod_R(X)$ spanned by those functors $L \colon X^{op} \to \Line_R$, meaning it is $\Fun(X^{op},\Line_R)$.
+	Let $X$ be a space. Then we denote by $\Line_R(X)$ the full sub-$\infty$-groupoid of $\Mod_R(X)$ spanned by those functors $L \colon X^{op} \to \Line_R$, meaning it is $\Fun(X^{op},\Line_R)$.
 \end{definition}
 
 Recall this generalization of local systems of abelian groups, which map out of groupoids instead of $\infty$-groupoids.
@@ -161,18 +165,23 @@ Let us note an alternative characterization that will be important later.
 \begin{remark}
 	For a given map $f\colon X \to Y$, we get a map $f^*\colon \Mod_R(Y) \to \Mod_R(X)$ by precomposition with $f^{op}$. By the adjoint functor theorem,	this functor admits a left adjoint $f_! \colon \Mod_R(X) \to \Mod_R(Y)$ and a right adjoint $f_* \colon \Mod_R(X) \to \Mod_R(Y)$. Now for $p\colon X \to *$, we have \[Mf \simeq p_!(i \circ f).\]
 \end{remark}
-
+\begin{remark}[{\cite[3.6]{andoblumberggepner2010twistedktmf}}]
+	Let $\triv_R$ be the slice groupoid $\Line_R/R$, together with the canonical projection $\pi:\triv_R\to\Line_R$. An object of $\triv_R$ is a pair $(L,\phi)$ of a $R$-line $L$ and an equivalence $\phi:L\to R$. Consider then the following: \begin{enumerate}
+		\item $\triv_R$ is a slice $\infty$-groupoid, hence contractible, and $\pi$ is a Kan fibration. 
+		\item $GL_1(R)$ is equivalent to the fiber of $\pi$ over $R\in\Line_R$ and acts freely on the fibers of $\pi$. 
+\end{enumerate}These observations imply $\Line_R$ is equivalent to $BGL_1(R)$, the classifying space for $R$-line bundles. 
+\end{remark}
 We now proceed to define twisted cohomology theories.
 
 \begin{definition}[{Twisted cohomology}] \label{def:twistedcohomology}
 	Let $R$ be a ring spectrum, $X$ be a space and let $p\colon X \to *$ be the projection map, and let $f\colon X^{op} \to \Line_R$ be an $R$-line bundle over $X$.  The \emph{$f$-twisted $R$-cohomology of $X$} is defined as the mapping spectrum 
-	\[ R_f(X)	\coloneqq \Map_{\Mod_R}(Mf, R) \simeq \Map_{\Mod_R(X)}(f,p^*R) \simeq \Map_{\Mod_R(X)}(f,R_x) .\]
+	\[ R_f(X)	\coloneqq \Map_{\Mod_R}(Mf, R) \simeq \Map_{\Mod_R(X)}(f,p^*R) \simeq \Map_{\Mod_R(X)}(f,R_X) .\]
 	Similarly, we have \emph{$f$-twisted $R$-homology of $X$} defined as
 	\[ R^f(X) \coloneqq \Map_{\Mod_R}(R,Mf) \simeq Mf. \]
 \end{definition}
 
 In particular we can define the twisted cohomology groups of a space $X$ with twist given by a map $f\colon X \to \Line_R$, by 
-\[ R^n_f(X) \coloneqq \pi_0(\Map_{\Mod_R}(Mf, \Sigma^n R)) \cong \pi_n(\Map_{\Mod_R}(f,R)). \]
+\[ R^n_f(X) \coloneqq \pi_0(\Map_{\Mod_R}(Mf, \Sigma^n R)) \cong \pi_{-n}(\Map_{\Mod_R(X)}(f,R_X)). \]
 Similarly we define the twisted homology groups by
 \[ R_n^f(X) \coloneqq \pi_0(\Map_{\Mod_R}(\Sigma^n R, Mf)) \cong \pi_n(Mf). \]
 
@@ -182,11 +191,40 @@ Similarly we define the twisted homology groups by
 	and so it follows that 
 	
 	\[ R_f(X) \simeq \Map_{\Mod_R}(R \wedge \Sigma^{\infty}_+ X, R) \simeq \Map_{\Sp}(\Sigma^{\infty}_+ X, R) \]
-	Applying $\pi_n$ this recovers the regular $R$-cohomology groups of $X$, and analogous for homology.
+	Applying $\pi_{-n}$ this recovers the regular $R$-cohomology groups of $X$, and analogous for homology.
 \end{remark}
 
 Let us	look at some examples of twisted cohomology theories.
-
+\begin{example}Let $BO(n)$ be the topological groupoid of $n$-dimensional, inner product spaces and orthogonal morphisms, viewed as a $\infty$-groupoid. Consider the composition
+\begin{center}
+	\begin{tikzcd}
+		f_n:BO(n) \arrow[r,"\Th_n"] & \sS_* \arrow[r,"\Sigma^{\infty-n}"] & \Sp
+	\end{tikzcd}
+\end{center}	
+where the first functor maps a inner product space $V$ to its one-point compactification. Choosing a orthonormal basis for $V$, we get an isomorphism $\bR^n\simeq V$, then $\Sigma^{\infty-n}\Th(V)\simeq\Sigma^{\infty-n}\Th(\bR^n)\simeq\Sigma^{\infty-n}S^n\simeq\bS$, so that $f_n$ factors through $\Line_\bS$. Let $p:BO(n)\to*$, then $$Mf_n\simeq p_!\Sigma^{\infty-n}\Th_n\simeq\Sigma^{\infty-n}p_!\Th_n\simeq\Sigma^{\infty-n}\Th(E_n)$$
+where $E_n\to BO(n)$ is the universal $n$-dimensional vector bundle and $\Th(E_n)$ is the one-point compactification of the total space $E_n$. To prove the last equivalence, consider the following facts:
+\begin{enumerate}
+	\item Given a inner product space $V$, the Thom space of $V$ is homotopy equivalent to the homotopy cofiber of the inclusion $V\setminus\{0\}\subseteq V$. 
+	\item $\Th_n$ factors as the cofiber functor $C:\Arr(\sS)\to \sS_*$ following the functor $F:BO(n)\to\Arr(\sS)$ mapping $V$ to the inclusion $V\setminus\{0\}\subseteq V$. Here, $\Arr(\sS)$ denotes the $\infty$-category of arrows in $\sS$.  
+	\item $p_!$ commutes with $C$, since this last functor is left adjoint to the inclusion $\sS_*\subseteq\Arr(\sS)$. 
+	\item By straightening-unstraightening, a functor $f:BO(n)\to\sS$ is equivalent to a Kan fibration $E^f=BO(n)\times_{\sS}\sS_*\to BO(n)$ and $p_!(f)\simeq E^f$. 
+	\item Let $F_1$, resp. $F_0$, be the target and source components of $F$, then $E^{F_1}\simeq E_n$ and $E^{F_0}\simeq E_n\setminus\zeta_n$, where $\zeta_n$ is the zero section.
+	\item Finally, $p_!\Th_n$ is equivalent to the cofiber of $E_n\setminus\zeta_n\subseteq E_n$, which is equivalent to the one-point compactification of the total space $E_n$. 
+\end{enumerate}
+\end{example}
+\begin{example}
+	Let $O$ be the stable orthogonal group. The map $J_n$ induced by $f_n$ from the automorphisms of $
+	\bR$ to $\aut(\bS)$ sends $\phi:\bR^n\to\bR^n$ to $\Sigma^{\infty-n}\Th(\phi):\bS\to\bS$. Consider $\bR\oplus-:O(n)\to O(n+1)$, then $\Th(\bR\oplus\phi)=\Th(\bR)\wedge\Th(\phi)=\Sigma\Th(\phi)$, therefore the diagram 
+	\begin{center}
+		\begin{tikzcd}
+			O(n)\arrow[r,"\bR\oplus-"] \arrow[dr,"J_n"'] & O(n+1) \arrow[d,"J_{n+1}"]\\
+			& GL_1(\bS)
+		\end{tikzcd}
+	\end{center}commutes, and the maps $J_n$ induced a group homomorphism $J:O\to GL_1(\bS)$, called \emph{J-homomorphism}. The delooped map $BJ:BO\to\Line_\bS$ is equivalent to the colimit of the maps $f_n$. The Thom spectrum of $BJ$ is denoted $MO$, called the \emph{real bordism spectrum}. 
+\end{example}
+\begin{example}\label{ex:bordismspectra}
+	The decomplexification map $U\to O$ induces a twisting over $X=BU$ by post-composition with $BJ$. The Thom spectrum of $BU\to BO\to\Line_\bS$ is denoted $MU$, called the \emph{complex bordism spectrum}. In general, a group homomorphism $\xi:G\to O$ induces a twisting over $X=BG$ by post-composing with $BJ$. By taking $G=SO,Spin$ or $String$, we obtain the \emph{oriented, spin} and \emph{string bordism spectra}. 
+\end{example}
 \begin{example}
 Recall that we have a diagram characterizing $BString$
 \[ K(\bZ,3) \to BString \to BSpin \to BGL_1(\bS) = \Line_{\bS}\] 
