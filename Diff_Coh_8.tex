@@ -147,12 +147,11 @@ By construction, $\Line_R$ is equivalent to the category with a single object $R
 			GL_1(R)\arrow[r]\arrow[d] & \Omega^\infty R\arrow[d]\\
 			\pi_0(R)^\times \arrow[r] & \pi_0(R)
 		\end{tikzcd}
-	\end{center} 
+	\end{center}In particular, the inclusion $GL_1(R)\to\Omega^\infty R$ induces an isomorphism on $n$-homotopy groups, for all $n\geq1$. 
 \end{lemma}
 \begin{proof}
 	$\pi_0(R)\simeq\Hom_{\Ho\Mod_R}(R,R)$, where $\Ho\Mod_R$ is the homotopy category of $R$-modules, the right-vertical arrow corresponds to $\Hom_{\Mod_R}(R,R)\to\Hom_{\Ho\Mod_R}(R,R)$ mapping a morphism to its homotopy class, and $\pi_0(R)^\times\subseteq\Hom_{\Ho\Mod_R}(R,R)$ is the set of isomorphisms. Finally, a morphism in a $\infty$-category $\sC$ is an equivalence if and only if its homotopy class is an isomorphism in $\Ho\sC$. 
 \end{proof}
-In particular, $GL_1(R)$ consists of the connected components of equivalences in $\Omega^\infty$. 
 \begin{definition}
 	Let $X$ be a space. Denote by $\Mod_R(X)$ the $\infty$-category of $R$-module spectra parametrized over $X$, i.e. the functor category $\Fun(X^{op},\Mod_R)$.
 \end{definition}
@@ -184,7 +183,7 @@ Let us note an alternative characterization that will be important later.
 \end{remark}
 
 \begin{remark}[{\cite[3.6]{andoblumberggepner2010twistedktmf}}]
-	Let $\triv_R$ be the slice groupoid $\Line_R/R$, together with the canonical projection $\pi:\triv_R\to\Line_R$. An object of $\triv_R$ is a pair $(L,\phi)$ of a $R$-line $L$ and an equivalence $\phi:L\to R$. Consider then the following: \begin{enumerate}
+	Let $\triv_R$ be the slice groupoid $\Line_R/R$, together with the canonical projection $\pi:\triv_R\to\Line_R$, then: \begin{enumerate}
 		\item $\triv_R$ is a slice $\infty$-groupoid, hence contractible, and $\pi$ is a Kan fibration. 
 		\item $GL_1(R)$ is equivalent to the fiber of $\pi$ over $R\in\Line_R$ and acts freely on the fibers of $\pi$. 
 \end{enumerate}These observations imply $\Line_R$ is the classifying space for $GL_1(R)$-bundles. Here we use the term $GL_1(R)$-bundle to mean a parametrized family of $GL_1(R)$-spaces with a free and transitive action. 
@@ -224,7 +223,7 @@ where $E^n=P\times_{O(n)}\bR^n\to BO(n)$ is the universal $n$-dimensional vector
 \end{example}
 The functor $BO(n)\to\Line_\bS$ induces a $\infty$-group homomorphism $j_n:O(n)\to GL_1(\bS)$, mapping $\phi$ to $\Sigma^{\infty-n}\Th(\phi)$. Consider the suspension morphism $s_n=\bR\oplus-:O(n)\to O(1+n)$, then $$j_n(\bR\oplus\phi)=\Sigma^{\infty-n-1}\Th(\bR\oplus\phi)\simeq\Sigma^{\infty-n-1}\underbrace{\Th(\bR)}_{\simeq S^1}\wedge\Th(\phi)\simeq\Sigma^{\infty-n}\Th(\phi)=j_n$$Recall that the colimit over the suspension morphisms $s_n$ is the stable orthogonal group $O$.
 \begin{definition}
-	Denote by $j$ the induced $\infty$-group homomorphism $O\to GL_1(\bS)$ induced by the sequence $j_n$, called the \emph{$J$-homomorphism}.  
+	Denote by $j$ the induced group homomorphism $O\to GL_1(\bS)$, called the \emph{$J$-homomorphism}.  
 \end{definition} 
 \begin{example}
 	Let $X=O^{op}$ and take $Bj:BO\to\Line_\bS$, then $Mj$ is denoted $MO$ and called the \emph{real bordism spectrum}. 
@@ -251,12 +250,12 @@ Given $f:X^{op}\to\Mod_R$ and a sequence $F\xrightarrow{i} X\xrightarrow{\pi} Y$
 	Since $X$ is connected, the space of homomorphisms $X\to GL_1(R)$ is equivalent to the space of homomorphisms $X\to\Omega^\infty R$, then use that $(\Sigma^\infty,\Omega^\infty)$ is a monoidal adjunction (The monoidal structure on spectra is such that $\Sigma^\infty$ is strong monoidal). 
 \end{proof}
 \begin{example}\label{ex:tmf}
-	Let $\tmf$ be the $E_\infty$-ring spectrum of topological modular forms and $\sigma:MString\to\tmf$ the $String$-orientation of $\tmf$. The group $String$ is $E_\infty$-monoidal, so $MString$ is a $E_\infty$-ring spectrum and $\sigma$ is a ring homomomorphism. In the fiber sequence $K(\bZ,3)\to BString\to BSO$, the fiber map $i:K(\bZ,3)\to BString$ is also a monoid homomorphism, so the composition 
+	Let $\tmf$ be the $E_\infty$-ring spectrum of topological modular forms and $\sigma:MString\to\tmf$ the $String$-orientation of $\tmf$. The group $String$ is $E_\infty$-monoidal, so $MString$ is a $E_\infty$-ring spectrum. The orientation $\sigma$ is a ring homomomorphism. In the fiber sequence $K(\bZ,3)\to BString\to BSO$, the fiber map $i:K(\bZ,3)\to BString$ is also a monoid homomorphism, so the composition 
 	\begin{center}
 		\begin{tikzcd}
 			\Sigma^\infty_+K(\bZ,3)\arrow[r,"Mi"] & MString \arrow[r,"\sigma"] & \tmf
 		\end{tikzcd}
-	\end{center}is a homomorphism. Using \cref{lem:adj}, we conclude that the induced homomorphism $K(\bZ,3)\to\Omega^\infty\tmf$ factors through $GL_1(\tmf)$, or equivalently, $K(\bZ,4)\to\Line_\tmf$, i.e. \emph{2-bundle gerbes twist $\tmf$}.
+	\end{center}is a homomorphism. Using \cref{lem:adj}, we conclude that the induced homomorphism $K(\bZ,3)\to\Omega^\infty\tmf$ factors through $GL_1(\tmf)$ and so it induces a functor $K(\bZ,4)\to\Line_\tmf$, i.e. \emph{2-bundle gerbes twist $\tmf$}.
 \end{example}
 Let us go down one step in the chromatic ladder. 
 \begin{example}\label{ex:ktheory}
@@ -280,13 +279,15 @@ This section requires some some further details. Up until now we defined everyth
 If $R$ is a ring spectrum, $\Mod_R$ is monoidal. Denote by $\Pic_R$ the Picard groupoid of $\Mod_R$. 	
 \end{definition}
 \begin{remark}
-	It is a common fact that the $\infty$-groupoid	$\Pic_R$ is equivalent to $\pi_0(R) \times \Line_R$, meaning that the invertible $R$-modules are given by the $R$-lines together with a shift by an element in $\pi_0(R)$. Here it is important to note that this equivalence does not respect the monoidal structure is only an equivalence of underlying $\infty$-groupoids.
+	$\Pic_R$ splits as the disjoint union of $\pi_0(\Pic_R)$-many sub-groupoids. Moreover, if $M\simeq N$, then $\bR\simeq M^{-1}\otimes N$, so $M^{-1}\otimes N$ is a $R$-line. In particular, every connected component of $\Pic_R$ is equivalent to $\Line_R$, so $\Pic_R\simeq\pi_0(\Pic_R)\times\Line_R$. However, this is not a monoidal equivalence.  
+\end{remark}
+\begin{remark}
+	$\Sigma^nR$ is invertible, with inverse $\Sigma^{-n}R$. In particular, there is a map $\bZ\times\Line\to\Pic_R$. However, this map is neither injective (if $R$ is $n$-periodic), nor surjective. 
 \end{remark}
 As mentioned in \cref{rmk:extthomspc}, the Thom spectrum functor makes sense for every functor $f:X^{op}\to\Mod_R$. However, all examples of twists encountered so far came from functors into $\Line_R$. An example of twist that is not the result of a $R$-line bundle is the \emph{degree shift}. 
 \begin{definition}
 	Denote by $M$ the \emph{Thom $R$-module spectrum} functor \[\Grp^{op}_\infty/\Mod_R\to\Mod_R\]sending a functor $f:X^{op}\to\Mod_R$ to its colimit.  
 \end{definition}
-If $L$ is a $R$-line, then $\Sigma^nL$ is invertible, with inverse $\Sigma^{-n}L$. Moreover, $\Sigma^nL$ is a line if and only if $R$ is $n$-periodic.
 \begin{example}
 	Let $f:X^{op}\to\Line_R$ be a twist. Denote by $\Sigma^nf$ the composition of $f$ with the shift functor $\Sigma^n:\Line_R\to\Pic_R$. Since $\Sigma^n$ is an equivalence, it commutes with colimits, so $$M\Sigma^nf\simeq \Sigma^nMf$$If $f=R_X$, then $M\Sigma^nf\simeq \Sigma^nR\wedge\Sigma^\infty_+X$, so  $\Sigma^nf$-twisted $R$-cohomology and $R$-homology correspond to normal $R$-cohomology and $R$-homology with a degree shift by $n$. 
 \end{example}
