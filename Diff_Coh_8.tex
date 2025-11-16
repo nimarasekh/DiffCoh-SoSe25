@@ -14,7 +14,10 @@
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\B}{\mathscr{B}}
 \newcommand{\cF}{\mathcal{F}}
+\newcommand{\D}{\mathscr{D}}
 \newcommand{\sC}{\mathscr{C}}
 \newcommand{\sS}{\mathscr{S}}
 \newcommand{\bS}{\mathbb{S}}
@@ -23,9 +26,14 @@
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\fO}{\mathbf{O}}
 \newcommand{\rO}{\mathscr{O}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\bQ}{\mathbb{Q}}
 
+\newcommand{\aff}{\mathrm{Aff}}
 \newcommand{\Cyc}{\mathrm{Cyc}}
 \newcommand{\tmf}{\mathrm{tmf}}
+\newcommand{\TMF}{\mathrm{TMF}}
+\newcommand{\Tmf}{\mathrm{Tmf}}
 \newcommand{\Def}{\mathrm{Def}}
 \newcommand{\curv}{\mathrm{curv}}
 \newcommand{\CS}{\mathrm{CS}}
@@ -39,7 +47,7 @@
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Ho}{\mathrm{ho}}
 \newcommand{\set}{\mathscr{S}\mathrm{et}}
-\newcommand{\CMon}{{\normalfont\texttt{CMon}}}
+\newcommand{\CMon}{\mathrm{CMon}}
 \newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
 \newcommand{\fib}{{\normalfont\texttt{fib}}}
 \newcommand{\cofib}{{\normalfont\texttt{cofib}}}
@@ -242,25 +250,50 @@ Let $R$ be a ring in sets, then $R$ is a $A_\infty$-ring spectrum (actually, $E_
 \begin{example}
 	$X=BO^{op}$ and $\alpha=w_1:BO\to\Line_\bZ$, the 1st Stiefel-Whitney class (delooping of the determinant $O\to GL_1(\bZ)$), then $Mw_1$ is a $\bZ$-module spectra. Let $i:SO\subseteq O$, then $w_1i$ factors through the point, so $M(w_1i)\simeq\bZ\wedge\Sigma^\infty_+SO$. 
 \end{example}
-Given $f:X^{op}\to\Mod_R$ and a sequence $F\xrightarrow{i} X\xrightarrow{\pi} Y$, there is an induced sequence of Thom $R$-module spectra $MF\to MX\to MY$. If $\pi i$ factors through the point, $MF\simeq R\wedge\Sigma^\infty_+F$. 
+Given $f:X^{op}\to\Line_R$ and a sequence $F\xrightarrow{i} X\xrightarrow{\pi} Y$, there is an induced sequence of Thom $R$-module spectra $MF\to MX\to MY$. If $\pi i$ factors through the point, $MF\simeq R\wedge\Sigma^\infty_+F$. 
 \begin{lemma}\label{lem:adj}
 	Let $R$ be a ring spectrum and $X$ a connected monoidal $\infty$-groupoid, then \[\Hom_{\Mon(\Sp)}(\Sigma^{\infty}_+X,R)\simeq\Hom_{\Mon(\sS)}(X,GL_1(R))\] 
 \end{lemma}
 \begin{proof}
 	Since $X$ is connected, the space of homomorphisms $X\to GL_1(R)$ is equivalent to the space of homomorphisms $X\to\Omega^\infty R$, then use that $(\Sigma^\infty,\Omega^\infty)$ is a monoidal adjunction (The monoidal structure on spectra is such that $\Sigma^\infty$ is strong monoidal). 
 \end{proof}
+\begin{remark}
+	Notice that we can weaken the result. Namely, if $X$ is 1-connected (pointed and connected), then the space of functors (of $\infty$-groupoids) $X\to GL_1(R)$ is equivalent to the space of functors $X\to\Omega^\infty R$ such that $*\to X\to\Omega^\infty R$ is an equivalence. This last space is equivalent, via the $(\Sigma^\infty_+,\Omega^\infty)$ adjunction, to the space of morphisms of spectra $\Sigma^\infty_+X\to R$, such that $\bS\to\Sigma^\infty_+X\to R$ represents a unit in $\pi_0(R)$.
+\end{remark}
+\begin{remark}\label{rmk:strengthen}
+	Notice that we can also strengthen the result. Namely, if $X$ is a connected, commutative monoid object and $R$ is a commutative ring spectrum, then $\Omega^\infty R$ and $GL_1(R)$ are also commutative monoid objects. Using the same argument, together with the fact that $(\Sigma^\infty,\Omega^\infty)$ is actually a \emph{symmetric} monoidal adjunction, we conclude that \[\Hom_{\CMon(\Sp)}(\Sigma^\infty_+X,R)\simeq\Hom_{\CMon(\sS)}(X,GL_1(R))\] 
+\end{remark}
+\begin{remark}\label{rmk:moncat}
+	Let $\D$ be a monoidal $\infty$-category. Consider $\cat_\infty/\D$, the $\infty$-category of functors into $\D$, with monoidal structure given by \begin{center}
+		\begin{tikzcd}
+			(F:\A\to\D,G:\B\to\D) \arrow[r,|->] & (\A\times\B\xrightarrow{F\times G}\D\times\D\xrightarrow{\otimes}D)
+		\end{tikzcd}
+	\end{center} The monoidal unit is the functor $*\to\D$ picking out the monoidal unit of $\D$. If $\D$ is symmetric monoidal, then so is $\cat_\infty/\D$. A (commutative) monoid object in $\cat_\infty/\D$ is given by a (symmetric) monoidal category $\sC$ and a (symmetric) monoidal functor $F:\sC\to\D$. 
+\end{remark}
+In view of \cref{rmk:moncat}, let $R$ be $E_\infty$-ring spectrum, then $\Mod_R$ is a symmetric monoidal $\infty$-category and $\Line_R$ is a symmetric monoidal $\infty$-groupoid. The category $\Grpd^{op}_\infty/\Line_R$ is then symmetric monoidal and (commutative) monoid objects are given by (symmetric) monoidal $\infty$-groupoids $X^{op}$ a (symmetric) monoidal functors $X^{op}\to\Line_R$. One can then check that $M$ is a symmetric monoidal functor, so that (commutative) monoid objects are sent to (commutative) monoid objects in $\Mod_R$, i.e. ($E_\infty$-) $A_\infty$-$R$-algebras. 
 \begin{example}\label{ex:tmf}
-	Let $\tmf$ be the $E_\infty$-ring spectrum of topological modular forms and $\sigma:MString\to\tmf$ the $String$-orientation of $\tmf$. The group $String$ is $E_\infty$-monoidal, so $MString$ is a $E_\infty$-ring spectrum. The orientation $\sigma$ is a ring homomomorphism. In the fiber sequence $K(\bZ,3)\to BString\to BSO$, the fiber map $i:K(\bZ,3)\to BString$ is also a monoid homomorphism, so the composition 
+	Let $\Tmf$ be the $E_\infty$-ring spectrum of topological modular forms (see \cref{rmk:names}) and $\sigma:MString\to\tmf$ the $String$-orientation of $\tmf$. In the sequence \begin{center}
+		\begin{tikzcd}
+			BString \arrow[r] & BO \arrow[r,"Bj"] & \Line_\bS
+		\end{tikzcd}
+	\end{center}all functors are symmetric monoidal, so that $MString$ is a $E_\infty$-$\bS$-algebra, i.e. a $E_\infty$-ring. The $String$-orientation of $\tmf$ is also a $E_\infty$-ring homomorphism. In the fiber sequence $K(\bZ,3)\to BString\to BSO$, the fiber map $i:K(\bZ,3)\to BString$ is also a symmetric monoidal, so the composition 
 	\begin{center}
 		\begin{tikzcd}
 			\Sigma^\infty_+K(\bZ,3)\arrow[r,"Mi"] & MString \arrow[r,"\sigma"] & \tmf
 		\end{tikzcd}
-	\end{center}is a homomorphism. Using \cref{lem:adj}, we conclude that the induced homomorphism $K(\bZ,3)\to\Omega^\infty\tmf$ factors through $GL_1(\tmf)$ and so it induces a functor $K(\bZ,4)\to\Line_\tmf$, i.e. \emph{2-bundle gerbes twist $\tmf$}.
+	\end{center}is a $E_\infty$-ring homomorphism. Using \cref{lem:adj}, we conclude that the induced homomorphism $K(\bZ,3)\to\Omega^\infty\tmf$ (which is a homomorphism of commutative monoid objects, given \cref{rmk:strengthen}) factors through $GL_1(\tmf)$, and so it induces a (symmetric monoidal) functor $K(\bZ,4)\to\Line_\tmf$, i.e. \emph{2-bundle gerbes twist $\tmf$}.
 \end{example}
+\begin{remark}\label{rmk:names}The spectrum of topological modular forms comes in three main flavors, namely:
+\begin{enumerate}
+	\item $\TMF$, i.e. the global sections of the spectral structure sheaf $\rO^{top}:(\aff/\M_{ell})^{op}\to\CMon(\Sp)$ on the (\' etale site of the) moduli stack of elliptic curves.
+	\item $\Tmf$, i.e. the global sections of the spectral structure sheaf $\bar{\rO}^{top}:(\aff/\bar{\M}_{ell})^{op}\to\CMon(\Sp)$ on the (\' etale site of the) \emph{compactified} moduli stack of elliptic curves. The inclusion $\M_{ell}\hookrightarrow\bar{\M}_{ell}$ induces a $E_\infty$-ring homomorphism $\Tmf\to\TMF$.
+	\item $\tmf$, i.e. the connective cover of $\Tmf$. In particular, there is a $E_\infty$-ring homomorphism $\tmf\to\Tmf$. 
+\end{enumerate}In \cite{ando2010multiplicative}, $\tmf$ is used to denote our $\TMF$, in \cite{goerss2009topologicalmodularformsaftern}, $\tmf$ is used to denoted our $\Tmf$, and \cite{douglas2014topological} has the same notation as us. In \cref{ex:tmf}, we use $\tmf$ to mean the connective cover of $\Tmf$. 
+\end{remark}
 Let us go down one step in the chromatic ladder. 
 \begin{example}\label{ex:ktheory}
 	Recall the fiber sequences for $Spin$ and $Spin^c$: \[\bZ_2\to Spin\to SO,\qquad S^1\to Spin^c\to SO\] All the spaces involved are $E_\infty$-groups. Applying the Thom spectrum functor to the delooped sequences, we get\[\Sigma^\infty_+K(\bZ_2,1)\to MSpin\to MSO,\qquad\Sigma^\infty_+K(\bZ,2)\to MSpin^c\to MSO \]
-	Let $\sigma:MSpin\to KO$ and $\sigma^c:MSpin^c\to KU$ be the Atiyah-Bott-Shapiro orientation of real and complex $K$-theory (see, \cite{atiyahbottshapiro1964clifford}).
+	Let $\sigma:MSpin\to KO$ and $\sigma^c:MSpin^c\to KU$ be the Atiyah-Bott-Shapiro orientation of real and complex $K$-theory (see \cite{atiyahbottshapiro1964clifford}).
 	Similar to \cref{ex:tmf}, we get homomorphisms 
 	\begin{center}
 		\begin{tikzcd}
@@ -282,11 +315,11 @@ If $R$ is a ring spectrum, $\Mod_R$ is monoidal. Denote by $\Pic_R$ the Picard g
 	$\Pic_R$ splits as the disjoint union of $\pi_0(\Pic_R)$-many sub-groupoids. Moreover, if $M\simeq N$, then $\bR\simeq M^{-1}\otimes N$, so $M^{-1}\otimes N$ is a $R$-line. In particular, every connected component of $\Pic_R$ is equivalent to $\Line_R$, so $\Pic_R\simeq\pi_0(\Pic_R)\times\Line_R$. However, this is not a monoidal equivalence.  
 \end{remark}
 \begin{remark}
-	$\Sigma^nR$ is invertible, with inverse $\Sigma^{-n}R$. In particular, there is a map $\bZ\times\Line\to\Pic_R$. However, this map is neither injective (if $R$ is $n$-periodic), nor surjective. 
+	$\Sigma^nR$ is invertible, with inverse $\Sigma^{-n}R$. In particular, there is a map $\bZ\times\Line\to\Pic_R$. However, this map need not be injective (if $R$ is $n$-periodic), nor surjective (see \cite{hill2011tmf}). 
 \end{remark}
 As mentioned in \cref{rmk:extthomspc}, the Thom spectrum functor makes sense for every functor $f:X^{op}\to\Mod_R$. However, all examples of twists encountered so far came from functors into $\Line_R$. An example of twist that is not the result of a $R$-line bundle is the \emph{degree shift}. 
 \begin{definition}
-	Denote by $M$ the \emph{Thom $R$-module spectrum} functor \[\Grp^{op}_\infty/\Mod_R\to\Mod_R\]sending a functor $f:X^{op}\to\Mod_R$ to its colimit.  
+	Denote by $M$ the \emph{Thom $R$-module spectrum} functor \[\Grpd^{op}_\infty/\Mod_R\to\Mod_R\]sending a functor $f:X^{op}\to\Mod_R$ to its colimit.  
 \end{definition}
 \begin{example}
 	Let $f:X^{op}\to\Line_R$ be a twist. Denote by $\Sigma^nf$ the composition of $f$ with the shift functor $\Sigma^n:\Line_R\to\Pic_R$. Since $\Sigma^n$ is an equivalence, it commutes with colimits, so $$M\Sigma^nf\simeq \Sigma^nMf$$If $f=R_X$, then $M\Sigma^nf\simeq \Sigma^nR\wedge\Sigma^\infty_+X$, so  $\Sigma^nf$-twisted $R$-cohomology and $R$-homology correspond to normal $R$-cohomology and $R$-homology with a degree shift by $n$. 
