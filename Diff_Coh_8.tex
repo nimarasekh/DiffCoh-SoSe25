@@ -266,33 +266,33 @@ Given $f:X^{op}\to\Line_R$ and a sequence $F\xrightarrow{i} X\xrightarrow{\pi} Y
 \begin{remark}\label{rmk:moncat}
 	Let $\D$ be a monoidal $\infty$-category. Consider $\cat_\infty/\D$, the $\infty$-category of functors into $\D$, with monoidal structure given by \begin{center}
 		\begin{tikzcd}
-			(F:\A\to\D,G:\B\to\D) \arrow[r,|->] & (\A\times\B\xrightarrow{F\times G}\D\times\D\xrightarrow{\otimes}D)
+			(F:\A\to\D,G:\B\to\D) \arrow[r,|->] & (\A\times\B\xrightarrow{F\times G}\D\times\D\xrightarrow{\otimes}\D)
 		\end{tikzcd}
 	\end{center} The monoidal unit is the functor $*\to\D$ picking out the monoidal unit of $\D$. If $\D$ is symmetric monoidal, then so is $\cat_\infty/\D$. A (commutative) monoid object in $\cat_\infty/\D$ is given by a (symmetric) monoidal category $\sC$ and a (symmetric) monoidal functor $F:\sC\to\D$. 
 \end{remark}
-In view of \cref{rmk:moncat}, let $R$ be $E_\infty$-ring spectrum, then $\Mod_R$ is a symmetric monoidal $\infty$-category and $\Line_R$ is a symmetric monoidal $\infty$-groupoid. The category $\Grpd^{op}_\infty/\Line_R$ is then symmetric monoidal and (commutative) monoid objects are given by (symmetric) monoidal $\infty$-groupoids $X^{op}$ a (symmetric) monoidal functors $X^{op}\to\Line_R$. One can then check that $M$ is a symmetric monoidal functor, so that (commutative) monoid objects are sent to (commutative) monoid objects in $\Mod_R$, i.e. ($E_\infty$-) $A_\infty$-$R$-algebras. 
+In view of \cref{rmk:moncat}, let $R$ be commutative ring spectrum, then $\Mod_R$ is a symmetric monoidal $\infty$-category and $\Line_R$ is a symmetric monoidal $\infty$-groupoid. The category $\Grpd^{op}_\infty/\Line_R$ is then symmetric monoidal and (commutative) monoid objects are given by (symmetric) monoidal $\infty$-groupoids $X^{op}$ a (symmetric) monoidal functors $X^{op}\to\Line_R$. One can then check that $M$ is a symmetric monoidal functor, so that (commutative) monoid objects are sent to (commutative) monoid objects in $\Mod_R$, i.e. (commutative) $R$-algebras. 
 \begin{example}\label{ex:tmf}
-	Let $\Tmf$ be the $E_\infty$-ring spectrum of topological modular forms (see \cref{rmk:names}) and $\sigma:MString\to\tmf$ the $String$-orientation of $\tmf$. In the sequence \begin{center}
+	Let $\Tmf$ be the commutative ring spectrum of topological modular forms (see \cref{rmk:names}) and $\sigma:MString\to\tmf$ the $String$-orientation of $\tmf$. In the sequence \begin{center}
 		\begin{tikzcd}
 			BString \arrow[r] & BO \arrow[r,"Bj"] & \Line_\bS
 		\end{tikzcd}
-	\end{center}all functors are symmetric monoidal, so that $MString$ is a $E_\infty$-$\bS$-algebra, i.e. a $E_\infty$-ring. The $String$-orientation of $\tmf$ is also a $E_\infty$-ring homomorphism. In the fiber sequence $K(\bZ,3)\to BString\to BSO$, the fiber map $i:K(\bZ,3)\to BString$ is also a symmetric monoidal, so the composition 
+	\end{center}all functors are symmetric monoidal, so that $MString$ is a commutative $\bS$-algebra, i.e. a commutative ring. The $String$-orientation of $\tmf$ is also a commutative ring homomorphism. In the fiber sequence $K(\bZ,3)\to BString\to BSO$, the fiber map $i:K(\bZ,3)\to BString$ is also a symmetric monoidal, so the composition 
 	\begin{center}
 		\begin{tikzcd}
 			\Sigma^\infty_+K(\bZ,3)\arrow[r,"Mi"] & MString \arrow[r,"\sigma"] & \tmf
 		\end{tikzcd}
-	\end{center}is a $E_\infty$-ring homomorphism. Using \cref{lem:adj}, we conclude that the induced homomorphism $K(\bZ,3)\to\Omega^\infty\tmf$ (which is a homomorphism of commutative monoid objects, given \cref{rmk:strengthen}) factors through $GL_1(\tmf)$, and so it induces a (symmetric monoidal) functor $K(\bZ,4)\to\Line_\tmf$, i.e. \emph{2-bundle gerbes twist $\tmf$}.
+	\end{center}is a commutative ring homomorphism. Using \cref{lem:adj}, we conclude that the induced homomorphism $K(\bZ,3)\to\Omega^\infty\tmf$ (which is a homomorphism of commutative monoid objects, given \cref{rmk:strengthen}) factors through $GL_1(\tmf)$, and so it induces a (symmetric monoidal) functor $K(\bZ,4)\to\Line_\tmf$, i.e. \emph{2-bundle gerbes twist $\tmf$}.
 \end{example}
 \begin{remark}\label{rmk:names}The spectrum of topological modular forms comes in three main flavors, namely:
 \begin{enumerate}
 	\item $\TMF$, i.e. the global sections of the spectral structure sheaf $\rO^{top}:(\aff/\M_{ell})^{op}\to\CMon(\Sp)$ on the (\' etale site of the) moduli stack of elliptic curves.
-	\item $\Tmf$, i.e. the global sections of the spectral structure sheaf $\bar{\rO}^{top}:(\aff/\bar{\M}_{ell})^{op}\to\CMon(\Sp)$ on the (\' etale site of the) \emph{compactified} moduli stack of elliptic curves. The inclusion $\M_{ell}\hookrightarrow\bar{\M}_{ell}$ induces a $E_\infty$-ring homomorphism $\Tmf\to\TMF$.
-	\item $\tmf$, i.e. the connective cover of $\Tmf$. In particular, there is a $E_\infty$-ring homomorphism $\tmf\to\Tmf$. 
+	\item $\Tmf$, i.e. the global sections of the spectral structure sheaf $\bar{\rO}^{top}:(\aff/\bar{\M}_{ell})^{op}\to\CMon(\Sp)$ on the (\' etale site of the) \emph{compactified} moduli stack of elliptic curves. The inclusion $\M_{ell}\hookrightarrow\bar{\M}_{ell}$ induces a commutative ring homomorphism $\Tmf\to\TMF$.
+	\item $\tmf$, i.e. the connective cover of $\Tmf$. In particular, there is a commutative ring homomorphism $\tmf\to\Tmf$. 
 \end{enumerate}In \cite{ando2010multiplicative}, $\tmf$ is used to denote our $\TMF$, in \cite{goerss2009topologicalmodularformsaftern}, $\tmf$ is used to denoted our $\Tmf$, and \cite{douglas2014topological} has the same notation as us. In \cref{ex:tmf}, we use $\tmf$ to mean the connective cover of $\Tmf$. 
 \end{remark}
 Let us go down one step in the chromatic ladder. 
 \begin{example}\label{ex:ktheory}
-	Recall the fiber sequences for $Spin$ and $Spin^c$: \[\bZ_2\to Spin\to SO,\qquad S^1\to Spin^c\to SO\] All the spaces involved are $E_\infty$-groups. Applying the Thom spectrum functor to the delooped sequences, we get\[\Sigma^\infty_+K(\bZ_2,1)\to MSpin\to MSO,\qquad\Sigma^\infty_+K(\bZ,2)\to MSpin^c\to MSO \]
+	Recall the fiber sequences for $Spin$ and $Spin^c$: \[\bZ_2\to Spin\to SO,\qquad S^1\to Spin^c\to SO\] All the spaces involved are commutative groups. Applying the Thom spectrum functor to the delooped sequences, we get\[\Sigma^\infty_+K(\bZ_2,1)\to MSpin\to MSO,\qquad\Sigma^\infty_+K(\bZ,2)\to MSpin^c\to MSO \]
 	Let $\sigma:MSpin\to KO$ and $\sigma^c:MSpin^c\to KU$ be the Atiyah-Bott-Shapiro orientation of real and complex $K$-theory (see \cite{atiyahbottshapiro1964clifford}).
 	Similar to \cref{ex:tmf}, we get homomorphisms 
 	\begin{center}
@@ -312,7 +312,7 @@ This section requires some some further details. Up until now we defined everyth
 If $R$ is a ring spectrum, $\Mod_R$ is monoidal. Denote by $\Pic_R$ the Picard groupoid of $\Mod_R$. 	
 \end{definition}
 \begin{remark}
-	$\Pic_R$ splits as the disjoint union of $\pi_0(\Pic_R)$-many sub-groupoids. Moreover, if $M\simeq N$, then $\bR\simeq M^{-1}\otimes N$, so $M^{-1}\otimes N$ is a $R$-line. In particular, every connected component of $\Pic_R$ is equivalent to $\Line_R$, so $\Pic_R\simeq\pi_0(\Pic_R)\times\Line_R$. However, this is not a monoidal equivalence.  
+	$\Pic_R$ splits as the disjoint union of $\pi_0(\Pic_R)$-many sub-groupoids. Moreover, if $M\simeq N$, then $R\simeq M^{-1}\otimes N$, so $M^{-1}\otimes N$ is a $R$-line. In particular, every connected component of $\Pic_R$ is equivalent to $\Line_R$, so $\Pic_R\simeq\pi_0(\Pic_R)\times\Line_R$. However, this is not a monoidal equivalence for general ring spectra.  
 \end{remark}
 \begin{remark}
 	$\Sigma^nR$ is invertible, with inverse $\Sigma^{-n}R$. In particular, there is a map $\bZ\times\Line\to\Pic_R$. However, this map need not be injective (if $R$ is $n$-periodic), nor surjective (see \cite{hill2011tmf}). 
