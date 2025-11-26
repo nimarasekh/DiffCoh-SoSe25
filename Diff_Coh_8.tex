@@ -189,12 +189,7 @@ Let us note an alternative characterization that will be important later.
 	For a given map $f\colon X \to Y$, we get a map $f^*\colon \Mod_R(Y) \to \Mod_R(X)$ by precomposition with $f^{op}$. Since $f^*$ preserves both limits and colimits, we construct a left adjoint $f_! \colon \Mod_R(X) \to \Mod_R(Y)$ and a right adjoint $f_* \colon \Mod_R(X) \to \Mod_R(Y)$, using left and right Kan extension along $f^{op}$. Let $f=p:X\to*$ be the terminal functor, then left Kan extension along $p^{op}$ is exactly taking colimit, therefore
 	\[Mf \simeq p_!(i \circ f).\]
 \end{remark}
-
-\begin{remark}[{\cite[3.6]{andoblumberggepner2010twistedktmf}}]
-	Let $\triv_R$ be the slice groupoid $\Line_R/R$, together with the canonical projection $\pi:\triv_R\to\Line_R$, then: \begin{enumerate}
-		\item $\triv_R$ is a slice $\infty$-groupoid, hence contractible, and $\pi$ is a Kan fibration. 
-		\item $GL_1(R)$ is equivalent to the fiber of $\pi$ over $R\in\Line_R$ and acts freely on the fibers of $\pi$. 
-\end{enumerate}These observations imply $\Line_R$ is the classifying space for $GL_1(R)$-bundles. Here we use the term $GL_1(R)$-bundle to mean a parametrized family of $GL_1(R)$-spaces with a free and transitive action. 
+\begin{remark}The equivalence $\Line_R\simeq BGL_1(R)$ comes from the fact that $\Line_R$ is a pointed (by $R:*\to\Line_R$), connected $\infty$-groupoid and $*\times_{\Line_R}*\simeq\Omega\Line_R\simeq GL_1(R)$. 
 \end{remark}
 
 We now proceed to define twisted cohomology theories.
