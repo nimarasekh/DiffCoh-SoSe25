@@ -226,7 +226,7 @@ We now proceed to analyze several examples of twisted cohomology	theories. This 
 \begin{proof}
 	Let $S$ be a pre-sheaf on $X$, consider then the slice category $X_{/S}$ of pairs $(x,\phi)$, where $x$ is an object of $X$ and $\phi:y(x)\to S$. The density theorem for $\infty$-categories states that $S$ is equivalent to the colimit of $X_{/S}\to X\xrightarrow{y}\Fun(X^{op},\sS)$, the first map being the canonical projection. Take $S=*$, then $X_{/*}\to X$ is an equivalence, hence the claim. 
 \end{proof}
-Let $G$ be a topological group and $BG$ the $\infty$-groupoid with a single object $1$ and hom-space $G$. The category $\sS_G:=\Fun(BG,\sS)$ is equivalent to the category of $G$-spaces.
+Let $G$ be a topological group and $BG$ the $\infty$-groupoid with a single object $1$ and hom-space $G$. The category $\sS_G\coloneqq\Fun(BG,\sS)$ is equivalent to the category of $G$-spaces.
 \begin{lemma}
 	Consider $X=BG$, a $G$-space $f:X\to\sS$ and its left Kan extension $f_!:\sS_G\to\sS$, then $f_!\simeq(-\times E)/G$, where $E=f(1)$. 
 \end{lemma}
@@ -343,38 +343,35 @@ We now proceed to the construction of the umkehr map in twisted cohomology theor
 \end{remark}
 
 For $X$ a space, we will write 
-\[DX \colon = \Map(\Sigma^\infty_+ X, \bS) \]
-for the Spanier-Whitehead dual of $X$. 
-
-We can lift $D$ to a functor 
-\[ D\colon \sS^{op} \to \Sp \]
+\[DX \coloneqq \Map(\Sigma^\infty_+ X, \bS) \]
+for the Spanier-Whitehead dual of $X$. Notice $D$ is evidently given as the composition functor 
+\[ D\colon \sS^{op}  \xrightarrow{ \ \Sigma^\infty_+ \ } \Sp^{op} \xrightarrow{ \ \Map(-,\bS) \ } \Sp. \]
 Applying $D$ to the unique map $X \to *$	gives a map of spectra
 \[\phi(X)\colon\bS \to DX \]
 and we regard this as a functor 
-\[\phi\colon \sS^{op} \to \Sp_{\bS} \]
+\[\phi\colon \sS^{op} \to \Sp_{\bS/} \]
 i.e. the induced functor on the slice category. 
 
-Here are some questions:
-\begin{itemize}
-	\item What is the mapping endo-spectrum of $\bS$?
-	\item Is there a map out of $\bS$?
-\end{itemize}
+As part of this explanation it is helpful to recall the following facts.
+
+\begin{remark}
+	Given a spectrum $E$, the mapping spectrum $\Map(\bS,E)$	is equivalent to $E$ itself. This is because $\bS$ is the unit for the smash product of spectra, and the mapping spectrum from the unit to any spectrum recovers that spectrum. In particular $\Map(\bS,\bS) \simeq \bS$.
+\end{remark}
 
 Suppose we are given $f\colon X \to B$, a smooth and proper family of manifolds over $B$, $f^{-1}(b)=X_b$ is a smooth and proper manifold. Where proper means a compact closed manifold. This should vary continuously over $B$ in the sense that $f$ is classified by a functor 
 \[ B \to \Mfd\]
-where $\Mfd$ is the $\infty$-category of smooth and proper manifolds, where the $\infty$-categorical structure is given by the usual topological enrichment.
+where $\Mfd$ is the $\infty$-category of smooth and proper manifolds, where the $\infty$-categorical structure is given by the usual topological enrichment. Notice it comes with an evident forgetful functor to $\sS$, the $\infty$-category of spaces (i.e. $\infty$-groupoids).
 
 Given such a functor $F$ we have the composition functor 
-\[ B^{op} \xrightarrow{ \ F^{op} \ } \Mfd^{op} \xrightarrow{ \ BDiff(-)  \ } \sS^{op} \xrightarrow{ \ \phi \ } \Sp_{\bS/},\]
-which is an object in $\Fun(B^{op}, \Sp_{\bS/})$. An object therein is equivalent to a functor $B \to \Sp$ that sits under the constant functor $\bS_B\colon B \to \Sp$	with value $\bS$, meaning we have a natural transformation
-\[\phi_{X/B}\colon \bS_B D_B(X) \]
+\[ B^{op} \xrightarrow{ \ F^{op} \ } \Mfd^{op} \to \sS^{op} \xrightarrow{ \ \phi \ } \Sp_{\bS/},\]
+which is an object in $\Fun(B^{op}, \Sp_{\bS/})$. Notice, there is an evident equivalence of $\infty$-categories
+\[ \Fun(B^{op}, \Sp_{\bS/}) \simeq (\Fun(B^{op}, \Sp))_{\bS_B/} \]
+where $\bS_B$ is the constant functor with value $\bS$. Thus, our composition above, corresponds to a natural transformation
+\[\phi_{X/B}\colon \bS_B \to D_B(X) \]
 This just unwinds to a natural map of spectra 
-\[ \bS \to D(BDiff(X_b))\]
-even though the authors write it as 
 \[ \bS \to D(X_b) \]
-This suggests that the original definition of the functor has issues, which should be fixed later. 
 
-We can now take the left Kan extension along the terminal map $p\colon B \to *$ to get a map of spectra
+We can now take the left Kan extension along the terminal map $p\colon B \to *$ (i.e. take the colimit of these diagrams), to get a map of spectra
 \[ p_! \phi_{X/B} \colon p_! \bS_B \to p_! D_B(X) \]
 Using the fact that 
 \[p_!	\bS_B \simeq  p_! p^* \bS_B \simeq \Sigma^\infty_+ B,\] 
@@ -382,7 +379,7 @@ we get a map of spectra
 \[ \Sigma^\infty_+ B \to p_! D_B(X).\]
 On the right hand side 
 \[p_!	D_B(X) \simeq X^{-T_f} \simeq \Sigma^\infty Th (_-T_f)\] 
-where $T_f$ is the bundle of	tangents along the fibers of $f$ and $X^{-T_f}$, giving us the Thom spectrum.
+where $T_f$ is the bundle of	tangents along the fibers of $f$ and $X^{-T_f}$, giving us the Thom spectrum. This last equivalence is a complicated computation.
 
 \begin{remark}
 	Here argument involves proving that the classical Thom space $X^{-T_f}$ is equivalent to the colimit of the functor $D_B\colon B \to \Sp$
@@ -391,15 +388,15 @@ where $T_f$ is the bundle of	tangents along the fibers of $f$ and $X^{-T_f}$, gi
 \begin{remark}
 	Let us justify this notation. Let $X \to BO(d)$ be the classifying map classifying the tangent bundle (as we have fiber-wise tangent bundles, which assemble into a map). Then we get the induced map 
 	\[ X \to BO(d) \xrightarrow{ \ J \ }  BGL_1(\bS)\to BGL_1(R) \to \Pic(R)\]
-	where $J$ is the $J$-homomorphism, and here $R$ is an arbitrary ring spectrum, which we want to us as our cohomology coefficients.
+	where $J$ is the $J$-homomorphism, and here $R$ is an arbitrary ring spectrum, which we want to use as our cohomology coefficients.
 \end{remark}
 
 These computations give us the \emph{Pontryagin-Thom transfer map}:
 
-\[ PT(f)\colon \Sigma^\infty_+ B \to X^{-T_f} \]
+\[ PT(f)\colon \Sigma^\infty_+ B \to X^{-T_f} .\]
 
 Now, given a choice of $R$-orientation, we get a Thom isomorphism
-\[ R^*(\Sigma^\infty_)+ X \xrightarrow{ \ \simeq \ } R^{* - d}(X^{-T_f})\]
+\[ R^*(\Sigma^\infty_+X) \xrightarrow{ \ \simeq \ } R^{* - d}(X^{-T_f})\]
 
 We now have the following definition.
 
@@ -412,7 +409,7 @@ Here it is called the Umkehr map, as it goes the other way from the regular map 
 Recall here the following definition of orientation that we used here. 
 
 \begin{definition}
-	Given a twist $\alpha X \to \Line_R$, an orientation of $X^\alpha$, is a lift 
+	Given a twist $\alpha\colon X \to \Line_R$, an orientation of $X^\alpha$, is a lift 
 	\[ 
 	\begin{tikzcd}
 		& \triv_R \arrow[d, "\pi"] \\ 
@@ -425,7 +422,7 @@ We now define a twisted variant of the Umkehr map.
 
 Given a twist $\alpha\colon B \to \Pic_R$, we can smash to get a map 
 \[\bS_B \wedge_B \alpha \to D_BX \wedge \alpha \]
-The left hand side will be $B^\alpha$. The right hand side is equivalent to $X^{-T_f + \alpha f}$, where $\alpha f$ is the composition of $\alpha$ and $f\colon X \to B$.
+The left hand side will compute to $B^\alpha$. The right hand side is equivalent to $X^{-T_f + \alpha f}$, where $\alpha f$ is the composition of $\alpha$ and $f\colon X \to B$.
 
 Now again assuming we have a chosen an $R$-orientation of $T_f$, we get a Thom isomorphism
 \[ R^{* + d}(X) \simeq R^*(X^{-T_f + \alpha f}), \]
@@ -437,7 +434,7 @@ Let us look at some examples. Assume the following diagram commutes:
 
 \[ 
 \begin{tikzcd}
- X \arrow[r, "-T_f"] & \Pic_\bS \arrow[d] \\ 
+ X \arrow[r, "-T_f"] \arrow[d] & \Pic_\bS \arrow[d] \\ 
 	B \arrow[r, "\alpha"] & \Pic_R 
 \end{tikzcd}
 \]
