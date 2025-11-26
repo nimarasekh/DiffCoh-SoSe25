@@ -196,6 +196,7 @@ Let us note an alternative characterization that will be important later.
 		\item $GL_1(R)$ is equivalent to the fiber of $\pi$ over $R\in\Line_R$ and acts freely on the fibers of $\pi$. 
 \end{enumerate}These observations imply $\Line_R$ is the classifying space for $GL_1(R)$-bundles. Here we use the term $GL_1(R)$-bundle to mean a parametrized family of $GL_1(R)$-spaces with a free and transitive action. 
 \end{remark}
+
 We now proceed to define twisted cohomology theories.
 
 \begin{definition}[{Twisted cohomology}] \label{def:twistedcohomology}
@@ -207,14 +208,21 @@ We now proceed to define twisted cohomology theories.
 	\[ R^n_f(X) \coloneqq \pi_0(\Map_{\Mod_R}(Mf, \Sigma^n R)) \cong \pi_{-n}(\Map_{\Mod_R(X)}(f,R_X)). \]Similarly, the $f$-twisted $R$-homology groups of $X$ are defined as the homotopy groups of $R^f(X)$, i.e. 
 	\[ R_n^f(X) \coloneqq \pi_0(\Map_{\Mod_R}(\Sigma^n R, Mf)) \cong \pi_n(Mf). \]
 \end{definition}
+
 \begin{example}[Trivial twist] If $f:X\to \Line_R$ factors through $*$, then $f$ factors as the $X^{op}\to*\to\sS$, the constant factor with value $*$, and $R\wedge\Sigma^\infty_+(-):\sS\to\Mod_R$. The latter functor commutes with colimits, being a left adjoint, while the colimit of the latter is $X$ itself, then $Mf\simeq R\wedge\Sigma^\infty_+X$. In particular, $f$-twisted $R$-cohomology and $R$-homology of $X$ reduce to ordinary (untwisted) $R$-cohomology and $R$-homology of $X$. 
 \end{example}
+
 \begin{definition}
 	Given a vector bundle $\pi:E\to B$, define the \emph{Thom space} of $\pi$, denoted $\Th(E)$, to be the homotopy cofiber of $E_0\subseteq E$, where $E_0$ is the complement of the zero section. 
 \end{definition}
+
+\section{Examples of Twisted Cohomology}
+We now proceed to analyze several examples of twisted cohomology	theories. This requires some preliminary lemmas.
+
 \begin{lemma}
 	Consider a space $X$ and the $\infty$-categorical Yoneda's embedding $y:X\to\Fun(X^{op},\sS)$. The colimit of $y$ is the terminal pre-sheaf on $X$, i.e. the pre-sheaf with constant value the one-point space. 
 \end{lemma}
+
 \begin{proof}
 	Let $S$ be a pre-sheaf on $X$, consider then the slice category $X_{/S}$ of pairs $(x,\phi)$, where $x$ is an object of $X$ and $\phi:y(x)\to S$. The density theorem for $\infty$-categories states that $S$ is equivalent to the colimit of $X_{/S}\to X\xrightarrow{y}\Fun(X^{op},\sS)$, the first map being the canonical projection. Take $S=*$, then $X_{/*}\to X$ is an equivalence, hence the claim. 
 \end{proof}
@@ -324,6 +332,120 @@ As mentioned in \cref{rmk:extthomspc}, the Thom spectrum functor makes sense for
 \begin{example}
 	Let $f:X^{op}\to\Line_R$ be a twist. Denote by $\Sigma^nf$ the composition of $f$ with the shift functor $\Sigma^n:\Line_R\to\Pic_R$. Since $\Sigma^n$ is an equivalence, it commutes with colimits, so $$M\Sigma^nf\simeq \Sigma^nMf$$If $f=R_X$, then $M\Sigma^nf\simeq \Sigma^nR\wedge\Sigma^\infty_+X$, so  $\Sigma^nf$-twisted $R$-cohomology and $R$-homology correspond to normal $R$-cohomology and $R$-homology with a degree shift by $n$. 
 \end{example}
+
+\section{Umkehr Map}
+We now proceed to the construction of the umkehr map in twisted cohomology theories. Here we follow \cite{abg2018thom} 
+
+\begin{remark}
+	Depending on which cohomological degrees we want, we sometimes use the following alternative definition of	twisted cohomology:
+	\[ R^{* + \alpha}(X) = \pi_*\Map_R(M(\alpha^{-1}), R) \]
+ meaning we use the inverse of $\alpha$ to get a more standard degree convention at the level of actual cohomology groups.
+\end{remark}
+
+For $X$ a space, we will write 
+\[DX \colon = \Map(\Sigma^\infty_+ X, \bS) \]
+for the Spanier-Whitehead dual of $X$. 
+
+We can lift $D$ to a functor 
+\[ D\colon \sS^{op} \to \Sp \]
+Applying $D$ to the unique map $X \to *$	gives a map of spectra
+\[\phi(X)\colon\bS \to DX \]
+and we regard this as a functor 
+\[\phi\colon \sS^{op} \to \Sp_{\bS} \]
+i.e. the induced functor on the slice category. 
+
+Here are some questions:
+\begin{itemize}
+	\item What is the mapping endo-spectrum of $\bS$?
+	\item Is there a map out of $\bS$?
+\end{itemize}
+
+Suppose we are given $f\colon X \to B$, a smooth and proper family of manifolds over $B$, $f^{-1}(b)=X_b$ is a smooth and proper manifold. Where proper means a compact closed manifold. This should vary continuously over $B$ in the sense that $f$ is classified by a functor 
+\[ B \to \Mfd\]
+where $\Mfd$ is the $\infty$-category of smooth and proper manifolds, where the $\infty$-categorical structure is given by the usual topological enrichment.
+
+Given such a functor $F$ we have the composition functor 
+\[ B^{op} \xrightarrow{ \ F^{op} \ } \Mfd^{op} \xrightarrow{ \ BDiff(-)  \ } \sS^{op} \xrightarrow{ \ \phi \ } \Sp_{\bS/},\]
+which is an object in $\Fun(B^{op}, \Sp_{\bS/})$. An object therein is equivalent to a functor $B \to \Sp$ that sits under the constant functor $\bS_B\colon B \to \Sp$	with value $\bS$, meaning we have a natural transformation
+\[\phi_{X/B}\colon \bS_B D_B(X) \]
+This just unwinds to a natural map of spectra 
+\[ \bS \to D(BDiff(X_b))\]
+even though the authors write it as 
+\[ \bS \to D(X_b) \]
+This suggests that the original definition of the functor has issues, which should be fixed later. 
+
+We can now take the left Kan extension along the terminal map $p\colon B \to *$ to get a map of spectra
+\[ p_! \phi_{X/B} \colon p_! \bS_B \to p_! D_B(X) \]
+Using the fact that 
+\[p_!	\bS_B \simeq  p_! p^* \bS_B \simeq \Sigma^\infty_+ B,\] 
+we get a map of spectra
+\[ \Sigma^\infty_+ B \to p_! D_B(X).\]
+On the right hand side 
+\[p_!	D_B(X) \simeq X^{-T_f} \simeq \Sigma^\infty Th (_-T_f)\] 
+where $T_f$ is the bundle of	tangents along the fibers of $f$ and $X^{-T_f}$, giving us the Thom spectrum.
+
+\begin{remark}
+	Here argument involves proving that the classical Thom space $X^{-T_f}$ is equivalent to the colimit of the functor $D_B\colon B \to \Sp$
+\end{remark}
+
+\begin{remark}
+	Let us justify this notation. Let $X \to BO(d)$ be the classifying map classifying the tangent bundle (as we have fiber-wise tangent bundles, which assemble into a map). Then we get the induced map 
+	\[ X \to BO(d) \xrightarrow{ \ J \ }  BGL_1(\bS)\to BGL_1(R) \to \Pic(R)\]
+	where $J$ is the $J$-homomorphism, and here $R$ is an arbitrary ring spectrum, which we want to us as our cohomology coefficients.
+\end{remark}
+
+These computations give us the \emph{Pontryagin-Thom transfer map}:
+
+\[ PT(f)\colon \Sigma^\infty_+ B \to X^{-T_f} \]
+
+Now, given a choice of $R$-orientation, we get a Thom isomorphism
+\[ R^*(\Sigma^\infty_)+ X \xrightarrow{ \ \simeq \ } R^{* - d}(X^{-T_f})\]
+
+We now have the following definition.
+
+\begin{definition}
+	With the assumptions as above, the \emph{Umkehr map} is the map: 
+	\[ R^*(\Sigma^\infty_+ X) \simeq R^{* - d}(X^{-T_f}) \xrightarrow{ \ PT(f)^{* - d} \ } R^{* - d}(\Sigma^\infty_+ B). \]
+\end{definition}
+Here it is called the Umkehr map, as it goes the other way from the regular map $R^*f\colon R^*B \to R^*X$.
+
+Recall here the following definition of orientation that we used here. 
+
+\begin{definition}
+	Given a twist $\alpha X \to \Line_R$, an orientation of $X^\alpha$, is a lift 
+	\[ 
+	\begin{tikzcd}
+		& \triv_R \arrow[d, "\pi"] \\ 
+		X \arrow[r, "\alpha"] \arrow[ur, dashed] & \Line_R 
+	\end{tikzcd}
+	\]
+\end{definition}
+
+We now define a twisted variant of the Umkehr map.
+
+Given a twist $\alpha\colon B \to \Pic_R$, we can smash to get a map 
+\[\bS_B \wedge_B \alpha \to D_BX \wedge \alpha \]
+The left hand side will be $B^\alpha$. The right hand side is equivalent to $X^{-T_f + \alpha f}$, where $\alpha f$ is the composition of $\alpha$ and $f\colon X \to B$.
+
+Now again assuming we have a chosen an $R$-orientation of $T_f$, we get a Thom isomorphism
+\[ R^{* + d}(X) \simeq R^*(X^{-T_f + \alpha f}), \]
+which gives us 
+\[ R^{* + d}(X) \simeq R^*(X^{-T_f + \alpha f}) \to R^*(B^\alpha) = R^{* - \alpha - d} (B)\] 
+This map is called the \emph{twisted Umkehr map}.
+
+Let us look at some examples. Assume the following diagram commutes:
+
+\[ 
+\begin{tikzcd}
+ X \arrow[r, "-T_f"] & \Pic_\bS \arrow[d] \\ 
+	B \arrow[r, "\alpha"] & \Pic_R 
+\end{tikzcd}
+\]
+
+Then we have $X^{-T_f + \alpha f} \simeq \Sigma^\infty_+ X \wedge R$. 
+Then we have an induced map $B^\alpha \to \Sigma^\infty_+ X \wedge R$, but then applying $R^*$ we get the Umkehr map 
+
+\[ R^*(X) \to R^{*- \alpha}(B) \] 
 
 {\footnotesize
  \bibliographystyle{alpha}
