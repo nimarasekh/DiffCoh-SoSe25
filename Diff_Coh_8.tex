@@ -84,6 +84,7 @@
 \newcommand{\ev}{\mathrm{ev}}
 \newcommand{\dis}{\mathrm{dis}}
 \newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\PT}{\mathrm{PT}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -228,7 +229,7 @@ Let $G$ be a topological group and $BG$ the $\infty$-groupoid with a single obje
 \begin{proof}
 	Evaluate at $1$, then $f_!(y(1))=E$, by definition, and $y(1)\simeq G$, as $G$-spaces, hence $(y(1)\times E)/G\simeq(G\times E)/G\simeq E$. Since $f_!$ and $(-\times E)/G$ agree on representables and are colimit-preserving, they are equivalent. 
 \end{proof}
-\begin{example}Take the space $BO(n)$ and $f_n:BO(n)\to\sS_*$ the $n$-sphere $S^n$ with $O(n)$-action coming from the one-point compactification of the regular action on $\bR^n$. Let $\alpha_n=\Sigma^{\infty-n}f_n:BO(n)\to\Sp$, then $\alpha_n(1)=\Sigma^{\infty-n}f_n(1)=\Sigma^{\infty-n}S^n\simeq\bS$, so $\alpha_n$ factors through $\Line_\bS$. Let $X=BO(n)^{op}$ and $p:X\to*$ the terminal functor, then \[M\alpha_n=p_!\Sigma^{\infty-n}f_n\simeq\Sigma^{\infty-n}p_!(f_n)_!y\simeq\Sigma^{\infty-n}(f_n)_!\underbrace{p_!(y)}_{\simeq*}\simeq\Sigma^{\infty-n}(*\times S^n)/O(n)\]
+\begin{example}\label{ex:bundle}Take the space $BO(n)$ and $f_n:BO(n)\to\sS_*$ the $n$-sphere $S^n$ with $O(n)$-action coming from the one-point compactification of the regular action on $\bR^n$. Let $\alpha_n=\Sigma^{\infty-n}f_n:BO(n)\to\Sp$, then $\alpha_n(1)=\Sigma^{\infty-n}f_n(1)=\Sigma^{\infty-n}S^n\simeq\bS$, so $\alpha_n$ factors through $\Line_\bS$. Let $X=BO(n)^{op}$ and $p:X\to*$ the terminal functor, then \[M\alpha_n=p_!\Sigma^{\infty-n}f_n\simeq\Sigma^{\infty-n}p_!(f_n)_!y\simeq\Sigma^{\infty-n}(f_n)_!\underbrace{p_!(y)}_{\simeq*}\simeq\Sigma^{\infty-n}(*\times S^n)/O(n)\]
 Let $P=EO(n)$ be the universal $O(n)$-bundle and $M$ a $O(n)$-space, then $*\times_{O(n)} M$ is modelled by the \emph{strict} quotient $(P\times M)/O(n)$, then \[S^n/O(n)=\mathrm{cofib}(\bR^n_0\subseteq\bR^n)/O(n)\simeq\mathrm{cofib}(\underbrace{*\times_{O(n)}\bR^n_0}_{\simeq E^n_0}\subseteq\underbrace{ *\times_{O(n)}\bR^n}_{\simeq E^n})=\Th(E^n) \]
 where $E^n=P\times_{O(n)}\bR^n\to BO(n)$ is the universal $n$-dimensional vector bundle, hence $M\alpha_n\simeq\Sigma^{\infty-n}\Th(E^n)$. 
 \end{example}
@@ -359,87 +360,107 @@ If $R=\bS$, we denote the duality $D_R$ by simply $D$.
 \begin{definition}
 	Denote by $\widehat{\Mfd}_\infty$ the topological groupoid of closed smooth manifolds and diffeomorphisms. The set of diffeomorphisms are topologized by the weak $C^\infty$ topology, see \cite{hirsch1994differentialtopology}. Let $\Mfd_\infty$ be homotopy coherent nerve of $\widehat{\Mfd}_\infty$. 
 \end{definition}
-Let $B$ be a compact space and $\pi\colon X \to B$ a continuous function such that, for every $b\in B$, the fiber $\pi^{-1}(b)=:X_b$ is equipped with the structure of a closed smooth manifold, which varies continuously in $B$, in the sense of being classified by a functor
+Let $B$ be a connected compact space and $\pi\colon X \to B$ a continuous function such that, for every $b\in B$, the fiber $\pi^{-1}(b)=:X_b$ is equipped with the structure of a closed smooth manifold, which varies continuously in $B$, in the sense of being classified by a functor
 \[f:B \to \Mfd_\infty\]
 Given such a classifying map $f$, consider the following composition \begin{center}
 	\begin{tikzcd}
 		B^{op}\arrow[r] & \Mfd_\infty^{op} \arrow[r] & \sS^{op} \arrow[r,"\phi"] & \bS/\Sp
 	\end{tikzcd}
 \end{center}where the middle functor is the one forgetting the smooth structure. The above composition is then an object of
-\[ \Fun(B^{op},\bS/\Sp) \simeq \bS_B/\Fun(B^{op}, \Sp) \](Recall that $\bS_B$ denotes the constant functor $B^{op}\to\Sp$ with value $\bS$), i.e. it is a natural transformation \[\phi_{X/B}:\bS_B\to D_B(f)\]where $D_B$ denotes the Spanier-Whithead duality applied to (the opposite of) $f:B\to\sS$ point-wise. 
-
-We can now take the left Kan extension along the terminal map $p\colon B \to *$ (i.e. take the colimit of these diagrams), to get a map of spectra
-\[ p_! \phi_{X/B} \colon p_! \bS_B \to p_! D_B(X) \]
-Using the fact that 
-\[p_!	\bS_B \simeq  p_! p^* \bS \simeq \Sigma^\infty_+ B,\] 
-we get a map of spectra
-\[ \Sigma^\infty_+ B \to p_! D_B(X).\]
-On the right hand side 
-\[p_!	D_B(X) \simeq X^{-T_f} \simeq \Sigma^\infty Th (-T_f)\] 
-where $T_f$ is the bundle of	tangents along the fibers of $f$ and $X^{-T_f}$, giving us the Thom spectrum. This last equivalence is a complicated computation.
-
-\begin{remark}
-	Here argument involves proving that the classical Thom space $X^{-T_f}$ is equivalent to the colimit of the functor $D_B(X)\colon B \to \Sp$
-\end{remark}
-
-\begin{remark}
-	Let us justify this notation. Let $X \to BO(d)$ be the classifying map classifying the tangent bundle (as we have fiber-wise tangent bundles, which assemble into a map). Then we get the induced map 
-	\[ X \to BO(d) \xrightarrow{ \ J \ }  BGL_1(\bS)\to BGL_1(R) \to \Pic(R)\]
-	where $J$ is the $J$-homomorphism, and here $R$ is an arbitrary ring spectrum, which we want to use as our cohomology coefficients.
-\end{remark}
-
-These computations give us the \emph{Pontryagin-Thom transfer map}:
-
-\[ PT(f)\colon \Sigma^\infty_+ B \to X^{-T_f} .\]
-
-Now, given a choice of $R$-orientation, we get a Thom isomorphism
-\[ R^*(\Sigma^\infty_+X) \xrightarrow{ \ \simeq \ } R^{* - d}(X^{-T_f})\]
-
-We now have the following definition.
-
-\begin{definition}
-	With the assumptions as above, the \emph{Umkehr map} is the map: 
-	\[ R^*(\Sigma^\infty_+ X) \simeq R^{* - d}(X^{-T_f}) \xrightarrow{ \ PT(f)^{* - d} \ } R^{* - d}(\Sigma^\infty_+ B). \]
-\end{definition}
-Here it is called the Umkehr map, as it goes the other way from the regular map $R^*f\colon R^*B \to R^*X$.
-
-Recall here the following definition of orientation that we used here. 
-
-\begin{definition}
-	Given a twist $\alpha\colon X \to \Line_R$, an orientation of $X^\alpha$, is a lift 
-	\[ 
+\[ \Fun(B^{op},\bS/\Sp) \simeq \bS_B/\Fun(B^{op}, \Sp) \]i.e. it is a natural transformation \[\phi_{X/B}:\bS_B\to D_B(f)\]where $D_B$ denotes the Spanier-Whithead duality applied to (the opposite of) $f:B\to\sS$ point-wise. Let $p:B\to *$ be the terminal functor and $p_!:\Fun(B^{op},\Sp)\to\Sp$ the left Kan extension along $p$, i.e. the colimit functor. Applying $p_!$ to $\phi_{X/B}$, we obtain a morphism of spectra \begin{equation}\label{eq:thom}
 	\begin{tikzcd}
-		& \triv_R \arrow[d, "\pi"] \\ 
-		X \arrow[r, "\alpha"] \arrow[ur, dashed] & \Line_R 
+		\Sigma_+^\infty B\simeq p_!p^*\bS=p_!\bS_B \arrow[rr,"p_!(\phi_{X/B})"] & & p_!D_B(f)
 	\end{tikzcd}
-	\]
+\end{equation}
+Let $T_{X/B}\to X$ be the vector bundle of fiber-wise tangent vectors, classified by $X^{op}\to BO(n)$, where $n$ is the manifold dimension of the fibers\footnote{$B$ is connected, so the fibers have constant dimension.}. Denote by $\alpha$ the composition \begin{equation}\label{eq:alpha}
+	\begin{tikzcd}
+		X^{op}\arrow[r,"T_{X/B}"] & BO(n) \arrow[r] & \sS_* \arrow[r,"\Sigma^\infty"] & \Sp
+	\end{tikzcd}
+\end{equation}the middle arrow being the $n$-sphere $S^n$ with $O(n)$-action coming from the one-point compactification of the regular action on $\bR^n$. The above diagram takes values in the Picard $\infty$-groupoid of the sphere spectrum. 
+\begin{theorem}\label{thm:pontry}
+	$p_!D_B(f)\simeq M(-\alpha)=:X^{-T_{X/B}}$.
+\end{theorem}
+\begin{definition}
+	The morphism 
+	\begin{center}
+		\begin{tikzcd}
+		\PT(f):\Sigma^{\infty}_+B\arrow[r] & X^{-T_{X/B}}	
+		\end{tikzcd}
+	\end{center}
+	is called \emph{Pontryagin-Thom transfer map}. 
 \end{definition}
 
-We now define a twisted variant of the Umkehr map.
-
-Given a twist $\alpha\colon B \to \Pic_R$, we can smash to get a map 
-\[\bS_B \wedge_B \alpha \to D_BX \wedge \alpha \]
-The left hand side will compute to $B^\alpha$. The right hand side is equivalent to $X^{-T_f + \alpha f}$, where $\alpha f$ is the composition of $\alpha$ and $f\colon X \to B$.
-
-Now again assuming we have a chosen an $R$-orientation of $T_f$, we get a Thom isomorphism
-\[ R^{* + d}(X) \simeq R^*(X^{-T_f + \alpha f}), \]
-which gives us 
-\[ R^{* + d}(X) \simeq R^*(X^{-T_f + \alpha f}) \to R^*(B^\alpha) = R^{* - \alpha - d} (B)\] 
-This map is called the \emph{twisted Umkehr map}.
-
-Let us look at some examples. Assume the following diagram commutes:
-
-\[ 
-\begin{tikzcd}
- X \arrow[r, "-T_f"] \arrow[d] & \Pic_\bS \arrow[d] \\ 
-	B \arrow[r, "\alpha"] & \Pic_R 
-\end{tikzcd}
-\]
-
-Then we have $X^{-T_f + \alpha f} \simeq \Sigma^\infty_+ X \wedge R$. 
-Then we have an induced map $B^\alpha \to \Sigma^\infty_+ X \wedge R$, but then applying $R^*$ we get the Umkehr map 
-
-\[ R^*(X) \to R^{*- \alpha}(B) \] 
+Consider now a general situation. Let $R$ be a ring spectrum and $\alpha:X^{op}\to\Line_R$ a $R$-line bundle. 
+\begin{definition}
+	An \emph{orientation} of $M\alpha$ is lift 
+	\begin{center}
+		\begin{tikzcd}
+			& *\arrow[d]\\
+			X^{op}\arrow[r,"\alpha"']\arrow[ru,dashed] & \Line_R
+		\end{tikzcd}
+	\end{center}Explicitly, it is an equivalence of $R_X$-modules $\alpha\to R_X$. 
+\end{definition}
+Applying $p_!$, we see that an equivalence $t:\alpha\to R_X$ induces an equivalence
+\begin{center}
+	\begin{tikzcd}
+		M\alpha\arrow[r,"p_!(t)"] & R\wedge\Sigma^{\infty}_+X
+	\end{tikzcd}
+\end{center}In our case, $\alpha$ in \cref{eq:alpha} is not valued in $\Line_\bS$, but $\Sigma^{-n}\alpha$ is. An orientation of $\Sigma^{-n}\alpha$ induces an equivalence \begin{equation}\label{eq:thomiso}
+	\begin{tikzcd}
+		\Sigma^{-n}M\alpha\arrow[r,"\simeq"] & R\wedge\Sigma^{\infty}_+X
+	\end{tikzcd}
+\end{equation}
+\begin{definition}
+	The isomorphism in cohomology induced by \cref{eq:thomiso} is called \emph{Thom isomorphism}. 
+\end{definition}
+Finally, we have the following definition:
+\begin{definition}
+	Assuming $\Sigma^{-n}\alpha:X^{op}\to\Line_R$ is orientable, the \emph{Umkehr map} is the map: 
+	\begin{center}
+		\begin{tikzcd}
+			R^*(\Sigma^\infty_+X)\arrow[rr,"\text{Thom iso.}"] & & R^{*-n}(X^{-T_{X/B}}) \arrow[rr,"\PT(f)^{*-n}"] & & R^{*-n}(\Sigma^{\infty}_+B)
+		\end{tikzcd}
+	\end{center}
+\end{definition}
+\begin{remark}
+	The name \emph{Umkehr} comes from the map going in the opposite direction to $R^*(\Sigma^\infty_+X)\to R^*(\Sigma^\infty_+B)$, given by pulling back along $\pi$. 
+\end{remark}
+We now introduce the \emph{twisted Umkehr map}. Given a twist $\beta\colon B^{op} \to \Pic_R$, we can smash to get a map 
+\begin{center}
+	\begin{tikzcd}
+		\beta\simeq\bS_B\wedge_B\beta \arrow[r] & D_B(f)\wedge_B\beta
+	\end{tikzcd}
+\end{center}
+Applying the functor $p_!$ once again, we obtain a morphism \begin{center}
+	\begin{tikzcd}
+		M\beta \arrow[r] & p_!(D_B(f)\wedge_B\beta)\simeq X^{-T_f+\beta\pi}
+	\end{tikzcd}
+\end{center}
+where $\beta\pi:X^{op}\to\Pic_R$ is the composition of $\pi$ and the twist $\beta$.
+\begin{remark}
+	The \emph{twisted Pontryagin-Thom transfer map} is the morphism:
+	\begin{center}
+		\begin{tikzcd}
+			\PT(f,\beta):M\beta\arrow[r] & X^{-T_f+\beta\pi} 
+		\end{tikzcd}
+	\end{center} If $X^{-T_{X/B}}$ is orientable, as before, there is a \emph{twisted Thom isomorphism} \begin{center}
+		\begin{tikzcd}
+			R^{*-\beta\pi}(X)\arrow[r,"\simeq"] & R^{*-n-\beta\pi}(X)
+		\end{tikzcd}
+	\end{center}The \emph{twisted Umkehr map} is the map of twisted cohomology groups induced by $\PT(f,\beta)$. 
+\end{remark}
+\begin{example}
+	Assume that $X^{-T_{X/B}+\beta\pi}$ is orientable, i.e. the following diagram commutes \begin{center} 
+		\begin{tikzcd}
+			X \arrow[r, "-T_f"] \arrow[d] & \Pic_\bS \arrow[d] \\ 	B \arrow[r, "\alpha"] & \Pic_R 
+		\end{tikzcd}
+	\end{center}then $X^{-T_{X/B}+\beta\pi}\simeq R\wedge\Sigma^\infty_+X$ and the twisted Umkehr map becomes:
+	\begin{center}
+		\begin{tikzcd}
+			R^*(\Sigma^\infty_+X)\arrow[r] & R^{*-\beta}(B)
+		\end{tikzcd}
+	\end{center}
+\end{example}
 
 {\footnotesize
  \bibliographystyle{alpha}
