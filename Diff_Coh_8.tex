@@ -136,7 +136,7 @@ Let $R$ be a ring spectrum, meaning a monoid object in the $\infty$-category of 
 Note we have an adjunction diagram 
 \[
 \begin{tikzcd}[column sep = 2cm]
-\Sp \arrow[r, shift left=1.8, "R \wedge -", "\bot"'] & \Mod_R \arrow[l, shift left=1.8, "{\Hom_R(R,-)}"]
+\Sp \arrow[r, shift left=1.8, "R \wedge -", "\bot"'] & \Mod_R \arrow[l, shift left=1.8, "{\Map_{\Mod_R}(R,-)}"]
 \end{tikzcd}, 
 \]
 where the right adjoint is in fact the forgetful functor. This in particular means $\Mod_R$  has a distinguished object $R$ i.e. the free $R$-module of rank $1$. We now refine these constructions. 
@@ -147,7 +147,7 @@ where the right adjoint is in fact the forgetful functor. This in particular mea
 \begin{definition}
 	Let $\Line_R$ be the full sub-$\infty$-groupoid of $\Mod_R$ spanned by the $R$-lines.
 \end{definition}
-By construction, $\Line_R$ is equivalent to the category with a single object $R$ and hom-space $GL_1R$, the $\infty$-group of $R$-linear automorphisms of $R$. Notice that $GL_1(R)\subseteq\Hom_{\Mod_R}(R,R)\simeq\Hom(\bS,R)=\Omega^\infty R$. 
+By construction, $\Line_R$ is equivalent to the category with a single object $R$ and hom-space $GL_1R$, the $\infty$-group of $R$-linear automorphisms of $R$. Notice that $GL_1(R)\subseteq\Map_{\Mod_R}(R,R)\simeq\Map(\bS,R)=\Omega^\infty R$. 
 \begin{lemma}\label{lem:units}
 	$GL_1(R)$ fits into the pullback square
 	\begin{center}
@@ -158,7 +158,7 @@ By construction, $\Line_R$ is equivalent to the category with a single object $R
 	\end{center}In particular, the inclusion $GL_1(R)\to\Omega^\infty R$ induces an isomorphism on $n$-homotopy groups, for all $n\geq1$. 
 \end{lemma}
 \begin{proof}
-	$\pi_0(R)\simeq\Hom_{\Ho\Mod_R}(R,R)$, where $\Ho\Mod_R$ is the homotopy category of $R$-modules, the right-vertical arrow corresponds to $\Hom_{\Mod_R}(R,R)\to\Hom_{\Ho\Mod_R}(R,R)$ mapping a morphism to its homotopy class, and $\pi_0(R)^\times\subseteq\Hom_{\Ho\Mod_R}(R,R)$ is the set of isomorphisms. Finally, a morphism in a $\infty$-category $\sC$ is an equivalence if and only if its homotopy class is an isomorphism in $\Ho\sC$. 
+	$\pi_0(R)\simeq\Map_{\Ho\Mod_R}(R,R)$, where $\Ho\Mod_R$ is the homotopy category of $R$-modules, the right-vertical arrow corresponds to $\Map_{\Mod_R}(R,R)\to\Map_{\Ho\Mod_R}(R,R)$ mapping a morphism to its homotopy class, and $\pi_0(R)^\times\subseteq\Map_{\Ho\Mod_R}(R,R)$ is the set of isomorphisms. Finally, a morphism in a $\infty$-category $\sC$ is an equivalence if and only if its homotopy class is an isomorphism in $\Ho\sC$. 
 \end{proof}
 \begin{definition}
 	Let $X$ be a space. Denote by $\Mod_R(X)$ the $\infty$-category of $R$-module spectra parametrized over $X$, i.e. the functor category $\Fun(X^{op},\Mod_R)$.
@@ -255,7 +255,7 @@ Let $R$ be a ring in sets, then $R$ is a $A_\infty$-ring spectrum (actually, $E_
 \end{example}
 Given $f:X^{op}\to\Line_R$ and a sequence $F\xrightarrow{i} X\xrightarrow{\pi} Y$, there is an induced sequence of Thom $R$-module spectra $MF\to MX\to MY$. If $\pi i$ factors through the point, $MF\simeq R\wedge\Sigma^\infty_+F$. 
 \begin{lemma}\label{lem:adj}
-	Let $R$ be a ring spectrum and $X$ a connected monoidal $\infty$-groupoid, then \[\Hom_{\Mon(\Sp)}(\Sigma^{\infty}_+X,R)\simeq\Hom_{\Mon(\sS)}(X,GL_1(R))\] 
+	Let $R$ be a ring spectrum and $X$ a connected monoidal $\infty$-groupoid, then \[\Map_{\Mon(\Sp)}(\Sigma^{\infty}_+X,R)\simeq\Map_{\Mon(\sS)}(X,GL_1(R))\] 
 \end{lemma}
 \begin{proof}
 	Since $X$ is connected, the space of homomorphisms $X\to GL_1(R)$ is equivalent to the space of homomorphisms $X\to\Omega^\infty R$, then use that $(\Sigma^\infty,\Omega^\infty)$ is a monoidal adjunction (The monoidal structure on spectra is such that $\Sigma^\infty$ is strong monoidal). 
@@ -264,7 +264,7 @@ Given $f:X^{op}\to\Line_R$ and a sequence $F\xrightarrow{i} X\xrightarrow{\pi} Y
 	Notice that we can weaken the result. Namely, if $X$ is 1-connected (pointed and connected), then the space of functors (of $\infty$-groupoids) $X\to GL_1(R)$ is equivalent to the space of functors $X\to\Omega^\infty R$ such that $*\to X\to\Omega^\infty R$ is an equivalence. This last space is equivalent, via the $(\Sigma^\infty_+,\Omega^\infty)$ adjunction, to the space of morphisms of spectra $\Sigma^\infty_+X\to R$, such that $\bS\to\Sigma^\infty_+X\to R$ represents a unit in $\pi_0(R)$.
 \end{remark}
 \begin{remark}\label{rmk:strengthen}
-	Notice that we can also strengthen the result. Namely, if $X$ is a connected, commutative monoid object and $R$ is a commutative ring spectrum, then $\Omega^\infty R$ and $GL_1(R)$ are also commutative monoid objects. Using the same argument, together with the fact that $(\Sigma^\infty,\Omega^\infty)$ is actually a \emph{symmetric} monoidal adjunction, we conclude that \[\Hom_{\CMon(\Sp)}(\Sigma^\infty_+X,R)\simeq\Hom_{\CMon(\sS)}(X,GL_1(R))\] 
+	Notice that we can also strengthen the result. Namely, if $X$ is a connected, commutative monoid object and $R$ is a commutative ring spectrum, then $\Omega^\infty R$ and $GL_1(R)$ are also commutative monoid objects. Using the same argument, together with the fact that $(\Sigma^\infty,\Omega^\infty)$ is actually a \emph{symmetric} monoidal adjunction, we conclude that \[\Map_{\CMon(\Sp)}(\Sigma^\infty_+X,R)\simeq\Map_{\CMon(\sS)}(X,GL_1(R))\] 
 \end{remark}
 \begin{remark}\label{rmk:moncat}
 	Let $\D$ be a monoidal $\infty$-category. Consider $\cat_\infty/\D$, the $\infty$-category of functors into $\D$, with monoidal structure given by \begin{center}
@@ -309,14 +309,17 @@ Let us go down one step in the chromatic ladder.
 \section{Twists via Picard Groupoids and Grading}
 This section requires some some further details. Up until now we defined everything via $\Line_R$, however for many applications we need to work with $\Pic_R$ instead.
 \begin{definition}
-	Given a monoidal $\infty$-category $(\sC,\otimes,1)$, an object $M$ is \emph{invertible} if there is an object $D$ such that $D\otimes M\simeq M\otimes D\simeq 1$. The \emph{Picard $\infty$-groupoid} of $\sC$ is the sub-$\infty$-groupoid generated by invertible modules. 
+	Given a monoidal $\infty$-category $(\sC,\otimes,1)$, an object $M$ is \emph{invertible} if there is an object $N$ such that $N\otimes M\simeq M\otimes N\simeq 1$. The \emph{Picard $\infty$-groupoid} of $\sC$ is the sub-$\infty$-groupoid generated by invertible modules. 
+\end{definition}
+\begin{remark}\label{rmk:dualinver}
+	A monoidal category $(\sC,\otimes,1)$ is \emph{closed} if, for every object $M$, the \emph{left tensoring with $M$} functor $M^\otimes:\sC\to\sC$ admits a right adjoint $F(M,-)$. If $M$ is invertible, with inverse $N$, then $M^\otimes$ is an equivalence with $N^\otimes$ as inverse. In particular, we can promote $(M^\otimes,N^\otimes)$ to an adjoint equivalence. By uniqueness of adjoint functors $F(M,-)\simeq N^\otimes$, and so \[N\simeq N\otimes1= N^\otimes(1)\simeq F(M,1)=:DM\] 
+\end{remark}
+\begin{definition}
+	Given a closed monoidal category $(\sC,\otimes,1)$, the functor $D:=F(-,1):\sC^{op}\to\sC$ will be called \emph{duality}. Given an object $M$, the object $DM$ is called the \emph{dual of $M$}. 
 \end{definition}
 \begin{definition}
-If $R$ is a ring spectrum, $\Mod_R$ is monoidal. Denote by $\Pic_R$ the Picard groupoid of $\Mod_R$. 	
+If $R$ is a ring spectrum, $\Mod_R$ is closed monoidal. Denote by $\Pic_R$ the Picard $\infty$-groupoid of $\Mod_R$. 
 \end{definition}
-\begin{remark}
-	$\Pic_R$ splits as the disjoint union of $\pi_0(\Pic_R)$-many sub-groupoids. Moreover, if $M\simeq N$, then $R\simeq M^{-1}\otimes N$, so $M^{-1}\otimes N$ is a $R$-line. In particular, every connected component of $\Pic_R$ is equivalent to $\Line_R$, so $\Pic_R\simeq\pi_0(\Pic_R)\times\Line_R$. However, this is not a monoidal equivalence for general ring spectra.  
-\end{remark}
 \begin{remark}
 	$\Sigma^nR$ is invertible, with inverse $\Sigma^{-n}R$. In particular, there is a map $\bZ\times\Line_R\to\Pic_R$. However, this map need not be neither injective (if $R$ is $n$-periodic), nor surjective (see \cite{hill2011tmf}). 
 \end{remark}
@@ -329,55 +332,54 @@ As mentioned in \cref{rmk:extthomspc}, the Thom spectrum functor makes sense for
 \end{example}
 
 \section{Umkehr Map}
-We now proceed to the construction of the umkehr map in twisted cohomology theories. Here we follow \cite{abg2018thom} 
+We now proceed to the construction of the umkehr map in twisted cohomology theories. Here we follow \cite{abg2018thom}. Let $R$ be a ring spectrum, denote by $D_R$ the duality of $\Mod_R$. Given a invertible $R$-twist $\alpha:X^{op}\to\Pic_R$, denote by $D_R\alpha$ the post-composition of $\alpha^{op}$ with $D_R$.
 
-\begin{remark}
-	Depending on which cohomological degrees we want, we sometimes use the following alternative definition of	twisted cohomology:
-	\[ R^{* + \alpha}(X) = \pi_*\Map_R(M(\alpha^{-1}), R) \]
- meaning we use the inverse of $\alpha$ to get a more standard degree convention at the level of actual cohomology groups.
+\begin{remark} Depending on which cohomological degrees we want, we sometimes use the following alternative definition of	twisted cohomology:
+	\[ R^{\alpha}(X) =\pi_0\Map_{\Mod_R}(M(D_R\alpha), R) \]
+ meaning we use the dual/inverse of $\alpha$. To justify the use of $D_R\alpha$, consider the following: Let $\beta=D_R\alpha$, then
+ \[\Map_{\Mod_R}(M\beta,R)\simeq\Map_{\Mod_{R}(X)}(D_R\alpha,R_X)\simeq\Map_{\Mod_R(X)}(R_X,\alpha\otimes_{R_X}R_X)\simeq\Map_{\Mod_R(X)}(R_X,\alpha)\]The second equivalence is a consequence of the fact that, if $M$ be an invertible $R$-module, left tensoring with $M$ is left adjoint to tensoring with $D_RM$, and $D_RD_RM\simeq M$, see \cref{rmk:dualinver}. If we think of $\alpha$ as a bundle of invertible $R$-modules over $X$, then $\Map_{\Mod_R(X)}(R_X,\alpha)$ is the spectrum of global sections of $\alpha$, which aligns with the idea that {twisted cohomology is the homotopy groups of the global sections of a bundle of spectra}. 
 \end{remark}
-
-For $X$ a space, we will write 
-\[DX \coloneqq \Map(\Sigma^\infty_+ X, \bS) \]
-for the Spanier-Whitehead dual of $X$. Notice $D$ is evidently given as the composition functor 
-\[ D\colon \sS^{op}  \xrightarrow{ \ \Sigma^\infty_+ \ } \Sp^{op} \xrightarrow{ \ \Map(-,\bS) \ } \Sp. \]
-Applying $D$ to the unique map $X \to *$	gives a map of spectra
-\[\phi(X)\colon\bS \to DX \]
-and we regard this as a functor 
-\[\phi\colon \sS^{op} \to \Sp_{\bS/} \]
-i.e. the induced functor on the slice category. 
-
-As part of this explanation it is helpful to recall the following facts.
-
-\begin{remark}
-	Given a spectrum $E$, the mapping spectrum $\Map(\bS,E)$	is equivalent to $E$ itself. This is because $\bS$ is the unit for the smash product of spectra, and the mapping spectrum from the unit to any spectrum recovers that spectrum. In particular $\Map(\bS,\bS) \simeq \bS$.
+If $R=\bS$, we denote the duality $D_R$ by simply $D$. 
+\begin{definition}
+	The \emph{Spanier-Whitehead dual} of a space $X$ is the dual spectrum of $\Sigma^\infty_+X$ with respect to the sphere spectrum.
+\end{definition}
+\begin{remark}\label{rmk:monunit}
+	Recall that $\Sp$ is a closed symmetric monoidal category, with $\Map(E,-)$ being the right adjoint to the functor given by smash product with $E$. Let $(\sC,\otimes,1)$ a closed monoidal category, where $F(X,-)$ is the right adjoint to the functor given by left tensoring with $X$, then \[\Map_\sC(-,F(1,E))\simeq\Map_\sC(1\otimes-,E)\simeq\Map_\sC(-,E)\]Using Yoneda's lemma, we conclude that $E\simeq F(1,E)$, for all $E$. 
 \end{remark}
-
-Suppose we are given $f\colon X \to B$, a smooth and proper family of manifolds over $B$, $f^{-1}(b)=X_b$ is a smooth and proper manifold. Where proper means a compact closed manifold. This should vary continuously over $B$ in the sense that $f$ is classified by a functor 
-\[ B \to \Mfd\]
-where $\Mfd$ is the $\infty$-category of smooth and proper manifolds, where the $\infty$-categorical structure is given by the usual topological enrichment. Notice it comes with an evident forgetful functor to $\sS$, the $\infty$-category of spaces (i.e. $\infty$-groupoids).
-
-Given such a functor $F$ we have the composition functor 
-\[ B^{op} \xrightarrow{ \ F^{op} \ } \Mfd^{op} \to \sS^{op} \xrightarrow{ \ \phi \ } \Sp_{\bS/},\]
-which is an object in $\Fun(B^{op}, \Sp_{\bS/})$. Notice, there is an evident equivalence of $\infty$-categories
-\[ \Fun(B^{op}, \Sp_{\bS/}) \simeq (\Fun(B^{op}, \Sp))_{\bS_B/} \]
-where $\bS_B$ is the constant functor with value $\bS$. Thus, our composition above, corresponds to a natural transformation
-\[\phi_{X/B}\colon \bS_B \to D_B(X) \]
-This just unwinds to a natural map of spectra 
-\[ \bS \to D(X_b) \]
+\begin{example}
+	By \cref{rmk:monunit}, the Spanier-Whitehead dual to $*$ is the sphere spectrum, since \[D*=\Map(\Sigma^\infty_+*,\bS)=\Map(\Sigma^\infty S^0,\bS)=\Map(\bS,\bS)\simeq\bS\]
+\end{example}
+\begin{definition}
+	Denote by $\phi$ the functor $\sS^{op}\to\bS/\Sp$ from spaces to the category of spectra under $\bS$, mapping $X$ to the map of spectra \begin{center}
+		\begin{tikzcd}
+			\phi(X):\bS\simeq D*\arrow[r,"Dp"] & DX
+		\end{tikzcd}
+	\end{center}where $p$ is the terminal map $X\to *$.
+\end{definition} 
+\begin{definition}
+	Denote by $\widehat{\Mfd}_\infty$ the topological groupoid of closed smooth manifolds and diffeomorphisms. The set of diffeomorphisms are topologized by the weak $C^\infty$ topology, see \cite{hirsch1994differentialtopology}. Let $\Mfd_\infty$ be homotopy coherent nerve of $\widehat{\Mfd}_\infty$. 
+\end{definition}
+Let $B$ be a compact space and $\pi\colon X \to B$ a continuous function such that, for every $b\in B$, the fiber $\pi^{-1}(b)=:X_b$ is equipped with the structure of a closed smooth manifold, which varies continuously in $B$, in the sense of being classified by a functor
+\[f:B \to \Mfd_\infty\]
+Given such a classifying map $f$, consider the following composition \begin{center}
+	\begin{tikzcd}
+		B^{op}\arrow[r] & \Mfd_\infty^{op} \arrow[r] & \sS^{op} \arrow[r,"\phi"] & \bS/\Sp
+	\end{tikzcd}
+\end{center}where the middle functor is the one forgetting the smooth structure. The above composition is then an object of
+\[ \Fun(B^{op},\bS/\Sp) \simeq \bS_B/\Fun(B^{op}, \Sp) \](Recall that $\bS_B$ denotes the constant functor $B^{op}\to\Sp$ with value $\bS$), i.e. it is a natural transformation \[\phi_{X/B}:\bS_B\to D_B(f)\]where $D_B$ denotes the Spanier-Whithead duality applied to (the opposite of) $f:B\to\sS$ point-wise. 
 
 We can now take the left Kan extension along the terminal map $p\colon B \to *$ (i.e. take the colimit of these diagrams), to get a map of spectra
 \[ p_! \phi_{X/B} \colon p_! \bS_B \to p_! D_B(X) \]
 Using the fact that 
-\[p_!	\bS_B \simeq  p_! p^* \bS_B \simeq \Sigma^\infty_+ B,\] 
+\[p_!	\bS_B \simeq  p_! p^* \bS \simeq \Sigma^\infty_+ B,\] 
 we get a map of spectra
 \[ \Sigma^\infty_+ B \to p_! D_B(X).\]
 On the right hand side 
-\[p_!	D_B(X) \simeq X^{-T_f} \simeq \Sigma^\infty Th (_-T_f)\] 
+\[p_!	D_B(X) \simeq X^{-T_f} \simeq \Sigma^\infty Th (-T_f)\] 
 where $T_f$ is the bundle of	tangents along the fibers of $f$ and $X^{-T_f}$, giving us the Thom spectrum. This last equivalence is a complicated computation.
 
 \begin{remark}
-	Here argument involves proving that the classical Thom space $X^{-T_f}$ is equivalent to the colimit of the functor $D_B\colon B \to \Sp$
+	Here argument involves proving that the classical Thom space $X^{-T_f}$ is equivalent to the colimit of the functor $D_B(X)\colon B \to \Sp$
 \end{remark}
 
 \begin{remark}
