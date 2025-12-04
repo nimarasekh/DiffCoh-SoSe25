@@ -1,0 +1,300 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\fO}{\mathbf{O}}
+\newcommand{\rO}{\mathscr{O}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\bQ}{\mathbb{Q}}
+
+\newcommand{\aff}{\mathrm{Aff}}
+\newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\tmf}{\mathrm{tmf}}
+\newcommand{\TMF}{\mathrm{TMF}}
+\newcommand{\Tmf}{\mathrm{Tmf}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\curv}{\mathrm{curv}}
+\newcommand{\CS}{\mathrm{CS}}
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\dKU}{\smash{\widehat{ku}}}
+\newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
+\renewcommand{\sp}{\mathrm{sp}}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\uMap}{\underline{\mathrm{Map}}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ho}{\mathrm{ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\CMon}{\mathrm{CMon}}
+\newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
+\newcommand{\fib}{{\normalfont\texttt{fib}}}
+\newcommand{\cofib}{{\normalfont\texttt{cofib}}}
+\newcommand{\Bun}{{\normalfont\texttt{Bun}}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathscr{C}\mathrm{h}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Line}{\mathscr{L}\mathrm{ine}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grpd}{\mathscr{G}\mathrm{rpd}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Vect}{\mathscr{V}\mathrm{ect}}
+\newcommand{\Mod}{\mathscr{M}\mathrm{od}}
+\newcommand{\Proj}{\mathscr{P}\mathrm{roj}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\Pic}{\mathscr{P}\mathrm{ic}}
+\newcommand{\triv}{\mathscr{T}\mathrm{riv}}
+\newcommand{\aut}{\mathrm{Aut}}
+\newcommand{\Th}{\mathrm{Th}}
+\newcommand{\fr}{\mathrm{Fr}}
+\newcommand{\Arr}{\mathrm{Arr}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\PT}{\mathrm{PT}}
+\newcommand{\Fred}{\mathcal{F}\mathrm{red}}
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\const}{\mathrm{const}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[equation]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[equation]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+% \newtheorem{queone}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
+
+\title{Differential Cohomology Seminar 9}
+\date{03.12.2025}
+\author{Talk by Alessandro Nanto}
+
+\begin{document}
+\maketitle
+
+The goal of this talk is to compare different models of twisted $K$-theory. Concretely, we learn about the comparison between the original approach to twisted $K$-theory by Atiyah--Segal \cite{atiyahsegal2004twistedktheory} and the modern approach in \cite{abghr2014infty} that builds on the abstract approach to twisted cohomology via $\infty$-categorical methods. There is a third approach by Freed--Hopkins--Teleman \cite{freedhopkinsteleman2011loopgroupsi}, that we will not consider here.
+
+\begin{remark}
+	Throughout this talk we adopt the following notational conventions:
+	\begin{itemize}
+		\item For an $\infty$-category $\sC$ and objects $X,Y \in \sC$, we denote by $\Map_{\sC}(X,Y)$ the mapping \emph{space} from $X$ to $Y$ in $\sC$. 
+		\item If an $\infty$-category $\sC$ is enriched over spectra (e.g. if $\sC$ is stable), denote the \emph{mapping	spectrum} from $X$ to $Y$ by $\uMap_{\sC}(X,Y)$. 
+  \item Note, in this case we have the relationship $\Omega^{\infty} \uMap_{\sC}(X,Y) \simeq \Map_{\sC}(X,Y)$, i.e., the underlying space of this mapping spectrum is then equivalent to the mapping space $\Map_{\sC}(X,Y)$.
+	\end{itemize}
+\end{remark}
+
+\section{Reviewing the \texorpdfstring{$\infty$}{oo}-categorical Approach to twisted Cohomology}
+Let us recall the modern approach again. Given a ring spectrum	$R$, one can consider its space of invertible $R$-modules $\Line_R$. Now, given a space $X$, a twist of $R$ on $X$ is a map $\alpha \colon X \to \Line_R$. Then we define twisted homology as
+\[X^\alpha \coloneq M \alpha = \colim (X \xrightarrow{ \ \alpha \ } \Line_R \to \Mod_R) \]
+where the last map is the inclusion of $\Line_R$ into $\Mod_R$. The $R$-cohomology groups twisted by $\alpha$ are then defined as the homotopy groups of the mapping spectrum $\uMap_R(X^\alpha,  R)$, which is the spectrum given by the mapping spaces of maps from $X^\alpha$ to $\Sigma^n R$	in $\Mod_R$.
+
+\section{The \texorpdfstring{$\infty$}{oo}-categorical Approach to twisted Cohomology via Sections}
+Eventually we want to compare this definition with the classical approach. In this section, as a first step, we translate the definition into a more suitable form via sections, which will then allow us to compare it to the classical approach. 
+
+Recall that the objects in $\Line_R$ are invertible $R$-modules. Let $-\alpha$ denote the map 
+\[ - \alpha\coloneq X \xrightarrow{\alpha} \Line_R \xrightarrow{\inv} \Line_R, \]
+
+We now have the following simple lemma. 
+
+\begin{lemma}
+	Let $M$ be an invertible	$R$-module. Then there is a natural equivalence of mapping spectra
+	\[ \uMap(-M,R) \simeq \uMap(R,M) \] 
+ This in particular means that the inverse of $M$ is given by $\uMap(M,R)$.
+\end{lemma}
+
+\begin{proof}
+ We know that $\uMap(M,-)$ is the right adjoint to $M \otimes_R -$. But $M^{-1} \otimes_R -$ is also a right adjoint to $M \otimes_R -$, so they must be equivalent, meaning $M^{-1} \otimes R \simeq \uMap(M,R)$.  
+\end{proof}
+
+Based on this lemma we have the following chain of equivalences 
+\[ \uMap_R(X^{-\alpha},R) \simeq \uMap(-\alpha,R_X) \simeq \uMap(R_X,\alpha) \]
+Here in the last step we used the previous lemma point-wise. This proves the following proposition.
+
+\begin{proposition}
+	 The twisted $R$-cohomology spectrum twisted by $-\alpha$ is given by the mapping spectrum $\uMap(R_X,\alpha)$.
+\end{proposition}
+
+Let us now recall that every ring spectrum $R$ comes with a unique ring map $\bS \to R$, which induces an adjunction between $\bS$-modules (i.e. spectra) and $R$-modules:
+\[
+\begin{tikzcd}[column sep=2cm]
+	\Mod_{\bS} \arrow[r, shift left=1.8, "R \otimes_{\bS} -", "\bot"'] & \Mod_R \arrow[l, shift left=1.8, "\text{Forget}"]
+\end{tikzcd}.
+\]
+If we apply this adjunction point-wise to $\alpha$ we immediately get the following lemma.
+\begin{lemma}
+	There is an equivalence of mapping spectra \[ \uMap_R(R_X,\alpha) \simeq \uMap(\bS_X,\alpha). \]
+\end{lemma}
+
+Finally, let $\Omega^{\infty-n} \alpha \colon X \to \Line_R \to \sS$ be the composition of $\alpha$ with $\Omega^\infty\colon \Line_R \to \Sp \to \sS$. As $\bS \simeq \Sigma^\infty_+ *$, the adjunction between $\Sigma^\infty_+$	and $\Omega^\infty$ gives us the following equivalence of spaces:
+\[\Map_{\Sp}(\bS_X,\alpha) \simeq \Map_{\sS}(\const_X,\Omega^\infty\alpha).\]
+Here $\const_X$ is the constant functor at the point. The data of the right hand side is exactly a section. Hence combining these equivalences we get the following theorem.
+
+\begin{theorem}
+ A point in the underlying space of the twisted $R$-cohomology spectrum $\Omega^\infty\uMap_R(X^{-\alpha},R)$ is equivalent to a section of the bundle over $X$ classified by the map $\Omega^\infty \alpha \colon X \to \sS$.
+\end{theorem}
+
+Moreover, by similar analysis we have the following more general theorem.
+
+\begin{theorem} \label{thm:twisted_R_cohomology_section}
+ A point in the $n$-th underlying space of the twisted $R$-cohomology spectrum $\Omega^{\infty-n}\uMap_R(X^{-\alpha},R)$ is equivalent to a section of the bundle over $X$ classified by the map $\Omega^{\infty-n} \alpha \colon X \to \sS$.
+\end{theorem}
+
+\section{\texorpdfstring{$K$}{K}-Theory \texorpdfstring{{\` a}}{a} la Atiyah}
+Before we can comprehend how Atiyah--Segal defined twisted $K$-theory, we first need to review how Atiyah defined classical $K$-theory via Fredholm operators in \cite{atiyah1967ktheory} (also in \cite{janich1965fredholm}). 
+
+\begin{remark}
+	Recall that every infinite-dimensional separable Hilbert space is isomorphic to each other. We will hence fix one such choice $\cH$ throughout these two sections.
+\end{remark}
+
+% , and fix a space $X$. Let $PU(\cH)$ be the projective unitary group of $\cH$, i.e. the quotient of the unitary group $U(\cH)$ by its center $S^1$. Let $P \to X$ be a principal $PU(\cH)$-bundle over $X$. 
+
+We now recall the notion of a Fredholm operator.
+
+\begin{definition}
+	A Fredholm operator on $\cH$ is a bounded linear operator $F \colon \cH \to \cH$ such that both its kernel and cokernel are finite-dimensional. The space of Fredholm operators is denoted $\Fred(\cH)$ and is topologized as a subspace of the space of bounded linear operators with the norm topology.
+\end{definition}
+
+\begin{remark}
+Fredholm operators admit many alternative characterizations. For example, it is equivalent to being invertible modulo compact operators i.e. 
+\[\Fred(\cH) = \{A \in \cB(\cH) : AB - 1, BA - 1 \in \mathscr{K} \text{ for some } B \in \cB(\cH)\} \]
+\end{remark}
+
+We now define the spectrum $K_n$, given level-wise by the space of Fredholm operators on $\cH$:
+\[ K_n = \Fred^{(n)}(\cH)\]
+
+Here $\Fred^{(0)}(\cH)$ is simply $\Fred(\cH)$, and the other can be characterized similarly.
+
+We will claim the following result regarding these spaces that we shall not prove.
+
+\begin{lemma}
+ The spaces $K_n$ assemble into a spectrum, meaning there are maps
+	\[ K^{(n)}(\cH) \to \Omega \Fred^{(n+1)}(\cH). \]
+\end{lemma}
+
+How does this construction relate to $K$-theory? We have the following remark that can give us some intuition.
+
+\begin{remark} \label{rem:Fredholm_Ktheory_map}
+ For a compact space $X$, and given map $X \to \Fred^{(0)}(\cH)$, we can associate the formal difference of vector bundles given by the kernel and cokernel of the associated family of Fredholm operators (which are by assumption finite-dimensional). This associated to every element in $[X,\Fred^{(0)}(\cH)]$ an element in $K^0(X)$. 
+\end{remark}
+
+This map is not just coincidental and in fact we have the following major result.
+
+\begin{theorem}[Atiyah--{J\"anich}]
+ The map from \cref{rem:Fredholm_Ktheory_map} is an isomorphism.
+\end{theorem}
+
+This relates classical $K$-theory to Fredholm operators, meaning the spectrum above is indeed coincides with $K$-theory.
+
+\section{Atiyah--Segal's Approach}
+We now proceed to review the original approach to twisted $K$-theory by Atiyah--Segal \cite{atiyahsegal2004twistedktheory}. This approach generalizes the Fredholm approach to $K$-theory from the regular to the twisted setting. 
+
+\begin{definition} \label{def:twisted_K_theory_atiyah}
+ Fix a topological space $X$. Let $PU(\cH)$ be the projective unitary group of $\cH$, i.e. the quotient of the unitary group $U(\cH)$ by its center $S^1$. Let $P \to X$ be a principal $PU(\cH)$-bundle over $X$. Then we define the $\tau$-twisted $K$-theory group as the space of sections
+	\[K^0_\tau \coloneq \pi_0(\Gamma(X,P \times_{PU(\cH)} K)). \]
+\end{definition}
+
+\begin{remark}
+	Here, $P \times_{PU(\cH)} KU_0(\cH)$ denotes the associated bundle of spectra over $X$ with fibre $KU_0(\cH)$. The associated bundle can be described more explicitly as the bundle whose fibre over $x \in X$ is given by the $P_x \times_{PU(\cH)} K_0$, meaning we take the products of the fibers and quotient out the simultaneous action of $PU(\cH)$ on the fibers $P_x$ and $K_0$.
+\end{remark}
+
+\begin{remark} \label{rem:classifying_map}
+	As we have $BPU(\cH) \simeq K(\bZ,3)$, the bundle $P \to X$ is classified via a map $\tau \colon X \to BPU(\cH) \simeq K(\bZ,3)$.
+\end{remark}
+ 
+
+\section{Comparing Classical and Modern}
+We are now ready to compare the classical and modern approaches to twisted $K$-theory. Let $X$ be a topological space and $P \to X$ be a principal $PU(\cH)$-bundle over $X$. Following \cref{rem:classifying_map} this is classified by a map $\tau \colon X \to K(\bZ,3)$. 
+
+For such a map we now have the following explicit commutative diagram 
+\[ 
+\begin{tikzcd}
+ X \arrow[dr, "\tau"'] \arrow[r, "\tau"] & {K(\bZ,3)} \arrow[r, "?"] \arrow[d, "\mathrm{id}"] & BGL_1(KU) \arrow[r] \arrow[d] & \Line_{KU} \arrow[d, "\Omega^{\infty - n}"] \\
+ & {K(\bZ,3)} \arrow[r] & BAut(K_n) \arrow[r] & \sS
+\end{tikzcd},
+\]
+which we now explain in more detail. 
+\begin{enumerate}
+	\item The top row corresponds to the modern approach, as it takes a map into $K(\bZ,3)$ to a $KU$-line bundle. Following \cref{thm:twisted_R_cohomology_section}, taking $\Omega^{\infty - n}$ and then sections of the resulting bundle correspond precisely to classes of $\tau$-twisted $KU$-cohomology.
+	\item The bottom row corresponds to the classical approach. Indeed, post-composing $\tau$ with the map $K(\bZ,3) \to BAut(K_n)$ corresponds to the constructing the associated bundle. In this case, it is by definition (\cref{def:twisted_K_theory_atiyah}) the case that sections of this bundle give us elements in twisted $K$-theory. 
+	\item Hence compatibility between these two approaches corresponds to these diagrams commuting, which is a direct observation.
+\end{enumerate}
+
+% Here we use the associated bundle construction, because we need to transition from $BPU(\cH)$-bundles to $BGL_1(KU)$-bundles, and the associated bundle construction allows us to do this via the action of $PU(\cH)$ on $K$.
+
+% This relates back to the modern approach, as both are now given via sections of bundles of spectra over $X$.
+
+% We can summarize this via the following diagram 
+
+% Here the top row corresponds to the modern approach, while the bottom row corresponds to the Atiyah--Segal approach.
+
+\section{Some Comments regarding Freed--Hopkins--Teleman}
+Ideally we could add some comments regarding the Freed--Hopkins--Teleman approach here, but that might turn out to be beyond existing capabilities.
+
+{\footnotesize
+ \bibliographystyle{alpha}
+ \bibliography{main}
+ }
+\end{document}
