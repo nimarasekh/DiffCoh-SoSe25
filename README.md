@@ -18,4 +18,4 @@ Until now we had the following talks with some modest attempt at live-texing the
 7. [*Differential K-Theory*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_7.pdf) by **Matthias Ludewig** on 29.10.2025 & 05.11.2025
 8. [*Twisted Cohomology*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_8.pdf) by **Hannes Berkenhagen** on 12.11.2025 & 26.11.2025
 9. [*Models of Twisted K-Theory*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_9.pdf) by **Alessandro Nanto** on 03.12.2025
-10. [*Twisted Differential Cohomology*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_10.pdf) by **Alessandro Nanto** on 17.12.2025
+10. [*Pushforwards in Twisted K-Theory*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_10.pdf) by **Konrad Waldorf** on 17.12.2025

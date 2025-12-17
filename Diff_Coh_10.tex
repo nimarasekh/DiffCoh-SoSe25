@@ -1,0 +1,285 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sD}{\mathscr{D}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\fO}{\mathbf{O}}
+\newcommand{\rO}{\mathscr{O}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\bQ}{\mathbb{Q}}
+
+\newcommand{\aff}{\mathrm{Aff}}
+\newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\tmf}{\mathrm{tmf}}
+\newcommand{\TMF}{\mathrm{TMF}}
+\newcommand{\Tmf}{\mathrm{Tmf}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\curv}{\mathrm{curv}}
+\newcommand{\CS}{\mathrm{CS}}
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\dKU}{\smash{\widehat{ku}}}
+\newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
+\renewcommand{\sp}{\mathrm{sp}}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\uMap}{\underline{\mathrm{Map}}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ho}{\mathrm{ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\CMon}{\mathrm{CMon}}
+\newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
+\newcommand{\fib}{{\normalfont\texttt{fib}}}
+\newcommand{\cofib}{{\normalfont\texttt{cofib}}}
+\newcommand{\Bun}{{\normalfont\texttt{Bun}}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathscr{C}\mathrm{h}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Line}{\mathscr{L}\mathrm{ine}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grpd}{\mathscr{G}\mathrm{rpd}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Vect}{\mathscr{V}\mathrm{ect}}
+\newcommand{\Mod}{\mathscr{M}\mathrm{od}}
+\newcommand{\Proj}{\mathscr{P}\mathrm{roj}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\Pic}{\mathscr{P}\mathrm{ic}}
+\newcommand{\triv}{\mathscr{T}\mathrm{riv}}
+\newcommand{\aut}{\mathrm{Aut}}
+\newcommand{\Th}{\mathrm{Th}}
+\newcommand{\fr}{\mathrm{Fr}}
+\newcommand{\Arr}{\mathrm{Arr}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\PT}{\mathrm{PT}}
+\newcommand{\Fred}{\mathcal{F}\mathrm{red}}
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\spin}{\mathrm{spin}}
+\newcommand{\scal}{\mathrm{scal}}
+\newcommand{\HS}{\mathcal{H}\mathcal{S}}
+\newcommand{\PU}{\mathcal{P}\mathcal{U}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[equation]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[equation]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+% \newtheorem{queone}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
+
+\title{Differential Cohomology Seminar 10}
+\date{17.12.2025}
+\author{Talk by Konrad Waldorf}
+
+\begin{document}
+\maketitle
+
+Today we look at the construction of pushforward maps in twisted K-theory due to Carey and Wang \cite{careywang2008thomisomorphism}.
+
+\section{The Classical Case}
+Let us do a quick review of the classical case. Given a map $f\colon X \to Y$ and induced map on K-theory $f^*\colon K(Y) \to K(X)$, we would like to construct a pushforward map $f_!\colon K(X) \to K(Y)$. In the classical case, this requires $w_2(X)	= f^* w_2(Y)$. This precisely corresponds to choosing a $\spin^c$-structure on the virtual bundle $TX - f^* TY$. This is the necessary condition to define this map.
+
+\section{Reviewing twisted K-Theory}
+Before we proceed to generalize the pushforward map to twisted K-theory, we first review the definition of twisted K-theory. Recall that 
+\[ H^3(M,\bZ) \cong \PU(\cH) - \Bun(M)/ \sim \] 
+where $\cH$ is a separable Hilbert space and $\PU(\cH)$ is the projective unitary group. Choosing $P$ a principal $\PU(\cH)$-bundle over $M$ representing a class in $H^3(M,\bZ)$, we can form the associated bundle of Fredholm operators $\Fred(P) := P \times_{\PU(\cH)} \Fred(\cH)$. Then the $0$-th twisted K-theory is defined as
+\[K^0(M,P) := \pi_0(\Map(M, P\times_{\PU(\cH)} \Fred(\cH))) \cong \pi_0(\Map(P, \Fred(\cH)))_{\PU(\cH)}. \]
+More generally 
+\[ K^n(M,P) := \pi_0(\Map(P, \Omega^n \Fred(\cH)))_{\PU(\cH)}. \]
+
+In the coming sections we consider the pushforward map in two cases: the torsion case and the non-torsion case.
+
+\section{Understanding the Torsion Case}
+Let us consider the case when the bundle is torsion. Then $P$ is a principal $\PU(n)$-bundle, using $U(n) \hookrightarrow	U(\cH)$. In this case we can obtain a bundle gerbe $\cL_P$, which has the following form 
+ \[ 
+	\begin{tikzcd}
+	U(n) \arrow[d] & \Gamma_P \arrow[d] \arrow[l] & E \arrow[d] \\ 
+	\PU(n) & P \times_M P \arrow[l] \arrow[r, shift left = 1.8] \arrow[r, shift right = 1.8] & P \arrow[d] \\ 
+	 & & M  
+	\end{tikzcd}
+	\]  
+	This structure gives us a map 
+	\[ 
+	\phi\colon (\Gamma_P|_{p_1,p_2} \times_{U(1)} \bC) \otimes E_{p_2} \to E_{p_1}
+	\]
+	meaning $(E,\phi)$	is a $\cL_P$-twisted vector bundle.	We now can prove	the following theorem.
+
+	\begin{theorem}
+		Let $P$ be a principal $\PU(n)$-bundle. Then, we have an isomorphism $K(\cL-\Mod) \cong K_{U(n), \scal}(P)$.
+	\end{theorem}
+
+	Here $K_{U(n), \scal}(P)$ is the $U(n)$-equivariant K-theory of $P$ with scalar action of the center $U(1) \subset U(n)$. The proof proceeds by mapping a pair $(E,\phi)$ to the data $(U(n) \times E \to E)$ that maps $(A,v) \mapsto \phi(A,v)$.
+
+	We now have the following second theorem, relating twisted K-theory to twisted vector bundles.
+
+	\begin{theorem}
+	 Let $P$ be a principal $\PU(n)$-bundle. Then we have an isomorphism
+	 \[ K^0(M,P) \cong K(\cL_P-\Mod). \]
+	\end{theorem}
+
+	Here we are implicitly using the $\PU(\cH)$-bundle $\tilde{P} = P \times_{\PU(n)} \PU(\cH)$, meaning 
+	\[K^0(M,P) = K^0(M,\tilde{P}) = \pi_0(\Map(\tilde{P}, \Fred(\cH)))_{\PU(\cH)}.\] 
+Now we also have $\Fred(\cH)	\cong \Fred_{U(n)-cts}(\cH)$, meaning it is the Fredholm operators with continuous $U(n)$-action.
+
+Now before we proceed, recall that we have a an equivariant version of Atiyah-J\"anich theorem (which holds if certain conditions are satisfied), meaning 
+\[ [M,\Fred_{G-cts}(\cH)]_G \cong K^0(\Vect_G(M)). \]
+
+We can now restrict this bijection to a bijection of subsets 
+\[[M,\Fred_{U(n)-cts}(\cH^{\scal})]_G \cong K^0(\Vect_{U(n),\scal}(M)), \]
+where $\cH^{\scal}$ is the Hilbert space with scalar action of the center $U(1) \subset U(n)$. 
+
+The construction proceeds now by replacing $\cH$ with $\cH^{\scal}$ in the definition of twisted K-theory, meaning we go back to the first step and do 
+	\[K^0(M,P) = K^0(M,\tilde{P}) = \pi_0(\Map(\tilde{P}, \Fred(\cH^{\scal})))_{\PU(\cH)}.\]
+	which via the bijection above is isomorphic to $K_{U(n),\scal}(P)$, which by the previous theorem is isomorphic to $K(\cL_P-\Mod)$. 
+
+\begin{remark}
+	Due to recent work, we know that if $P$ is torsion, then $\cL_P \cong \cA_P = P \times_{\PU(n)}\bC^{n \times n}$, which is an isomorphism of $2$-vector bundles, and induces an isomorphism $\cL_P-\Mod \cong \cA_P-\Mod$.
+\end{remark}
+
+\section{Thom Isomorphism in the Torsion Case}
+Let $V \to M$ be a $\bR$-vector bundle. Then we get $Tr(V) \to M$,	the associated $SO(n)$-bundle, which comes with a sub-bundle with a $\spin^c(n)$-structure. This gives us a bijection $\cL_{Tr(V)} \cong CL(V)$, where $CL(V)$ is the complex Clifford bundle of $V$.
+
+Here we can use the result by Karoubi.
+
+\begin{theorem}
+	We have an isomorphism $K(CL(V)-\Mod) \cong K(\Th(V))$.
+\end{theorem}
+
+We now want to generalize this to more general	twists, which should be the following result.
+
+\begin{theorem}
+	There is an isomorphism
+	\[K^0(M,P+W_3(V)) \cong K^0(\Th(V),\pi^*P). \]
+\end{theorem}
+
+\section{Non-Torsion Case}
+We now aim to generalize these results to the non-torsion case. Concretely, we want prove an analogue of the following theorem:
+\[K(\cL_P-\Mod) \cong K_{U(n),\scal}(P) \]
+We can try to reproduce the same diagram 
+\[ 
+	\begin{tikzcd}
+	 \Gamma_P \arrow[d] & E \arrow[d] \\ 
+	 P \times_M P \arrow[r, shift left = 1.8] \arrow[r, shift right = 1.8] & P \arrow[d] \\ 
+	 & M  
+	\end{tikzcd},
+	\]
+	but we cannot compare to $U(n)$ anymore, since $P$ is not a $\PU(n)$-bundle. So, we do not get the original result, but rather a restricted version.
+
+	\begin{theorem}
+	 $K^0(M,P) \cong K(\cL_P-\Mod^{U_2})$.
+	\end{theorem}
+	Here $U_2 \subseteq U(\cH)$	is the group of unitary objects that differ from the identity by a Hilbert-Schmidt operator, and $\cL_P-\Mod^{U_2}$ is the category of $\cL_P$-twisted vector bundles whose transition functions take values in $U_2$.
+
+	Here $U^2$ can also be described via colimits, as $U^2 \cong \colim_{n \to \infty} U(n)$. So this result can be interpreted as the fact that filtered colimits preserve the original theorem.
+
+Now we analogously have an isomorphism 
+\[\cL_P-\Mod^{U_2} \cong \cA_p- \Mod^{U_2}. \]
+
+\begin{remark}
+	Similar to above, we anticipate an isomorphism	of $2$-vector bundles $\cL_P \cong P \times_{\PU(\cH)} \HS(\cH)$, that induces the isomorphism above as a special case. This would require a suitable Morita category for these Hilbert-Schmidt operators, which is currently unknown.
+\end{remark}
+
+\section{Twisted Pushforward}
+As a last step we can deduce the Thom	isomorphism in this non-torsion case. 
+Let $f\colon X \to Y$. Then we have $W_3(f) \coloneq W_3(TX \oplus f^* TY)$. This gives us a pushforward map 
+\[f_!\colon K^*(X,W_3(f) + f^*P) \to K^{(*  + (\dim X - \dim Y) \mod 2)}(Y,P), \]
+for $P \to Y$ some $\PU(\cH)$-bundle.
+
+The construction of this map proceeds as follows: We can factor $X \to Y$ into $X \hookrightarrow Y \times S^n \to Y$. The first step uses the Thom isomorphism, and the second step uses $C^*$-algebra techniques.
+
+\begin{remark}
+ If $Y$ is trivial, then this construction gives us a version of an index. 
+\end{remark}
+
+\section{D-Branes}
+	There is an application of these methods to physics. Given a $U(n)$-bundle $\sG$ over $X$ with sub objects $Q$, such that the restriction along $Q$ has a  $\sG|_Q$-module $\sE$.
+
+	It is claimed by Witten that these d-branes are classified by some version of K-theory. This can be made precise as follows (with some adjustments). Given $\sE$ and $\sG|_Q \otimes \cL_f$-module we get an element in  $K^0(Q, \sG|_Q \otimes \cL_f)$. Using the pushforward map, we have a map
+	\[K^0(Q, \sG|_Q \otimes \cL_f) \to K^*(X,\sG) \] 
+giving us an element	in $K^*(X,\sG)$, as desired.
+
+We can in particular consider the case when $X = \sG$, which is known as the WZW-model in physics. In this case, $Q$ are conjugacy classes $C_g$ of some element	$g$ in the group and for $f\colon C_g \to \cG$, we have 
+\[W_3(f) = (f^* \sG_{bas})^{\check{c}}\]  
+	
+This is a non-trivial observation. Indeed comparing with the Freed-Hopkins-Teleman approach \cite{freedhopkinsteleman2011loopgroupsi}, we see that 
+\[K_{\sG}(\sG, \sG^k_{bas}) \cong \Rep^{k + \check{c}}(L\sG), \]
+meaning this $\check{c}$ Coxeter shift appears naturally	in the representation theory of the loop group. 
+
+Hence this approach suggests a possible geometric interpretation of these constructions.
+
+	{\footnotesize
+ \bibliographystyle{alpha}
+ \bibliography{main}
+ }
+\end{document}
