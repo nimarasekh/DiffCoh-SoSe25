@@ -205,7 +205,7 @@ We now proceed to define twisted cohomology theories.
 	\[ R_n^f(X) \coloneqq \pi_0(\Map_{\Mod_R}(\Sigma^n R, Mf)) \cong \pi_n(Mf). \]
 \end{definition}
 
-\begin{example}[Trivial twist] If $f:X\to \Line_R$ factors through $*$, then $f$ factors as the $X^{op}\to*\to\sS$, the constant factor with value $*$, and $R\wedge\Sigma^\infty_+(-):\sS\to\Mod_R$. The latter functor commutes with colimits, being a left adjoint, while the colimit of the latter is $X$ itself, then $Mf\simeq R\wedge\Sigma^\infty_+X$. In particular, $f$-twisted $R$-cohomology and $R$-homology of $X$ reduce to ordinary (untwisted) $R$-cohomology and $R$-homology of $X$. 
+\begin{example}[Trivial twist] If $f:X\to \Line_R$ factors through $*$, then $f$ factors as $X^{op}\to*\to\sS$, the constant factor with value $*$, and $R\wedge\Sigma^\infty_+(-):\sS\to\Mod_R$. The latter functor commutes with colimits, being a left adjoint, while the colimit of the latter is $X$ itself, then $Mf\simeq R\wedge\Sigma^\infty_+X$. In particular, $f$-twisted $R$-cohomology and $R$-homology of $X$ reduce to ordinary (untwisted) $R$-cohomology and $R$-homology of $X$. 
 \end{example}
 
 \begin{definition}
@@ -222,14 +222,14 @@ We now proceed to analyze several examples of twisted cohomology	theories. This 
 \begin{proof}
 	Let $S$ be a pre-sheaf on $X$, consider then the slice category $X_{/S}$ of pairs $(x,\phi)$, where $x$ is an object of $X$ and $\phi:y(x)\to S$. The density theorem for $\infty$-categories states that $S$ is equivalent to the colimit of $X_{/S}\to X\xrightarrow{y}\Fun(X^{op},\sS)$, the first map being the canonical projection. Take $S=*$, then $X_{/*}\to X$ is an equivalence, hence the claim. 
 \end{proof}
-Let $G$ be a topological group and $BG$ the $\infty$-groupoid with a single object $1$ and hom-space $G$. The category $\sS_G\coloneqq\Fun(BG,\sS)$ is equivalent to the category of $G$-spaces.
+Let $G$ be a topological group and $BG$ the $\infty$-groupoid with a single object $*$ and hom-space $G$. The category $\sS_G\coloneqq\Fun(BG,\sS)$ is equivalent to the category of $G$-spaces.
 \begin{lemma}
-	Consider $X=BG$, a $G$-space $f:X\to\sS$ and its left Kan extension $f_!:\sS_G\to\sS$, then $f_!\simeq(-\times E)/G$, where $E=f(1)$. 
+	Consider $X=BG$, a $G$-space $f:X\to\sS$ and its left Kan extension $f_!:\sS_G\to\sS$, then $f_!\simeq(-\times E)/G$, where $E=f(*)$. 
 \end{lemma}
 \begin{proof}
-	Evaluate at $1$, then $f_!(y(1))=E$, by definition, and $y(1)\simeq G$, as $G$-spaces, hence $(y(1)\times E)/G\simeq(G\times E)/G\simeq E$. Since $f_!$ and $(-\times E)/G$ agree on representables and are colimit-preserving, they are equivalent. 
+	Evaluate at $*$, then $f_!(y(*))=E$, by definition, and $y(*)\simeq G$, as $G$-spaces, hence $(y(*)\times E)/G\simeq(G\times E)/G\simeq E$. Since $f_!$ and $(-\times E)/G$ agree on representables and are colimit-preserving, they are equivalent. 
 \end{proof}
-\begin{example}\label{ex:bundle}Take the space $BO(n)$ and $f_n:BO(n)\to\sS_*$ the $n$-sphere $S^n$ with $O(n)$-action coming from the one-point compactification of the regular action on $\bR^n$. Let $\alpha_n=\Sigma^{\infty-n}f_n:BO(n)\to\Sp$, then $\alpha_n(1)=\Sigma^{\infty-n}f_n(1)=\Sigma^{\infty-n}S^n\simeq\bS$, so $\alpha_n$ factors through $\Line_\bS$. Let $X=BO(n)^{op}$ and $p:X\to*$ the terminal functor, then \[M\alpha_n=p_!\Sigma^{\infty-n}f_n\simeq\Sigma^{\infty-n}p_!(f_n)_!y\simeq\Sigma^{\infty-n}(f_n)_!\underbrace{p_!(y)}_{\simeq*}\simeq\Sigma^{\infty-n}(*\times S^n)/O(n)\]
+\begin{example}\label{ex:bundle}Take the space $BO(n)$ and $f_n:BO(n)\to\sS_*$ the $n$-sphere $S^n$ with $O(n)$-action coming from the one-point compactification of the regular action on $\bR^n$. Let $\alpha_n=\Sigma^{\infty-n}f_n:BO(n)\to\Sp$, then $\alpha_n(*)=\Sigma^{\infty-n}f_n(*)=\Sigma^{\infty-n}S^n\simeq\bS$, so $\alpha_n$ factors through $\Line_\bS$. Let $X=BO(n)^{op}$ and $p:X\to*$ the terminal functor, then \[M\alpha_n=p_!\Sigma^{\infty-n}f_n\simeq\Sigma^{\infty-n}p_!(f_n)_!y\simeq\Sigma^{\infty-n}(f_n)_!\underbrace{p_!(y)}_{\simeq*}\simeq\Sigma^{\infty-n}(*\times S^n)/O(n)\]
 Let $P=EO(n)$ be the universal $O(n)$-bundle and $M$ a $O(n)$-space, then $*\times_{O(n)} M$ is modelled by the \emph{strict} quotient $(P\times M)/O(n)$, then \[S^n/O(n)=\mathrm{cofib}(\bR^n_0\subseteq\bR^n)/O(n)\simeq\mathrm{cofib}(\underbrace{*\times_{O(n)}\bR^n_0}_{\simeq E^n_0}\subseteq\underbrace{ *\times_{O(n)}\bR^n}_{\simeq E^n})=\Th(E^n) \]
 where $E^n=P\times_{O(n)}\bR^n\to BO(n)$ is the universal $n$-dimensional vector bundle, hence $M\alpha_n\simeq\Sigma^{\infty-n}\Th(E^n)$. 
 \end{example}
@@ -240,7 +240,7 @@ The functor $BO(n)\to\Line_\bS$ induces a $\infty$-group homomorphism $j_n:O(n)\
 \begin{example}
 	Let $X=O^{op}$ and take $Bj:BO\to\Line_\bS$, then $Mj$ is denoted $MO$ and called the \emph{real bordism spectrum}. 
 \end{example}
-Denote by $M$ the extended Thom spectrum functor $\Grp^{op}_\infty/\Mod_R\to\Mod_R$, this is a left adjoint to the functor $\rO$ sending a $R$-module to the functor $*\to\Mod_R$ picking out $M$. In particular, $M$ preserves colimits and  $Bj\simeq\colim_nBj_n$, therefore we have the following:
+Denote by $M$ the extended Thom spectrum functor $\Grp^{op}_\infty/\Mod_R\to\Mod_R$, this is a left adjoint to the functor sending a $R$-module to the corresponding functor $*\to\Mod_R$. In particular, $M$ preserves colimits and  $Bj\simeq\colim_nBj_n$, therefore we have the following:
 \begin{theorem}
 	$MO\simeq\colim_nMO(n)=\colim_n\Sigma^{\infty-n}\Th(E^n)$. 
 \end{theorem}
@@ -254,7 +254,7 @@ Let $R$ be a ring in sets, then $R$ is a $A_\infty$-ring spectrum (actually, $E_
 \begin{example}
 	$X=BO^{op}$ and $\alpha=w_1:BO\to\Line_\bZ$, the 1st Stiefel-Whitney class (delooping of the determinant $O\to GL_1(\bZ)$), then $Mw_1$ is a $\bZ$-module spectra. Let $i:SO\subseteq O$, then $w_1i$ factors through the point, so $M(w_1i)\simeq\bZ\wedge\Sigma^\infty_+SO$. 
 \end{example}
-Given $f:X^{op}\to\Line_R$ and a sequence $F\xrightarrow{i} X\xrightarrow{\pi} Y$, there is an induced sequence of Thom $R$-module spectra $MF\to MX\to MY$. If $\pi i$ factors through the point, $MF\simeq R\wedge\Sigma^\infty_+F$. 
+Given $f:X^{op}\to\Line_R$ and a sequence $F\xrightarrow{i} Y\xrightarrow{\pi} X$, there is an induced sequence of Thom $R$-module spectra $MF\to MY\to MX$. If $\pi i$ factors through the point, $MF\simeq R\wedge\Sigma^\infty_+F$. 
 \begin{lemma}\label{lem:adj}
 	Let $R$ be a ring spectrum and $X$ a connected monoidal $\infty$-groupoid, then \[\Map_{\Mon(\Sp)}(\Sigma^{\infty}_+X,R)\simeq\Map_{\Mon(\sS)}(X,GL_1(R))\] 
 \end{lemma}
