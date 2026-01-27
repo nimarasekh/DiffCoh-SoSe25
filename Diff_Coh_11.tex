@@ -1,0 +1,672 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sD}{\mathscr{D}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\fO}{\mathbf{O}}
+\newcommand{\rO}{\mathscr{O}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\bQ}{\mathbb{Q}}
+
+\newcommand{\aff}{\mathrm{Aff}}
+\newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\tmf}{\mathrm{tmf}}
+\newcommand{\TMF}{\mathrm{TMF}}
+\newcommand{\Tmf}{\mathrm{Tmf}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\curv}{\mathrm{curv}}
+\newcommand{\CS}{\mathrm{CS}}
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\dKU}{\smash{\widehat{ku}}}
+\newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
+\renewcommand{\sp}{\mathrm{sp}}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\uMap}{\underline{\mathrm{Map}}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ho}{\mathrm{ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\CMon}{\mathrm{CMon}}
+\newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
+\newcommand{\fib}{{\normalfont\texttt{fib}}}
+\newcommand{\cofib}{{\normalfont\texttt{cofib}}}
+\newcommand{\Bun}{{\normalfont\texttt{Bun}}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathscr{C}\mathrm{h}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Line}{\mathscr{L}\mathrm{ine}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grpd}{\mathscr{G}\mathrm{rpd}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Vect}{\mathscr{V}\mathrm{ect}}
+\newcommand{\Mod}{\mathscr{M}\mathrm{od}}
+\newcommand{\Proj}{\mathscr{P}\mathrm{roj}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\Pic}{\mathscr{P}\mathrm{ic}}
+\newcommand{\triv}{\mathscr{T}\mathrm{riv}}
+\newcommand{\aut}{\mathrm{Aut}}
+\newcommand{\Th}{\mathrm{Th}}
+\newcommand{\fr}{\mathrm{Fr}}
+\newcommand{\Arr}{\mathrm{Arr}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\PT}{\mathrm{PT}}
+\newcommand{\Fred}{\mathcal{F}\mathrm{red}}
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\spin}{\mathrm{spin}}
+\newcommand{\scal}{\mathrm{scal}}
+\newcommand{\HS}{\mathcal{H}\mathcal{S}}
+\newcommand{\PU}{\mathcal{P}\mathcal{U}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+
+% New commands Matthias Frerichs
+\newcommand{\Disc}{\mathrm{Disc}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\D}{\mathsf{d}}
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[equation]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[equation]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+% \newtheorem{queone}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
+
+\title{Differential Cohomology Seminar 11}
+\date{?}
+\author{Talk by Matthias Frerichs}
+
+\begin{document}
+\maketitle
+
+\section{Differential Cohomology in a Cohesive $\infty$-topos}
+
+\subsection{Sheaves on manifolds are cohesive}
+
+We consider the essentially small category of manifolds with corners,
+denoted $\Mfd$. This category is endowed with the Grothendieck
+topology generated by surjective submersions with discrete fibers.
+This is also a dense subsite of the the site of all smooth manifolds
+with jointly surjective open covers.
+
+\begin{definition}
+  Let $\mathcal{C}$ be a $(\infty,1)$-category. The category of
+  presheaves on the site of manifolds with values in $\mathcal{C}$ is
+  denoted by $\Fun(\Mfd^\mathrm{op}, \mathcal{C})$.
+\end{definition}
+
+We will only consider presentable $(\infty, 1)$-categories here, even
+if \cite{bunkenikolausvoelkl2016diffcoh} treat the more general case too.
+
+\begin{definition}
+  (\cite[Def. 2.3.]{bunkenikolausvoelkl2016diffcoh}, Sheaf on Manifolds)
+  A functor $F\in \Fun(\Mfd^\mathrm{op}, \mathcal{C})$ is a sheaf if
+  for any manifold $M$ and covering $U\rightarrow M$ the canoncial map
+  \begin{align*}
+    F(M) \rightarrow \lim_{\Delta}F(U^\bullet)
+  \end{align*}
+  is an equivalence. Here $U^\bullet$ is the {\v C}ech nerve of the
+  covering and $F(U^\bullet)$ is the simplical object in
+  $\Fun(\Delta^\mathrm{op}, \mathcal{C})$ by applying $F$ to the {\v
+    C}ech nerve.
+
+  Denote the full subcategory of sheaves by $\Shv_{\Mfd}(\mathcal{C})
+  \subset \Fun(\Delta^\mathrm{op}, \mathcal{C})$ which is a reflecive
+  localization given by
+  \begin{align*}
+    L \colon \Fun(\Delta^\mathrm{op}, \mathcal{C})
+    \rightleftarrows \Shv_{\Mfd}(\mathcal{C}) \colon \mathrm{inclusion}.
+  \end{align*}
+\end{definition}
+
+\begin{remark}
+  (\cite[Def. 2.3.]{bunkenikolausvoelkl2016diffcoh},
+  Homotopy-invariance)
+  A presheaf $F \in \Fun(\Delta^\mathrm{op}, \mathcal{C})$ is called
+  homotopy invariant, if for all manifolds $M\in \Mfd$ the canonical map
+  $F(M)\rightarrow F(\Delta^1\times M)$ induced by the projection is an
+  equivalence.
+
+  There is an adjunction
+  \begin{align*}
+    \mathcal{H}^{\mathrm{pre}} \colon \Fun(\Delta^\mathrm{op},
+    \mathcal{C}) \rightleftarrows \Fun^h(\Delta^\mathrm{op},
+    \mathcal{C}) \colon \mathrm{inclusion}
+  \end{align*}
+  where $\mathcal{H}^{\mathrm{pre}}$ is called homotopification.
+
+  This functor commutes with sheaffication and restricts to sheaves
+  yielding
+  \begin{align*}
+    \mathcal{H} \colon \Shv_{\Mfd}(\mathcal{C})
+    \rightleftarrows \Shv_{\Mfd}^h(\mathcal{C}) \colon \mathrm{inclusion}.
+  \end{align*}
+\end{remark}
+
+By \cite[Prop. 2.6.]{bunkenikolausvoelkl2016diffcoh} this functor
+preserves finite products for the special case that $\mathcal{C}$ is
+stable or the category of spaces. In our case we will only consider
+the category of spaces.
+
+The category $\Shv_{\Mfd}^h(\mathcal{C}) $ is equivalent to
+$\mathcal{C}$ by sheaffication of the constant presheaf and evaluation
+at the point
+\begin{align*}
+   \mathrm{const} \colon \mathcal{C}
+    \rightleftarrows \Shv_{\Mfd}^h(\mathcal{C}) \colon \ev_{\ast}.
+\end{align*}
+
+In conclusion we have the following quadruple of adjoint functors.
+
+\begin{remark}
+  (\cite[Rmk. 2.7.]{bunkenikolausvoelkl2016diffcoh},
+  Coherent Topos)
+  There is an adjoint quadruple of functors
+  \begin{align*}
+    (\ev_\ast \circ \mathcal{H} \dashv \mathrm{const} \dashv \ev_*
+    \dashv \mathcal{G}) \colon \Shv_{\Mfd}(\mathcal{C})
+    \mathrel{\substack{
+    \textstyle\overset{\ev_\ast \circ \mathcal{H}}\longrightarrow\\[-0.2ex]
+    \textstyle\overset{\mathrm{const}}\longleftarrow \\[-0.2ex]
+    \textstyle\overset{\ev_\ast}\longrightarrow \\[-0.2ex]
+    \textstyle\overset{G}\longleftarrow}
+    }
+    \mathcal{C}
+  \end{align*}
+  where $ G \colon  \mathcal{C}
+  \rightarrow \Shv_{\Mfd}(\mathcal{C}) $ is defined by $G(F)(M) \coloneqq
+  \const(F)(\ast)^{M_\mathrm{disc}} = F^{M_\mathrm{disc} }$. Here $\ev_\ast \circ \mathcal{H}$
+  preserves products
+  (\cite[Prop. 2.6.]{bunkenikolausvoelkl2016diffcoh}) and $\const$ and
+  $G$ are fully faithful.
+\end{remark}
+
+We will only consider cohesive topoi over the $\infty$-category of
+spaces.
+
+\begin{definition}
+  (\cite[Rmk. 3.4.2.]{schreiber2013cohesive})
+  A $\infty$-topos $\mathcal{X}$ is called cohesive if it admits a
+  quadruple adjoint
+   \begin{align*}
+    (\Pi \dashv \mathrm{Disc} \dashv \Gamma
+    \dashv \mathrm{coDisc}) \colon \mathcal{X}
+    \mathrel{\substack{
+     \textstyle\overset{\Pi}\longrightarrow\\[-0.2ex]
+    \textstyle\overset{\mathrm{Disc}}\longleftarrow \\[-0.2ex]
+    \textstyle\overset{\Gamma}\longrightarrow \\[-0.2ex]
+    \textstyle\overset{\mathrm{coDisc}}\longleftarrow}
+    }
+    \mathcal{C}
+   \end{align*}
+   such that $\Pi$ preserves finite products and $\mathrm{Disc}$ and
+   $\mathrm{coDisc}$ are fully faithfull.
+\end{definition}
+
+Now we can state the definition of the intrinsic non-abelian
+cohomology in a cohesive $\infty$-topos as in
+\cite[Def. 3.6.134.]{schreiber2013cohesive}.
+
+\begin{definition}
+  (\cite[Def. 3.6.134.]{schreiber2013cohesive}, Cohomolgy in an
+  $\infty$-topos)
+  For two objects $X,A \in \mathcal{X}$ we define the cohomology set
+  of $X$ with coefficients in $A$ by
+  \begin{align*}
+    H(X,A) \coloneqq \pi_0\mathcal{X}(X,A)
+  \end{align*}
+  where $\mathcal{X}(X,A)$ is the $\infty$-groupoid of morphisms
+  between $X$ and $A$. Generally, if $A$ has a $p$-fold delooping for
+  $p\in \mathbb{N}$ we define
+  \begin{align*}
+    H^p(X,A) \coloneqq \pi_0\mathcal{X}(X,\mathbf{B}^pA)
+  \end{align*}
+\end{definition}
+
+The goal is now to write down a differential refinement of the
+cohomolgy in a cohesive $\infty$-topos. For this we need to define a
+version of De Rham cohomolgy that will later correspond to a truncated
+complex of differential form as used in the classical case.
+
+\subsection{Cohesive De-Rham complex}
+
+
+\begin{definition}
+  \label{def:cohesive_de_rham}
+  (\cite[Def. 3.9.12]{schreiber2013cohesive})
+  Let $\mathcal{X}$ be a cohesive $\infty$-topos. For $X\in
+  \mathcal{X}$ we define the cohesive de Rham homotopy type
+  $\Pi_{\mathrm{dR}}X$ of $X$ as the pushout
+  \begin{equation}
+    \begin{tikzcd}[nodes in empty cells, column sep= 1.5cm, row sep=1.5cm]
+      X
+      \ar[r]
+      \ar[d,"\eta"]
+      &
+      \ast
+      \ar[d]
+      \\
+      \mathrm{Disc}\circ \Pi (X)
+      \ar[r]
+      &
+      \Pi_{\mathrm{dR}}X
+    \end{tikzcd}
+  \end{equation}
+  where $\eta$ is the counit of the $\Pi \dashv \mathrm{Disc}$.
+
+  For a pointed object $\ast \rightarrow A$ in $\mathcal{H}$ we define
+  the de Rham coefficient object $\flat_{\mathrm{dR}}A$ by the pullback
+  \begin{equation}
+    \begin{tikzcd}[nodes in empty cells, column sep= 1.5cm, row sep=1.5cm]
+      \flat_{\mathrm{dR}}A
+      \ar[r]
+      \ar[d]
+      &
+      \mathrm{Disc} \circ \Gamma (A)
+      \ar[d, "\epsilon"]
+      \\
+      \ast
+      \ar[r]
+      &
+      A
+    \end{tikzcd}
+  \end{equation}
+  where $\epsilon$ is the counit of the adjunction
+  $\mathrm{Disc}\dashv \Gamma$.
+\end{definition}
+
+This also yields an adjunction
+\begin{proposition}
+  (\cite[Prop. 3.9.13, Def 3.9.15]{schreiber2013cohesive})
+  There is an adjunction
+  \begin{align*}
+    (\Pi_{\mathrm{dR}} \dashv \flat_{\mathrm{dR}}) \colon
+    \ast/\mathcal{X}
+    \mathrel{\substack{
+    \textstyle\xlongleftarrow{\Pi_{\mathrm{dR}}} \\[-0.2ex]
+    \textstyle\xlongrightarrow[\flat_{\mathrm{dR}}]{}}
+    }
+    \mathcal{X}
+  \end{align*}
+  where $\ast/\mathcal{X}$ is the category of pointed objects in $\mathcal{X}$.
+  We write
+  \begin{align*}
+    H_{\mathrm{dR}}(X,A) \coloneqq H(\Pi_{\mathrm{dR}}X,A) \cong H(X,\flat_{\mathrm{dR}}A)
+  \end{align*}
+  for the de Rham cohomology of $X$ with coefficients in $A$.
+\end{proposition}
+
+
+Now it is sensible to check wether this yield the well known de Rham
+cohomolgy in the case that $\mathcal{X}$ is a sheaf on a smooth
+manifold $M$.
+
+\begin{definition}
+  Define the site of cartesian spaces $\mathsf{CartSp}$ as the category of cartesian
+  spaces $\mathbb{R}^n$ for $n\in \mathbb{N}$ with continuous smooth
+  functions between them.
+
+  Consider the category of simplicial presheaves
+  $[\mathsf{CartSp}^\op, \mathsf{sSet}]$
+
+
+  Now we endow the category of simplical sets with the quillen model
+  structure and localize at the maps
+  \begin{align*}
+    \check{C}(\{U_i\rightarrow U\}) \rightarrow U
+  \end{align*}
+  where $\{U_i \rightarrow U\}$ is a covering family of $U$, $\check{C}$
+  denotes the simplicial manifold defined by the \v{C}ech nerve which
+  gives a simplical presheaf by Yoneda embedding. Here $U$ is
+  considered as a simplicial presheaf by inserting the constant
+  presheaf $U$ in each degree, see \cite[Section
+  2]{dugger-2000-univers}. We then obtain the category of
+  $\infty$-sheaves $\Shv_\Mfd$ valued in spaces, see
+  \cite[Prop. 6.5.2.14.]{lurie2009htt} and \cite[Thm. 2.2.15.]{schreiber2013cohesive}.
+\end{definition}
+
+\begin{proposition}
+  (\cite[Prop. 4.4.22., Def. 4.4.21.]{schreiber2013cohesive})
+  The simplical presheaf
+  \begin{align*}
+    U(1)[n] \coloneqq
+    [
+    \cdots \rightarrow 0 \rightarrow \mathcal{C}^\infty (-, U(1))
+    \rightarrow 0\rightarrow \cdots \rightarrow 0
+    ]
+  \end{align*}
+  concentrated in degree $n$ is a fibrant representative in
+  $\Shv_{\Mfd}$ of $\mathbf{B}^nU(1)$ under the Quillen equivalence of
+  chain complexes with projective model structure and the Quillen
+  model structure on simplicial sets, see see \cite[Prop. 2.2.31.]{schreiber2013cohesive}.
+\end{proposition}
+
+\begin{proposition}
+  (\cite[Prop. 4.4.49.]{schreiber2013cohesive})
+  A fibrant representative in $\Shv_{\Mfd}$ of the de Rham coefficient
+  object $\flat_{\mathrm{dR}}\mathbf{B}^nU(1)$ is given by the
+  truncated ordinary de Rham complex of smooth differential forms
+  \begin{align*}
+    \flat_{\mathrm{dR}}\mathbf{B}^nU(1)_{\mathrm{chn}} \coloneqq
+    \Psi
+    [
+    \Omega^1(-) \xrightarrow{\D_{\mathrm{dR}}}
+    \Omega^2(-) \xrightarrow{\D_{\mathrm{dR}}}
+    \cdots
+    \xrightarrow{\D_{\mathrm{dR}}}
+    \Omega^{n-1}(-) \xrightarrow{\D_{\mathrm{dR}}}
+    \Omega^n_{\mathrm{cl}}(-)
+    ]
+  \end{align*}
+  where $\Psi$ denotes the Quillen equivalence between simplical sets
+  with the Quillen model structure and the projective model structure
+  on chain complexes, see \cite[Prop. 2.2.31.]{schreiber2013cohesive}.
+\end{proposition}
+
+\begin{proposition}
+  (\cite[Prop. 4.4.50.]{schreiber2013cohesive})
+  There is are isomorphisms for $n\in \mathbb{N}$
+  \begin{align*}
+    H_{\mathrm{dR}}^n(X,\mathbf{B}^nU(1)) \coloneqq
+    \pi_0 \Shv_{\Mfd} (M, \flat_{\mathrm{dR}}\mathbf{B}^nU(1)) \cong
+    \begin{cases}
+      H_{\mathrm{dR}}^n(M) & n \geq 2 \\
+      \Omega_{\mathrm{cl}}^1(M) & n = 1\\
+      0 & n = 0
+    \end{cases}
+  \end{align*}
+  where a manifold considered as a constant sheaf.
+\end{proposition}
+
+\subsection{Differential cohomology}
+
+Now we still need to define a characteristic map for the differential
+refinement we want to construct.
+
+\begin{definition}
+  (\cite[Def. 3.9.29.]{schreiber2013cohesive})
+  For a group object $G \in \mathcal{X}$ in the cohesive
+  $\infty$-topos $\mathcal{X}$ define the Maurer-Cartan Form
+  \begin{align*}
+    \theta \colon G \rightarrow \flat_{\mathrm{dR}}\mathbf{B}G
+  \end{align*}
+  via the pullback diagrams:
+  \begin{equation}
+    \begin{tikzcd}[nodes in empty cells, column sep= 0.8cm, row sep=0.8cm]
+      G
+      \ar[r]
+      \ar[d,"\theta"]
+      &
+      \ast
+      \ar[d]
+      \\
+      \flat_{\mathrm{dR}}\mathbf{B}G
+      \ar[r]
+      \ar[d]
+      &
+      \mathrm{Disc}\circ \Gamma( \mathbf{B}G)
+      \ar[d,"\epsilon"]
+      \\
+      \ast
+      \ar[r]
+      &
+      \mathbf{B}G
+    \end{tikzcd}
+  \end{equation}
+  where, again $\epsilon$ is the counit of the adjunction.
+\end{definition}
+
+Now the general definition of differential cohomology with
+coefficients in a braided $\infty$-group, that means the double
+delooping $\mathbf{B}^2G$ exists, is given as follows:
+
+\begin{definition}
+  (\cite[Def. 3.9.32., Rmk. 3.9.33.]{schreiber2013cohesive}, General
+  differential cohomology in a cohesive topos)
+
+  The differential cohomology with coefficients in $\mathbf{B}G$ is
+  defined as the cohomology of the slice topos
+  \begin{align*}
+     \mathcal{X}/\flat_{\mathrm{dR} \mathbf{B}^2 G}.
+  \end{align*}
+  A domain object in this is an object $X\in \mathcal{X}$ with a de
+  Rham cocycle $F\colon X\rightarrow \flat_{\mathrm{dR}}\mathbf{B}^2
+  G$.
+  An element in the corresponding cohomology group
+  $\mathcal{X}/\flat_{\mathrm{dR} \mathbf{B}^2 G}((X,F),
+  \mathrm{curv}_{G} \coloneqq \theta \colon \mathbf{B}G
+  \rightarrow \flat_{\mathrm{dR}}\mathbf{B}^2G)$ is then given by a
+  tranformation
+  \begin{equation}
+    \begin{tikzcd}[nodes in empty cells, column sep= 1cm, row sep=1.5cm]
+      X
+      \ar[rr, "g"{name=g}]
+      \ar[dr, swap,"F"{name=F}]
+      \arrow[Rightarrow, shorten = 4pt, from=g, to=F , "\nabla"]
+      &
+      &
+      \mathbf{B}G
+      \ar[dl, "\mathrm{curv}_{G}"]
+      \\
+      &
+      \flat_{\mathrm{dR}}\mathbf{B}^2G
+      &
+    \end{tikzcd}
+  \end{equation}
+  This is:
+  \begin{itemize}
+    \item a cocycle $g\colon X \rightarrow \mathbf{B}G$ for a
+      $G$-principal bundle over $X$ (in the cohesive sense \cite[Def 3.6.152.]{schreiber2013cohesive})
+    \item an equivalence $g^* \mathrm{curv}_{G} \rightarrow F$
+      interpreted as a connection on the $G$-principal bundle.
+  \end{itemize}
+\end{definition}
+
+Restricting to the special case that $G$ is an Eilenberg-MacLane
+object, i.e. $\mathbf{B}G \cong \mathbf{B}^n A$ for a $0$-truncated
+abelian group object $A$, see \cite[Def. 5.5.6.1.]{lurie2009htt}, we
+finally look at a more familiar diagram of a differential refinement.
+
+\begin{definition}
+  For $X\in \mathcal{X}$ and $n\geq 1$ write
+  \begin{align*}
+    \mathcal{X}_{\mathrm{diff}}(X,\mathbf{B}^nA) \coloneqq
+    \mathcal{X}(X,\mathbf{B}^nA )
+    \prod_{\mathcal{X}(X,\flat_{\mathrm{dR}}\mathbf{B}^nA)} H_{\mathrm{dR}}^{n+1}(X,A)
+  \end{align*}
+  for the pullback of the diagram
+   \begin{equation}
+    \begin{tikzcd}[nodes in empty cells, column sep= 1cm, row sep=1.5cm]
+      \mathcal{X}_{\mathrm{diff}}(X,\mathbf{B}^nA)
+      \ar[d]
+      \ar[r]
+      &
+      H_{\mathrm{dR}}^{n+1}(X,A)
+      \ar[d]
+      \\
+      \mathcal{X}(X,\mathbf{B}^nA )
+      \ar[r,"\mathrm{curv}_\ast"]
+      &
+      \mathcal{X}(X,\flat_{\mathrm{dR}}\mathbf{B}^nA)
+    \end{tikzcd}
+  \end{equation}
+  where $\curv \colon \mathbf{B}^{n} A \rightarrow
+  \flat_{\mathrm{dR}}\mathbf{B}^{n+1}A$ is the Maurer-Cartan Form, in
+  this case called the curvature characteristic morphism and the right
+  vertical map is the unique, up to equivalence morphism from
+  $H_\mathrm{dR}^{n+1}(X,A)$ seen as the $0$-truncation of
+  $\mathcal{X}(X,\flat_{\mathrm{dR}}\mathbf{B}^nA)$.
+
+  We call
+  \begin{align*}
+    H_{\mathrm{diff}}^n(X,A) \coloneqq \pi_0 \mathcal{X}_{\mathrm{diff}}(X,\mathbf{B}^nA)
+  \end{align*}
+  the degree-$n$ differential cohomology of $X$ with coefficients in $A$.
+\end{definition}
+
+One (not me) can also see that in the case of $A = U(1) \cong K(\mathbb{Z},1)$
+this definition gives the classical definition of Hopkins and Singer,
+see \cite{hopkinssinger2005diffcoh}.
+
+\begin{theorem}
+  (\cite[Thm. 4.4.87.]{schreiber2013cohesive})
+  For a smooth manifold $M$ seen as a sheaf on $\mathsf{CartSp}$ we
+  have that $ H_{\mathrm{diff}}^n(M,U(1))$ is given by the subset of
+  Deligne cocycles that picks for each de Rham cohomology class of $M$
+  a curvature form representative.
+\end{theorem}
+
+% \section{Snippets}
+
+% \begin{definition}
+%   (\cite[Def 6.1.0.2]{lurie2009htt}, $\infty$-Topos) Let $\mathcal{X}$ be an
+%   $\infty$-category. We will say that $\mathcal{X}$ is an
+%   $\infty$-topos if there exists a small $\infty$-category
+%   $\mathcal{C}$ and an accessible left exact localization functor
+%   $\PSh(\mathcal{C})\to\mathcal{X}$.
+
+%   Where $\PSh(\mathcal{C})\coloneqq \Fun(\mathcal{C}^\mathrm{op},
+%   \Sp)$ is the presheaf category and $\Sp$ is the $\infty$-category of
+%   spaces.
+
+% \end{definition}
+
+
+% There is also a notion of cohomolgy in $\infty$-topoi by Lurie,
+% further called ordinary cohomology:
+
+% \begin{definition}
+%   (\cite[Def. 7.2.2.14.]{lurie2009htt}, Ordinary cohomology)
+%   Let $\mathcal{X}$ be an $\infty$-topos, $n\geq 0$ an integer, and $A$ an abelian group object of the topos $\Disc(\mathcal{X})$. We define
+%   \begin{align*}
+%     H^{n}(\mathcal{X},A)= \pi_{0}\mathcal{X}(1,K(A,n));
+%   \end{align*}
+%   we refer to $H^{n}(\mathcal{X},A)$ as the $n$th cohomology group of $\mathcal{X}$ with coefficients in $A$.
+% \end{definition}
+
+% The category of discrete objects of an $(\infty,1)$-category is
+% defined by Lurie as:
+
+% \begin{definition}
+%   (\cite[Def. 5.5.6.1.]{lurie2009htt})
+%   \begin{itemize}
+%   \item A space/Kan-complex $X$ is called $n$-truncated if for every point
+%     $x \in X$ the homotopy groups $\pi_i(X,x)$ vanish for all $i >n$.
+%   \item A space/Kan-complex $X$ is called $n$-connective if for every point
+%     $x \in X$ the homotopy groups $\pi_i(X,x)$ vanish for all $i < n$.
+%   \item An object $C$ of an $(\infty,1)$-category $\mathcal{C}$ is
+%     $k$-truncated for $k \geq -1$ if the space $\mathcal{C}(D,C)$
+%     is $k$-truncated for every $D\in \mathcal{C}$.
+%     Denote the full subcategory of $k$-truncated objects by
+%     $\tau_{\leq k}\mathcal{C}$.
+%   \item For an object $C\in \mathcal{C}$ in an $(\infty,1)$-category
+%     $C$ is called discrete if it is $0$-truncated. Denote the
+%     full subcategory of discrete objects by $\Disc(\mathcal{C})$.
+%   \end{itemize}
+% \end{definition}
+
+% One can see that the category of discrete objects,
+% i.e. $\Disc(\mathcal{C})$ or $\tau_{\leq 0}\mathcal{C}$ is
+% equivalent to the nerve of its homotopy category
+% $N(\pi_0(\mathcal{C}))$. This follows from
+% \cite[Prop. 2.3.4.18]{lurie2009htt}, which states that the full
+% subcategories of $k$-truncated objects are equivalent to
+% $k+1$-categories and \cite[Prop. 2.3.4.5.]{lurie2009htt} which states
+% that a simplical set which is a $1$-category, is also equivalent
+% to the nerve of its homotopy category.
+
+% \begin{definition}
+%   (\cite[Def. 7.2.2.1.]{lurie2009htt}, Pointed objects)
+%   A pointed object $X\in \mathcal{X}$ is a morphism
+%   \begin{align*}
+%     X_\ast \colon 1 \rightarrow X
+%   \end{align*}
+%   where $1$ is a final object of $\mathcal{X}$.
+%   The full subcategory of $\Fun(\Delta^1,\mathcal{X})$ spanned by the
+%   pointed objects is denoted $\mathcal{X}_\ast$
+% \end{definition}
+
+
+
+
+	{\footnotesize
+ \bibliographystyle{alpha}
+ \bibliography{main}
+ }
+\end{document}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: t
+%%% End:
