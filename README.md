@@ -1,4 +1,4 @@
-This the small webpage for a seminar on differential cohomology theory at the Universität Greifswald in summer semester 2025. The goal is to learn something about differential cohomology using the sheaves of spectra formalism.
+This the small webpage for a seminar on differential cohomology theory at the Universität Greifswald in summer semester 2025 and winter semester 2025/2026. The goal is to learn something about differential cohomology using the sheaves of spectra formalism.
 
 Up until now, we have broadly relied (or want to rely) on the following sources (with possibly more in the future): 
 - [A short course on ∞-categories](https://arxiv.org/abs/1007.2925) by [Moritz Groth/Rahn](https://www.agtz.mathematik.uni-mainz.de/hoeherekategorientheorie/dr-moritz-rahn/) for some ∞-categorical background material.
@@ -7,6 +7,7 @@ Up until now, we have broadly relied (or want to rely) on the following sources 
 - [Differential cohomology theories as sheaves of spectra](https://arxiv.org/abs/1311.3188) by [Ulrich Bunke](https://bunke.app.uni-regensburg.de/), [Thomas Nikolaus](https://www.uni-muenster.de/FB10srvi/persdb/MM-member.php?id=1304), Michael Völkl for a detailed study of the ∞-categorical sheaf approach to differential cohomology.
 - [Twisted differential cohomology](https://arxiv.org/abs/1406.3231) by [Ulrich Bunke](https://bunke.app.uni-regensburg.de/), [Thomas Nikolaus](https://www.uni-muenster.de/FB10srvi/persdb/MM-member.php?id=1304) for an introduction and study of twisted differential cohomology.
 - [Differential cohomology in a cohesive infinity-topos](https://arxiv.org/abs/1310.7930) by [Urs Schreiber](https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/cqts/urs-schreiber.html) for a study of differential cohomology in the setting of cohesive ∞-topoi.
+- [The Character Map in Nonabelian Cohomology – Twisted, Differential, and Generalized](https://ncatlab.org/schreiber/files/NonabelianCharacterWS250114c.pdf) by [Domenico Fiorenza](https://phd.uniroma1.it/web/DOMENICO-FIORENZA_nC2434_IT.aspx), [Hisham Sati](https://nyuad.nyu.edu/en/academics/divisions/science/faculty/hisham-sati.html), [Urs Schreiber](https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/cqts/urs-schreiber.html) for another axiomatic approach focused on nonabelian differential cohomology.
 
 Until now we had the following talks with some modest attempt at live-texing their talks:
 1. [*Motivation*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_1.pdf) by **Konrad Waldorf** on 30.04.2025
@@ -19,3 +20,4 @@ Until now we had the following talks with some modest attempt at live-texing the
 8. [*Twisted Cohomology*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_8.pdf) by **Hannes Berkenhagen** on 12.11.2025 & 26.11.2025
 9. [*Models of Twisted K-Theory*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_9.pdf) by **Alessandro Nanto** on 03.12.2025
 10. [*Pushforwards in Twisted K-Theory*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_10.pdf) by **Konrad Waldorf** on 17.12.2025
+11. [*Non-Abelian Differential Cohomology*](https://github.com/nimarasekh/DiffCoh-SoSe25/blob/master/Diff_Coh_11.pdf) by **Matthias Frerichs** on 14.01.2026
