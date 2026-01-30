@@ -5,26 +5,132 @@
 \usepackage{tikz-cd}
 \usepackage{enumerate}
 \usepackage{enumitem}
+\usepackage{mathtools}
 \usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
 \usepackage[margin=2.5cm]{geometry}
 \setlength{\marginparwidth}{2cm}
 
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
-\newcommand{\bC}{\mathbb{C}}
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\bS}{\mathbb{S}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\fO}{\mathbf{O}}
+\newcommand{\rO}{\mathscr{O}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\bQ}{\mathbb{Q}}
 
-\newcommand{\Bun}{\mathrm{Bun}}
-\newcommand{\LineBdl}{\mathrm{LineBdl}}
+\newcommand{\aff}{\mathrm{Aff}}
+\newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\tmf}{\mathrm{tmf}}
+\newcommand{\TMF}{\mathrm{TMF}}
+\newcommand{\Tmf}{\mathrm{Tmf}}
+\newcommand{\Def}{\mathrm{Def}}
 \newcommand{\curv}{\mathrm{curv}}
-\newcommand{\Grb}{\mathrm{Grb}}
+\newcommand{\CS}{\mathrm{CS}}
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\dKU}{\smash{\widehat{ku}}}
+\newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
+\renewcommand{\sp}{\mathrm{sp}}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\uMap}{\underline{\mathrm{Map}}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ho}{\mathrm{ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\CMon}{\mathrm{CMon}}
+\newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
+\newcommand{\fib}{{\normalfont\texttt{fib}}}
+\newcommand{\cofib}{{\normalfont\texttt{cofib}}}
+\newcommand{\bdl}{\mathcal{B}\mathrm{dl}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathscr{C}\mathrm{h}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Line}{\mathcal{L}\mathrm{ine}}
+\newcommand{\LineBdl}{\Line\bdl}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grpd}{\mathscr{G}\mathrm{rpd}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Vect}{\mathscr{V}\mathrm{ect}}
+\newcommand{\Mod}{\mathscr{M}\mathrm{od}}
+\newcommand{\Proj}{\mathscr{P}\mathrm{roj}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\Pic}{\mathscr{P}\mathrm{ic}}
+\newcommand{\triv}{\mathscr{T}\mathrm{riv}}
+\newcommand{\aut}{\mathrm{Aut}}
+\newcommand{\Th}{\mathrm{Th}}
+\newcommand{\fr}{\mathrm{Fr}}
+\newcommand{\Arr}{\mathrm{Arr}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\PT}{\mathrm{PT}}
+\newcommand{\Fred}{\mathcal{F}\mathrm{red}}
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\Grb}{\mathcal{G}\mathrm{rb}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+
 
 %% N.R. notes
 \newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
 \newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
   size=\tiny]{#1}}
 \newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[equation]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[equation]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+\newtheorem{question}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
 
 \title{Differential Cohomology Seminar 1}
 \date{30.04.2025}
@@ -40,14 +146,19 @@ Roughly speaking, the story goes through work of Deligne \cite{deligne1971mixedh
 This talk is primarily a historical overview and motivational talk reviewing some of these concepts and witnessing the needs for more general notions of cohomology. This in particular means that most mathematical details are missing and/or skipped.
 
 \section{Why are Cohomology Theories not Enough?}
-We start with an observation regarding ordinary cohomology and bundles. We know that for a given manifold $M$, we have isomorphisms 
-\[h_0(\bC^\times- \Bun) \cong h_0\LineBdl(M) = H^2(M,\bZ),\]
-meaning a $\bC^\times$-bundle is classified by an element in the second integral cohomology group. How do we prove this? It is well-known that $H^1(M, \bC^\times) \cong H^2(M,\bZ)$ and intuitively for a line bundle we can get such a class via a choice of local sections. \nrnote{There should be more details here?}
-
-This original result focuses on general bundles, but it does not contain any additional geometric information. Let us try to adjust this isomorphism by augmenting it with additional geometric data. Let us denote $h_0(\bC^\times- \Bun)^\nabla$ as the isomorphism classes of $\bC^\times$-bundles with a connection, and $h_0\LineBdl^\nabla(M)$ as the isomorphism classes of line bundles with a connection. We can restrict the isomorphism above to an isomorphism
-\[h_0(\bC^\times- \Bun)^\nabla \cong h_0\LineBdl^\nabla(M) \]
-Here is now a reasonable question: Can we define a cohomology theory $E$, such that $E^2(M)$ classifies $\bC^\times$-bundles with connection? Let us try to better understand this question.
-
+Consider the following fact about integral singular cohomology: Let $M$ be a smooth manifold, $\bC^*\bdl(M)$ the category of $\bC^*$-principal bundles over $M$, and $\LineBdl$ the category of complex line bundles over $M$, then there is a sequence of isomorphisms:
+\begin{equation}\label{eq:cech}
+	\pi_0(\LineBdl(M))\simeq\pi_0(\bC^*\bdl(M))\xrightarrow{\delta}\check{H}^2(M,\bZ)\simeq H^2(M,\bZ)
+\end{equation}
+\begin{remark}
+	A short exact sequence of abelian sheaves $0\to\F\to\G\to\cH\to 0$ induces an exact sequence of \v Cech cohomology groups, see \cite{project2026cechsing}. In particular, a connecting homomorphism $\delta:\check{H}^1(M,\cH)\to\check{H}^2(M,\F)$. The morphism $\delta$ in \cref{eq:cech} is the connecting homomorphism associated to the sequence $0\to2\pi i\bZ\to\bC\to\bC^*\to0$. 
+\end{remark}
+In particular, isomorphism classes of line bundles only depend on the underlying topological space of $M$. To preserve more information, let us consider the categories $\bC^*\bdl_\nabla(M)$ and $\LineBdl_\nabla(M)$ of $\bC^*$-principal bundles, resp. line bundles, with connection and connection-preserving isomorphisms, then 
+\[\pi_0(\LineBdl_\nabla(M))\simeq\pi_0(\bC^*\bdl_\nabla(M))\]
+\begin{question}
+Is there a cohomology theory $E^*$ such that $E^2(M)\simeq\pi_0(\bC^*\bdl_\nabla(M))$? 
+\end{question}
+%------%
 Let $P \to M$ be a $\bC^\times$-bundle with a connection $\nabla$. Let $U_\alpha$ be an open cover of $M$, and let $s_\alpha\colon U_\alpha \to \bC^\times \times U_\alpha$ be local sections. Let $\omega \in \Omega^1(P)$ and $A_\alpha = s_\alpha\omega \in \Omega^1(U_\alpha)$. 
 
 Then for different $\alpha, \beta$ we have \nrnote{Where does this formula come from?} 
@@ -86,7 +197,7 @@ Fortunately, we also included truncated diagrams, in which case the image of eve
 This means
 \begin{enumerate}
 	\item $\hat{H}^1(M) = C^\infty(M,\bC^\times)$
-	\item $\hat{H}^2(M) = \bC^\times - \Bun^\nabla(M)$
+	\item $\hat{H}^2(M) = \bC^\times - \bdl^\nabla(M)$
 	\item $\hat{H}^3(M) = h_0(\Grb^\nabla(M))$ 
 \end{enumerate}
 
