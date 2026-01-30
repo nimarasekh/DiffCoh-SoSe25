@@ -14,16 +14,17 @@
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
-\newcommand{\A}{\mathscr{A}}
-\newcommand{\B}{\mathscr{B}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
 \newcommand{\cB}{\mathcal{B}}
-\newcommand{\D}{\mathscr{D}}
+\newcommand{\D}{\mathcal{D}}
 \newcommand{\sC}{\mathscr{C}}
 \newcommand{\F}{\mathcal{F}}
 \newcommand{\G}{\mathcal{G}}
 \newcommand{\g}{\mathfrak{g}}
 \newcommand{\cH}{\mathcal{H}}
 \newcommand{\sS}{\mathscr{S}}
+\newcommand{\bN}{\mathbb{N}}
 \newcommand{\bS}{\mathbb{S}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bZ}{\mathbb{Z}}
@@ -31,7 +32,9 @@
 \newcommand{\fO}{\mathbf{O}}
 \newcommand{\rO}{\mathscr{O}}
 \newcommand{\M}{\mathcal{M}}
+\newcommand{\ft}{\mathfrak{t}}
 \newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\U}{\mathcal{U}}
 
 \newcommand{\aff}{\mathrm{Aff}}
 \newcommand{\Cyc}{\mathrm{Cyc}}
@@ -45,7 +48,6 @@
 \newcommand{\dKU}{\smash{\widehat{ku}}}
 \newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
 \renewcommand{\sp}{\mathrm{sp}}
-
 \DeclareMathOperator{\tr}{tr}
 \newcommand{\Map}{\mathrm{Map}}
 \newcommand{\uMap}{\underline{\mathrm{Map}}}
@@ -94,7 +96,9 @@
 \newcommand{\Fred}{\mathcal{F}\mathrm{red}}
 \newcommand{\inv}{\mathrm{inv}}
 \newcommand{\const}{\mathrm{const}}
+\newcommand{\fl}{\mathrm{fl}}
 \newcommand{\Grb}{\mathcal{G}\mathrm{rb}}
+\newcommand{\cl}{\mathrm{cl}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -151,66 +155,63 @@ Consider the following fact about integral singular cohomology: Let $M$ be a smo
 	\pi_0(\LineBdl(M))\simeq\pi_0(\bC^*\bdl(M))\xrightarrow{\delta}\check{H}^2(M,\bZ)\simeq H^2(M,\bZ)
 \end{equation}
 \begin{remark}
-	A short exact sequence of abelian sheaves $0\to\F\to\G\to\cH\to 0$ induces an exact sequence of \v Cech cohomology groups, see \cite{project2026cechsing}. In particular, a connecting homomorphism $\delta:\check{H}^1(M,\cH)\to\check{H}^2(M,\F)$. The morphism $\delta$ in \cref{eq:cech} is the connecting homomorphism associated to the sequence $0\to2\pi i\bZ\to\bC\to\bC^*\to0$. 
+	A short exact sequence of abelian sheaves $0\to\F\to\G\to\cH\to 0$ induces an exact sequence of \v Cech cohomology groups, see \cite{project2026cechsing}, including a connecting homomorphism $\delta:\check{H}^1(M,\cH)\to\check{H}^2(M,\F)$. The morphism $\delta$ in \cref{eq:cech} is the connecting homomorphism associated to the sequence $0\to2\pi i\bZ\to\bC\to\bC^*\to0$. 
 \end{remark}
-In particular, isomorphism classes of line bundles only depend on the underlying topological space of $M$. To preserve more information, let us consider the categories $\bC^*\bdl_\nabla(M)$ and $\LineBdl_\nabla(M)$ of $\bC^*$-principal bundles, resp. line bundles, with connection and connection-preserving isomorphisms, then 
+In particular, isomorphism classes of line bundles only depend on the underlying topological space of $M$. To recover more information about the smooth geometry of $M$, let us consider the categories $\bC^*\bdl_\nabla(M)$ and $\LineBdl_\nabla(M)$ of $\bC^*$-principal bundles, resp. line bundles, with connection and connection-preserving isomorphisms, then 
 \[\pi_0(\LineBdl_\nabla(M))\simeq\pi_0(\bC^*\bdl_\nabla(M))\]
 \begin{question}
-Is there a cohomology theory $E^*$ such that $E^2(M)\simeq\pi_0(\bC^*\bdl_\nabla(M))$? 
+Is there a generalized version of cohomology theory $E^*$ such that $E^2(M)\simeq\pi_0(\bC^*\bdl_\nabla(M))$? 
 \end{question}
-%------%
-Let $P \to M$ be a $\bC^\times$-bundle with a connection $\nabla$. Let $U_\alpha$ be an open cover of $M$, and let $s_\alpha\colon U_\alpha \to \bC^\times \times U_\alpha$ be local sections. Let $\omega \in \Omega^1(P)$ and $A_\alpha = s_\alpha\omega \in \Omega^1(U_\alpha)$. 
-
-Then for different $\alpha, \beta$ we have \nrnote{Where does this formula come from?} 
-\[A_\beta = A_\alpha d \log g_{\alpha\beta} = g^*_{\alpha\beta}\theta_{C} = \frac{1}{i} g^{-1}_{\alpha\beta}dg_{\alpha\beta}.\]
-
-We want a cohomology theory that an incorporate these computations. One possible solution is to define a chain complex of the following form:
-\[\mathscr{D}(n)=  \bC^\times \xrightarrow{d\log} \Omega^1 \xrightarrow{d} \Omega^2 \to ... \to \Omega^{n-1}\]
-Here we are explicitly truncating at $n$.
-
-By applying this complex to $k$-fold intersections, we can make this complex bigraded, roughly of the following form:
-% If we take this complex and resolve it along $k$-fold intersections we get a bigraded complex. 
-
-\[
+Imitating \v Cech and de Rham cohomology, consider the following modified de Rham chain complex of sheaves: Let $\Theta\in\Omega^1(\bC^*)$ be the Maurer-Cartan form, 
+\begin{equation}
 	\begin{tikzcd}
-	C^\infty(U_\alpha \cap U_\beta, \bC^\times) \arrow[r] & \Omega^1(U_\alpha \cap U_\beta) \arrow[r] & \Omega^2(U_\alpha\cap U_\beta) \arrow[r] & \cdots \arrow[r] & \Omega^{n-1}(U_\alpha \cap U_\beta)\\
- C^\infty(U_\alpha, \bC^\times) \arrow[r] \arrow[u] & \Omega^1(U_\alpha) \arrow[r] \arrow[u] & \Omega^2(U_\alpha) \arrow[r] \arrow[u] & \cdots \arrow[r] &\Omega^{n-1}(U_\alpha)   \arrow[u]
+		\D(n):C^\infty_{\bC^*}\arrow[r," d\log"] & \Omega^1 \arrow[r," d"] & \cdots \arrow[r," d"] & \Omega^{n-1}
 	\end{tikzcd}
-\]
-As usual we can take the total complex of this diagram:
-
-\[C^\infty(U_\alpha, \bC^\times) \to \Omega^1(U_\alpha) \oplus  C^\infty(U_\alpha \cap U_\beta, \bC^\times) \to \Omega^2(U_\alpha) \oplus \Omega^1(U_\alpha \cap U_\beta) \oplus ... \]
-
-Recall that we defined $A_\alpha \in \Omega^1(U_\alpha)$. We can now directly compute\nrnote{How?} 
-\[A_\alpha \mapsto dA_\alpha = 0,\] 
-which implies\nrnote{How?} that the curvature of the original bundle is $0$ i.e. the connection is flat. So, this diagram would only incorporate flat connections. 
-
-Fortunately, we also included truncated diagrams, in which case the image of every element is $0$. As a result we get the following definition:
-\[
-\check{H}(M,\mathscr{D}(n)) = \begin{cases}
-	H^k(M, U(1)) & if k < n \\
-	\hat{H}^n(M,\mathscr{D}(n)) & k = n \\ 
-	H^k(M, \mathbb{Z}) & k > n 
-\end{cases}
-\] 
-
-This means
+\end{equation}where $C^\infty_{\bC^*}$ is the sheaf of $\bC^*$-valued functions on $M$ and $ d\log$ maps $f\in C^{\infty}(U,\bC^*)$ to $f^*\Theta\in\Omega^1(U)$. Given a cover $U\to M$, construct $\D(2)(U)$ as the total complex of the following bi-complex 
+\begin{equation}
+	\begin{tikzcd}
+		\vdots & \vdots & \vdots   \\
+		C^\infty(U^{[3]},\bC^*) \arrow[r]\arrow[u] & \Omega^1(U^{[3]}) \arrow[r]\arrow[u] &  \Omega^2(U^{[3]}) \arrow[u] \arrow[r] & \cdots \\ 
+		C^\infty(U^{[2]},\bC^*) \arrow[r," d^{1,1}"]\arrow[u,"\delta^{0,2}"] & \Omega^1(U^{[2]}) \arrow[u]\arrow[r] & \Omega^2(U^{[2]}) \arrow[u]\arrow[r] & \cdots\\
+		C^\infty(U,\bC^*) \arrow[r]\arrow[u] & \Omega^1(U) \arrow[r," d^{2,0}"]\arrow[u,"\delta^{1,1}"] & \Omega^2(U) \arrow[u] \arrow[r] & \cdots
+	\end{tikzcd}
+\end{equation}where $U^{[n]}$ denotes the $n$-fold fiber product over $M$. Given $(L,\nabla)\in\bC^*\bdl_\nabla(M)$, we construct a class in $C^\infty(U^{[2]},\bC^*)\oplus\Omega^1(U)$ as follows: Take $U=L\to M$ as cover, $\mu:L^{[2]}=L\times_ML\to\bC^*$ the difference map, characterized by $\mu(p_1,p_0)\triangleright p_0=p_1$, and $\nabla\in\Omega^1(L)$ the connection 1-form. Unfolding the definitions, notice the following:
 \begin{enumerate}
-	\item $\hat{H}^1(M) = C^\infty(M,\bC^\times)$
-	\item $\hat{H}^2(M) = \bC^\times - \bdl^\nabla(M)$
-	\item $\hat{H}^3(M) = h_0(\Grb^\nabla(M))$ 
+	\item $\delta^{0,2}\mu=1$ is equivalent to the cocycle condition for $\mu$.
+	\item $ d^{1,1}\mu=\delta^{1,1}\nabla$ is equivalent to $\nabla$ being $\bC^*$-equivariant.
+	\item $ d^{2,0}\nabla=0$ appears only for $n>2$, and is equivalent to flatness of $\nabla$.  
 \end{enumerate}
-
-Hence we were able to define a ``cohomology theory'' that indeed classifies bundles with connection. Note here, it is not a cohomology theory in the Eilenberg-Steenrod sense, as it includes non-trivial geometric information and is not pure homotopical. 
+Notice that (1)-(2) are satisfied by definition, while (3) is an additional condition on $\nabla$.
+\begin{definition}
+	Let $M$ be a smooth manifold, denote by $\cH^n(M)$ the colimit over all covers $U\to M$ of the $n$-th cohomology group of $\D(n)(U)$, called the \emph{$n$-th Deligne cohomology group}. 
+\end{definition}
+\begin{theorem}
+	$\cH^2(M)\simeq\pi_0(\bC^*\bdl_\nabla(M))$.
+\end{theorem} 
 
 \section{From Exact Sequences to the Hexagon}
-While we don't have a cohomology theory in the Eilenberg-Steenrod sense, we still have various exact sequences that relate these differential cohomology theories to usual ones and to differential forms. This permits for an alternative axiomatic treatment. First of all, we have the following exact sequence.
+A differential cohomology theory is meant as a coupling of ordinary cohomology classes with differential data, such as connections. The coherence conditions of this coupling are captured by axioms, in the style of Steenrod-Eilenberg axioms for ordinary cohomology theories, which include the existence of a certain diagram of natural transformations, called the \emph{hexagon}.
 
-\[ 0 \to \Omega^{n-1}_{cl,\bZ}(M) \to \Omega^{n-1}(M) \to \hat{H}^n(M) \xrightarrow{cc (chern class)} H^n(M,\bZ) \to 0\]
-
-Where $\Omega^{n-1}_{cl,\bZ}(M)$ is the collection of closed forms with integer integral. Let us unwind the exactness condition by analyzing the morphisms. By construction, an element in $\hat{H}^3(M)$ is of the form $(g_{\alpha\beta\gamma, A_{\alpha\beta},B_\alpha})$, and we get a class $[g_{\alpha\beta\gamma}]$ in $H^3(M,\bZ)$. On the other side, $\rho \in \Omega^{n-1}_{cl,\bZ}(M)$ gives us a class in $\hat{H}^3(M,\bZ)$ of the form $(1, 0, \rho_{U_\alpha})$. From this perspective, exactness simply means that if $g_{\alpha\beta\gamma} = 0$, then $(g_{\alpha\beta\gamma, A_{\alpha\beta},B_\alpha}) = (1, 0, \rho_{U_\alpha})$, for some $\rho$. Let us understand sketch an argument. Concretely we have the following computation:
-\[ (g_{\alpha\beta\gamma}, A_{\alpha\beta}, B_\alpha) =  (1, A_{\alpha\beta} + d log h_{\alpha\beta}, B_\alpha) = (1, 0 , B_\alpha + d C_\alpha) = (1, 0, \rho_{U_\alpha}) \]
-
+Taking a closer look at $\cH^n(M)$ we see the following: A $n$-cocycle representing a class in $\cH^n(M)$ consists of a cover $U\to M$, together with \[\mu:U^{[n]}\to\bC^*,\A_1\in\Omega^1(U^{[n-1]}),\A_2\in\Omega^2(U^{[n-2]}),\cdots,\A_{n-1}\in\Omega^{n-1}(U)\]
+The condition $\delta^{0,n}\mu=1$ is equivalent to $\mu$ being a $(n-1)$-cocycle for $\bC^*$-valued \v Cech cohomology of $M$, therefore there is a map $\cH^n(M)\to\check{H}^{n-1}(M,\bC^*)\simeq H^n(M,\bZ)$. Using \[\delta^{n-1,1}\A_{n-1}= d^{n-1,1}\A_{n-2}\]we can show that $\delta^{n,1} d^{n,0}\A_{n-1}=0\in\Omega^n(U^{[2]})$, i.e. $ d^{n,0}\A_{n-1}$ is constant on fibers of $\pi:U\to M$, so there is a unique $F\in\Omega^{n}(M)$ such that $\pi^*F= d^{n,0}\A_{n-1}$ and is closed, therefore there is a map $\cH^n(M)\to\Omega^{n}_{\cl}(M)$.\nrnote{How to prove $F$ has integral periods?} The 
+\begin{remark}
+	$F$ being closed can be proved as follows: $\pi^* d F= d^{n+1,0}\pi^*F= d^{n+1,0} d^{n,0}\A_{n-1}=0$, by uniqueness we conclude $dF=0$. 
+\end{remark}
+\begin{remark}
+	For $n=2$, we recover the usual notion of curvature 2-form. 
+\end{remark}
+For semplicity, consider $n=2$ and a $2$-cocycle of $\cH^2(M)$ such that $\mu$ is a \v Cech $2$-coboundary. This means that the underlying $\bC^*$-principal bundle is trivial, the choice of a section corresponds to the choice of $\beta\in C^\infty(U,\bC^*)$ such that $\delta^{0,1}\beta=\mu$. In that case, $(\mu,\A)$ is cohomologous to $(0,\A-d^{1,0}\beta)$ and identified by a unique closed for $\rho\in\Omega^1(M)$ such that $\pi^*\rho=\A-d^{1,0}\beta$. In conclusion, there is a short exact sequence \begin{equation}
+	\begin{tikzcd}
+		0 \arrow[r] & H^{1}(M) \arrow[r] & \cH^2(M) \arrow[r] & H^2(M,\bZ) \arrow[r] & 0
+	\end{tikzcd}
+\end{equation}
+\begin{remark}
+	$\rho$ exists by the same argument as $F$ above, since $\delta^{1,1}(\A-d^{1,0}\beta)=\delta^{1,1}\A-d^{1,1}\delta^{0,1}\beta=\delta^{1,1}\A-d^{1,1}\mu=0$ in $\Omega^1(U^{[2]})$. 
+\end{remark}
+\begin{remark}
+	Surjectivity is a corollary of the fact that every line bundle admits a connection, proven using partitions of unity. 
+\end{remark}
+%----------TO BE CONTINUED------------%
 Having witnessed one interesting exact sequence, let us observe a second one, which is the following:
 \[ 0 \to H^{n-1}(M, \bC^\times) \to \hat{H}^n(M) \xrightarrow{curv} \Omega_{cl,\bZ}^n(M)\to 0 \]
 We will explicate why this diagram is exact, but let us make the following observation. First of all, the kernel is indeed reasonably defined, as $H^{n-1}(M, \bC^\times)$ classifies line bundles with equal curvature, meaning there is a mapping $(g_{\alpha\beta\gamma}, A_{\alpha\beta}, B_\alpha) \mapsto d B_\alpha$  Notice, this is indeed well-defined as $(\delta B)_{\alpha\beta} = d A_{\alpha\beta}$.\nrnote{How does that relate to the previous step?}
