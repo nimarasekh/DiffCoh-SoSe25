@@ -1,0 +1,329 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\setlength{\marginparwidth}{2cm}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sD}{\mathscr{D}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\fO}{\mathbf{O}}
+\newcommand{\rO}{\mathscr{O}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\bQ}{\mathbb{Q}}
+
+\newcommand{\aff}{\mathrm{Aff}}
+\newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\tmf}{\mathrm{tmf}}
+\newcommand{\TMF}{\mathrm{TMF}}
+\newcommand{\Tmf}{\mathrm{Tmf}}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\curv}{\mathrm{curv}}
+\newcommand{\CS}{\mathrm{CS}}
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\dKU}{\smash{\widehat{ku}}}
+\newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
+\renewcommand{\sp}{\mathrm{sp}}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\uMap}{\underline{\mathrm{Map}}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ho}{\mathrm{ho}}
+\newcommand{\set}{\mathscr{S}\mathrm{et}}
+\newcommand{\CMon}{\mathrm{CMon}}
+\newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
+\newcommand{\fib}{{\normalfont\texttt{fib}}}
+\newcommand{\cofib}{{\normalfont\texttt{cofib}}}
+\newcommand{\Bun}{{\normalfont\texttt{Bun}}}
+\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
+\newcommand{\Ch}{\mathscr{C}\mathrm{h}}
+\newcommand{\cat}{\mathscr{C}\mathrm{at}}
+\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
+\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\Line}{\mathscr{L}\mathrm{ine}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Grpd}{\mathscr{G}\mathrm{rpd}}
+\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
+\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
+\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
+\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
+\newcommand{\Vect}{\mathscr{V}\mathrm{ect}}
+\newcommand{\Mod}{\mathscr{M}\mathrm{od}}
+\newcommand{\Proj}{\mathscr{P}\mathrm{roj}}
+\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
+\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
+\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
+\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
+\newcommand{\Pic}{\mathscr{P}\mathrm{ic}}
+\newcommand{\triv}{\mathscr{T}\mathrm{riv}}
+\newcommand{\aut}{\mathrm{Aut}}
+\newcommand{\Th}{\mathrm{Th}}
+\newcommand{\fr}{\mathrm{Fr}}
+\newcommand{\Arr}{\mathrm{Arr}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\dis}{\mathrm{dis}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\PT}{\mathrm{PT}}
+\newcommand{\Fred}{\mathcal{F}\mathrm{red}}
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\spin}{\mathrm{spin}}
+\newcommand{\scal}{\mathrm{scal}}
+\newcommand{\HS}{\mathcal{H}\mathcal{S}}
+\newcommand{\PU}{\mathcal{P}\mathcal{U}}
+\newcommand{\Disc}{\mathrm{Disc}}
+\newcommand{\Codisc}{\mathrm{Codisc}}
+\newcommand{\Tw}{\mathscr{T}\mathrm{w}}
+\newcommand{\Rng}{\mathscr{R}\mathrm{ng}}
+\newcommand{\Alg}{\mathscr{A}\mathrm{lg}}
+\newcommand{\CAlg}{\mathscr{C}\mathscr{A}\mathrm{lg}}
+\newcommand{\Comm}{\mathscr{C}\mathrm{omm}}
+
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+\def\DDelta{{\mathbbe{\Delta}}}
+\newcommand{\DD}{\DDelta}
+
+
+
+%% N.R. notes
+\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{statement}[section]{Statement}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+% \newtheorem{attone}[equation]{Attention}
+
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+% \newtheorem{intone}[equation]{Intuition}
+\newtheorem{notation}[equation]{Notation}
+% \newtheorem{queone}[equation]{Question}
+% \newtheorem{conjone}[equation]{Conjecture}
+\newtheorem{warning}[equation]{Warning}
+
+\numberwithin{equation}{section}
+
+\title{Differential Cohomology Seminar 12}
+\date{28.01.2026}
+\author{Talk by Alessandro Nanto}
+
+\begin{document}
+\maketitle
+
+Today we want discuss twisted differential cohomology theory following \cite{bunkegepner2021diffktheory}.
+
+\section{Reviewing Twisted Cohomology}
+Let us first recall the definition of twisted cohomology theories, as discussed in a previous talk \cite{berkenhagen2025diffcoh8}. Let $X$ be a topological spaces, $R$ be a commutative ring spectrum. We denote by $\Mod_R$ the $\infty$-category of $R$-module spectra. The Picard $\infty$-groupoid of $R$ is defined as 
+\[\Pic_R := \mathrm{Pic}(\Mod_R) \subset \Mod_R\]
+the full sub- $\infty$-groupoid of invertible $R$-modules and equivalences.
+
+\begin{definition}
+A \emph{twist} of $R$ over $X$ is a map of spaces ($\infty$-groupoids)
+\[\alpha : X \to \Pic_R.\]
+\end{definition}
+
+\begin{definition}
+Given a twist $\alpha : X \to \Pic_R$, the \emph{$\alpha$-twisted $R$-cohomology of $X$} is defined as
+\[R^\alpha(X) := \Map_{\Mod_R}(R, \alpha(X)).\]
+\end{definition}
+
+We can now compute the twisted cohomology groups as homotopy groups of the mapping spectrum.
+\[R^{k + \alpha} = \pi_k(R^\alpha(X)) = \pi_k\left(\Map_{\Mod_R}(R, \alpha(X))\right).\]
+This coincides with the $n$-homotopy group of $\Gamma(X, \alpha)$ where $\Gamma(X, \alpha)$ is the spectrum of sections of the bundle of spectra over $X$ associated to the twist $\alpha$.
+
+\section{Reviewing Differential Cohomology}
+We now want to recall the definition of differential cohomology theories. Here we don't follow the more modern approach via pure and $\bR$-invariant sheaves of spectra, as studied in \cite{bunkenikolausvoelkl2016diffcoh}, but rather the more classical approach \cite{hopkinssinger2005diffcoh}. This approach is also the one used in previous talks to study differential $K$-theory \cite{ludewig2025diffcoh7}.
+
+We first review some notations and definition. Let $\Ch(\bR)$ be the $1$-category of chain complexes of real vector spaces. We denote by $\sD(\bR)$ the derived $\infty$-category obtained from $\Ch(\bR)$ by inverting quasi-isomorphisms. Finally, let $C$ be an object in an $\infty$-category $\sC$. Then $\underline{C}$ denotes the constant sheaf with value $C$.
+
+\begin{definition}
+  Let $X$ be a spectrum. A \emph{differential refinement of $X$} is a triple $(V, c\colon R \wedge X \to HV)$, where 
+  \begin{itemize}
+    \item $V$ is a chain complex of real vector spaces,
+    \item $HV$ is the Eilenberg-MacLane spectrum associated to $V$, via the stable Dold-Kan correspondence,
+    \item $\alpha$ is an equivalence of spectra.
+  \end{itemize}
+\end{definition}
+
+Before we can proceed, we need to introduce further notation. Let $V$ be a chain complex of real vector spaces. Let $\Omega^*V$ be the sheaf of differential forms with values in $V$. 
+
+\begin{definition}
+ Let $\cM$ be a sheaf of chain complexes on the site of manifolds. The \emph{naive truncation} $\cM^{\geq n}$ is defined as $\cM$ if $k > n$ and $0$ otherwise.
+\end{definition}
+
+We can now get higher categorical sheaves out of sheaves of truncated chain complexes via localizations.
+
+\begin{lemma}
+  Let $\cM$ be a sheaf of $C^\infty$-modules, then post-composition with the localization functor $\Ch(\bR) \to \sD(\bR)$ preserves limits, and hence preserves the sheaf condition.
+\end{lemma}
+
+\begin{definition}
+  Let $X$ be a $(X,V,c)$ be a differential refinement of a spectrum $X$, and $n \in \bZ$. Let $F^n(X,V,c)$, the \emph{differential function spectrum}, be defined as the pullback
+  \[
+  \begin{tikzcd}
+    F^n(X,V,c) \arrow[rrr] \arrow[d] & & & H(\Omega^\bullet V^{\geq n}) \arrow[d, "c"] \\
+    \underline{X} \arrow[r, "1 \wedge X"] & \underline{H\bR \wedge X} \arrow[r, "c"] &  \underline{HV} \arrow[r] & H(\Omega^\bullet V)
+  \end{tikzcd}
+  \]   
+\end{definition}
+
+Finally we can use the differential function spectrum to define differential cohomology groups.
+
+\begin{definition}
+  Let $X$ be a spectrum, $(X,V,c)$ be a differential refinement of $X$, and $n \in \bZ$. Then 
+  \[ \hat{X}^n(M) \coloneq \pi_{-n}(F^n(X,V,c)(M))\]
+  is the \emph{$n$-th differential $X$-cohomology group} of the manifold $M$.
+\end{definition}
+
+\section{Towards Twisted Differential Cohomology}
+We can now combine the two previous definitions to define twisted differential cohomology theories. Let $R$ be a commutative ring spectrum, $M$ a manifold. We now want to define sheaf theoretic analogue of a twist, generalizing our previous definitions. Here we start using non-trivial definitions and results of \cite{bunkegepner2021diffktheory}.
+
+\begin{definition}
+  Let $\Mod_{\underline{R}}(M)$ be the $\infty$-category of sheaves of $\underline{R}$-module spectra on $M$ (i.e.~sheaves valued in $\Mod_R$). Define $\Pic^{loc}_{\underline{R}}(M)$ as the full sub-$\infty$-groupoid of $\Mod_{\underline{R}}(M)$ spanned by the locally constant $\underline{R}$-modules. The objects of $\Pic^{loc}_{\underline{R}}(M)$ are called \emph{topological $R$-twists} of $M$.
+\end{definition}
+
+This name is motivated by the following observation. There is an equivalence 
+\[ \Fun(M^{top},\Pic_R) \to \Pic^{loc}_{\underline{R}}(M) \hookrightarrow \Shv((\Mfd_{/M})^{op},\Mod_R),\]
+which sends $f$ to the sheaf that sends $g\colon N \to M$ to the $R$-module of global sections of $f\circ g$. Here $M^{top}$ is the underlying topological space of the manifold $M$. Here we also used the fact that $\Shv((\Mfd_{/M})^{op},\Mod_R)$ is equivalent to the $\Shv((\Mfd)^{op},\Mod_R)$ objects over the locally constant sheaf $\underline{M}$. So, the topological $R$-twists of $M$ are precisely the twists that come from a functor $M \to \Pic_R$, which is what a twist should really mean.
+
+
+We now use this notion to define twisted differential cohomology. 
+
+\begin{remark}
+  Recall that the localization functor $\Ch(\bR) \Mod_{H\bR}$ is lax monoidal, meaning it preserves commutative algebra objects. 
+\end{remark}
+
+The previous remark implies that the composition of the stable Dold-Kan equivalence $\Ch(\bR) \to \sD(\bR)$ with the localization $\Ch(\bR) \Mod_{H\bR}$ is lax monoidal and hence preserves algebra objects. This means we get a functor
+\[\CAlg(\Ch(\bR)) \to \CAlg(\Mod_{H\bR}) \]
+Here the left hand side is the category of differential graded commutative algebras (CDGAs) over $\bR$, while the right hand side is the category of commutative $H\bR$-algebras.
+
+\begin{definition}
+  Let $R$ be a commutative ring spectrum, A \emph{differential (ring) refinement} of $R$ is a triple $(A, c, R)$ where
+  \begin{itemize}
+    \item $A$ is a CDGA over $\bR$,
+    \item $c\colon R \wedge H\bR \to HA$ is an equivalence of commutative $H\bR$-algebras.
+  \end{itemize}
+\end{definition}
+
+We can in fact make this definition more categorical.
+
+\begin{definition}
+  We define the $\infty$-category $\widehat{\Rng}$ of differential ring refinements as the pullback
+  \[
+  \begin{tikzcd}
+    \widehat{\Rng} \arrow[r] \arrow[d] & DGC\Alg \arrow[d, "H"] \\
+    \CAlg(\Sp) \arrow[r, " - \wedge H\bR"] & \Comm\Alg_{H\bR}
+  \end{tikzcd}
+  \]
+\end{definition}
+
+Notice we can use the above to definition to again define a new sheaf of ring spectra via pullback.
+
+\begin{definition}
+  Let $(R,A,c)$ be a differential refinement of $R$. Then the \emph{differential function ring spectrum} $\hat{R}$ is defined as the pullback
+  \[
+  \begin{tikzcd}
+    \hat{R} \arrow[d] \arrow[rrr] & & & H(\Omega^\bullet A)^{\geq n} \arrow[d] \\ 
+    \underline{R} \arrow[r] & \underline{R \wedge H\bR} \arrow[r, "c"] & \underline{HA} \arrow[r] & H(\Omega^\bullet A)
+  \end{tikzcd}
+  \]
+\end{definition}
+
+We now want to define a notion of ``differential twists'' and ``differential module refinements'' of topological twists. For this we need to introduce some more notation and elaborate properties.
+
+\begin{definition}
+  Let $A$ be a CDGA over $\bR$. Let $\Pic^{wloc, fl}_A(M)$ be the full sub-$\infty$-groupoid of $\Mod_{\Omega^\bullet A}(M)$ spanned by the sheaves $\cM$ of $\Omega^\bullet A$-modules which are
+  \begin{itemize}
+    \item \emph{weakly locally constant}, i.e. locally equivalent to a constant sheaf of $\Omega^\bullet A$-modules, as a sheaf valued in $\sD(\bR)$,
+    \item \emph{$K$-flat}, i.e. such that the functor $\cM \otimes_{\Omega^\bullet A} -$ preserves quasi-isomorphisms,
+    \item \emph{invertible}, i.e. there exists $\cN$ such that $\cM \otimes_{\Omega^\bullet A} \cN \cong \Omega^\bullet A$ as sheaves valued in $\Ch(\bR)$.
+  \end{itemize} 
+\end{definition}
+
+We are now ready to give the main definition of twisted differential cohomology.
+
+\begin{definition}
+  Let $E$ be a topological twist in $\Pic^{loc}_{\underline{R}}(M)$, a \emph{differential module refinement of $E$} is a triple $(E, \cM, c)$ where
+  \begin{itemize}
+    \item $\cM \in \Pic^{wloc, fl}_A(M)$,
+    \item $c\colon E \wedge H\bR \to H\cM$ is an equivalence in $\Pic^{loc}_{\underline{HA}}(M)$.
+  \end{itemize}
+\end{definition}
+
+\begin{definition}
+  Let $(E, \cM, c)$ be a differential module refinement of a topological twist $E \in \Pic^{loc}_{\underline{R}}(M)$. Let $F(E,\cM,c)$ be the pullback
+  \[
+  \begin{tikzcd}
+    F(E,\cM,c) \arrow[rr] \arrow[d] & & H(\cM^{\geq 0}) \arrow[d] \\
+    E \arrow[r] & \underline{H\bR} \wedge E \arrow[r, "c"] &  \underline{H\cM} 
+  \end{tikzcd}
+  \]
+  Denote by $\hat{R}^{(E,\cM,c)}(M) := \pi_0(F(E,\cM,c)(M))$ the \emph{twisted differential $R$-cohomology group} of $M$ associated to the differential refinement $(E,\cM,c)$ of the topological twist $E$.
+\end{definition}
+
+\begin{definition}
+  Let $\Tw_{\hat{R}}(M)$, the \emph{$\infty$-category of differential twists}, be the $\infty$-category defined as the pullback
+  \[
+  \begin{tikzcd}
+    \Tw_{\hat{R}}(M) \arrow[r] \arrow[d] & \Pic^{wloc, fl}_{\Omega^\bullet A}(M) \arrow[d, "H"] \\
+    \Pic^{loc}_{\underline{R}}(M) \arrow[r, " - \wedge H\bR"] & \Pic^{loc}_{\underline{HA}}(M)
+  \end{tikzcd}
+  \]
+\end{definition}
+
+As a next step we can explore applications and examples of this abstract setup, in particular in the context of differential twisted $K$-theory.
+
+% \section{Differential Twisted Refinements of \texorpdfstring{$K$}{K}-Theory}
+% We now want to apply the previous definitions to the case of complex $K$-theory
+
+{\footnotesize
+ \bibliographystyle{alpha}
+ \bibliography{main}
+ }
+\end{document}
