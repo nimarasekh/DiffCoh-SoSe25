@@ -1,44 +1,48 @@
 \documentclass[10pt]{amsart}
 \usepackage{amsmath,amsthm,amssymb,amsfonts,mathabx}
-\usepackage[mathscr]{euscript}
+\usepackage{eucal}
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{enumerate}
 \usepackage{enumitem}
-\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
+\usepackage[colorlinks=true,linkcolor=red, citecolor = blue]{hyperref}
 \usepackage[margin=2.5cm]{geometry}
 \setlength{\marginparwidth}{2cm}
-\usepackage{bbold}
-\usepackage[bbgreekl]{mathbbol}
+
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
-\newcommand{\C}{\mathscr{C}}
+\newcommand{\C}{\mathcal{C}}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\kC}{\mathfrak{C}}
-\newcommand{\D}{\mathscr{D}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\I}{\mathcal{I}}
 \newcommand{\mN}{\mathrm{N}}
-\newcommand{\s}{\mathscr{S}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\s}{\mathcal{S}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bS}{\mathbb{S}}
 \newcommand{\bZ}{\mathbb{Z}}
 
 
-\newcommand{\set}{\mathscr{S}\mathrm{et}}
-\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
-\newcommand{\cat}{\mathscr{C}\mathrm{at}}
-\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
-\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
+\newcommand{\set}{\mathcal{S}\mathrm{et}}
+\newcommand{\Sp}{\mathcal{S}\mathrm{p}}
+\newcommand{\cat}{\mathcal{C}\mathrm{at}}
+\newcommand{\scat}{s\mathcal{C}\mathrm{at}}
+\newcommand{\sset}{s\mathcal{S}\mathrm{et}}
 \newcommand{\Fun}{\mathrm{Fun}}
-\newcommand{\Top}{\mathscr{T}\mathrm{op}}
-\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
-\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
+\newcommand{\Top}{\mathcal{T}\mathrm{op}}
+\newcommand{\Kan}{\mathcal{K}\mathrm{an}}
+\newcommand{\Ab}{\mathcal{A}\mathrm{b}}
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Map}{\mathrm{Map}}
 \newcommand{\BDelta}{\mathbf{\Delta}} % Bold-face Delta
 \newcommand{\im}{\mathrm{Im}} % image
 \newcommand{\op}{\mathrm{op}} % opposite
 \newcommand{\Ho}{\mathrm{Ho}} % Homotopy category 
+\newcommand{\grpd}{\mathcal{G}\mathrm{rpd}}
+\newcommand{\Pshv}{\mathcal{PS}\mathrm{hv}}
 
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
@@ -143,108 +147,89 @@ By only representing the face maps, we can depict a simplicial set as follows:
     X_0  & X_1 \arrow[l,shift right]\arrow[l,shift left] & X_2 \arrow[l,shift right=2]\arrow[l]\arrow[l,shift left=2] & \cdots \arrow[l,shift right=3]\arrow[l,shift right=1]\arrow[l,shift left=1]\arrow[l,shift left=3]
   \end{tikzcd}
 \end{equation}
-$\infty$-categories are then defined in terms of a lifting condition, for which we need to define horns. 
+$\infty$-categories are then defined in terms of a lifting condition, for which we need to define horns.
 \begin{definition}
   Let $\Delta^n$ denote the representable functor associated to $\langle n\rangle$. The face map $\delta^i_n$ induces a map of simplicial sets $d^i_n:\Delta^{n-1}\to\Delta^n$. The image of $d^i_n$ is called the \emph{$i$-face}. The \emph{$i$-horn} $\Lambda^{i,n}$ is the union of all faces, except the $i$-face. 
 \end{definition}
 \begin{remark}
   Another characterization of $\Lambda^{i,n}$ is the following: A $t$-simplex $f:\langle t\rangle\to\langle n\rangle$ is a $t$-simplex for $\Lambda^{i,n}$ if and only if there is $j\neq i$ not in the image of $f$. 
 \end{remark}
-\begin{definition}A simplicial set $X$ is a \emph{$\infty$-category} if every map $\Lambda^{i,n}\to X$ can be extended to $\Delta^n$, for every $n$ and $0<i<n$. If the extension condition holds for every $0\leq i\leq n$, we call $X$ a \emph{$\infty$-groupoid}.
+\begin{definition}A simplicial set $X$ is a \emph{quasi-category} if, for every $0<i<n$ and solid diagram \begin{equation}
+  \begin{tikzcd}
+    \Lambda^{i,n} \arrow[d]\arrow[r] & X \\
+    \Delta^n \arrow[ru,dashed]
+  \end{tikzcd}
+\end{equation}
+there is a dashed arrow rendering the diagram commutative. If the above condition holds for every $0\leq i\leq n$, we call $X$ a \emph{Kan complex}.
 \end{definition}
-\begin{remark}
-  There are different models for $\infty$-categories. To distinguish the one above from other models, a simplicial set satisfying the horn filling condition, for $0<i<n$, is called a \emph{quasi-category}. 
-\end{remark}
 \begin{example}
   Let $\C$ be a category. The \emph{nerve of $\C$}, denoted $\mN\C$, is the simplicial set where the $n$-simplices are $\Hom_{\cat}(\langle n\rangle,\C)$. This defines a functor $\mN:\cat \to \sset$.
 \end{example}
-
-\begin{proposition}
-  $\mN\C$ is a $\infty$-category, and an $\infty$-groupoid if and only if $\C$ is a groupoid. 
+\begin{proposition}\label{prop:nerve}
+  $\mN\C$ is a quasi-category, and a Kan complex if and only if $\C$ is a groupoid. 
 \end{proposition}
 \begin{proof}
 Straightforward combinatorics. 
 \end{proof}
-%-------------TO BE CONTINUED----------------
-Let $\infty\cat\subseteq\sset$ be the full sub-category of quasi-categories.
-\begin{proposition}
-  $\mN: \cat \to \infty\cat$ is fully faithful.
-\end{proposition}
-
-The nerve functor has a left adjoint, the \emph{fundamental category} or \emph{homotopy category}. Here we observe some general facts about simplicial sets. Namely for every  functor $\BDelta \to \C$, where $\C$ cocomplete, we have an adjunction between $\sset$ and $\C$.
-
-
-
-\begin{example}
-  Let $\C= \Top$ and $\BDelta \to \Top$ the functor picking the geometric simplicial complex $|\Delta^n|$. Then the induced adjunction is the classical geometric realization functor $| \cdot | \colon \sset \to \Top$ and singularity functor.
-\end{example}
-
-The nerve is indeed the right adjoint of the adjunctions induced via the functor $\BDelta \to \cat$, which sends $[n]$ to the category $[n]$. This means we also have a left adjoint. 
-
-\begin{definition}
-  The \emph{homotopy category} $h\colon \sset \to \cat$ is the left adjoint to the nerve functor.
-\end{definition}
-
 \begin{remark}
- If the simplicial set is a quasi-category, then the homotopy category can be defined directly as the usual homotopy category of an $\infty$-category (i.e. we take equivalence classes of morphisms).
+  The nerve is a special case of the following construction: Let $\C$ be a category, $\Gamma:\BDelta\to\C$ a functor, then define $\mN_\Gamma$ as the composition \begin{equation}
+    \begin{tikzcd}
+      \C \arrow[r] & \Hom_{\cat}(\C^{op},\set) \arrow[r] & \sset
+    \end{tikzcd}
+  \end{equation}where the first functor is Yoneda, while the second is pre-composition with $\Gamma^\op$. In the case of the nerve, $\Gamma$ is the functor sending $\langle n\rangle$ to the linerly ordered set viewed as a category. On the other hand, assuming $\C$ is cocomplete, we can left Kan extend $\Gamma$ along the Yoneda functor $\BDelta\to\sset$, we denote by $\Ho_\Gamma$ the resulting functor $\sset\to\C$. 
 \end{remark}
-
-We do have significantly more complicated examples of such adjunctions.
-
-\begin{example}
-  Let $\kC\colon \BDelta \to \scat$ be the functor defined in \cite[Definition 1.1.5.1]{lurie2009htt}. Then we get the adjunction $(\kC,N_\Delta)$ called the homotopy coherent categorification, homotopy coherent nerve.
-\end{example}
-
-  This adjunction incudes an equivalence of $\infty$-categories, if one phrases those notions correctly. In particular, if $\C$ is a Kan-enriched category, then the homotopy coherent nerve is a quasi-category.
-
+\begin{proposition}
+  The pair $(\Ho_\Gamma,\mN_\Gamma):\C\to\sset$ is an adjoint pair. In the case of $\mN:\cat\to\sset$, the functor is fully faithful. 
+\end{proposition}
+\begin{proof}
+  Abstract nonsense about left Kan extensions. Full faithfulness can be checked directly.  
+\end{proof}
+\begin{remark}
+  $\Ho:\sset\to\cat$ is called the \emph{homotopy category} functor. If $X$ is a quasi-category, $\Ho X$ has $X_0$ as set of objects and homotopy classes of maps as morphism, see \cite[1.2.5]{land2021introduction}. 
+\end{remark}
+\begin{remark}
+  Denote by $\scat$ the category of simplicially enriched categories. In \cite[1.1.5.1]{lurie2009htt}, Lurie constructs a cosimplicial object $\BDelta\to\scat$. The resulting nerve functor $\mN_\Delta:\scat\to\sset$ is called \emph{homotopy coherent nerve}. If $\C$ is a category enriched over $\infty$-groupoids, its homotopy coherent nerve is a $\infty$-category. The induced right adjoint is denoted $\kC$, the adjoint pair $(\kC,\mN_\Delta)$ underlies a Quillen equivalence. 
+\end{remark}
+Denote by $\Kan$ the category of Kan complexes. One can show that $\Kan$ is self-enriched, which motivates, together with \cref{prop:nerve}, the following definition: 
 \begin{definition}
-  Let $\Kan$ denote the Kan-enriched category of Kan complexes. The quasi-category of spaces is defined as $N_\Delta (\Kan)$.
+  $\s:=\mN_\Delta(\Kan)$ is called the \emph{quasi-category of $\infty$-groupoids}. 
 \end{definition}
 
 \section{Accessible and Presentable Categories}
-Note, here we benefited from the fact that $\cat,\sset,\Top,\scat$ are all cocomplete categories, hence admitting such adjunctions. We now want to focus on a class of categories where we similarly can construct adjunctions in such straightforward ways.
 
+In general, a limit, resp. colimit, preserving functor need not have a left, resp. right, adjoint. Here we wish to introduce a rather large class of quasi-categories for which the previous statement holds. Let $\kappa$ denote a regular cardinal. 
 \begin{definition}
-  A category $\C$ is \emph{locally presentable} if it is cocomplete and $\kappa$-accessible for some $\kappa$.
+  A category $\I$ is \emph{$\kappa$-filtered} if, for every $\J$ with $<\kappa$ many morphisms, every diagram $\J\to\I$ has a cocone. A functor $F:\C \to \D$ is \emph{$\kappa$-accessible} if it preserves $\kappa$-filtered colimits. Given a category $\C$, an object $X$ is \emph{$\kappa$-compact} if $\Hom_{\C}(X,-):\C\to\set$ is $\kappa$-accessible. 
 \end{definition}
-
 \begin{definition}
-  A category $\C$ is $\kappa$-accessible if there exists a set of $\kappa$-compact objects $\C^0$ in $\C$, such that every object in $\C$ is a $\kappa$-filtered colimit of objects in $\C^0$.
+  A category $\C$ is \emph{$\kappa$-accessible} if there exists a set $S\subseteq\C_0$ of $\kappa$-compact objects that generate $\C$ under $\kappa$-filtered colimits. A category is \emph{accessible} if it is $\kappa$-accessible, for some regular cardinal $\kappa$. 
 \end{definition}
-
 \begin{definition}
-  A functor $F\colon \C \to \D$ is $\kappa$-\emph{accessible} if it preserves $\kappa$-filtered colimits.
+  A category $\C$ that is accessible and cocomplete is called \emph{locally presentable}.
 \end{definition}
-
-
 \begin{theorem}
-  Let $\C$ be a category. The following are equivalent:
-  \begin{enumerate}
-    \item $\C$ is locally presentable.
-    \item There exists a small category $\C^0$ and a fully faithful accessible right adjoint $\C \to \Fun((\C^0)^{op},\set)$.
-  \end{enumerate}
+  Let $\C$ be a category, then $\C$ is locally presentable if and only if there exists a small category $S$ such that the induced functor $\C\to\Pshv(S)$ is fully faithful, accessible, and a right adjoint. 
 \end{theorem}
-
 \begin{theorem}
-  Let $\C,\D$ be locally presentable categories.
-  \begin{enumerate}
-    \item $F\colon \C \to \D$ is a left adjoint if and only if it preserves colimits.
-    \item $F\colon \C \to \D$ is a right adjoint if and only if it preserves limits and is accessible.
-  \end{enumerate}
+  Let $\C,\D$ be locally presentable categories. A functor \item $F\colon \C \to \D$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. limits and is accessible.
 \end{theorem}
-
-We now generalize this to $\infty$-categories. 
-
+We now generalize this to quasi-categories.
 \begin{definition}
-  Let $K$ be a quasi-category. The quasi-category of simplicial presheaves is defined as $\Fun(K^{op},\s)$.
+  Given a simplicial set $X$, denote by $X^\op$ the simplicial set obtained by reversing the structure maps: $X^\op_n=X_n$, for all $n$, and \[\begin{array}{c}
+    (d_i:X^\op_n\to X^\op_{n-1})=(d_{n-i}:X_n\to X_{n-1})\\
+    (s_i:X^{\op}_n\to X^\op_{n+1})=(s_{n-i}:X_n\to X_{n+1})
+\end{array}\]
 \end{definition}
-
+If $X$ is a quasi-category, so is $X^\op$. 
+\begin{definition}
+  Let $X$ be a quasi-category. The \emph{quasi-category of simplicial presheaves} is defined as $\Pshv(X):=\Hom_{\sset}(X^{\op},\s)$.
+\end{definition}
 \begin{theorem}[Yoneda]
-  For a given quasi-category $K$, there is a functor $K \to \Fun(K^{op},\s)$ given by $x \mapsto \Fun(-,x)$, which is fully faithful. Every colimit preserving functor out of $\Fun(K^{op},\s)$ is equivalent to a functor out of $K$.
+  Given a quasi-category $X$, there is a fully faithful functor $X\to\Pshv(X)$. The functor $X\to\Pshv(X)$ presents the category of pre-sheaves as the free cocompletion of $X$. 
 \end{theorem}
-
+%--------------TO BE CONTINUED-------------
 \begin{theorem}
-  Let $K$ be a quasi-category.
+  Let $K$ be a quasi-category. 
   \begin{enumerate}
     \item There exists a set of $\kappa$-compact objects $\C^0$ in $K$, such that every object in $K$ is a $\kappa$-filtered colimit of objects in $\C^0$.
     \item There exists a small category $\C^0$ and a fully faithful accessible right adjoint $\C \to \Fun((\C^0)^{op},\set)$.
