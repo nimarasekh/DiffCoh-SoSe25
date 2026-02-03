@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathabx}
 \usepackage[mathscr]{euscript}
 \usepackage{tikz}
 \usepackage{tikz-cd}
@@ -17,6 +17,7 @@
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\kC}{\mathfrak{C}}
 \newcommand{\D}{\mathscr{D}}
+\newcommand{\mN}{\mathrm{N}}
 \newcommand{\s}{\mathscr{S}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bS}{\mathbb{S}}
@@ -34,6 +35,10 @@
 \newcommand{\Ab}{\mathscr{A}\mathrm{b}}
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Map}{\mathrm{Map}}
+\newcommand{\BDelta}{\mathbf{\Delta}} % Bold-face Delta
+\newcommand{\im}{\mathrm{Im}} % image
+\newcommand{\op}{\mathrm{op}} % opposite
+\newcommand{\Ho}{\mathrm{Ho}} % Homotopy category 
 
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
@@ -102,83 +107,79 @@ In this lecture we want to learn the basics of $\infty$-category theory. For the
 
 \section{Basics on \texorpdfstring{$(\infty,1)$}{(oo,1)}-categories}
 
-$(\infty,1)$-categories have different models that capture its essence. The first model are \emph{quasi-categories}.
-
+$(\infty,1)$-categories have different models that capture its essence. The first model are \emph{quasi-categories}. 
 \begin{definition}
-  The \emph{simplex category} $\DD$ is the category whose objects are the non-negative integers and whose morphisms are the non-decreasing maps. 
+  Given a natural number $n$, let $\langle n\rangle$ denote the linearly ordered set $\{0,\cdots,n\}$. The \emph{simplex category} $\BDelta$ is the category of finite linerly ordered sets $\langle n\rangle$, for every $n$, and monotone functions.
 \end{definition}
-
-Note, we have in particular maps $d^i \colon [n-1] \to [n]$ for $0 \leq k \leq n$ and $s^i\colon [n] \to [n+1]$, which satisfy the \emph{cosimplicial identities}.
-
-
 \begin{definition}
-  A \emph{simplicial set} is a functor $X \colon \DD^{op} \to \set$, i.e. a contravariant functor from the simplex category to the category of sets. The category is denoted $\sset$.
+  Given $0\leq i\leq n$, the \emph{$i$-face map} is the unique injective map $\delta^i_n:\langle n-1\rangle\to\langle n\rangle$ missing $i$. The \emph{$i$-degeneracy map} is the unique surjective map $\sigma^i_n:\langle n+1\rangle\to\langle n\rangle$ such that $i$ and $i+1$ have the same image. 
 \end{definition}
-
-We can depict such a simplicial set as 
-\[
-  \simpset{X_0}{X_1}{X_2}{}{}{}{}
-\]
-
-In order to define $\infty$-categories in this context, we need horns. Let us denote by $\Delta^n\colon\DD^{op} \to \set$ the functor $\Delta^n_m = \Hom_\DD([m],[n])$.
-
-\begin{definition}
-  The $k$-th horn in $\Delta^n$ is defined as a sub-simplicial set $\Lambda^n_k \subseteq \Delta^n$ defined as follows. A morphism $\varphi\colon[m] \to [n]$ in $\Delta^n_m$ is in $(\Lambda^n_k)_m$ precisely when $\varphi$ is not surjective and if the image does not include $k$, it must also not include some other element.
-\end{definition}
-
-\begin{definition}
-  A \emph{quasi-category} is a simplicial set $X$ such that the following conditions hold:
-  \[
-    \begin{tikzcd}
-    \Lambda^n_k \arrow[r] \arrow[d] & X \\
-    \Delta^n \arrow[ur, dashed] 
-    \end{tikzcd}
-  \]
-  for $0 < k < n$.
-\end{definition}
-
-\begin{definition}
-  An \emph{$\infty$-groupoid} is a simplicial set $X$ such that the following conditions hold:
-  \[
-    \begin{tikzcd}
-    \Lambda^n_k \arrow[r] \arrow[d] & X \\
-    \Delta^n \arrow[ur, dashed] 
-    \end{tikzcd}
-  \]
-  for $0 \leq k \leq n$.
-\end{definition}
-
-\begin{example}
-  Let $\C$ be a category. Let $N\C$ (the \emph{nerve of $\C$}) be the simplicial set given by $N\C_n = \Fun([n],\C)$. This defines a functor $N\colon\cat \to \sset$.
-\end{example}
-
-\begin{proposition}
-  $N\C$ is a quasi-category.
-\end{proposition}
-
+\begin{theorem}
+  As a category, $\BDelta$ is generated from the face and degeneracy maps subject to the \emph{simplicial identities}, i.e. 
+  \begin{equation}
+    \delta_{n+1}^i\delta_n^j=\delta_{n+1}^{j+1}\delta_n^i,\qquad i\leq j
+  \end{equation}
+  \begin{equation}
+    \sigma_{n-1}^j\sigma_n^i=\sigma_{n-1}^i\sigma_{n}^{j+1},
+    \qquad i\leq j
+  \end{equation}
+  \begin{equation}
+    \sigma_{n}^j\delta_{n+1}^i=\left\{\begin{array}{ll}
+      \delta_{n}^i\sigma_{n-1}^{j-1}, & i<j \\ 
+      1, & i=j\\ 
+      \delta_n^{i-1}\sigma_{n-1}^j, & i>j
+    \end{array}\right.
+  \end{equation}
+\end{theorem}
 \begin{proof}
-Straightforward combinatorics (For example lift of $\Lambda^2_1 \to \Delta^2$ is the composition).
+  Omitted.
 \end{proof}
-
+\begin{definition}
+  A \emph{simplicial set} is a contravariant functor $X:\BDelta^{\op} \to \set$. Denote by $\sset$ the category of simplicial sets. $X_n:=X(\langle n\rangle)$ is the set of \emph{$n$-simplices}. 
+\end{definition}
+By only representing the face maps, we can depict a simplicial set as follows: 
+\begin{equation}
+  \begin{tikzcd}
+    X_0  & X_1 \arrow[l,shift right]\arrow[l,shift left] & X_2 \arrow[l,shift right=2]\arrow[l]\arrow[l,shift left=2] & \cdots \arrow[l,shift right=3]\arrow[l,shift right=1]\arrow[l,shift left=1]\arrow[l,shift left=3]
+  \end{tikzcd}
+\end{equation}
+$\infty$-categories are then defined in terms of a lifting condition, for which we need to define horns. 
+\begin{definition}
+  Let $\Delta^n$ denote the representable functor associated to $\langle n\rangle$. The face map $\delta^i_n$ induces a map of simplicial sets $d^i_n:\Delta^{n-1}\to\Delta^n$. The image of $d^i_n$ is called the \emph{$i$-face}. The \emph{$i$-horn} $\Lambda^{i,n}$ is the union of all faces, except the $i$-face. 
+\end{definition}
 \begin{remark}
- Note $\Lambda^2_0$ does not generally admit lifts, unless the relevant morphism is invertible.
+  Another characterization of $\Lambda^{i,n}$ is the following: A $t$-simplex $f:\langle t\rangle\to\langle n\rangle$ is a $t$-simplex for $\Lambda^{i,n}$ if and only if there is $j\neq i$ not in the image of $f$. 
 \end{remark}
-
-Here is an important result, the proof of which is postponed.
+\begin{definition}A simplicial set $X$ is a \emph{$\infty$-category} if every map $\Lambda^{i,n}\to X$ can be extended to $\Delta^n$, for every $n$ and $0<i<n$. If the extension condition holds for every $0\leq i\leq n$, we call $X$ a \emph{$\infty$-groupoid}.
+\end{definition}
+\begin{remark}
+  There are different models for $\infty$-categories. To distinguish the one above from other models, a simplicial set satisfying the horn filling condition, for $0<i<n$, is called a \emph{quasi-category}. 
+\end{remark}
+\begin{example}
+  Let $\C$ be a category. The \emph{nerve of $\C$}, denoted $\mN\C$, is the simplicial set where the $n$-simplices are $\Hom_{\cat}(\langle n\rangle,\C)$. This defines a functor $\mN:\cat \to \sset$.
+\end{example}
 
 \begin{proposition}
-  $N\colon \cat \to \cat_\infty$ is fully faithful.
+  $\mN\C$ is a $\infty$-category, and an $\infty$-groupoid if and only if $\C$ is a groupoid. 
+\end{proposition}
+\begin{proof}
+Straightforward combinatorics. 
+\end{proof}
+%-------------TO BE CONTINUED----------------
+Let $\infty\cat\subseteq\sset$ be the full sub-category of quasi-categories.
+\begin{proposition}
+  $\mN: \cat \to \infty\cat$ is fully faithful.
 \end{proposition}
 
-The nerve functor has a left adjoint, the \emph{fundamental category} or \emph{homotopy category}. Here we observe some general facts about simplicial sets. Namely for every  functor $\DD \to \C$, where $\C$ cocomplete, we have an adjunction between $\sset$ and $\C$.
+The nerve functor has a left adjoint, the \emph{fundamental category} or \emph{homotopy category}. Here we observe some general facts about simplicial sets. Namely for every  functor $\BDelta \to \C$, where $\C$ cocomplete, we have an adjunction between $\sset$ and $\C$.
 
 
 
 \begin{example}
-  Let $\C= \Top$ and $\DD \to \Top$ the functor picking the geometric simplicial complex $|\Delta^n|$. Then the induced adjunction is the classical geometric realization functor $| \cdot | \colon \sset \to \Top$ and singularity functor.
+  Let $\C= \Top$ and $\BDelta \to \Top$ the functor picking the geometric simplicial complex $|\Delta^n|$. Then the induced adjunction is the classical geometric realization functor $| \cdot | \colon \sset \to \Top$ and singularity functor.
 \end{example}
 
-The nerve is indeed the right adjoint of the adjunctions induced via the functor $\DD \to \cat$, which sends $[n]$ to the category $[n]$. This means we also have a left adjoint. 
+The nerve is indeed the right adjoint of the adjunctions induced via the functor $\BDelta \to \cat$, which sends $[n]$ to the category $[n]$. This means we also have a left adjoint. 
 
 \begin{definition}
   The \emph{homotopy category} $h\colon \sset \to \cat$ is the left adjoint to the nerve functor.
@@ -191,7 +192,7 @@ The nerve is indeed the right adjoint of the adjunctions induced via the functor
 We do have significantly more complicated examples of such adjunctions.
 
 \begin{example}
-  Let $\kC\colon \DD \to \scat$ be the functor defined in \cite[Definition 1.1.5.1]{lurie2009htt}. Then we get the adjunction $(\kC,N_\Delta)$ called the homotopy coherent categorification, homotopy coherent nerve.
+  Let $\kC\colon \BDelta \to \scat$ be the functor defined in \cite[Definition 1.1.5.1]{lurie2009htt}. Then we get the adjunction $(\kC,N_\Delta)$ called the homotopy coherent categorification, homotopy coherent nerve.
 \end{example}
 
   This adjunction incudes an equivalence of $\infty$-categories, if one phrases those notions correctly. In particular, if $\C$ is a Kan-enriched category, then the homotopy coherent nerve is a quasi-category.

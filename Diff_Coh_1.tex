@@ -107,8 +107,6 @@
 \def\DDelta{{\mathbbe{\Delta}}}
 \newcommand{\DD}{\DDelta}
 
-
-
 %% N.R. notes
 \newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
 \newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
@@ -163,12 +161,12 @@ In particular, isomorphism classes of line bundles only depend on the underlying
 Is there a generalized version of cohomology theory $E^*$ such that $E^2(M)\simeq\pi_0(\bC^*\bdl_\nabla(M))$? 
 \end{question}
 Imitating \v Cech and de Rham cohomology, consider the following modified de Rham chain complex of sheaves: Let $\Theta\in\Omega^1(\bC^*)$ be the Maurer-Cartan form, 
-\begin{equation}
+\begin{equation}\label{eq:delignecomp}
 	\begin{tikzcd}
 		\D(n):C^\infty_{\bC^*}\arrow[r," d\log"] & \Omega^1 \arrow[r," d"] & \cdots \arrow[r," d"] & \Omega^{n-1}
 	\end{tikzcd}
 \end{equation}where $C^\infty_{\bC^*}$ is the sheaf of $\bC^*$-valued functions on $M$ and $ d\log$ maps $f\in C^{\infty}(U,\bC^*)$ to $f^*\Theta\in\Omega^1(U)$. Given a cover $U\to M$, construct $\D(2)(U)$ as the total complex of the following bi-complex 
-\begin{equation}
+\begin{equation}\label{eq:bicomp}
 	\begin{tikzcd}
 		\vdots & \vdots & \vdots   \\
 		C^\infty(U^{[3]},\bC^*) \arrow[r]\arrow[u] & \Omega^1(U^{[3]}) \arrow[r]\arrow[u] &  \Omega^2(U^{[3]}) \arrow[u] \arrow[r] & \cdots \\ 
@@ -194,45 +192,53 @@ A differential cohomology theory is meant as a coupling of ordinary cohomology c
 
 Taking a closer look at $\cH^n(M)$ we see the following: A $n$-cocycle representing a class in $\cH^n(M)$ consists of a cover $U\to M$, together with \[\mu:U^{[n]}\to\bC^*,\A_1\in\Omega^1(U^{[n-1]}),\A_2\in\Omega^2(U^{[n-2]}),\cdots,\A_{n-1}\in\Omega^{n-1}(U)\]
 The condition $\delta^{0,n}\mu=1$ is equivalent to $\mu$ being a $(n-1)$-cocycle for $\bC^*$-valued \v Cech cohomology of $M$, therefore there is a map $\cH^n(M)\to\check{H}^{n-1}(M,\bC^*)\simeq H^n(M,\bZ)$. Using \[\delta^{n-1,1}\A_{n-1}= d^{n-1,1}\A_{n-2}\]we can show that $\delta^{n,1} d^{n,0}\A_{n-1}=0\in\Omega^n(U^{[2]})$, i.e. $ d^{n,0}\A_{n-1}$ is constant on fibers of $\pi:U\to M$, so there is a unique $F\in\Omega^{n}(M)$ such that $\pi^*F= d^{n,0}\A_{n-1}$ and is closed, therefore there is a map $\cH^n(M)\to\Omega^{n}_{\cl}(M)$.\nrnote{How to prove $F$ has integral periods?} The 
-\begin{remark}
+\begin{remark}\label{rmk:close}
 	$F$ being closed can be proved as follows: $\pi^* d F= d^{n+1,0}\pi^*F= d^{n+1,0} d^{n,0}\A_{n-1}=0$, by uniqueness we conclude $dF=0$. 
+\end{remark}
+\begin{remark}[\textcolor{red}{Achtung}] The differential $d^{n+1,0}$ does not appear in the complex \cref{eq:bicomp}, which stops at $d^{n,0}$ by definition, see \cref{eq:delignecomp}. The equation appearing in \cref{rmk:close} is interpreted in the bicomplex for $\D(n+1)$. 
 \end{remark}
 \begin{remark}
 	For $n=2$, we recover the usual notion of curvature 2-form. 
 \end{remark}
-For semplicity, consider $n=2$ and a $2$-cocycle of $\cH^2(M)$ such that $\mu$ is a \v Cech $2$-coboundary. This means that the underlying $\bC^*$-principal bundle is trivial, the choice of a section corresponds to the choice of $\beta\in C^\infty(U,\bC^*)$ such that $\delta^{0,1}\beta=\mu$. In that case, $(\mu,\A)$ is cohomologous to $(0,\A-d^{1,0}\beta)$ and identified by a unique closed for $\rho\in\Omega^1(M)$ such that $\pi^*\rho=\A-d^{1,0}\beta$. In conclusion, there is a short exact sequence \begin{equation}
+For semplicity, consider $n=2$ and a $2$-cocycle of $\cH^2(M)$ such that $\mu$ is a \v Cech $2$-coboundary. This means that the underlying $\bC^*$-principal bundle is trivial, the choice of a section corresponds to the choice of $\beta\in C^\infty(U,\bC^*)$ such that $\delta^{0,1}\beta=\mu$. In that case, $(\mu,\A)$ is cohomologous to $(0,\A-d^{1,0}\beta)$ and identified by a unique $\rho\in\Omega^1(M)$ such that $\pi^*\rho=\A-d^{1,0}\beta$. With a bit of work, one can prove that if $\A-d^{1,0}\beta$ is exact, then $\rho$ is $d\log$-exact. In conclusion, there is a short exact sequence \begin{equation}
 	\begin{tikzcd}
-		0 \arrow[r] & H^{1}(M) \arrow[r] & \cH^2(M) \arrow[r] & H^2(M,\bZ) \arrow[r] & 0
+		0 \arrow[r] & \frac{\Omega^1(M)}{\mathrm{Im}d\log} \arrow[r] & \cH^2(M) \arrow[r] & H^2(M,\bZ) \arrow[r] & 0
 	\end{tikzcd}
 \end{equation}
 \begin{remark}
-	$\rho$ exists by the same argument as $F$ above, since $\delta^{1,1}(\A-d^{1,0}\beta)=\delta^{1,1}\A-d^{1,1}\delta^{0,1}\beta=\delta^{1,1}\A-d^{1,1}\mu=0$ in $\Omega^1(U^{[2]})$. 
+	$\rho$ exists by the same argument as $F$ above, since $\delta^{1,1}(\A-d^{1,0}\beta)=\delta^{1,1}\A-d^{1,1}\delta^{0,1}\beta=\delta^{1,1}\A-d^{1,1}\mu=0$ in $\Omega^1(U^{[2]})$. Moreover, $\pi^*d\rho=d^{2,0}\A$, so $\rho$ is closed if and only if $\A$ is flat, i.e. $d^{2,0}\A=0$. 
 \end{remark}
 \begin{remark}
 	Surjectivity is a corollary of the fact that every line bundle admits a connection, proven using partitions of unity. 
 \end{remark}
+Similarly, consider the curvature map $\cH^2(M)\to\Omega^{2}_\cl(M)$ and $\A\in\Omega^1(U)$ a horizontal boundary, i.e. $\beta\in C^\infty(U,\bC^*)$ exists such that $d^{1,0}\beta=\A$, then $\mu-\delta^{0,1}\beta$ is a 1-cocycle for \v Cech cohomology of $M$. In conclusion there is a short exact sequence \begin{equation}
+	\begin{tikzcd}
+		0 \arrow[r] & \check{H}^1(M,\bC^*) \arrow[r] & \cH^2(M) \arrow[r] & \Omega^2_{\cl,\bZ}(M) \arrow[r] & 0 
+	\end{tikzcd}
+\end{equation}where $\Omega^n_{\cl,\bZ}(M)$ denotes the sub-space of closed, integral $n$-forms.
+\begin{remark}
+	A closed $n$-form is integral if the corresponding cohomology class in real cohomology, via the de Rham isomorphism, belong to the image of $H^n(M,\bZ)\to H^n(M,\bR)$. 
+\end{remark}
 %----------TO BE CONTINUED------------%
-Having witnessed one interesting exact sequence, let us observe a second one, which is the following:
-\[ 0 \to H^{n-1}(M, \bC^\times) \to \hat{H}^n(M) \xrightarrow{curv} \Omega_{cl,\bZ}^n(M)\to 0 \]
-We will explicate why this diagram is exact, but let us make the following observation. First of all, the kernel is indeed reasonably defined, as $H^{n-1}(M, \bC^\times)$ classifies line bundles with equal curvature, meaning there is a mapping $(g_{\alpha\beta\gamma}, A_{\alpha\beta}, B_\alpha) \mapsto d B_\alpha$  Notice, this is indeed well-defined as $(\delta B)_{\alpha\beta} = d A_{\alpha\beta}$.\nrnote{How does that relate to the previous step?}
-
-It is an amazing fact about $\hat{H}$ that these two seemingly independent exact sequences actually fit together with $\hat{H}$, via two maps from $\Omega^n_{cl,\bZ}(M) \to H^n(M,\bR)$ and $H^n(M,\bZ)  \to H^n(M,\bR)$. This is known as the \emph{hexagonal diagram} in differential cohomology theory. 
-
-\[ 
-\begin{tikzcd}
-	&H^{n-1}(M,\bC^\times) \arrow[rr] \arrow[dr]& & H^n(M,\bZ) \arrow[dr] & \\
-	H^{n-1}(M,\bR) \arrow[ur] \arrow[dr] & & \hat{H}^n(M) \arrow[ur, "cc"] \arrow[dr, "\curv"]  & & H^n(M,\bR) \\ 
-	& \Omega^{n-1} \arrow[rr, "q"] \arrow[ur] & & \Omega^{n}_{cl,\bZ} \arrow[ur] & 
-\end{tikzcd}
-\]
-
-This was first discovered by Simons and Sullivan  in the 2000s \cite{simonssullivan2008diffcoh}.
+These exact sequences are not independent from one another, but are linked via the de Rham differential $d:\Omega^1(M)\to\Omega^2(M)$ and the connecting homomorphism $H^n(M,\bC^*)\to H^{n+1}(M,\bZ)$. The diagram incorporating all these maps is:
+\begin{equation}
+	\begin{tikzcd}[column sep={2cm,between origins},row sep={1.5cm,between origins}]
+            & H^{n-1}(M,\bC^*) \arrow[dr]\arrow[rr] & & H^n(M,\bZ) \arrow[dr] & & \\
+            H^{n-1}(M,\bC)\arrow[ru]\arrow[rd] & & \cH^n(M) \arrow[dr]\arrow[ru] & & H^n(M,\bC) & \\
+            & \frac{\Omega^{n-1}(M)}{\mathrm{Im}d_{\D(n)}} \arrow[ru]\arrow[rr,"d_{\D(n)}"] & & \Omega^n_{\cl,\bZ}(M) \arrow[ru] & & 
+        \end{tikzcd}
+\end{equation}
+where $d_{\D(n)}$ is the differential for $\D(n)$, to distinguish from the de Rham differential. This diagram was first discovered by Simons and Sullivan in the 2000s \cite{simonssullivan2008diffcoh}.
 
 \section{Holonomy and Characters}
-We have seen that differential cohomology is a generalization of ordinary cohomology. We can hence wonder how differential cohomology interacts with other aspects of ordinary cohomology theory, such as holonomy and characters. 
-Intuitively, holonomy should give us new elements via parallel transport along loops. First of all, we can generalize this to arbitrary dimensions. For example, let $\Phi\colon \Sigma \to M$ be a smooth map, where $\Sigma$ is an $(n-1)$-dimensional closed manifold, and $\xi \in \hat{H}^n(M)$ be a differential cohomology class. Now if we take the pullback $\Phi^*\xi \in \hat{H}^n(\Sigma)$, it lands in the kernel of $cc\colon \hat{H}^n(\Sigma) \to H^n(\Sigma,\bZ)$. By exactness, it hence must be of the form $i(\varphi)$, where $\varphi \in \Omega^{n-1}(\Sigma)$. This allows us to define  
+We have seen that differential cohomology is a generalization of ordinary cohomology. We can hence wonder how differential cohomology interacts with other aspects of ordinary cohomology theory, such as holonomy and characters. Holonomy of a line bundle with connection is obtained by exponential of the integral of a connection 1-form over loops, we wish to generalize this from loops to maps with a generic orientable $(n-1)$-dimensional as domain. Let $f: \Sigma \to M$ be a smooth map, where $\Sigma$ is an closed $(n-1)$-manifold (i.e. $\Sigma$ is connected, compact, and without boundary), and $\mu\in\cH^n(M)$ be a class in Deligne cohomology. Since $H^n(\Sigma,\bZ)\simeq0$, for dimensional reasons, $f^*(\mu)\in\cH^n(\Sigma)$ must be in the image of \begin{equation}\label{eq:inclus}
+	\begin{tikzcd}
+		\frac{\Omega^1(\Sigma)}{\mathrm{Im}d_{\D(n)}} \arrow[r] & \cH^n(\Sigma)
+	\end{tikzcd}
+\end{equation}Pick $\omega\in\Omega^1(\Sigma)$ in the equivalence class that is mapped to $f^*(\mu)$ via \cref{eq:inclus}. 
+%---------------TO BE CONTINUED--------------------
 \[Hol_\xi(\Phi) = e^{2\pi i\int_{\Sigma}\varphi} \in \bC^\times\] 
-Here the exponential is crucial as the integral is only well-defined up to integer multiples of $2\pi i$. Indeed, if $\varphi, \varphi'$ are in the fiber, then $\int_\Sigma \varphi - \int_\Sigma \varphi' \in \bZ$. We can now apply Stokes' theorem to this situation. Concretely, if $\Sigma = \partial B$, where $B$ is an $n$-dimensional manifold and $\phi = \Phi|_\Sigma$, then we have
+Here the exponential is crucial as the integral is only well-defined up to integer multiples of $2\pi i$. Indeed, if $\varphi, \varphi'$ are in the fiber, then $\int_\Sigma \varphi - \int_\Sigma \varphi' \in \bZ$\nrnote{Have to check with Konrad, but if $\Sigma$ is without boundary, then there should be no issue.}. We can now apply Stokes' theorem to this situation. Concretely, if $\Sigma = \partial B$, where $B$ is an $n$-dimensional manifold and $\phi = \Phi|_\Sigma$, then we have
 
 \[ Hol(\phi) = e^{2\pi i \int_B \Phi^*\curv(\xi)}\]
 
