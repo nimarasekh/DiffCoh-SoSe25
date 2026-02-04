@@ -13,36 +13,40 @@
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
+\newcommand{\fA}{\mathbf{A}}
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\kC}{\mathfrak{C}}
 \newcommand{\D}{\mathcal{D}}
 \newcommand{\I}{\mathcal{I}}
 \newcommand{\mN}{\mathrm{N}}
+\newcommand{\mL}{\mathrm{L}}
 \newcommand{\J}{\mathcal{J}}
 \newcommand{\s}{\mathcal{S}}
 \newcommand{\bR}{\mathbb{R}}
+\newcommand{\T}{\mathcal{T}}
 \newcommand{\bS}{\mathbb{S}}
 \newcommand{\bZ}{\mathbb{Z}}
 
 
 \newcommand{\set}{\mathcal{S}\mathrm{et}}
 \newcommand{\Sp}{\mathcal{S}\mathrm{p}}
+\newcommand{\PSp}{\mathcal{P}\Sp}
 \newcommand{\cat}{\mathcal{C}\mathrm{at}}
 \newcommand{\scat}{s\mathcal{C}\mathrm{at}}
 \newcommand{\sset}{s\mathcal{S}\mathrm{et}}
-\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Fun}{\mathcal{F}\mathrm{un}}
 \newcommand{\Top}{\mathcal{T}\mathrm{op}}
 \newcommand{\Kan}{\mathcal{K}\mathrm{an}}
-\newcommand{\Ab}{\mathcal{A}\mathrm{b}}
+\newcommand{\Ab}{\mathbf{Ab}}
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Map}{\mathrm{Map}}
 \newcommand{\BDelta}{\mathbf{\Delta}} % Bold-face Delta
 \newcommand{\im}{\mathrm{Im}} % image
 \newcommand{\op}{\mathrm{op}} % opposite
 \newcommand{\Ho}{\mathrm{Ho}} % Homotopy category 
-\newcommand{\grpd}{\mathcal{G}\mathrm{rpd}}
-\newcommand{\Pshv}{\mathcal{PS}\mathrm{hv}}
+\newcommand{\grpd}{\mathcal{G}\mathrm{rpd}} % category of groupoids
+\newcommand{\Pshv}{\mathcal{PS}\mathrm{hv}} % category of pre-sheaves
 
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
@@ -208,10 +212,10 @@ In general, a limit, resp. colimit, preserving functor need not have a left, res
   A category $\C$ that is accessible and cocomplete is called \emph{locally presentable}.
 \end{definition}
 \begin{theorem}
-  Let $\C$ be a category, then $\C$ is locally presentable if and only if there exists a small category $S$ such that the induced functor $\C\to\Pshv(S)$ is fully faithful, accessible, and a right adjoint. 
+  Let $\C$ be a category, then $\C$ is locally presentable if and only if there exists a small category $S$ such that the induced functor $\C\to\Pshv(S)$ is a fully faithful, accessible right adjoint. 
 \end{theorem}
 \begin{theorem}
-  Let $\C,\D$ be locally presentable categories. A functor \item $F\colon \C \to \D$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. limits and is accessible.
+  Let $\C,\D$ be locally presentable categories. A functor $F\colon \C \to \D$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
 \end{theorem}
 We now generalize this to quasi-categories.
 \begin{definition}
@@ -222,197 +226,141 @@ We now generalize this to quasi-categories.
 \end{definition}
 If $X$ is a quasi-category, so is $X^\op$. 
 \begin{definition}
-  Let $X$ be a quasi-category. The \emph{quasi-category of simplicial presheaves} is defined as $\Pshv(X):=\Hom_{\sset}(X^{\op},\s)$.
+  Let $X$ be a quasi-category. The \emph{quasi-category of simplicial presheaves} is defined as $\Fun(X^\op,\s):=\Hom_{\sset}(X^{\op},\s)$.
 \end{definition}
 \begin{theorem}[Yoneda]
-  Given a quasi-category $X$, there is a fully faithful functor $X\to\Pshv(X)$. The functor $X\to\Pshv(X)$ presents the category of pre-sheaves as the free cocompletion of $X$. 
+  Given a quasi-category $X$, the mapping space functor $X^\op\times X\to\s$ adjoints to a functor $y:X\to\widehat{X}:=\Fun(X^\op,\s)$, called the \emph{Yoneda embedding}. Given a cocomplete quasi-category $\C$, pre-composition by $y$ induces an equivalence \begin{equation}
+    \begin{tikzcd}
+      \Fun^\mL(\widehat{X},\C) \arrow[r] & \Fun(X,\C)
+    \end{tikzcd}
+  \end{equation}where $\Fun^\mL(\widehat{X},\C)$ denotes the category of colimit preserving functors $\widehat{X}\to\C$. 
 \end{theorem}
-%--------------TO BE CONTINUED-------------
+In other words, $\widehat{X}$ is the free cocompletion of $X$. The inverse equivalence if given by taking left Kan extensions. The definition of accessible category transfers directly to the $\infty$-categorical setting. 
+\begin{theorem}\label{thm:locpresquasi}
+  A quasi-category $X$ is locally presentable (cocomplete and accessible) if and only if there is a small sub-quasi-category $S$ such that $X\to\Fun(S^\op,\s)$ is a fully faithful, accessible right adjoint. 
+\end{theorem}
+\begin{remark}
+  In view of \cref{thm:locpresquasi}, one can define a category to be \emph{locally presentable} if it is the accessible right localization of a pre-sheaf category for some small quasi-category $S$. In particular, every pre-sheaf category is locally presentable. 
+\end{remark}
 \begin{theorem}
-  Let $K$ be a quasi-category. 
-  \begin{enumerate}
-    \item There exists a set of $\kappa$-compact objects $\C^0$ in $K$, such that every object in $K$ is a $\kappa$-filtered colimit of objects in $\C^0$.
-    \item There exists a small category $\C^0$ and a fully faithful accessible right adjoint $\C \to \Fun((\C^0)^{op},\set)$.
-  \end{enumerate}
+  Let $X,Y$ be presentable $\infty$-categories, then a functor $f:X\to Y$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
 \end{theorem}
-
-In those cases we say $K$ is presentable. We now again have the adjoint functor theorem. 
-
-\begin{theorem}
-  Let $\C,\D$ be presentable $\infty$-categories.
-  \begin{enumerate}
-    \item $F\colon \C \to \D$ is a left adjoint if and only if it preserves colimits.
-    \item $F\colon \C \to \D$ is a right adjoint if and only if it preserves limits and is accessible.
-  \end{enumerate}
-\end{theorem}
-
-Note in particular the $\infty$-category of sheaves is a presentable $\infty$-category.
-
 \section{Stable \texorpdfstring{$\infty$}{oo}-Categories and Spectra}
-We now use the $\infty$-categorical framework to study spectra. Let us recall some facts about spectra, to motivate the story. The \emph{Freudenthal suspension theorem} states that the suspension functor $\Sigma \colon \Top \to \Top$ stabilizes the homotopy type. More explicitly, the map
-\[
- \pi_k(X) \to \pi_{k+1}( \Sigma X) \to \pi_{k+2}(\Sigma^2X) \to ... 
-\]
-stabilizes for $k$ large enough, if $X$ satisfies some connectivity condition. This defined the stable homotopy groups $\pi_n^S(X)$ as the stabilization of this sequence.
-
-There is significant interest in computing these stable homotopy groups, in particular in the case where $X$ is a sphere, given that it helps us understand many phenomena in algebraic topology.
-
-We now want a setting where these stable homotopy groups naturally live and can be studied. We know that $(\Sigma,\Omega)$ induces an adjunction on the category of pointed topological spaces. What we want is an adjustment of this definition such that the adjunction $(\Sigma,\Omega)$  is an equivalence. 
-
-We now take a $\infty$-categorical perspective on this and use it to study such stable phenomena. 
-
+We now use the $\infty$-categorical framework to study spectra. The study of spectra originates from the study of \emph{stable phenomena}, i.e. patterns appearing after repeated application of the suspension functor $\Sigma:\Top_*\to\Top_*$.
+\begin{example}
+  Let $(\Sigma,\Omega):\Top_{*/}\to\Top_{*/}$ be the suspension-loop adjunction on pointed topological spaces. \emph{Freudenthal Suspension Theorem} states that, if $X$ is a $n$-connected space, the adjunction unit $X\to\Omega\Sigma X$ is $2n$-connected. If $X$ is connected, $S^n\wedge X$ is $n$-connected, so $\Sigma^nX\to\Omega\Sigma^{n+1}X$ is $2n$-connected. In particular, $\pi_i(\Sigma^nX)\to\pi_{i+1}(\Sigma^{n+1}X)$ is an isomorphism, for all $i<2n$. The group $\pi_i(\Sigma^nX)$ is denoted $\pi_{n-i}^s(X)$, called the \emph{$(n-i)$-stable homotopy group of $X$}. 
+\end{example}
+\nrnote{More examples?}
 \begin{definition}
-  Let $\C$ be an $\infty$-category with initial and terminal object. $\C$ has a $0$-object if they are equivalent.
+  Let $\C$ be an $\infty$-category, an object $0$ that is both initial and terminal is called 
+  \emph{zero object}. A category $\C$ with a zero object is called a \emph{pointed category}.
 \end{definition}
-
 \begin{example}
-  Let $\C$ be a $1$-category. Then $\C$ is pointed as a $1$-category if and only if it is pointed as an $\infty$-category. 
+  Let $1\in\C$ be a terminal object, then the identity of $1$ is the zero object in the slice category $\C_{1/}$ of objects under $1$. In particular, the category $\s_*=\s_{*/}$ of pointed spaces is pointed. 
 \end{example}
-
-\begin{example}
-  Notice $\s$ is not pointed, we hence can define $\s_*$ as the slices under the terminal space, i.e. $\s_* = \s_{*/}$. This $\infty$-category is then pointed by construction.
-\end{example}
-
-Note $\s_*$ is not just some pointed $\infty$-category, it is in some sense the universal one.
 \begin{proposition}
-  Let $\D$ be a pointed $\infty$-category. Then the functor 
-  \[\mathrm{ev}_{S^0}\colon\Fun^L(\s_*,\D) \xrightarrow{ \ \simeq \ } \D \]
-  that evaluates at $S^0$ is an equivalence.
+  Let $\D$ be a pointed $\infty$-category. Evaluation at the 0-sphere $S^0$ induces an equivalence \begin{equation}
+    \begin{tikzcd}
+      \Fun^\mL(\s_*,\C) \arrow[r] & \C
+    \end{tikzcd}
+  \end{equation}where $\Fun^\mL(\s_*,\C)$ denotes the category of colimit preserving functors $\s_*\to\C$. 
 \end{proposition}
-
-We now generalize from there and define triangles in $\s_*$. 
-
+We now introduce the notion of a {triangle}.
 \begin{definition}
-  Let $\C$ be a pointed $\infty$-category. A \emph{triangle} in $\C$ is a diagram of the form
-  \[
-  \begin{tikzcd}
-   X \arrow[r]  \arrow[d] & Y \arrow[d] \\ 
-   0 \arrow[r] & Z
-  \end{tikzcd}
-  \]
-  where $X$, $X$, and $Z$ are objects in $\C$.
+  Let $\C$ be a pointed $\infty$-category. A \emph{triangle} in $\C$ is a commutative diagram of the form \begin{equation}\label{eq:triangle}
+    \begin{tikzcd}
+      X \arrow[r] \arrow[d] & Y \arrow[d] \\
+      0 \arrow[r] & Z
+    \end{tikzcd}
+  \end{equation}A triangle is \emph{exact}, resp. \emph{coexact}, if it is a pullback, resp. pushout, square. 
 \end{definition}
-
 \begin{definition}
-  We say a triangle is a \emph{exact} if it is a pullback square and \emph{coexact} if it is a pushout square.
-\end{definition}
-
-\begin{definition}
-  Let $\C$ be a pointed $\infty$-category. Let $\C^{\Sigma}$ be the full subcategory of $\Fun([1] \times [1],\C)$ with objects coexact triangles of the form 
-  \[
+  Let $\C$ be a pointed $\infty$-category. Denote by $\C^{\Sigma}$, resp. $\C^\Omega$, the full sub-category of $\Fun(\Delta^1\times\Delta^1,\C)$ of coexact, resp. exact, triangles of the form 
+  \begin{equation}\label{eq:exact}
   \begin{tikzcd}
    X \arrow[r]  \arrow[d] & 0 \arrow[d] \\ 
    0 \arrow[r] & Y
   \end{tikzcd},
-  \]
-  meaning $Y$ is the suspension of $X$.
+\end{equation}
 \end{definition}
-
-\begin{definition}
-  Let $\C$ be a pointed $\infty$-category. Let $\C^{\Omega}$ be the full subcategory of $\Fun([1] \times [1],\C)$ with objects exact triangles of the form 
-  \[
-  \begin{tikzcd}
-   Y \arrow[r]  \arrow[d] & 0 \arrow[d] \\ 
-   0 \arrow[r] & X
-  \end{tikzcd},
-  \]
-  meaning $Y$ is the loop object of $X$.
-\end{definition}
-
+If $\C$ is finitely cocomplete, resp. complete, for every object $X$, resp. $Y$, there is a contractible space of coexact, resp. exact, triangles as \cref{eq:exact}. In particular, $\C\simeq\C^\Sigma$ and $\C\simeq\C^\Omega$.  
 \begin{proposition}
-  If $\C$ is a pointed $\infty$-category with finite (co)limits. Then there exists functors 
-  \[ \Sigma \colon \C \to \C^{\Sigma} \to \C\]
-  \[ \Omega \colon \C \to \C^{\Omega} \to \C\]
+  If $\C$ is a finitely complete and cocomplete pointed $\infty$-category, define the following functors Then the functors
+  \begin{equation}
+    \begin{tikzcd}
+      \Sigma:\C \arrow[r] & \C^\Sigma \arrow[r,"\mathrm{ev}_{(1,1)}"] & \C  & & \Omega:\C \arrow[r] & \C^\Omega \arrow[r,"\mathrm{ev}_{(0,0)}"] & \C
+    \end{tikzcd}
+  \end{equation}are adjoint ($\Sigma$ is left adjoint to $\Omega$). 
 \end{proposition}
 
-\begin{theorem}
-  Let $\C$ be a pointed $\infty$-category with finite (co)limits. The following are equivalent:
+\begin{theorem}\label{thm:stable}
+  Let $\C$ be a finitely bicomplete pointed $\infty$-category. The following are equivalent:
   \begin{enumerate}
     \item A triangle is exact if and only if it is coexact. 
-    \item The functors $\Sigma$ and $\Omega$ are equivalences and the inverses of each other.
-    \item A square is a pullback square if and only if it is a pushout square.
+    \item $(\Sigma,\Omega)$ is an adjoint equivalence.
+    \item A commutative square is a pullback if and only if it is a pushout. 
   \end{enumerate}
-   
 \end{theorem}
-
 \begin{definition}
-  A pointed $\infty$-category $\C$ is \emph{stable} if it satisfies one of the three equivalent conditions above.
+  A finite bicomplete pointed $\infty$-category $\C$ satisfying any of the equivalent conditions in \cref{thm:stable} is called \emph{stable}.
 \end{definition}
-
-Recall that before the rise of $\infty$-categories, \emph{triangulated categories} were used to study stable homotopy theory. Hence, it is unsurprising that we can relate stable $\infty$-categories to triangulated categories.
-
-\begin{proposition}
-  If $\C$ is a stable $\infty$-category, then the homotopy category $h\C$ is a triangulated category.
-\end{proposition}
-
-Of course arbitrary pointed $\infty$-categories will not be stable. We hence want a procedure that stabilizes them. There are several approaches. One approach, that is powerful from a theoretical perspective, is given via reduced $1$-excisive functors out of finite pointed spaces. Here, we focus on explicit spectrum objects, as there are characterized more explicitly. For a comparison of these two approaches see \cite{lurie2017ha}.
-
+In homological algebra, the derived category $\D(\fA)$ of an abelian category $\fA$ underlies the structure of a triangulated category. In higher category theory, the derived category $\D_\infty(\fA)$ is constructed as the higher categorical localization of chain complexes at quasi-isomorphisms, then $\Ho\D_\infty(\fA)\simeq\D(\fA)$ and the triangulated structure on $\D(\fA)$ is a reflection of $\D_\infty(\fA)$ being a stable $\infty$-category. 
+\begin{proposition}[{\cite[3.11]{lurie2017ha}}]
+  If $\C$ is a stable $\infty$-category, then $\Ho\C$ has a canonical structure of a triangulated category. 
+\end{proposition}To construct the stabilization of a pointed $\infty$-category, there are several approaches, such as reduced excisive functors on $\s^\mathrm{fin}_*$, the category of pointed, finite spaces, see \cite[1.4.2.8]{lurie2017ha}. Here we consider the more explicit approach using spectrum objects.
 \begin{definition}
-  Let $\C$ be a pointed $\infty$-category. A \emph{pre-spectrum object} in $\C$, is a functor $X \colon \bZ \times \bZ \to \C$ such that $X(i,j) = 0$ for $i \neq j$ and all squares are pushout squares. Let $PSp(\C)$ be the $\infty$-category of pre-spectrum objects in $\C$. 
+  Let $\C$ be a pointed $\infty$-category. A \emph{pre-spectrum object in $C$} consists of a functor $E:\bZ\times\bZ\to\C$ such that $E(n,m)\simeq0$, for all $n\neq m$. Denote by $\PSp(\C)$ the category of pre-spectrum objects. The functor $\Omega^{\infty-n}:\PSp(\C)\to\C$ is defined as evaluation at $(n,n)$. 
 \end{definition}
-
-For a given pre-spectrum object $X$, let $\alpha_{m-1}\colon \Sigma X_{m-1} \to X_m$ and $\beta_m \colon X_m \to \Omega X_{m+1} = \Omega \Sigma X_m$. 
-
-\begin{definition}
-  Let $\C$ be a pointed $\infty$-category. A \emph{spectrum object} in $\C$ is a pre-spectrum object in $X$, such that $\alpha_{m-1}$ and $\beta_m$ are equivalences for all $m$. Let $\Sp(\C)$ be the $\infty$-category of spectrum objects in $\C$.
-\end{definition}
-
-\begin{definition}
-  Let $\C$ be a pointed $\infty$-category. The stabilization of $\C$ is the $\infty$-category $\Sp(\C)$ of spectrum objects in $\C$. 
-\end{definition}
-Of course $\C$ and $\Sp(\C)$ are suitably related.
-
-\begin{theorem}
-  For a given pointed $\infty$-category $\C$, there is an adjunction
-  \[
+For every $n$, the diagram \begin{equation}
   \begin{tikzcd}
-    \C \arrow[r, shift left=1.8, "\Sigma"] \arrow[r, shift right=1.8, "\Omega"', "\bot", leftarrow] &  \Sp(\C) 
+    E(n,n) \arrow[r]\arrow[d] & 0 \arrow[d] \\
+    0 \arrow[r] & E(n+1,n+1) 
   \end{tikzcd}
-  \]
-\end{theorem}
-
-Moreover, $\Sp(\C)$ is in some sense the universal stabilization of $\C$.
-
+\end{equation}determines a pair of adjoint morphisms \[\alpha_n:\Sigma E(n,n)\to E(n+1,n+1),\qquad\beta_n:E(n,n)\to\Omega E(n+1,n+1)\]
+\begin{definition}
+  Let $\C$ be a pointed $\infty$-category. A \emph{spectrum object in $\C$} consists of a pre-spectrum object $E$ such that $\beta_n$ is an equivalence, for all $n$. Denote by $\Sp(\C)\subseteq\PSp(\C)$ the full sub-category of spectrum objects. 
+\end{definition}
 \begin{theorem}
- Let $\C$ be a pointed $\infty$-category and $\D$ a stable $\infty$-category. Then $\Sigma^\infty$ induces an equivalence of $\infty$-categories
- \[(\Sigma^\infty)^* \colon\Fun^L(\Sp(\C),\D) \simeq \Fun^L(\C,\D)\]
+  Let $\C$ be a presentable pointed $\infty$-category, then $\Omega^{\infty-n}:\Sp(\C)\to\C$ admits a left adjoint $\Sigma^{\infty-n}:\C\to\Sp(\C)$, for every $n$. 
 \end{theorem}
-
-Let us now focus on the case $\C = \s_*$.
-
-\begin{example}
-  The stabilization of $\s_*$ is the $\infty$-category of spectra, denoted $\Sp$.
-\end{example}
-
-Similar to $\s_*$, $\Sp$ is also the universal stable $\infty$-category, as a special instance of the result above.
-
+In particular, $\Sigma^\infty:\C\to\Sp(\C)$ has the following universal property. 
 \begin{theorem}
- If $\D$ is a stable $\infty$-category. Then the functor 
-  \[\mathrm{ev}_{\bS}\colon\Fun^L(\Sp,\D) \xrightarrow{ \ \simeq \ } \D \]
-  that evaluates at $\bS$ is an equivalence. 
+ Let $\C$ be a presentable pointed $\infty$-category. Given a stable $\infty$-category $\D$, pre-composition by $\Sigma^\infty$ induces an equivalence 
+ \begin{equation}
+  \begin{tikzcd}
+    \Fun^\mL(\Sp(\C),\D) \arrow[r] & \Fun^\mL(\C,\D)
+  \end{tikzcd}
+ \end{equation}In particular, for $\C=\s_*$, evaluation at the \emph{sphere spectrum} $\bS=\Sigma^\infty S^0$ induces an equivalence
+ \begin{equation}
+  \begin{tikzcd}
+    \Fun^\mL(\Sp(\s_*),\D) \arrow[r] & \D
+  \end{tikzcd}
+ \end{equation}
 \end{theorem}
-
+\begin{definition}
+  The \emph{$\infty$-category of spectra} is the category of spectrum objects in pointed spaces. 
+\end{definition}
 
 \section{Generalized Cohomology Theories}
-Cohomology theories were traditionally defined in the context of topological spaces. However, now that we have the tools of $\infty$-categories and stable $\infty$-categories. We can significantly generalize those definitions. This last result follows work in \cite{lurie2017ha}.
-\begin{definition}
-  Let $\C$ be a pointed $\infty$-category with pushouts, and $\Sigma\colon\C \to \C$ and suspension functor. A \emph{generalized cohomology theory} is a functor $H \colon h\C^{op}\to \Ab_\bZ$, such that the following conditions hold:
+
+We shall now use the language of $\infty$-categories to reformulate the concept of generalized cohomology theory \` a-l\`a Eilenberg-Steenrod. In this new context, we recall a representability theorem for cohomology theories by spectrum object. 
+\begin{remark}
+  Denote by $\set^\bZ$ the category of $\bZ$-indexes families of sets. Given an object $S$ and $n\in\bZ$, denote by $\Sigma^n S$ the shifted family $(\Sigma^nS)_i=S_{i-n}$.  
+\end{remark}
+\begin{definition}[{\cite[1.4.1.6]{lurie2017ha}}]\label{def:cohthe}
+  Let $\C$ be a finitely cocomplete pointed $\infty$-category, $\Sigma_\C:\C \to \C$ the induced suspension functor. A \emph{generalized cohomology theory} is a functor $H:\Ho\C^{\op}\to\set^\bZ$ together with a natural isomorphism $\partial:\Sigma H\to H\Sigma_\C$ such that:
   \begin{itemize}
-    \item There is a natural isomorphism $H^\bullet \to H^{\bullet +1} \Sigma$ 
-    \item Coexact sequences maps to exact sequences. 
-    \item Arbitrary coproducts map to products.
+    \item $H$ preserves arbitrary products. In particular, $H^n(0)$ is the one-point set. Given an object $X$, the unique morphism $X\to0$ induces an element $*\simeq H^n(0)\to H^n(X)$, which we denote by $0$. 
+    \item Given a coexact triangle $X'\to X\to X''$, if $\eta\in H^n(X)$ has image $0\in H^n(X'')$, then it lies in the image of $H^n(X')\to H^n(X)$. 
   \end{itemize}
 \end{definition}
-
-We now have the following major result that significantly generalizes the classical Brown representability theorem.
-\begin{theorem}
- Let $\C$ be a nice $\infty$-category and $(H^\bullet,\delta)$ be a generalized cohomology theory. Then there exists a spectrum object $E$ in $\C$, such that $H^\bullet(X) \cong \Hom_{h\C}(X,E^\bullet)$, where $\delta = (\beta_\bullet)_*$.
+\begin{theorem}[{\cite[1.4.1.10]{lurie2017ha}}]
+ Let $\C$ be a nice $\infty$-category and $(H,\partial)$ a generalized cohomology theory, then, for every $n$, the functor $H^n$ is representable by an object $E(n)$. 
 \end{theorem}
-
-\begin{example}
-  Unsurprisingly, $\s_*$ satisfies the niceness conditions, and so we can conclude that every generalized cohomology on $\s_*$ is given by a spectrum, recovering the original Brown representability theorem.
-\end{example}
-
+The natural isomorphism $\partial$ translates into an equivalence $E(n)\simeq\Omega E(n+1)$, which is then used to construct a spectrum object representing the cohomology theory $H^n$, see \cite[1.4.1.11]{lurie2017ha}.
+\begin{remark}
+  For $\C=\s_*$, the above definition of cohomology theory reduces to the classical Eilenberg-Steenrod definition. Since $\s_*$ is nice, we thus recover the classical \emph{Brown representability theorem}. 
+\end{remark}
 
 {\footnotesize
 \bibliographystyle{alpha}
