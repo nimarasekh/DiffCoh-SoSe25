@@ -64,6 +64,7 @@
 \newcommand{\tot}{\mathrm{tot}}
 \newcommand{\Def}{\mathrm{Def}}
 \newcommand{\Cyc}{\mathrm{Cyc}}
+\newcommand{\hi}{\mathrm{hi}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -148,25 +149,22 @@ We saw that the theoretical framework is fundamentally that of presentable $\inf
 As it primarily a background, for what follows we will take it for granted, and refer to the relevant sources.
 
 \section{Relation to other approaches}
-A lot of historical development of differential cohomology theories has focused on constructing them via specific data, and concretely the input often consists of an ordinary cohomology theory and some geometric data. This perspective is completely absent in the definition we just gave, so how can we reconcile them? This is the central theme of the ``fracture square''. This already came up so let us quickly summarize.
+A lot of historical development of differential cohomology theories has focused on constructing them via specific data, and concretely the input often consists of an ordinary cohomology theory and some geometric data. This perspective is completely absent in the definition we just gave, so how can we reconcile them? This is the central theme of the \emph{fracture square}. This already came up so let us quickly summarize. Let $\C$ be a presentable $\infty$-category. 
 
 \begin{definition}
-  A sheaf is called \emph{$\mathbb{R}$-invariant} if for all manifolds $M$, $M \times \bR^1 \to M$ is mapped to an equivalence of spectra. We denote the full subcategory of $\mathbb{R}$-invariant sheaves by $\Shv_{\bR}(\Mfd)$.
+  A pre-sheaf $F$ is called \emph{$\mathbb{R}$-invariant} if for any manifolds $M$, the projection $M\times\bR\to M$ induces an equivalence $F(M)\to F(M\times\bR)$. Denote by $\PSh_{\bR}(\Mfd,\C)$ the full sub-category of $\bR$-invariant pre-sheaves, and $\Shv_\bR(\Mfd,\C)$ the full sub-category of $\bR$-invariant sheaves. 
 \end{definition}
-
-Note $\mathbb{R}$-invariant sheaves are closed under limits and colimits. Hence, due to the abstract theory of presentable $\infty$-categories, we have the following result:
-
+Note $\mathbb{R}$-invariant pre-sheaves are closed under limits and colimits. Therefore, by the adjoint functor theorem, we conclude the following:
 \begin{theorem}
- There is a diagram of adjunctions
- \[
- \begin{tikzcd}[column sep=2cm]
- \Shv_{\bR}(\Mfd) \arrow[r, shift left = 2, leftarrow, "L_{hi}"] \arrow[r, hookrightarrow] \arrow[r, shift right = 2, leftarrow, "R_{hi}"'] & \Shv(\Mfd) 
- \end{tikzcd}
- \]
+The inclusion $\PSh_\bR(\Mfd,\C)\to\PSh(\Mfd,\C)$ has a right adjoint $R_\bR$ and left adjoint $L_\bR$. The inclusion $\Shv_\bR(\Mfd,\C)\to\Shv(\Mfd,\C)$ has a right adjoint $R_\hi$ (the restriction of $R_\hi$ to sheaves) and $L_\hi$ (the restriction of $L_\hi$ to sheaves, followed by sheafification).  
 \end{theorem}
-
+\begin{remark}
+  While for a general presentable $\infty$-category $\C$, the functor $L_\bR$ need not preserve sheaves, it does for $\C=\Sp$, see \cite[Remark 4.4.13]{amabeldebrayhaine2021diffcoh}. 
+\end{remark}
+Let $\C$ be pointed, i.e. having a zero object.
+%---------------TO BE CONTINUED------------------
 \begin{definition}
-  Let $\Def\colon \Shv(\Mfd) \to \Shv(\Mfd)$ be the functor that takes $E$ to the fiber over $E \to L_{hi}E$. 
+  Given a sheaf $F$, denote by $\Def(F)$ the fiber of the unit $F\to L_\hi(F)$. 
 \end{definition}
 
 \begin{definition}
@@ -408,7 +406,7 @@ Twisted K-theory has known connections to the concept of \emph{loop group repres
 
 
 \subsection{Differential Cohomology in Cohesive \texorpdfstring{$\infty$}{oo}-Topoi}
-The collective work of Grady, Sati, Schreiber, et al. has focused on developing differential cohomology theories in the context of cohesive $\infty$-topoi and study their applications to physics \cite{schreiber2013differentialcohomology,fiorenzasatischreiber2024charactermap}, which merits further study.
+The collective work of Grady, Sati, Schreiber, et al. has focused on developing differential cohomology theories in the context of cohesive $\infty$-topoi and study their applications to physics \cite{schreiber2013cohesive,fiorenzasatischreiber2024charactermap}, which merits further study.
   
 
 {\footnotesize
