@@ -26,6 +26,7 @@
 \newcommand{\bN}{\mathbb{N}}
 \newcommand{\mN}{\mathrm{N}}
 \newcommand{\I}{\mathscr{I}}
+\newcommand{\rO}{\mathscr{O}}
 \newcommand{\s}{\mathscr{S}}
 \newcommand{\T}{\mathscr{T}}
 \newcommand{\bR}{\mathbb{R}}
@@ -152,21 +153,80 @@ As it primarily a background, for what follows we will take it for granted, and 
 A lot of historical development of differential cohomology theories has focused on constructing them via specific data, and concretely the input often consists of an ordinary cohomology theory and some geometric data. This perspective is completely absent in the definition we just gave, so how can we reconcile them? This is the central theme of the \emph{fracture square}. This already came up so let us quickly summarize. Let $\C$ be a presentable $\infty$-category. 
 
 \begin{definition}
-  A pre-sheaf $F$ is called \emph{$\mathbb{R}$-invariant} if for any manifolds $M$, the projection $M\times\bR\to M$ induces an equivalence $F(M)\to F(M\times\bR)$. Denote by $\PSh_{\bR}(\Mfd,\C)$ the full sub-category of $\bR$-invariant pre-sheaves, and $\Shv_\bR(\Mfd,\C)$ the full sub-category of $\bR$-invariant sheaves. 
+  A pre-sheaf $F$ is called \emph{$\mathbb{R}$-invariant} if, for any manifold $M$, the projection $M\times\bR\to M$ induces an equivalence $F(M)\to F(M\times\bR)$. Denote by $\PSh_{\bR}(\Mfd,\C)$ the full sub-category of $\bR$-invariant pre-sheaves, and $\Shv_\bR(\Mfd,\C)$ the full sub-category of $\bR$-invariant sheaves. 
 \end{definition}
-Note $\mathbb{R}$-invariant pre-sheaves are closed under limits and colimits. Therefore, by the adjoint functor theorem, we conclude the following:
-\begin{theorem}
-The inclusion $\PSh_\bR(\Mfd,\C)\to\PSh(\Mfd,\C)$ has a right adjoint $R_\bR$ and left adjoint $L_\bR$. The inclusion $\Shv_\bR(\Mfd,\C)\to\Shv(\Mfd,\C)$ has a right adjoint $R_\hi$ (the restriction of $R_\hi$ to sheaves) and $L_\hi$ (the restriction of $L_\hi$ to sheaves, followed by sheafification).  
+Recall from \cite{berkenhagen2025diffcoh3} that the restriction $\Shv(\Mfd,\C)\to\Shv(\Euc,\C)$. 
+\begin{lemma}\label{lem:inv}
+  A sheaf $F$ is $\bR$-invariant if and only if every smooth map $\bR^n\to\bR^m$ induces an equivalence $F(\bR^m)\to F(\bR^n)$. 
+\end{lemma}
+\begin{proof}
+  The terminal map $\bR^n\to\bR^0$ is the composition of projections $M\times\bR\to M$, therefore if $F$ is a $\bR$-invariant sheaf, $F(\bR^0)\to F(\bR^n)$ is an equivalence. For any map $f:\bR^n\to\bR^m$, there is a commutative diagram \begin{equation}
+    \begin{tikzcd}
+      F(\bR^0) \arrow[rd,"\simeq"'] \arrow[r,"\simeq"] & F(\bR^m) \arrow[d,"f^*"] \\
+      & F(\bR^n)
+    \end{tikzcd}
+  \end{equation}implying $f^*$ is an equivalence. 
+
+  On the other hand, let $F$ be a sheaf such that, for every smooth map $f$ of Euclidean manifolds, $f^*$ is an equivalence. Let $M$ be a smooth manifold and $\rO$ a differentiably good open cover (see \cite[Theorem 5.4]{nanto2025diffcoh4}), then $\{U\times\bR|U\in\rO\}$ is a differentiably good open cover of $M\times\bR$ and there is a commutative square \begin{equation}
+    \begin{tikzcd}
+      F(M) \arrow[r,"\simeq"] \arrow[d] & \lim_{U\in\I(\rO)}F(U) \arrow[d,"\simeq"] \\
+      F(M\times\bR) \arrow[r,"\simeq"] & \lim_{U\in\I(\rO)} F(U\times\bR) 
+    \end{tikzcd}
+  \end{equation}The horizontal maps are equivalences by the sheaf condition, while the right-vertical map is an equivalence because $U\times\bR\to U$ is a smooth map of Euclidean manifolds, we then conclude that $F(M)\to F(M\times\bR)$ is an equivalence. 
+\end{proof}
+Recall from \cite{nanto2025diffcoh4} that the left adjoint $\flat:\C\to\Shv(\Mfd,\C)$ to the global section functor $\Gamma$ has the following description: Given an object $C\in\C$, $\flat C$ maps $M$ to $C^{\Sing M}$, where $\Sing M$ denotes the (smooth) singular simplicial set of $M$.
+\begin{corollary}\label{cor:equiv}
+  The functor $\flat:\C\to\Shv(\Mfd,\C)$ factors through $\Shv_\bR(\Mfd,\C)$. The adjunction \begin{equation}
+    \begin{tikzcd}
+      \C \arrow[rr,shift right,"\flat"'] & & \Shv_\bR(\Mfd,\C) \arrow[ll,shift right,"\Gamma"']
+    \end{tikzcd}
+  \end{equation}is an equivalence. 
+\end{corollary}
+\begin{proof}
+  Since every Euclidean manifold has contractible underlying homotopy type, $\flat C$ maps every map $f$ of Euclidean spaces to an equivalence. By \cref{lem:inv}, we conclude that $\flat C$ is $\bR$-invariant. 
+
+  Let $F$ be a $\bR$-invariant sheaf, set $C:=F(\bR^0)$, then $F|_{\Euc}$ is equivalent to the constant pre-sheaf with value $C$ (see \cite[Remark 2.7]{nanto2025diffcoh4}), which is $\flat C|_{\Euc}$, therefore $F\simeq \flat C$.
+\end{proof}
+\begin{theorem}\label{thm:adj}
+  There is a 3-terms adjunction 
+  \begin{equation}\label{eq:adjunction}
+    \begin{tikzcd}
+      \Shv(\Mfd,\C) \arrow[rr,shift left=2.5,"\Pi_\infty"] \arrow[rr,shift right=2.5,"\Gamma"'] & & \C \arrow[ll,hook,"\flat" description]
+    \end{tikzcd}
+  \end{equation}
+  where $\Gamma$ is the global sections function, i.e. evaluation at $\bR^0$, $\flat$ is the locally constant sheaf functor, $\Pi_\infty$ is in the proof below. There is an induced 3-terms adjunction \begin{equation}
+    \begin{tikzcd}
+      \Shv(\Mfd,\C) \arrow[rr,shift left=2.5,"L_\hi"] \arrow[rr,shift right=2.5,"R_\hi"'] & & \Shv_\bR(\Mfd,\C) \arrow[ll,hook]
+    \end{tikzcd}
+  \end{equation}where $L_\hi(F)$, resp. $R_\hi(F)$, is the locally constant sheaf associated to $\Pi_\infty(F)$, resp. $\Gamma(F)=F(\bR^0)$. 
 \end{theorem}
+\begin{proof}
+  Since the composition $\C\xrightarrow{\flat}\Shv(\Mfd,\C)\to\Shv(\Euc,\C)$ is the constant functor, it has as left adjoint the colimit functor $\Shv(\Euc,\C)\to\C$. Define $\Gamma_\sharp$ as the pre-composition of the colimit functor with $-|_{\Euc}$. The induced adjunction comes from composing the adjunction in \cref{eq:adjunction} with the adjoint equivalence \begin{equation}
+    \begin{tikzcd}
+      \C \arrow[rr,shift left=2.5,"\flat"] \arrow[rr,shift right=2.5,"\flat"'] & & \Shv_\bR(\Mfd,\C) \arrow[ll,"\Gamma" description]
+    \end{tikzcd}
+  \end{equation}
+\end{proof}
 \begin{remark}
-  While for a general presentable $\infty$-category $\C$, the functor $L_\bR$ need not preserve sheaves, it does for $\C=\Sp$, see \cite[Remark 4.4.13]{amabeldebrayhaine2021diffcoh}. 
+  In particular, $\Shv_\bR(\Mfd,\C)$ is both a reflective and coreflective sub-category of $\Shv(\Mfd,\C)$. Reflectivity could also be deduced from the definition of $\bR$-invariant sheaves as local objects with respect to the class of projections $M\times\bR\to M$. 
 \end{remark}
-Let $\C$ be pointed, i.e. having a zero object.
+\begin{definition}
+  Let $\C$ be a category, $\D\subseteq\C$ a full sub-category. An object $C$ is \emph{right orthogonal to $\D$} if $\Hom_\C(D,C)$ is contractible, for every $D\in\D$. Denote by $\D^\perp$ the full sub-category of objects right orthogonal to $\D$. 
+\end{definition}
+\begin{definition}
+  A right orthogonal sheaf to $\Shv_\bR(\Mfd,\C)$ is called \emph{pure}.
+\end{definition}
+\begin{lemma}
+  $F$ is pure if and only if $\Gamma(F)$ is terminal. 
+\end{lemma}
+\begin{proof}
+  By \cref{cor:equiv}, every $\bR$-invariant sheaf is of the form $\flat C$, therefore $F$ is pure if and only if $\Hom_{\Shv(\Mfd,\C)}(\flat C,F)\simeq\Hom_{\C}(C,\Gamma(F))$ is contractible, for all $C$, which is equivalent to $\Gamma(F)$ being terminal. 
+\end{proof}
 %---------------TO BE CONTINUED------------------
 \begin{definition}
   Given a sheaf $F$, denote by $\Def(F)$ the fiber of the unit $F\to L_\hi(F)$. 
 \end{definition}
-
+  
 \begin{definition}
   A sheaf is \emph{pure} if the value at the point is the terminal spectrum. We denote the full subcategory of pure sheaves by $\Shv_{\mathrm{pure}}(\Mfd)$.
 \end{definition}

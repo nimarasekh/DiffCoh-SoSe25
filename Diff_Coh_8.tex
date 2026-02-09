@@ -16,6 +16,7 @@
 
 \newcommand{\A}{\mathscr{A}}
 \newcommand{\B}{\mathscr{B}}
+\newcommand{\C}{\mathscr{C}}
 \newcommand{\cF}{\mathcal{F}}
 \newcommand{\D}{\mathscr{D}}
 \newcommand{\sC}{\mathscr{C}}
@@ -41,11 +42,12 @@
 \newcommand{\dKU}{\smash{\widehat{ku}}}
 \newcommand{\dKUnabla}{\smash{\widehat{ku}^\nabla}}
 \renewcommand{\sp}{\mathrm{sp}}
+\renewcommand{\hom}{\mathrm{Hom}}
 
 \DeclareMathOperator{\tr}{tr}
 \newcommand{\Map}{\mathrm{Map}}
-\newcommand{\Hom}{\mathrm{Hom}}
-\newcommand{\Ho}{\mathrm{ho}}
+\newcommand{\Hom}{\mathscr{H}\mathrm{om}}
+\newcommand{\Ho}{\mathrm{Ho}}
 \newcommand{\set}{\mathscr{S}\mathrm{et}}
 \newcommand{\CMon}{\mathrm{CMon}}
 \newcommand{\CGrp}{{\normalfont\texttt{CMon}}}
@@ -61,7 +63,7 @@
 \newcommand{\Fun}{\mathrm{Fun}}
 \newcommand{\Nat}{\mathrm{Nat}}
 \newcommand{\colim}{\mathrm{colim}}
-\newcommand{\Top}{\mathscr{T}\mathrm{op}}
+\newcommand{\Top}{\mathscr{T}\mathrm{\op}}
 \newcommand{\Grpd}{\mathscr{G}\mathrm{rpd}}
 \newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
 \newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
@@ -85,6 +87,7 @@
 \newcommand{\dis}{\mathrm{dis}}
 \newcommand{\Mon}{\mathrm{Mon}}
 \newcommand{\PT}{\mathrm{PT}}
+\newcommand{\op}{\mathrm{op}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -133,22 +136,23 @@ The aim of this talk is to review twisted cohomology theory with the aim of late
 
 \section{Twisted Cohomology}
 Let $R$ be a ring spectrum, meaning a monoid object in the $\infty$-category of spectra $\Sp$. From this we get a presentable stable $\infty$-category $\Mod_R$ of left $R$-module spectra. Objects therein are morphisms of the form $R \wedge M \to M$ satisfying the usual associativity and unit conditions up to coherent homotopies.
-
-Note we have an adjunction diagram 
+\begin{remark}
+	Every stable category $\C$ is enriched over spectra. Given two objects $C,D$, we will denote by $\Hom_\C(C,D)$ the hom-spectrum and by $\hom_\C(C,D)=\Omega^\infty\Hom_\C(C,D)$ the underlying hom-space.  
+\end{remark}
+Note we have an adjunction 
 \[
-\begin{tikzcd}[column sep = 2cm]
-\Sp \arrow[r, shift left=1.8, "R \wedge -", "\bot"'] & \Mod_R \arrow[l, shift left=1.8, "{\Map_{\Mod_R}(R,-)}"]
+\begin{tikzcd}[column sep=2cm]
+\Sp \arrow[r, shift left, "R \wedge -"] & \Mod_R \arrow[l, shift left, "{\Hom_{\Mod_R}(R,-)}"]
 \end{tikzcd}, 
 \]
-where the right adjoint is in fact the forgetful functor. This in particular means $\Mod_R$  has a distinguished object $R$ i.e. the free $R$-module of rank $1$. We now refine these constructions. 
-
+where the right adjoint is equivalent to the forgetful functor.
 \begin{definition}
 	Let $R$ be a ring spectrum. An \emph{$R$-line} is an $R$-module $L$ such that $L \simeq R$.
 \end{definition}
 \begin{definition}
 	Let $\Line_R$ be the full sub-$\infty$-groupoid of $\Mod_R$ spanned by the $R$-lines.
 \end{definition}
-By construction, $\Line_R$ is equivalent to the category with a single object $R$ and hom-space $GL_1R$, the $\infty$-group of $R$-linear automorphisms of $R$. Notice that $GL_1(R)\subseteq\Map_{\Mod_R}(R,R)\simeq\Map(\bS,R)=\Omega^\infty R$. 
+By construction, $\Line_R$ is equivalent to the category with a single object $R$ and hom-space $GL_1R$, the $\infty$-group of $R$-linear automorphisms of $R$. Notice that $GL_1(R)\subseteq\hom_{\Mod_R}(R,R)\simeq\hom_{\Sp}(\bS,R)=\Omega^\infty R$. 
 \begin{lemma}\label{lem:units}
 	$GL_1(R)$ fits into the pullback square
 	\begin{center}
@@ -159,18 +163,18 @@ By construction, $\Line_R$ is equivalent to the category with a single object $R
 	\end{center}In particular, the inclusion $GL_1(R)\to\Omega^\infty R$ induces an isomorphism on $n$-homotopy groups, for all $n\geq1$. 
 \end{lemma}
 \begin{proof}
-	$\pi_0(R)\simeq\Map_{\Ho\Mod_R}(R,R)$, where $\Ho\Mod_R$ is the homotopy category of $R$-modules, the right-vertical arrow corresponds to $\Map_{\Mod_R}(R,R)\to\Map_{\Ho\Mod_R}(R,R)$ mapping a morphism to its homotopy class, and $\pi_0(R)^\times\subseteq\Map_{\Ho\Mod_R}(R,R)$ is the set of isomorphisms. Finally, a morphism in a $\infty$-category $\sC$ is an equivalence if and only if its homotopy class is an isomorphism in $\Ho\sC$. 
+	$\pi_0(R)\simeq\hom_{\Ho\Mod_R}(R,R)$, where $\Ho\Mod_R$ is the homotopy category of $R$-modules, the right-vertical arrow corresponds to $\hom_{\Mod_R}(R,R)\to\hom_{\Ho\Mod_R}(R,R)$ mapping a morphism to its homotopy class, and $\pi_0(R)^\times\subseteq\hom_{\Ho\Mod_R}(R,R)$ is the set of isomorphisms. Finally, a morphism in a $\infty$-category $\sC$ is an equivalence if and only if its homotopy class is an isomorphism in $\Ho\sC$. 
 \end{proof}
 \begin{definition}
-	Let $X$ be a space. Denote by $\Mod_R(X)$ the $\infty$-category of $R$-module spectra parametrized over $X$, i.e. the functor category $\Fun(X^{op},\Mod_R)$.
+	Let $X$ be a space. Denote by $\Mod_R(X)$ the $\infty$-category of $R$-module spectra parametrized over $X$, i.e. the functor category $\Fun(X^{\op},\Mod_R)$.
 \end{definition}
 
 \begin{definition}
-	Let $X$ be a space. Denote by $\Line_R(X)$ the $\infty$-groupoid of $R$-line spectra parametrized over $X$, i.e. the $\Fun(X^{op},\Line_R)$. 
+	Let $X$ be a space. Denote by $\Line_R(X)$ the $\infty$-groupoid of $R$-line spectra parametrized over $X$, i.e. the functor category $\Fun(X^{\op},\Line_R)$. 
 \end{definition}
-Since $\Line_R\simeq BGL_1(R)$, functors $X^{op}\to\Line_R$ are generalization of local systems. 
+Since $\Line_R\simeq BGL_1(R)$, functors $X^{\op}\to\Line_R$ classify $GL_1(R)$-principal bundles over $X$. In this sense, elements of $\Line_R(X)$ are $\infty$-local systems. 
 \begin{example}
-	Let $R_X\colon X^{op} \to*\to \Line_R$ be the constant functor with value $R$. 
+	Let $R_X\colon X^{\op} \to*\to \Line_R$ be the constant functor with value $R$. 
 \end{example}
 
 We now proceed to the Thom construction.
@@ -178,25 +182,26 @@ We now proceed to the Thom construction.
 \begin{definition}[{Thom spectrum}] \label{def:thom}
 	The \emph{Thom $R$-module spectrum} is the functor
 	\[
-	M \colon \Grpd_{\infty}^{op}/\Line_R \to \Mod_R,
+	M \colon \Grpd_{\infty}/\Line_R \to \Mod_R,
 	\]
-	which sends $f\colon X^{op} \to \Line_R$ to the $R$-module spectrum $\colim(X^{op} \xrightarrow{f} \Line_R \xrightarrow{i} \Mod_R)$.
+	which sends $f\colon X^{\op} \to \Line_R$ to the $R$-module spectrum $\colim(X^{\op} \xrightarrow{f} \Line_R\hookrightarrow \Mod_R)$.
 \end{definition}
 \begin{remark}\label{rmk:extthomspc}
-	Notice that the definition of Thom $R$-module spectrum make sense for any functor $X^{op}\to R\Mod$. 
+	Notice that the definition of Thom $R$-module spectrum make sense for any functor $X^{\op}\to R\Mod$. 
 \end{remark}
 Let us note an alternative characterization that will be important later.
 \begin{remark}
-	For a given map $f\colon X \to Y$, we get a map $f^*\colon \Mod_R(Y) \to \Mod_R(X)$ by precomposition with $f^{op}$. Since $f^*$ preserves both limits and colimits, we construct a left adjoint $f_! \colon \Mod_R(X) \to \Mod_R(Y)$ and a right adjoint $f_* \colon \Mod_R(X) \to \Mod_R(Y)$, using left and right Kan extension along $f^{op}$. Let $f=p:X\to*$ be the terminal functor, then left Kan extension along $p^{op}$ is exactly taking colimit, therefore
-	\[Mf \simeq p_!(i \circ f).\]
+	For a given functor $\phi: X \to Y$, we get a pullback functor $\phi^*\colon \Mod_R(Y) \to \Mod_R(X)$ by pre-composition with $\phi^{\op}$. Since $\phi^*$ preserves both limits and colimits, we can construct a 3-terms adjunction \begin{equation}
+		\begin{tikzcd}
+			\Mod_R(X) \arrow[r,shift right=3,"\phi_*"'] \arrow[r,shift left=3,"\phi_*"] & \Mod_R(Y) \arrow[l,"\phi_!" description]
+		\end{tikzcd}
+	\end{equation}Explicitly, $\phi_!$, resp. $\phi_*$, is given by left, resp. right, Kan extension along $\phi^\op$. In particular, if $Y=*$ and $\phi=p:X\to*$ is the terminal functor, then $p_!=\colim_{X^\op}$, and so $Mf\simeq p_!(f)$. 
 \end{remark}
-\begin{remark}The equivalence $\Line_R\simeq BGL_1(R)$ comes from the fact that $\Line_R$ is a pointed (by $R:*\to\Line_R$), connected $\infty$-groupoid and $*\times_{\Line_R}*\simeq\Omega\Line_R\simeq GL_1(R)$. 
-\end{remark}
-
+%--------------TO BE CONTINUED-----------------
 We now proceed to define twisted cohomology theories.
 
 \begin{definition}[{Twisted cohomology}] \label{def:twistedcohomology}
-	Let $R$ be a ring spectrum, $X$ be a space, $p\colon X \to *$ the terminal functor, and $f\colon X^{op} \to \Line_R$ a $R$-line bundle over $X$.  The \emph{$f$-twisted $R$-cohomology of $X$} is defined as the mapping spectrum 
+	Let $R$ be a ring spectrum, $X$ be a space, $p\colon X \to *$ the terminal functor, and $f\colon X^{\op} \to \Line_R$ a $R$-line bundle over $X$.  The \emph{$f$-twisted $R$-cohomology of $X$} is defined as the mapping spectrum 
 	\[ R_f(X)	\coloneqq \Map_{\Mod_R}(Mf, R) \simeq \Map_{\Mod_R(X)}(f,p^*R) \simeq \Map_{\Mod_R(X)}(f,R_X) .\]
 	Similarly, the \emph{$f$-twisted $R$-homology of $X$} is defined as
 	\[ R^f(X) \coloneqq \Map_{\Mod_R}(R,Mf) \simeq Mf. \]
@@ -205,7 +210,7 @@ We now proceed to define twisted cohomology theories.
 	\[ R_n^f(X) \coloneqq \pi_0(\Map_{\Mod_R}(\Sigma^n R, Mf)) \cong \pi_n(Mf). \]
 \end{definition}
 
-\begin{example}[Trivial twist] If $f:X\to \Line_R$ factors through $*$, then $f$ factors as $X^{op}\to*\to\sS$, the constant factor with value $*$, and $R\wedge\Sigma^\infty_+(-):\sS\to\Mod_R$. The latter functor commutes with colimits, being a left adjoint, while the colimit of the latter is $X$ itself, then $Mf\simeq R\wedge\Sigma^\infty_+X$. In particular, $f$-twisted $R$-cohomology and $R$-homology of $X$ reduce to ordinary (untwisted) $R$-cohomology and $R$-homology of $X$. 
+\begin{example}[Trivial twist] If $f:X\to \Line_R$ factors through $*$, then $f$ factors as $X^{\op}\to*\to\sS$, the constant factor with value $*$, and $R\wedge\Sigma^\infty_+(-):\sS\to\Mod_R$. The latter functor commutes with colimits, being a left adjoint, while the colimit of the latter is $X$ itself, then $Mf\simeq R\wedge\Sigma^\infty_+X$. In particular, $f$-twisted $R$-cohomology and $R$-homology of $X$ reduce to ordinary (untwisted) $R$-cohomology and $R$-homology of $X$. 
 \end{example}
 
 \begin{definition}
@@ -216,11 +221,11 @@ We now proceed to define twisted cohomology theories.
 We now proceed to analyze several examples of twisted cohomology	theories. This requires some preliminary lemmas.
 
 \begin{lemma}
-	Consider a space $X$ and the $\infty$-categorical Yoneda's embedding $y:X\to\Fun(X^{op},\sS)$. The colimit of $y$ is the terminal pre-sheaf on $X$, i.e. the pre-sheaf with constant value the one-point space. 
+	Consider a space $X$ and the $\infty$-categorical Yoneda's embedding $y:X\to\Fun(X^{\op},\sS)$. The colimit of $y$ is the terminal pre-sheaf on $X$, i.e. the pre-sheaf with constant value the one-point space. 
 \end{lemma}
 
 \begin{proof}
-	Let $S$ be a pre-sheaf on $X$, consider then the slice category $X_{/S}$ of pairs $(x,\phi)$, where $x$ is an object of $X$ and $\phi:y(x)\to S$. The density theorem for $\infty$-categories states that $S$ is equivalent to the colimit of $X_{/S}\to X\xrightarrow{y}\Fun(X^{op},\sS)$, the first map being the canonical projection. Take $S=*$, then $X_{/*}\to X$ is an equivalence, hence the claim. 
+	Let $S$ be a pre-sheaf on $X$, consider then the slice category $X_{/S}$ of pairs $(x,\phi)$, where $x$ is an object of $X$ and $\phi:y(x)\to S$. The density theorem for $\infty$-categories states that $S$ is equivalent to the colimit of $X_{/S}\to X\xrightarrow{y}\Fun(X^{\op},\sS)$, the first map being the canonical projection. Take $S=*$, then $X_{/*}\to X$ is an equivalence, hence the claim. 
 \end{proof}
 Let $G$ be a topological group and $BG$ the $\infty$-groupoid with a single object $*$ and hom-space $G$. The category $\sS_G\coloneqq\Fun(BG,\sS)$ is equivalent to the category of $G$-spaces.
 \begin{lemma}
@@ -229,7 +234,7 @@ Let $G$ be a topological group and $BG$ the $\infty$-groupoid with a single obje
 \begin{proof}
 	Evaluate at $*$, then $f_!(y(*))=E$, by definition, and $y(*)\simeq G$, as $G$-spaces, hence $(y(*)\times E)/G\simeq(G\times E)/G\simeq E$. Since $f_!$ and $(-\times E)/G$ agree on representables and are colimit-preserving, they are equivalent. 
 \end{proof}
-\begin{example}\label{ex:bundle}Take the space $BO(n)$ and $f_n:BO(n)\to\sS_*$ the $n$-sphere $S^n$ with $O(n)$-action coming from the one-point compactification of the regular action on $\bR^n$. Let $\alpha_n=\Sigma^{\infty-n}f_n:BO(n)\to\Sp$, then $\alpha_n(*)=\Sigma^{\infty-n}f_n(*)=\Sigma^{\infty-n}S^n\simeq\bS$, so $\alpha_n$ factors through $\Line_\bS$. Let $X=BO(n)^{op}$ and $p:X\to*$ the terminal functor, then \[M\alpha_n=p_!\Sigma^{\infty-n}f_n\simeq\Sigma^{\infty-n}p_!(f_n)_!y\simeq\Sigma^{\infty-n}(f_n)_!\underbrace{p_!(y)}_{\simeq*}\simeq\Sigma^{\infty-n}(*\times S^n)/O(n)\]
+\begin{example}\label{ex:bundle}Take the space $BO(n)$ and $f_n:BO(n)\to\sS_*$ the $n$-sphere $S^n$ with $O(n)$-action coming from the one-point compactification of the regular action on $\bR^n$. Let $\alpha_n=\Sigma^{\infty-n}f_n:BO(n)\to\Sp$, then $\alpha_n(*)=\Sigma^{\infty-n}f_n(*)=\Sigma^{\infty-n}S^n\simeq\bS$, so $\alpha_n$ factors through $\Line_\bS$. Let $X=BO(n)^{\op}$ and $p:X\to*$ the terminal functor, then \[M\alpha_n=p_!\Sigma^{\infty-n}f_n\simeq\Sigma^{\infty-n}p_!(f_n)_!y\simeq\Sigma^{\infty-n}(f_n)_!\underbrace{p_!(y)}_{\simeq*}\simeq\Sigma^{\infty-n}(*\times S^n)/O(n)\]
 Let $P=EO(n)$ be the universal $O(n)$-bundle and $M$ a $O(n)$-space, then $*\times_{O(n)} M$ is modelled by the \emph{strict} quotient $(P\times M)/O(n)$, then \[S^n/O(n)=\mathrm{cofib}(\bR^n_0\subseteq\bR^n)/O(n)\simeq\mathrm{cofib}(\underbrace{*\times_{O(n)}\bR^n_0}_{\simeq E^n_0}\subseteq\underbrace{ *\times_{O(n)}\bR^n}_{\simeq E^n})=\Th(E^n) \]
 where $E^n=P\times_{O(n)}\bR^n\to BO(n)$ is the universal $n$-dimensional vector bundle, hence $M\alpha_n\simeq\Sigma^{\infty-n}\Th(E^n)$. 
 \end{example}
@@ -238,9 +243,9 @@ The functor $BO(n)\to\Line_\bS$ induces a $\infty$-group homomorphism $j_n:O(n)\
 	Denote by $j$ the induced group homomorphism $O\to GL_1(\bS)$, called the \emph{$J$-homomorphism}.  
 \end{definition} 
 \begin{example}
-	Let $X=O^{op}$ and take $Bj:BO\to\Line_\bS$, then $Mj$ is denoted $MO$ and called the \emph{real bordism spectrum}. 
+	Let $X=O^{\op}$ and take $Bj:BO\to\Line_\bS$, then $Mj$ is denoted $MO$ and called the \emph{real bordism spectrum}. 
 \end{example}
-Denote by $M$ the extended Thom spectrum functor $\Grp^{op}_\infty/\Mod_R\to\Mod_R$, this is a left adjoint to the functor sending a $R$-module to the corresponding functor $*\to\Mod_R$. In particular, $M$ preserves colimits and  $Bj\simeq\colim_nBj_n$, therefore we have the following:
+Denote by $M$ the extended Thom spectrum functor $\Grp^{\op}_\infty/\Mod_R\to\Mod_R$, this is a left adjoint to the functor sending a $R$-module to the corresponding functor $*\to\Mod_R$. In particular, $M$ preserves colimits and  $Bj\simeq\colim_nBj_n$, therefore we have the following:
 \begin{theorem}
 	$MO\simeq\colim_nMO(n)=\colim_n\Sigma^{\infty-n}\Th(E^n)$. 
 \end{theorem}
@@ -252,9 +257,9 @@ Denote by $M$ the extended Thom spectrum functor $\Grp^{op}_\infty/\Mod_R\to\Mod
 \end{remark}
 Let $R$ be a ring in sets, then $R$ is a $A_\infty$-ring spectrum (actually, $E_\infty$), $\Omega^\infty R$ is equivalent to $R$ with discrete topology ($\pi_0(\Omega^\infty R)\simeq R$, as sets, and every other homotopy group vanish). In particular, $GL_1(R)$ is simply $R^\times$ with discrete topology. Consider then the fiber sequence $SO\to O\to \bZ^\times\simeq GL_1(\bZ)$.
 \begin{example}
-	$X=BO^{op}$ and $\alpha=w_1:BO\to\Line_\bZ$, the 1st Stiefel-Whitney class (delooping of the determinant $O\to GL_1(\bZ)$), then $Mw_1$ is a $\bZ$-module spectra. Let $i:SO\subseteq O$, then $w_1i$ factors through the point, so $M(w_1i)\simeq\bZ\wedge\Sigma^\infty_+SO$. 
+	$X=BO^{\op}$ and $\alpha=w_1:BO\to\Line_\bZ$, the 1st Stiefel-Whitney class (delooping of the determinant $O\to GL_1(\bZ)$), then $Mw_1$ is a $\bZ$-module spectra. Let $i:SO\subseteq O$, then $w_1i$ factors through the point, so $M(w_1i)\simeq\bZ\wedge\Sigma^\infty_+SO$. 
 \end{example}
-Given $f:X^{op}\to\Line_R$ and a sequence $F\xrightarrow{i} Y\xrightarrow{\pi} X$, there is an induced sequence of Thom $R$-module spectra $MF\to MY\to MX$. If $\pi i$ factors through the point, $MF\simeq R\wedge\Sigma^\infty_+F$. 
+Given $f:X^{\op}\to\Line_R$ and a sequence $F\xrightarrow{i} Y\xrightarrow{\pi} X$, there is an induced sequence of Thom $R$-module spectra $MF\to MY\to MX$. If $\pi i$ factors through the point, $MF\simeq R\wedge\Sigma^\infty_+F$. 
 \begin{lemma}\label{lem:adj}
 	Let $R$ be a ring spectrum and $X$ a connected monoidal $\infty$-groupoid, then \[\Map_{\Mon(\Sp)}(\Sigma^{\infty}_+X,R)\simeq\Map_{\Mon(\sS)}(X,GL_1(R))\] 
 \end{lemma}
@@ -274,7 +279,7 @@ Given $f:X^{op}\to\Line_R$ and a sequence $F\xrightarrow{i} Y\xrightarrow{\pi} X
 		\end{tikzcd}
 	\end{center} The monoidal unit is the functor $*\to\D$ picking out the monoidal unit of $\D$. If $\D$ is symmetric monoidal, then so is $\cat_\infty/\D$. A (commutative) monoid object in $\cat_\infty/\D$ is given by a (symmetric) monoidal category $\sC$ and a (symmetric) monoidal functor $F:\sC\to\D$. 
 \end{remark}
-In view of \cref{rmk:moncat}, let $R$ be commutative ring spectrum, then $\Mod_R$ is a symmetric monoidal $\infty$-category and $\Line_R$ is a symmetric monoidal $\infty$-groupoid. The category $\Grpd^{op}_\infty/\Line_R$ is then symmetric monoidal and (commutative) monoid objects are given by (symmetric) monoidal $\infty$-groupoids $X^{op}$ a (symmetric) monoidal functors $X^{op}\to\Line_R$. One can then check that $M$ is a symmetric monoidal functor, so that (commutative) monoid objects are sent to (commutative) monoid objects in $\Mod_R$, i.e. (commutative) $R$-algebras. 
+In view of \cref{rmk:moncat}, let $R$ be commutative ring spectrum, then $\Mod_R$ is a symmetric monoidal $\infty$-category and $\Line_R$ is a symmetric monoidal $\infty$-groupoid. The category $\Grpd^{\op}_\infty/\Line_R$ is then symmetric monoidal and (commutative) monoid objects are given by (symmetric) monoidal $\infty$-groupoids $X^{\op}$ a (symmetric) monoidal functors $X^{\op}\to\Line_R$. One can then check that $M$ is a symmetric monoidal functor, so that (commutative) monoid objects are sent to (commutative) monoid objects in $\Mod_R$, i.e. (commutative) $R$-algebras. 
 \begin{example}\label{ex:tmf}
 	Let $\Tmf$ be the commutative ring spectrum of topological modular forms (see \cref{rmk:names}) and $\sigma:MString\to\tmf$ the $String$-orientation of $\tmf$. In the sequence \begin{center}
 		\begin{tikzcd}
@@ -289,8 +294,8 @@ In view of \cref{rmk:moncat}, let $R$ be commutative ring spectrum, then $\Mod_R
 \end{example}
 \begin{remark}\label{rmk:names}The spectrum of topological modular forms comes in three main flavors, namely:
 \begin{enumerate}
-	\item $\TMF$, i.e. the global sections of the spectral structure sheaf $\rO^{top}:(\aff/\M_{ell})^{op}\to\CMon(\Sp)$ on the (\' etale site of the) moduli stack of elliptic curves.
-	\item $\Tmf$, i.e. the global sections of the spectral structure sheaf $\bar{\rO}^{top}:(\aff/\bar{\M}_{ell})^{op}\to\CMon(\Sp)$ on the (\' etale site of the) \emph{compactified} moduli stack of elliptic curves. The inclusion $\M_{ell}\hookrightarrow\bar{\M}_{ell}$ induces a commutative ring homomorphism $\Tmf\to\TMF$.
+	\item $\TMF$, i.e. the global sections of the spectral structure sheaf $\rO^{top}:(\aff/\M_{ell})^{\op}\to\CMon(\Sp)$ on the (\' etale site of the) moduli stack of elliptic curves.
+	\item $\Tmf$, i.e. the global sections of the spectral structure sheaf $\bar{\rO}^{top}:(\aff/\bar{\M}_{ell})^{\op}\to\CMon(\Sp)$ on the (\' etale site of the) \emph{compactified} moduli stack of elliptic curves. The inclusion $\M_{ell}\hookrightarrow\bar{\M}_{ell}$ induces a commutative ring homomorphism $\Tmf\to\TMF$.
 	\item $\tmf$, i.e. the connective cover of $\Tmf$. By definition, there is a commutative ring homomorphism $\tmf\to\Tmf$. 
 \end{enumerate}In \cite{ando2010multiplicative}, $\tmf$ is used to denote our $\TMF$, in \cite{goerss2009topologicalmodularformsaftern}, $\tmf$ is used to denoted our $\Tmf$, and \cite{douglas2014topological} has the same notation as us. In \cref{ex:tmf}, we use $\tmf$ to mean the connective cover of $\Tmf$. 
 \end{remark}
@@ -316,7 +321,7 @@ This section requires some some further details. Up until now we defined everyth
 	A monoidal category $(\sC,\otimes,1)$ is \emph{closed} if, for every object $M$, the \emph{left tensoring with $M$} functor $M^\otimes:\sC\to\sC$ admits a right adjoint $F(M,-)$. If $M$ is invertible, with inverse $N$, then $M^\otimes$ is an equivalence with $N^\otimes$ as inverse. In particular, we can promote $(M^\otimes,N^\otimes)$ to an adjoint equivalence. By uniqueness of adjoint functors $F(M,-)\simeq N^\otimes$, and so \[N\simeq N\otimes1= N^\otimes(1)\simeq F(M,1)=:DM\] 
 \end{remark}
 \begin{definition}
-	Given a closed monoidal category $(\sC,\otimes,1)$, the functor $D:=F(-,1):\sC^{op}\to\sC$ will be called \emph{duality}. Given an object $M$, the object $DM$ is called the \emph{dual of $M$}. 
+	Given a closed monoidal category $(\sC,\otimes,1)$, the functor $D:=F(-,1):\sC^{\op}\to\sC$ will be called \emph{duality}. Given an object $M$, the object $DM$ is called the \emph{dual of $M$}. 
 \end{definition}
 \begin{definition}
 If $R$ is a ring spectrum, $\Mod_R$ is closed monoidal. Denote by $\Pic_R$ the Picard $\infty$-groupoid of $\Mod_R$. 
@@ -324,16 +329,16 @@ If $R$ is a ring spectrum, $\Mod_R$ is closed monoidal. Denote by $\Pic_R$ the P
 \begin{remark}
 	$\Sigma^nR$ is invertible, with inverse $\Sigma^{-n}R$. In particular, there is a map $\bZ\times\Line_R\to\Pic_R$. However, this map need not be neither injective (if $R$ is $n$-periodic), nor surjective (see \cite{hill2011tmf}). 
 \end{remark}
-As mentioned in \cref{rmk:extthomspc}, the Thom spectrum functor makes sense for every functor $f:X^{op}\to\Mod_R$. However, all examples of twists encountered so far came from functors into $\Line_R$. An example of twist that is not the result of a $R$-line bundle is the \emph{degree shift}. 
+As mentioned in \cref{rmk:extthomspc}, the Thom spectrum functor makes sense for every functor $f:X^{\op}\to\Mod_R$. However, all examples of twists encountered so far came from functors into $\Line_R$. An example of twist that is not the result of a $R$-line bundle is the \emph{degree shift}. 
 \begin{definition}
-	Denote by $M$ the \emph{Thom $R$-module spectrum} functor \[\Grpd^{op}_\infty/\Mod_R\to\Mod_R\]sending a functor $f:X^{op}\to\Mod_R$ to its colimit.  
+	Denote by $M$ the \emph{Thom $R$-module spectrum} functor \[\Grpd^{\op}_\infty/\Mod_R\to\Mod_R\]sending a functor $f:X^{\op}\to\Mod_R$ to its colimit.  
 \end{definition}
 \begin{example}
-	Let $f:X^{op}\to\Line_R$ be a twist. Denote by $\Sigma^nf$ the composition of $f$ with the shift functor $\Sigma^n:\Line_R\to\Pic_R$. Since $\Sigma^n$ is an equivalence, it commutes with colimits, so $$M\Sigma^nf\simeq \Sigma^nMf$$If $f=R_X$, then $M\Sigma^nf\simeq \Sigma^nR\wedge\Sigma^\infty_+X$, so  $\Sigma^nf$-twisted $R$-cohomology and $R$-homology correspond to normal $R$-cohomology and $R$-homology with a degree shift by $n$. 
+	Let $f:X^{\op}\to\Line_R$ be a twist. Denote by $\Sigma^nf$ the composition of $f$ with the shift functor $\Sigma^n:\Line_R\to\Pic_R$. Since $\Sigma^n$ is an equivalence, it commutes with colimits, so $$M\Sigma^nf\simeq \Sigma^nMf$$If $f=R_X$, then $M\Sigma^nf\simeq \Sigma^nR\wedge\Sigma^\infty_+X$, so  $\Sigma^nf$-twisted $R$-cohomology and $R$-homology correspond to normal $R$-cohomology and $R$-homology with a degree shift by $n$. 
 \end{example}
 
 \section{Umkehr Map}
-We now proceed to the construction of the umkehr map in twisted cohomology theories. Here we follow \cite{abg2018thom}. Let $R$ be a ring spectrum, denote by $D_R$ the duality of $\Mod_R$. Given a invertible $R$-twist $\alpha:X^{op}\to\Pic_R$, denote by $D_R\alpha$ the post-composition of $\alpha^{op}$ with $D_R$.
+We now proceed to the construction of the umkehr map in twisted cohomology theories. Here we follow \cite{abg2018thom}. Let $R$ be a ring spectrum, denote by $D_R$ the duality of $\Mod_R$. Given a invertible $R$-twist $\alpha:X^{\op}\to\Pic_R$, denote by $D_R\alpha$ the post-composition of $\alpha^{\op}$ with $D_R$.
 
 \begin{remark} Depending on which cohomological degrees we want, we sometimes use the following alternative definition of	twisted cohomology:
 	\[ R^{\alpha}(X) =\pi_0\Map_{\Mod_R}(M(D_R\alpha), R) \]
@@ -351,7 +356,7 @@ If $R=\bS$, we denote the duality $D_R$ by simply $D$.
 	By \cref{rmk:monunit}, the Spanier-Whitehead dual to $*$ is the sphere spectrum, since \[D*=\Map(\Sigma^\infty_+*,\bS)=\Map(\Sigma^\infty S^0,\bS)=\Map(\bS,\bS)\simeq\bS\]
 \end{example}
 \begin{definition}
-	Denote by $\phi$ the functor $\sS^{op}\to\bS/\Sp$ from spaces to the category of spectra under $\bS$, mapping $X$ to the map of spectra \begin{center}
+	Denote by $\phi$ the functor $\sS^{\op}\to\bS/\Sp$ from spaces to the category of spectra under $\bS$, mapping $X$ to the map of spectra \begin{center}
 		\begin{tikzcd}
 			\phi(X):\bS\simeq D*\arrow[r,"Dp"] & DX
 		\end{tikzcd}
@@ -364,17 +369,17 @@ Let $B$ be a connected compact space and $\pi\colon X \to B$ a continuous functi
 \[f:B \to \Mfd_\infty\]
 Given such a classifying map $f$, consider the following composition \begin{center}
 	\begin{tikzcd}
-		B^{op}\arrow[r] & \Mfd_\infty^{op} \arrow[r] & \sS^{op} \arrow[r,"\phi"] & \bS/\Sp
+		B^{\op}\arrow[r] & \Mfd_\infty^{\op} \arrow[r] & \sS^{\op} \arrow[r,"\phi"] & \bS/\Sp
 	\end{tikzcd}
 \end{center}where the middle functor is the one forgetting the smooth structure. The above composition is then an object of
-\[ \Fun(B^{op},\bS/\Sp) \simeq \bS_B/\Fun(B^{op}, \Sp) \]i.e. it is a natural transformation \[\phi_{X/B}:\bS_B\to D_B(f)\]where $D_B$ denotes the Spanier-Whithead duality applied to (the opposite of) $f:B\to\sS$ point-wise. Let $p:B\to *$ be the terminal functor and $p_!:\Fun(B^{op},\Sp)\to\Sp$ the left Kan extension along $p$, i.e. the colimit functor. Applying $p_!$ to $\phi_{X/B}$, we obtain a morphism of spectra \begin{equation}\label{eq:thom}
+\[ \Fun(B^{\op},\bS/\Sp) \simeq \bS_B/\Fun(B^{\op}, \Sp) \]i.e. it is a natural transformation \[\phi_{X/B}:\bS_B\to D_B(f)\]where $D_B$ denotes the Spanier-Whithead duality applied to (the opposite of) $f:B\to\sS$ point-wise. Let $p:B\to *$ be the terminal functor and $p_!:\Fun(B^{\op},\Sp)\to\Sp$ the left Kan extension along $p$, i.e. the colimit functor. Applying $p_!$ to $\phi_{X/B}$, we obtain a morphism of spectra \begin{equation}\label{eq:thom}
 	\begin{tikzcd}
 		\Sigma_+^\infty B\simeq p_!p^*\bS=p_!\bS_B \arrow[rr,"p_!(\phi_{X/B})"] & & p_!D_B(f)
 	\end{tikzcd}
 \end{equation}
-Let $T_{X/B}\to X$ be the vector bundle of fiber-wise tangent vectors, classified by $X^{op}\to BO(n)$, where $n$ is the manifold dimension of the fibers\footnote{$B$ is connected, so the fibers have constant dimension.}. Denote by $\alpha$ the composition \begin{equation}\label{eq:alpha}
+Let $T_{X/B}\to X$ be the vector bundle of fiber-wise tangent vectors, classified by $X^{\op}\to BO(n)$, where $n$ is the manifold dimension of the fibers\footnote{$B$ is connected, so the fibers have constant dimension.}. Denote by $\alpha$ the composition \begin{equation}\label{eq:alpha}
 	\begin{tikzcd}
-		X^{op}\arrow[r,"T_{X/B}"] & BO(n) \arrow[r] & \sS_* \arrow[r,"\Sigma^\infty"] & \Sp
+		X^{\op}\arrow[r,"T_{X/B}"] & BO(n) \arrow[r] & \sS_* \arrow[r,"\Sigma^\infty"] & \Sp
 	\end{tikzcd}
 \end{equation}the middle arrow being the $n$-sphere $S^n$ with $O(n)$-action coming from the one-point compactification of the regular action on $\bR^n$. The above diagram takes values in the Picard $\infty$-groupoid of the sphere spectrum. 
 \begin{theorem}\label{thm:pontry}
@@ -390,13 +395,13 @@ Let $T_{X/B}\to X$ be the vector bundle of fiber-wise tangent vectors, classifie
 	is called \emph{Pontryagin-Thom transfer map}. 
 \end{definition}
 
-Consider now a general situation. Let $R$ be a ring spectrum and $\alpha:X^{op}\to\Line_R$ a $R$-line bundle. 
+Consider now a general situation. Let $R$ be a ring spectrum and $\alpha:X^{\op}\to\Line_R$ a $R$-line bundle. 
 \begin{definition}
 	An \emph{orientation} of $M\alpha$ is lift 
 	\begin{center}
 		\begin{tikzcd}
 			& *\arrow[d]\\
-			X^{op}\arrow[r,"\alpha"']\arrow[ru,dashed] & \Line_R
+			X^{\op}\arrow[r,"\alpha"']\arrow[ru,dashed] & \Line_R
 		\end{tikzcd}
 	\end{center}Explicitly, it is an equivalence of $R_X$-modules $\alpha\to R_X$. 
 \end{definition}
@@ -415,7 +420,7 @@ Applying $p_!$, we see that an equivalence $t:\alpha\to R_X$ induces an equivale
 \end{definition}
 Finally, we have the following definition:
 \begin{definition}
-	Assuming $\Sigma^{-n}\alpha:X^{op}\to\Line_R$ is orientable, the \emph{Umkehr map} is the map: 
+	Assuming $\Sigma^{-n}\alpha:X^{\op}\to\Line_R$ is orientable, the \emph{Umkehr map} is the map: 
 	\begin{center}
 		\begin{tikzcd}
 			R^*(\Sigma^\infty_+X)\arrow[rr,"\text{Thom iso.}"] & & R^{*-n}(X^{-T_{X/B}}) \arrow[rr,"\PT(f)^{*-n}"] & & R^{*-n}(\Sigma^{\infty}_+B)
@@ -425,7 +430,7 @@ Finally, we have the following definition:
 \begin{remark}
 	The name \emph{Umkehr} comes from the map going in the opposite direction to $R^*(\Sigma^\infty_+X)\to R^*(\Sigma^\infty_+B)$, given by pulling back along $\pi$. 
 \end{remark}
-We now introduce the \emph{twisted Umkehr map}. Given a twist $\beta\colon B^{op} \to \Pic_R$, we can smash to get a map 
+We now introduce the \emph{twisted Umkehr map}. Given a twist $\beta\colon B^{\op} \to \Pic_R$, we can smash to get a map 
 \begin{center}
 	\begin{tikzcd}
 		\beta\simeq\bS_B\wedge_B\beta \arrow[r] & D_B(f)\wedge_B\beta
@@ -436,7 +441,7 @@ Applying the functor $p_!$ once again, we obtain a morphism \begin{center}
 		M\beta \arrow[r] & p_!(D_B(f)\wedge_B\beta)\simeq X^{-T_f+\beta\pi}
 	\end{tikzcd}
 \end{center}
-where $\beta\pi:X^{op}\to\Pic_R$ is the composition of $\pi$ and the twist $\beta$.
+where $\beta\pi:X^{\op}\to\Pic_R$ is the composition of $\pi$ and the twist $\beta$.
 \begin{definition}
 	The \emph{twisted Pontryagin-Thom transfer map} is the morphism:
 	\begin{center}
