@@ -28,6 +28,7 @@
 \newcommand{\fO}{\mathbf{O}}
 \newcommand{\rO}{\mathscr{O}}
 \newcommand{\M}{\mathcal{M}}
+\newcommand{\X}{\mathcal{X}}
 \newcommand{\bQ}{\mathbb{Q}}
 
 \newcommand{\aff}{\mathrm{Aff}}
@@ -80,7 +81,6 @@
 \newcommand{\Pic}{\mathscr{P}\mathrm{ic}}
 \newcommand{\triv}{\mathscr{T}\mathrm{riv}}
 \newcommand{\aut}{\mathrm{Aut}}
-\newcommand{\Th}{\mathrm{Th}}
 \newcommand{\fr}{\mathrm{Fr}}
 \newcommand{\Arr}{\mathrm{Arr}}
 \newcommand{\ev}{\mathrm{ev}}
@@ -88,6 +88,7 @@
 \newcommand{\Mon}{\mathrm{Mon}}
 \newcommand{\PT}{\mathrm{PT}}
 \newcommand{\op}{\mathrm{op}}
+\newcommand{\Th}{\mathrm{Th}}
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -176,27 +177,41 @@ Since $\Line_R\simeq BGL_1(R)$, functors $X^{\op}\to\Line_R$ classify $GL_1(R)$-
 \begin{example}
 	Let $R_X\colon X^{\op} \to*\to \Line_R$ be the constant functor with value $R$. 
 \end{example}
-
-We now proceed to the Thom construction.
-
+We now proceed to the Thom construction. We introduce it to full generality. 
 \begin{definition}[{Thom spectrum}] \label{def:thom}
 	The \emph{Thom $R$-module spectrum} is the functor
 	\[
-	M \colon \Grpd_{\infty}/\Line_R \to \Mod_R,
+	R \colon \sS/\Mod_R \to \Mod_R,
 	\]
-	which sends $f\colon X^{\op} \to \Line_R$ to the $R$-module spectrum $\colim(X^{\op} \xrightarrow{f} \Line_R\hookrightarrow \Mod_R)$.
+	which sends $f\colon X^{\op} \to \Mod_R$ to the $R$-module spectrum $R^f$ given by colimit of $f$. 
 \end{definition}
-\begin{remark}\label{rmk:extthomspc}
-	Notice that the definition of Thom $R$-module spectrum make sense for any functor $X^{\op}\to R\Mod$. 
+\begin{remark}The colimit of a functor $F:\C\to\X$ is the left Kan extension of $F$ along the terminal functor $p:\C\to*$. If $\X$ is cocomplete, a functor $\pi:\C\to\D$ induces a pullback functor $\pi^*:\Fun(\D,\X)\to\Fun(\C,\X)$, which is cocontinuous, therefore using left Kan extension along $\pi$ we can construct a left adjoint $\pi_!$.  
 \end{remark}
-Let us note an alternative characterization that will be important later.
-\begin{remark}
-	For a given functor $\phi: X \to Y$, we get a pullback functor $\phi^*\colon \Mod_R(Y) \to \Mod_R(X)$ by pre-composition with $\phi^{\op}$. Since $\phi^*$ preserves both limits and colimits, we can construct a 3-terms adjunction \begin{equation}
-		\begin{tikzcd}
-			\Mod_R(X) \arrow[r,shift right=3,"\phi_*"'] \arrow[r,shift left=3,"\phi_*"] & \Mod_R(Y) \arrow[l,"\phi_!" description]
-		\end{tikzcd}
-	\end{equation}Explicitly, $\phi_!$, resp. $\phi_*$, is given by left, resp. right, Kan extension along $\phi^\op$. In particular, if $Y=*$ and $\phi=p:X\to*$ is the terminal functor, then $p_!=\colim_{X^\op}$, and so $Mf\simeq p_!(f)$. 
-\end{remark}
+Let us have a look at some examples of Thom spectra. 
+\begin{example}[Trivial twist] We begin by identifying the Thom spectrum of $R_X$. By the universal property of colimits, the Thom spectrum functor is left adjoint to the functor $\Mod_R\to\sS/\Mod_R$ sending a module $E$ to the corresponding functor $*\to\Mod_R$. In particular, the Thom spectrum functor is cocontinuous. Next, consider a $R$-module $E$ and the functor $\sS\to\sS/\Mod_R$ sending a space $X$ to the constant functor $E_X:X^\op\to\Mod_R$ with value $E$. This functor is also cocontinuous, by the way colimits are calculated in $\sS/\Mod_R$. Therefore, the composition \begin{equation}
+	\begin{tikzcd}
+		\sS \arrow[r] & \sS/\Mod_R \arrow[r] & \Mod_R
+	\end{tikzcd}
+\end{equation}is cocontinuous, and so completely determined by the value of the one-point space $*$, which is $E$. On the other hand, the following composition \begin{equation}
+	\begin{tikzcd}
+		\sS \arrow[r,"\Sigma^\infty_+"] & \Sp \arrow[r,"E\wedge-"] & \Mod_R
+	\end{tikzcd}
+\end{equation}is also cocontinuous and sends $*$ to $E$. We conclude that the colimit of $E_X$, for every space $X$, is equivalent to $E\wedge\Sigma^\infty_+X$. 
+\end{example}
+For the next example, we require some preliminary lemmas. 
+\begin{definition}
+	Given a vector bundle $V\to B$, the \emph{Thom space} of $V$, denoted by $S^V$, is the homotopy cofiber of $V_0\subseteq V$, where $V_0$ is the complement of the zero section. 
+\end{definition}
+\begin{example}
+	Let $B=*$ and $V=\bR^n$, then $S^V$ is homotopy equivalent to the $n$-sphere $S^n$. 
+\end{example}
+\begin{lemma}
+	Let $\C$ be a (small) category and $y:\C\to\Fun(\C^\op,\sS)$ the $\infty$-categorical Yoneda embedding. The colimit of $y$ is the terminal pre-sheaf, i.e. the pre-sheaf with constant value $*$.
+\end{lemma}
+\begin{proof}
+	Apply the density theorem to the terminal pre-sheaf. 
+\end{proof}
+
 %--------------TO BE CONTINUED-----------------
 We now proceed to define twisted cohomology theories.
 
@@ -213,9 +228,6 @@ We now proceed to define twisted cohomology theories.
 \begin{example}[Trivial twist] If $f:X\to \Line_R$ factors through $*$, then $f$ factors as $X^{\op}\to*\to\sS$, the constant factor with value $*$, and $R\wedge\Sigma^\infty_+(-):\sS\to\Mod_R$. The latter functor commutes with colimits, being a left adjoint, while the colimit of the latter is $X$ itself, then $Mf\simeq R\wedge\Sigma^\infty_+X$. In particular, $f$-twisted $R$-cohomology and $R$-homology of $X$ reduce to ordinary (untwisted) $R$-cohomology and $R$-homology of $X$. 
 \end{example}
 
-\begin{definition}
-	Given a vector bundle $\pi:E\to B$, define the \emph{Thom space} of $\pi$, denoted $\Th(E)$, to be the homotopy cofiber of $E_0\subseteq E$, where $E_0$ is the complement of the zero section. 
-\end{definition}
 
 \section{Examples of Twisted Cohomology}
 We now proceed to analyze several examples of twisted cohomology	theories. This requires some preliminary lemmas.
