@@ -27,6 +27,7 @@
 \newcommand{\lJ}{\mathcal{J}}
 \newcommand{\lK}{\mathcal{K}}
 \newcommand{\lL}{\mathcal{L}}
+\newcommand{\mL}{\mathrm{L}}
 \newcommand{\lM}{\mathcal{M}}
 \newcommand{\bN}{\mathbb{N}}
 \newcommand{\mN}{\mathrm{N}}
@@ -85,16 +86,11 @@
 \newcommand{\cl}{\mathrm{cl}} % closed forms
 \newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
 \newcommand{\pos}{\lP\mathrm{os}} % category of Postnikov pre-towers
+\renewcommand{\Pr}{\lP\mathrm{r}} % category of presentable categories
+\newcommand{\st}{\mathrm{st}} % stable
 
 
 \DeclareMathOperator*\colim{colim} % colimit
-
-\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
-\newcommand{\textbbe}[1]{{\bbefamily #1}}
-\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
-
-\def\DDelta{{\mathbbe{\Delta}}}
-\newcommand{\DD}{\DDelta}
 
 \newcommand{\adjun}[4]{
 \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
@@ -188,10 +184,15 @@
 		A \emph{sub-functor} to a pre-sheaf $F\colon\lC^{\op}\to\set$ consists of a pre-sheaf $S:\lC^{\op}\to\set$ such that $S(C)\subseteq F(C)$, for all objects $C$, and the subset inclusions define a natural transformation $S\to F$. The last condition is equivalent to the following: Given $f\colon D\to C$ and $u\in S(C)$, then $F(f)(u)\in S(D)$. 
 	\end{definition}
 	\begin{definition}
-		Given a pre-sheaf $F\colon\lC^{\op}\to\set$, denote by $\lC_{/F}$ the category of pairs $(C,c)$, consisting of an object $C$ and an element $c\in F(C)$. A morphism $(D,d)\to(C,c)$ consists of a morphism $f\colon D\to C$ such that $F(f)(c)=d$. 
-	\end{definition}By Yoneda's lemma, an element $c\in F(C)$ corresponds to a natural transformation $y(C)\rightarrow F$. Taking the colimit over $(C,c)\in\lC_{/F}$ of the pre-sheaves $y(C)$, we get a natural transformation $\colim_{(C,c)\in\lC_{/F}}y(C)\rightarrow F$. 
+		Given a pre-sheaf $F\colon\lC^{\op}\to\set$, denote by $\lC_{/F}$ the category of pairs $(C,c)$, consisting of an object $C$ and a morphism of pre-sheaves $y(C)\xrightarrow{c} F$.
+	\end{definition}
+	
 	\begin{theorem}[Density Theorem]\label{thm:density}
-		For every pre-sheaf $F$, the map $\colim_{(C,c)\in\lC_{/F}}y(C)\rightarrow F$ is a natural isomorphism.
+		$F$ is canonically isomorphic to the colimit of the diagram \begin{equation}
+			\begin{tikzcd}
+				\lC_{/F} \arrow[r] & \lC \arrow[r,"y"] & \lP(\lC)
+			\end{tikzcd}
+		\end{equation}where the first functor is the canonical projection.
 	\end{theorem}
 	\begin{definition}
 		Let $\lC$ be a category. A \emph{sieve} on an object $C$ is a sub-functor of $y(C)$, with $y(C)$ being the \textit{maximal sieve}. Given a morphism $f\colon D\to C$ and a sieve $S$ on $C$, denote by $f^*(S)$ the \textit{pullback sieve}, mapping $X$ to the set of arrows $g\colon X\to D$ such that $fg\in S(X)$. 
@@ -224,40 +225,39 @@
 	\begin{definition}\label{def:slicetop}
 		Let $(\lC,J)$ be a site and $C\in\lC$. Given $f:D\to C$, there is a canonical identification $\alpha_f:(\lC_{/C})_{/f}\simeq\lC_{/D}$. The \emph{slice Grothendieck topology} on $\lC_{/C}$ assigns to each object $f:D\to C$ the collection of sieves $\lD\subseteq(\lC_{/C})_{/f}$ that correspond to covering sieves of $D$ under $\alpha_f$. 
 	\end{definition}
-	We are now ready to define sheaves on a Grothendieck site. Given a sieve $S$ on $C$, notice that the category $\lC_{/S}$ can be identified with the full sub-category of $\lC_{/C}$ spanned by morphisms $f\in S$. On the other hand, a full sub-category $\lD\subseteq\lC_{/C}$ determines a sieve if $f\in\lD$ implies $fg\in\lD$, for every $g$ composable with $f$. 
+	We are now ready to define sheaves on a Grothendieck site. Given a sieve $S$ on $C$, notice that the category $\lC_{/S}$ can be identified with the full sub-category of $\lC_{/C}$ spanned by morphisms $f\in S$.
+	\begin{remark}
+		A sieve on $C$ is equivalent to the datum of a sub-category $\lD\subseteq\lC_{/C}$ closed un pre-composition, i.e. if $f\in\lD$, then $fg\in\lD$, for every $g$ composable with $f$. 
+	\end{remark} 
 	\begin{definition}\label{map}
 		Given a pre-sheaf $F\colon \lC^{\op}\to\set$, denote by $\hom(\lC_{/S},F)$ the limit of the following diagram:
-	\begin{center}
+	\begin{equation}\label{eq:comparison}
 		\begin{tikzcd}
 			(\lC_{/S})^{\op}\arrow[r] & \lC^{\op}\arrow[r,"F"] & \set
 		\end{tikzcd}
-	\end{center}The inclusion $\lC_{/S}\subseteq\lC_{/C}$ induces a natural \textnormal{comparison map} $\hom(\lC_{/C},F)\to\hom(\lC_{/S},F)$.
+	\end{equation}The inclusion $\lC_{/S}\subseteq\lC_{/C}$ induces a natural \textnormal{comparison map} $\hom(\lC_{/C},F)\to\hom(\lC_{/S},F)$.
 	\end{definition}
 	 Notice that $\hom(\lC_{/C},F)$ is the limit of a diagram indexed by the category $(\lC_{/C})^{\op}$, which has an initial object, the identity of $C$, therefore the limit is canonically isomorphic to $F(C)$, the value of the diagram at the initial object.
 	\begin{definition}
 		Let $(\lC, J)$ be a Grothendieck site. A {pre-sheaf} $F : \lC^{\op} \to \set$ is a \emph{sheaf} if, for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
 		\[ F(C)\cong\hom(\lC_{/C},F) \to \hom(\lC_{/S},F)\]
 		is an isomorphism. Explicitly, an object in $\hom(\lC_{/S},F)$ consists of an element $x_f\in F(D)$, for every map $f\in S$ (where $D$ is the domain of $f$), such that $x_{fg}=F(g)(x_f)$, for every $f$ and $g$ composable. The canonical morphism takes $x\in F(C)$ to the tuple with $x_f:=F(f)(x)$. 
-	\end{definition}Using \cref{thm:density} and Yoneda's lemma, we have the following chain of natural isomorphisms:
-	\begin{align*}
-		\hom(\lC_{/S},F) &= \textrm{lim}_{(D,d)\in\lC_{/S}}F(D) \\
-		&\simeq \textrm{lim}_{(D,d)\in\lC_{/S}}\hom_{\lP(\lC)}(y(D),F) \\
-		&\simeq \hom_{\lP(\lC)}(\colim_{(D,d)\in\lC_{/S}}y(D),F)\\
-		&\simeq \hom_{\lP(\lC)}(S,F)
-	\end{align*}One can then check that under the above isomorphism, the comparison map $\hom(\lC_{/C},F)\to\hom(\lC_{/S},F)$ corresponds to the restriction map $\hom_{\lP(\lC)}(y(C),F)\to\hom_{\lP(\lC)}(S,F)$ induced by the inclusion $S\subseteq y(C)$. In particular, we can rephrase the sheaf condition as follows:
+	\end{definition}Using \cref{thm:density} and Yoneda's lemma, one can construct a canonical isomorphism $\hom(\lC_{/S},F)\simeq\hom_{\lP(\lC)}(S,F)$, such that the following diagram commutes \begin{equation}
+		\begin{tikzcd}
+			F(C) \arrow[d,"\cong"] \arrow[r] & \Hom(\lC_{/S},F) \arrow[d,"\cong"] \\
+			\Hom_{\lP(\lC)}(y(C),F) \arrow[r] & \Hom_{\lP(\lC)}(S,F)
+		\end{tikzcd}
+	\end{equation}where the bottom map is the restriction map induced by the inclusion $S\subseteq y(C)$. In particular, we can rephrase the sheaf condition as follows:
 	\begin{corollary}
 		A pre-sheaf $F$ on a Grothendieck site $(\lC, J)$ is a sheaf if and only if for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
-		\[ F(C)  \simeq \hom_{\lP(\lC)}(y(C),F)\to \hom_{\lP(\lC)}(S,F) \]
+		\[ F(C)  \cong \hom_{\lP(\lC)}(y(C),F)\to \hom_{\lP(\lC)}(S,F) \]
 		is an isomorphism. 
 	\end{corollary}
 	
 	\section{Sheaves on \texorpdfstring{$\infty$}{oo}-Categories}
-	Now that we know how  to define sheaves on 1-categories, we generalize the definition of sheaves to the case of $\infty$-categories. Here we largely follow \cite{lurie2009htt}. Recall that a sieve on $C$ determines a full sub-category of $\lC_{/C}$. Conversely, a full sub-category $\lD$ of $\lC_{/C}$ determines a sieve if and only if $f\in\lD$ implies $fg\in\lD$, for every $g$ (composable with $f$). 
+	Now that we know how  to define sheaves on 1-categories, we generalize the definition of sheaves to the case of $\infty$-categories. Here we largely follow \cite{lurie2009htt}. Recall that a sieve on $C$ determines a full sub-category of $\lC_{/C}$. Conversely, a full sub-category $\lD$ of $\lC_{/C}$ determines a sieve if and only if $f\in\lD$ implies $fg\in\lD$, for every $g$ composable with $f$. 
 	\begin{definition}
-		Let $\lC$ be a $\infty$-category and $\lS$ the $\infty$-category of spaces. A \textit{pre-sheaf} on $\lC$ is a functor $\lC^{\op}\to\lS$.
-	\end{definition}
-	\begin{definition}
-		Let $\lC$ be an $\infty$-category and $C$ an object of $\lC$. A \textit{sieve} on $C$ is a full sub-$\infty$-category $\lD$ of $\lC_{/C}$ such that $f\in\lD$ implies $fg\in\lD$, for every $g$ (composable with $f$).  
+		Let $\lC$ be an $\infty$-category and $C$ an object of $\lC$. A \textit{sieve} on $C$ is a full sub-$\infty$-category $\lD$ of $\lC_{/C}$ such that $f\in\lD$ implies $fg\in\lD$, for every $g$ composable with $f$.  
 	\end{definition}
 	A sieve $\lD\subseteq\lC_{/C}$ induces a sieve $\lD'\subseteq\Ho(\lC)_{/C}$ by taking homotopy classes of 1-morphisms in $\lD$. 
 	\begin{definition}
@@ -269,11 +269,11 @@
 		Let $\lC$ be a $1$-category. A Grothendieck topology on $\lC$ is precisely a Grothendieck topology on $\lC$ seen as an $\infty$-category.
 	\end{lemma}
 	\begin{definition}
-		Let $\lC$ be a $\infty$-category and $C$ an object of $\lC$. Given a sieve $\lD\subseteq\lC_{/C}$ and a pre-sheaf $F:\lC^{\op}\to\lS$, denote by $\hom(\lD,F)$ the limit of the diagram \begin{center}
+		Let $\lC$ be a $\infty$-category and $C$ an object of $\lC$. Given a sieve $\lD\subseteq\lC_{/C}$ and a pre-sheaf $F:\lC^{\op}\to\lS$, denote by $\hom(\lD,F)$ the limit of the diagram \begin{equation}
 		\begin{tikzcd}
 			\lD^{\op}\arrow[r] & \lC^{\op}\arrow[r,"F"] & \lS
 		\end{tikzcd}
-	\end{center}where the first functor is the opposite of the canonical projection $\lC_{/C}\to\lC$ restricted to $\lD$. Using the same argument as in the 1-categorical case, there is a comparison map $\hom(\lC_{/C},F)\to\hom(\lD,F)$ and a canonical equivalence $\hom(\lC_{/C},F)\simeq F(C)$. 
+	\end{equation}where the first functor is the opposite of the canonical projection $\lC_{/C}\to\lC$ restricted to $\lD$. Using the same argument as in the 1-categorical case, there is a comparison map $\hom(\lC_{/C},F)\to\hom(\lD,F)$ and a canonical equivalence $\hom(\lC_{/C},F)\simeq F(C)$. 
 	\end{definition}
 	\begin{definition}
 		Let $\lC$ be an $\infty$-category. A pre-sheaf $F\colon\lC^{\op}\to\lS$ is a \emph{sheaf} if for every object $C$ and covering sieve $\lD$ of $C$, the canonical morphism
@@ -281,42 +281,42 @@
 		is an equivalence. Denote by $\Shv(\lC,J)$ the full sub-$\infty$-category of $\Fun(\lC^{\op},\lS)$ spanned by the sheaves on $(\lC,J)$.
 	\end{definition}
 	
-	Note we defined sheaves as local objects in a presentable $\infty$-category. Hence, using the formalism of presentable $\infty$-categories, we immediately have the following result. 
+	Note we defined sheaves as local objects in a locally presentable $\infty$-category. Hence, using the formalism of locally presentable $\infty$-categories, we immediately have the following result. 
 	
 	\begin{proposition}
-		The $\infty$-category of sheaves on $\Shv(\lC,J)$ is presentable.
+		The $\infty$-category of sheaves on $\Shv(\lC,J)$ is locally locally presentable.
 	\end{proposition}
 	
 \section{Sheaves with arbitrary Values}
-We started with sheaves valued in sets. Then generalized to $\infty$-categorical sheaves valued in spaces. However, we want $\infty$-categorical sheaves valued in spectra. Hence the next step is to generalize the values of our $\infty$-categorical sheaves. Abstractly we obtain such sheaves via the \emph{tensor product} of presentable $\infty$-categories, which we review now.
+We started with sheaves valued in sets. Then generalized to $\infty$-categorical sheaves valued in spaces. However, we want $\infty$-categorical sheaves valued in spectra. Hence the next step is to generalize the values of our $\infty$-categorical sheaves. Abstractly we obtain such sheaves via the \emph{tensor product} of locally presentable $\infty$-categories, which we review now.
 
 \begin{theorem}[{\cite[Proposition 4.8.1.15]{lurie2017ha}}]
-  Let $\lC, \lD$ be presentable $\infty$-categories. Then there exists a presentable $\infty$-category $\lC \otimes \lD$ together with a functor $F:\lC\times\lD\rightarrow\lC\otimes\lD$ such that 
+  Let $\lC, \lD$ be locally presentable $\infty$-categories. Then there exists a locally presentable $\infty$-category $\lC \otimes \lD$ together with a functor $F:\lC\times\lD\rightarrow\lC\otimes\lD$ such that 
   \begin{enumerate}
 	\item The functor $F$ preserves colimits component-wise.
-	\item For any presentable $\infty$-category $\lE$, pre-composition with $F$ induces an equivalence between the sub-$\infty$-category $\Fun^L(\lC \otimes \lD , \lE)\subseteq\Fun(\lC \otimes \lD , \lE)$ of colimit preserving functors, and the sub-$\infty$-category $\Fun^{L,L}(\lC \times \lD, \lE)\subseteq\Fun(\lC\times\lD,\lE)$ of functors preserving colimits in each component. 
+	\item For any locally presentable $\infty$-category $\lE$, pre-composition with $F$ induces an equivalence between the sub-$\infty$-category $\Fun^L(\lC \otimes \lD , \lE)\subseteq\Fun(\lC \otimes \lD , \lE)$ of colimit preserving functors, and the sub-$\infty$-category $\Fun^{L,L}(\lC \times \lD, \lE)\subseteq\Fun(\lC\times\lD,\lE)$ of functors preserving colimits in each component. 
   \end{enumerate}
 \end{theorem}
-\begin{theorem}[{\cite[Proposition 4.8.1.17]{lurie2017ha}}]For $\lC$ and $\lD$ presentable $\infty$-categories, there is a canonical equivalence between $\lC\otimes\lD$ and $\Fun^R(\lC^{\op},\lD)$, of limit preserving functors $\lC^{\op}\to\lD$. 
+\begin{theorem}[{\cite[Proposition 4.8.1.17]{lurie2017ha}}]For $\lC$ and $\lD$ locally presentable $\infty$-categories, there is a canonical equivalence between $\lC\otimes\lD$ and $\Fun^R(\lC^{\op},\lD)$, of limit preserving functors $\lC^{\op}\to\lD$. 
 \end{theorem}
 \begin{definition}
-  Let $(C,J)$ be $\lC$ be a Grothendieck site, and $\lD$ be a presentable $\infty$-category. A \emph{sheaf on $(\lC,J)$ with values in $\lD$} is a limit preserving functor $F\colon \Shv(\lC,J)^{\op} \to \lD$, which corresponds to an object in $\Shv(\lC,J) \otimes \lD$. 
+  Let $(C,J)$ be $\lC$ be a Grothendieck site, and $\lD$ be a locally presentable $\infty$-category. A \emph{sheaf on $(\lC,J)$ with values in $\lD$} is a limit preserving functor $F\colon \Shv(\lC,J)^{\op} \to \lD$, which corresponds to an object in $\Shv(\lC,J) \otimes \lD$. 
 \end{definition}
 
 Of course, this description is very abstract and ideally we want a more explicit description that we can use in the future. That is the aim of the next sections.
 
 \section{An Explicit Description of Sheaves valued in Spectra}
 
-We have given a formal definition of sheaves valued in spectra, via the tensor product of presentable $\infty$-categories. We now want a more explicit description thereof. For this we make use of the following result.
+We have given a formal definition of sheaves valued in spectra, via the tensor product of locally presentable $\infty$-categories. We now want a more explicit description thereof. For this we make use of the following result.
 
 \begin{proposition}[{\cite{lurie2017ha}, see also \cite{gepnergrothnikolaus2015infiniteloopspacemachine}}]
- The inclusion $\Pr^L_{st} \to \Pr^L$ of stable presentable $\infty$-categories into the category of presentable $\infty$-categories admits a left adjoint, which is explicitly given by $-\otimes\Sp$.
+ The inclusion $\Pr^\mL_{\st} \to \Pr^\mL$ of stable locally presentable $\infty$-categories into the category of locally presentable $\infty$-categories admits a left adjoint, which is explicitly given by tensoring with $\Sp$.
 \end{proposition}
 
-We can recall from our previous talk that the stabilization of a presentable $\infty$-category $\lC$ is given by the $\infty$-category $\Sp(\lC)$ of spectrum objects in $\lC$, therefore $\lC\otimes\Sp  \simeq \Sp(\lC)$, for every presentable $\infty$-category $\lC$. In particular, the $\infty$-category $ \Shv(\lC,J)\otimes \Sp$ is equivalent to the category of spectrum objects in $\Shv(\lC,J)$. Finally, since the inclusion $\Shv(\lC,J) \to \Fun(\lC^{\op},\lS)$ preserves and reflects limits, a commutative square in $\Shv(\lC,J)$ is a pullback square if and only if it is a pullback square in $\Fun(\lC^{\op},\lS)$.
+We can recall from our previous talk that the stabilization of a locally presentable $\infty$-category $\lC$ is given by the $\infty$-category $\Sp(\lC)$ of spectrum objects in $\lC$, therefore $\lC\otimes\Sp  \simeq \Sp(\lC)$, for every locally presentable $\infty$-category $\lC$. In particular, the $\infty$-category $ \Shv(\lC,J)\otimes \Sp$ is equivalent to the category of spectrum objects in $\Shv(\lC,J)$. Finally, since the inclusion $\Shv(\lC,J) \to \Fun(\lC^{\op},\lS)$ preserves and reflects limits, a commutative square in $\Shv(\lC,J)$ is a pullback square if and only if it is a pullback square in $\Fun(\lC^{\op},\lS)$.
 
 \begin{proposition}
-  A spectrum object in sheaves on the Grothendieck site $(\lC,J)$ is given by a spectrum object in pre-sheaves on $(\lC,J)$ that is point-wise a sheaf.
+  A spectrum object in sheaves on the Grothendieck site $(\lC,J)$ is given by a spectrum object in pre-sheaves on $(\lC,J)$ such that each component is a sheaf.
 \end{proposition}
 
 This gives us the following explicit description of sheaves valued in spectra. Recall that $\Omega^{\infty-n}\colon\Sp\to\lS$ is the functor mapping a spectrum object into its $n$-th component.
@@ -361,7 +361,7 @@ Here we are mainly interested in $\infty$-topoi of sheaves, i.e. $\lX=\Shv(\lC)$
 	A functor $p:\lS\to\lX$ admitting a left exact left adjoint is called a \emph{geometric morphism}, see \cite[Definition 6.3.1.1]{lurie2009htt}. 
 \end{remark}
 \begin{definition}\label{def:stalk}
-	Let $X$ be a topological space and $\lC$ a presentable category. Given a point $x\in X$, denote by $x^*$ the functor $\Shv(X,\lC)\to\lC$ given by $x^*(F)=\colim_{x\in U}F(U)$. The functor $x^*$ is called 
+	Let $X$ be a topological space and $\lC$ a locally presentable category. Given a point $x\in X$, denote by $x^*$ the functor $\Shv(X,\lC)\to\lC$ given by $x^*(F)=\colim_{x\in U}F(U)$. The functor $x^*$ is called 
 	\emph{stalk at $x$} and is left adjoint to the \emph{skyscraper at $x$} functor, denoted as $x_*$ and given by $x_*(S)(U)=S$, if $x\in U$, and $=1$, otherwise (where $1\in\lC$ is the terminal object).
 \end{definition}
 \begin{remark}\label{rmk:pointsheaf}
@@ -424,9 +424,9 @@ Let $\lC$ be a 1-site and $\lP_\Delta(\lC)=\Fun(\lC^{\op},\sset)$ the ordinary c
 \end{theorem}
 \begin{proof}
 	Hypercompleteness of $\Shv(\Mfd)$ follows from \cref{thm:mfdenoughpoints}, since having enough points implies hypercompleteness, see \cite[Example 3.11.10]{barwick2020exodromy}. The second and third claims are a direct consequence of \cite[Corollary 3.12.13]{barwick2020exodromy} and the first claim. By \cite[Proposition 3.12.11]{barwick2020exodromy}, pre-sheves restriction $i^*$ preserves sheaves satisfying hyperdescent. 
-\end{proof}Recall that, given a presentable category $\lE$, there is a canonical equivalence $\Shv(\lC,\lE)\simeq\Shv(\lC)\otimes\lE$. In particular, the following is a simple corollary of \cref{thm:mfdhypercomplete}:
+\end{proof}Recall that, given a locally presentable category $\lE$, there is a canonical equivalence $\Shv(\lC,\lE)\simeq\Shv(\lC)\otimes\lE$. In particular, the following is a simple corollary of \cref{thm:mfdhypercomplete}:
 \begin{corollary}\label{cor:equivalence}
-For every presentable category $\lE$ and full, dense sub-site $\lD\subseteq\Mfd$, the restriction functor $\Shv(\Mfd,\lE)\to\Shv(\lD,\lE)$ is an equivalence. 	
+For every locally presentable category $\lE$ and full, dense sub-site $\lD\subseteq\Mfd$, the restriction functor $\Shv(\Mfd,\lE)\to\Shv(\lD,\lE)$ is an equivalence. 	
 \end{corollary}
 We will mainly focus on the following sub-site of $\Mfd$.
 \begin{definition}
@@ -436,7 +436,7 @@ Related to the notion of hypercompleteness is the notion of \emph{Postnikov comp
 \begin{definition}[{\cite[Definition 5.5.6.1]{lurie2009htt}}]
 	Let $n\geq-1$, an object $C\in\lC$ is $n$\emph{-truncated} if $\hom_\lC(D,C)$ is a $n$-truncated space, for every $D\in\lC$. Denote by $\tau_{\leq n}\lC$ the full sub-category of $n$-truncated objects. A morphism $f:C\to D$ \emph{exhibit $D$ as the $n$-truncation of $C$} if $D$ is $n$-truncated and the induced morphism $\tau_{\leq n}C\to D$ is an equivalence. 
 \end{definition}
-If $\lC$ is a presentable $\infty$-category, $\tau_{\leq n}\lC$ can be characterized as a class of local objects (see \cite[Proposition 5.5.6.18]{lurie2009htt}). In particular, the inclusion functor $\tau_{\leq n}\lC\subseteq\lC$ admits a left adjoint $\tau_{\leq n}:\lC\to\tau_{\leq n}\lC$. Given an object $C\in\lC$, its truncations form a sequence 
+If $\lC$ is a locally presentable $\infty$-category, $\tau_{\leq n}\lC$ can be characterized as a class of local objects (see \cite[Proposition 5.5.6.18]{lurie2009htt}). In particular, the inclusion functor $\tau_{\leq n}\lC\subseteq\lC$ admits a left adjoint $\tau_{\leq n}:\lC\to\tau_{\leq n}\lC$. Given an object $C\in\lC$, its truncations form a sequence 
 \begin{equation}
 	\cdots\to\tau_{\leq2}C\to\tau_{\leq1}C\to\tau_{\leq0}C
 \end{equation}
