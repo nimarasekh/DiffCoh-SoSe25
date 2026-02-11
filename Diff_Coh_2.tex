@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mathabx}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
 \usepackage{eucal}
 \usepackage{tikz}
 \usepackage{tikz-cd}
@@ -53,10 +53,11 @@
 
 \newcommand{\op}{\mathrm{op}} % opposite
 \newcommand{\Hom}{\lH\mathrm{om}} % enriched hom-spaces, hom-spectrum
+\renewcommand{\hom}{\mathrm{Hom}} % hom-set, hom-space
 \newcommand{\Ho}{\mathrm{Ho}} % homotopy category
 \newcommand{\set}{\lS\mathrm{et}} % category of sets
 \newcommand{\Sp}{\lS\mathrm{p}} % category of spectra
-\newcommand{\PSp}{\lP\sp} % category of pre-spectra
+\newcommand{\PSp}{\lP\Sp} % category of pre-spectra
 \newcommand{\Ch}{\lC\mathrm{h}} % category of chain complexes
 \newcommand{\cat}{\lC\mathrm{at}} % category of categories
 \newcommand{\scat}{\mathrm{s}\cat} % category of simplicial categories
@@ -69,6 +70,7 @@
 \newcommand{\Ab}{\lA\mathrm{b}} % category of abelian groups
 \newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
 \newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
+\newcommand{\Sing}{\mathrm{Sing}} % singular simplicial set 
 
 
 \DeclareMathOperator*\colim{colim} % colimit
@@ -132,6 +134,8 @@
 \date{06.05.2025 $\&$ 13.05.2025}
 \author{Talk by Matthias Frerichs}
 
+\numberwithin{equation}{section}
+
 \begin{document}
 \maketitle
 
@@ -180,29 +184,29 @@ $\infty$-categories are then defined in terms of a lifting condition, for which 
   Let $\Delta^n$ denote the representable functor associated to $\langle n\rangle$. The face map $\delta^i_n$ induces a map of simplicial sets $d^i_n:\Delta^{n-1}\to\Delta^n$. The image of $d^i_n$ is called the \emph{$i$-face}. The \emph{$i$-horn} $\Lambda^{i,n}$ is the union of all faces, except the $i$-face. 
 \end{definition}
 \begin{remark}
-  Another characterization of $\Lambda^{i,n}$ is the following: A $t$-simplex $f:\langle t\rangle\to\langle n\rangle$ is a $t$-simplex for $\Lambda^{i,n}$ if and only if there is $j\neq i$ not in the image of $f$. 
+  Another characterization of $\Lambda^{i,n}$ is the following: A $t$-simplex $f:\langle t\rangle\to\langle n\rangle$ is a $t$-simplex for $\Lambda^{i,n}$ if and only if there is $j\neq i$ not in the image of $f$.
 \end{remark}
-\begin{definition}A simplicial set $X$ is a \emph{quasi-category} if, for every $0<i<n$ and solid diagram \begin{equation}
+\begin{definition}A simplicial set $X$ is called a \emph{Kan complex} if for every solid diagram like the following \begin{equation}
   \begin{tikzcd}
     \Lambda^{i,n} \arrow[d]\arrow[r] & X \\
     \Delta^n \arrow[ru,dashed]
   \end{tikzcd}
 \end{equation}
-there is a dashed arrow rendering the diagram commutative. If the above condition holds for every $0\leq i\leq n$, we call $X$ a \emph{Kan complex}.
+there is a dashed arrow rendering the diagram commutative. If a dashed arrow exists only for diagrams with $i\neq0,n$, we call $X$ a \emph{quasi-category}.
 \end{definition}
 \begin{example}
-  Let $\lC$ be a category. The \emph{nerve of $\lC$}, denoted $\mN\lC$, is the simplicial set where the $n$-simplices are $\Hom_{\cat}(\langle n\rangle,\lC)$. This defines a functor $\mN:\cat \to \sset$.
+  Let $\lC$ be a category. The \emph{nerve of $\lC$}, denoted $\mN\lC$, is the simplicial set with functors $\langle n\rangle\to\lC$ as $n$-simplices. This defines a functor $\mN:\cat \to \sset$.
 \end{example}
 \begin{proposition}\label{prop:nerve}
-  $\mN\lC$ is a quasi-category, and a Kan complex if and only if $\lC$ is a groupoid. 
+  $\mN\lC$ is a quasi-category, it is a Kan complex if and only if $\lC$ is a groupoid. 
 \end{proposition}
 \begin{proof}
 Straightforward combinatorics. 
 \end{proof}
 \begin{remark}
-  The nerve is a special case of the following construction: Let $\lC$ be a category, $\Gamma:\BDelta\to\lC$ a functor, then define $\mN_\Gamma$ as the composition \begin{equation}
+  The nerve is a special case of the following construction: Let $\lC$ be a category, $\Gamma:\BDelta\to\lC$ a cosimplicial object, then define $\mN_\Gamma$ as the composition \begin{equation}
     \begin{tikzcd}
-      \lC \arrow[r] & \Hom_{\cat}(\lC^{op},\set) \arrow[r] & \sset
+      \lC \arrow[r] & \Fun(\lC^{\op},\set) \arrow[r] & \sset
     \end{tikzcd}
   \end{equation}where the first functor is Yoneda, while the second is pre-composition with $\Gamma^\op$. In the case of the nerve, $\Gamma$ is the functor sending $\langle n\rangle$ to the linerly ordered set viewed as a category. On the other hand, assuming $\lC$ is cocomplete, we can left Kan extend $\Gamma$ along the Yoneda functor $\BDelta\to\sset$, we denote by $\Ho_\Gamma$ the resulting functor $\sset\to\lC$. 
 \end{remark}
@@ -213,21 +217,27 @@ Straightforward combinatorics.
   Abstract nonsense about left Kan extensions. Full faithfulness can be checked directly.  
 \end{proof}
 \begin{remark}
-  $\Ho:\sset\to\cat$ is called the \emph{homotopy category} functor. If $X$ is a quasi-category, $\Ho X$ has $X_0$ as set of objects and homotopy classes of maps as morphism, see \cite[1.2.5]{land2021introduction}. 
+  $\Ho:\sset\to\cat$ is called the \emph{homotopy category} functor. If $X$ is a quasi-category, $\Ho X$ is equivalent to the category with $X_0$ as set of objects and homotopy classes of 1-simplices as morphism, see \cite[1.2.5]{land2021introduction}. 
 \end{remark}
 \begin{remark}
-  Denote by $\scat$ the category of simplicially enriched categories. In \cite[1.1.5.1]{lurie2009htt}, Lurie constructs a cosimplicial object $\BDelta\to\scat$. The resulting nerve functor $\mN_\Delta:\scat\to\sset$ is called \emph{homotopy coherent nerve}. If $\lC$ is a category enriched over $\infty$-groupoids, its homotopy coherent nerve is a $\infty$-category. The induced right adjoint is denoted $\kC$, the adjoint pair $(\kC,\mN_\Delta)$ underlies a Quillen equivalence. 
+  Denote by $\scat$ the category of simplicially enriched categories. In \cite[1.1.5.1]{lurie2009htt}, Lurie constructs a cosimplicial object $\BDelta\to\scat$. The resulting nerve functor $\mN_\Delta:\scat\to\sset$ is called \emph{homotopy coherent nerve}. If $\lC$ is a category enriched over Kan complexes, then $\mN_\Delta\lC$ is a quasi-category. The left adjoint to $\mN_\Delta$ is denoted $\kC$, and called \emph{rigidification} in \cite{duggerspivak2011rigidification}. 
 \end{remark}
-Denote by $\Kan$ the category of Kan complexes. One can show that $\Kan$ is self-enriched, which motivates, together with \cref{prop:nerve}, the following definition: 
+\begin{remark}
+  $\sset$ underlies two model structures with the same cofibrations, but different acyclic cofibrations. In both model structures, monomorphisms are the cofibrations. In the \emph{Quillen model structure}, the fibrant-cofibrant objects are Kan complexes. On $\Top$ there is a similar model structure, lifting the singular simplicial set and geometric realization functors to a Quillen equivalence. In the \emph{Joyal model structure}, the fibrant-cofibrant objects are quasi-categories. On $\scat$ there is the \emph{Dwyer-Kan model structure}, lifting the homotopy coherent nerve and rigidification functors to a Quillen equivalence.
+\end{remark}
+\begin{remark}
+  We shall refer to quasi-categories as \emph{$\infty$-categories}, or simply as \emph{categories}. Similarly, we shall refer to Kan complexes as \emph{$\infty$-groupoids}, \emph{groupoids}, or simply as \emph{spaces}.  
+\end{remark}
+Denote by $\Kan$ the simplicially enriched category of Kan complexes. One can show that $\Kan$ is self-enriched, which motivates, together with \cref{prop:nerve}, the following definition: 
 \begin{definition}
-  $\lS:=\mN_\Delta(\Kan)$ is called the \emph{quasi-category of $\infty$-groupoids}. 
+  $\lS:=\mN_\Delta(\Kan)$ is called the \emph{$\infty$-category of spaces}. 
 \end{definition}
 
 \section{Accessible and Presentable Categories}
 
-In general, a limit, resp. colimit, preserving functor need not have a left, resp. right, adjoint. Here we wish to introduce a rather large class of quasi-categories for which the previous statement holds. Let $\kappa$ denote a regular cardinal. 
+In general, a limit, resp. colimit, preserving functor need not have a left, resp. right, adjoint. Here we wish to introduce a rather large class of $\infty$-categories for which the previous statement holds. We begin by recalling the definition of locally presentable 1-categories. Let $\kappa$ denote a regular cardinal. 
 \begin{definition}
-  A category $\lI$ is \emph{$\kappa$-filtered} if, for every $\lJ$ with $<\kappa$ many morphisms, every diagram $\lJ\to\lI$ has a cocone. A functor $F:\lC \to \lD$ is \emph{$\kappa$-accessible} if it preserves $\kappa$-filtered colimits. Given a category $\lC$, an object $X$ is \emph{$\kappa$-compact} if $\Hom_{\lC}(X,-):\lC\to\set$ is $\kappa$-accessible. 
+  A category $\lI$ is \emph{$\kappa$-filtered} if, for every $\lJ$ with $<\kappa$ many morphisms, every diagram $\lJ\to\lI$ has a cocone. A functor $F:\lC \to \lD$ is \emph{$\kappa$-accessible} if it preserves $\kappa$-filtered colimits. Given a category $\lC$, an object $X$ is \emph{$\kappa$-compact} if $\hom_{\lC}(X,-):\lC\to\set$ is $\kappa$-accessible. 
 \end{definition}
 \begin{definition}
   A category $\lC$ is \emph{$\kappa$-accessible} if there exists a set $S\subseteq\lC_0$ of $\kappa$-compact objects that generate $\lC$ under $\kappa$-filtered colimits. A category is \emph{accessible} if it is $\kappa$-accessible, for some regular cardinal $\kappa$. 
@@ -241,30 +251,29 @@ In general, a limit, resp. colimit, preserving functor need not have a left, res
 \begin{theorem}
   Let $\lC,\lD$ be locally presentable categories. A functor $F\colon \lC \to \lD$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
 \end{theorem}
-We now generalize this to quasi-categories.
+We now generalize this to $\infty$-categories.
 \begin{definition}
   Given a simplicial set $X$, denote by $X^\op$ the simplicial set obtained by reversing the structure maps: $X^\op_n=X_n$, for all $n$, and \[\begin{array}{c}
     (d_i:X^\op_n\to X^\op_{n-1})=(d_{n-i}:X_n\to X_{n-1})\\
     (s_i:X^{\op}_n\to X^\op_{n+1})=(s_{n-i}:X_n\to X_{n+1})
 \end{array}\]
 \end{definition}
-If $X$ is a quasi-category, so is $X^\op$. 
+If $X$ is a $\infty$-category, so is $X^\op$. 
 \begin{definition}
-  Let $X$ be a quasi-category. The \emph{quasi-category of simplicial presheaves} is defined as $\Fun(X^\op,\lS):=\Hom_{\sset}(X^{\op},\lS)$.
+  Let $X$ be a $\infty$-category. The \emph{$\infty$-category of pre-sheaves of spaces} is defined as $\lP(X):=\hom_{\sset}(X^{\op},\lS)$.
 \end{definition}
 \begin{theorem}[Yoneda]
-  Given a quasi-category $X$, the mapping space functor $X^\op\times X\to\lS$ adjoints to a functor $y:X\to\widehat{X}:=\Fun(X^\op,\lS)$, called the \emph{Yoneda embedding}. Given a cocomplete quasi-category $\lC$, pre-composition by $y$ induces an equivalence \begin{equation}
+  Given a $\infty$-category $X$, there is a fully faithful functor $y:X\to\lP(X)$, called the \emph{Yoneda embedding}, such that: Given a cocomplete $\infty$-category $Y$, pre-composition by $y$ induces an equivalence \begin{equation}
     \begin{tikzcd}
-      \Fun^\mL(\widehat{X},\lC) \arrow[r] & \Fun(X,\lC)
+      \Fun^\mL(\lP(X),Y) \arrow[r] & \Fun(X,Y)
     \end{tikzcd}
-  \end{equation}where $\Fun^\mL(\widehat{X},\lC)$ denotes the category of colimit preserving functors $\widehat{X}\to\lC$. 
-\end{theorem}
-In other words, $\widehat{X}$ is the free cocompletion of $X$. The inverse equivalence if given by taking left Kan extensions. The definition of accessible category transfers directly to the $\infty$-categorical setting. 
+  \end{equation}where $\Fun^\mL$ denotes the category of colimit preserving functors. 
+\end{theorem} The definition of accessible category transfers directly to the $\infty$-categorical setting. 
 \begin{theorem}\label{thm:locpresquasi}
-  A quasi-category $X$ is locally presentable (cocomplete and accessible) if and only if there is a small sub-quasi-category $S$ such that $X\to\Fun(S^\op,\lS)$ is a fully faithful, accessible right adjoint. 
+  A $\infty$-category $X$ is locally presentable (cocomplete and accessible) if and only if there is a small sub-$\infty$-category $S$ such that $X\to\Fun(S^\op,\lS)$ is a fully faithful, accessible right adjoint. 
 \end{theorem}
 \begin{remark}
-  In view of \cref{thm:locpresquasi}, one can define a category to be \emph{locally presentable} if it is the accessible right localization of a pre-sheaf category for some small quasi-category $S$. In particular, every pre-sheaf category is locally presentable. 
+  In view of \cref{thm:locpresquasi}, one can define a category to be \emph{locally presentable} if it is the accessible right localization of a pre-sheaf category for some small $\infty$-category $S$. In particular, every pre-sheaf category is locally presentable. 
 \end{remark}
 \begin{theorem}
   Let $X,Y$ be presentable $\infty$-categories, then a functor $f:X\to Y$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
@@ -287,7 +296,7 @@ We now use the $\infty$-categorical framework to study spectra. The study of spe
     \begin{tikzcd}
       \Fun^\mL(\lS_*,\lC) \arrow[r] & \lC
     \end{tikzcd}
-  \end{equation}where $\Fun^\mL(\lS_*,\lC)$ denotes the category of colimit preserving functors $\lS_*\to\lC$. 
+  \end{equation}
 \end{proposition}
 We now introduce the notion of a {triangle}.
 \begin{definition}
@@ -328,7 +337,7 @@ If $\lC$ is finitely cocomplete, resp. complete, for every object $X$, resp. $Y$
 \begin{definition}
   A finite bicomplete pointed $\infty$-category $\lC$ satisfying any of the equivalent conditions in \cref{thm:stable} is called \emph{stable}.
 \end{definition}
-In homological algebra, the derived category $\lD(\bA)$ of an abelian category $\bA$ underlies the structure of a triangulated category. In higher category theory, the derived category $\lD_\infty(\bA)$ is constructed as the higher categorical localization of chain complexes at quasi-isomorphisms, then $\Ho\lD_\infty(\bA)\simeq\lD(\bA)$ and the triangulated structure on $\lD(\bA)$ is a reflection of $\lD_\infty(\bA)$ being a stable $\infty$-category. 
+If $\bA$ denotes a nice abelian category, there is a \emph{derived $\infty$-category} of $\bA$, denoted $\lD(\bA)$ such that $\Ho\lD(\bA)=D(\bA)$ is the ordinary derived category of $\bA$, i.e. the localization of chain complex at quasi-isomorphisms. From homological algebra, it is known that $D(\bA)$ underlies the structure of a triangulated category, which turns out to be the 1-categorical reflection of $\lD(\bA)$ being stable. 
 \begin{proposition}[{\cite[3.11]{lurie2017ha}}]
   If $\lC$ is a stable $\infty$-category, then $\Ho\lC$ has a canonical structure of a triangulated category. 
 \end{proposition}To construct the stabilization of a pointed $\infty$-category, there are several approaches, such as reduced excisive functors on $\lS^\mathrm{fin}_*$, the category of pointed, finite spaces, see \cite[1.4.2.8]{lurie2017ha}. Here we consider the more explicit approach using spectrum objects.
