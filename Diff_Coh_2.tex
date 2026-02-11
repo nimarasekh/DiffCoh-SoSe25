@@ -13,41 +13,65 @@
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
-\newcommand{\fA}{\mathbf{A}}
-\newcommand{\C}{\mathcal{C}}
-\newcommand{\bC}{\mathbb{C}}
+\newcommand{\lA}{\mathcal{A}}
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\lB}{\mathcal{B}}
 \newcommand{\kC}{\mathfrak{C}}
-\newcommand{\D}{\mathcal{D}}
-\newcommand{\I}{\mathcal{I}}
-\newcommand{\mN}{\mathrm{N}}
+\newcommand{\lC}{\mathcal{C}}
+\newcommand{\rC}{\mathscr{C}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\lD}{\mathcal{D}}
+\newcommand{\lE}{\mathcal{E}}
+\newcommand{\lF}{\mathcal{F}}
+\newcommand{\lG}{\mathcal{G}}
+\newcommand{\lH}{\mathcal{H}}
+\newcommand{\mH}{\mathrm{H}}
+\newcommand{\lI}{\mathcal{I}}
+\newcommand{\lJ}{\mathcal{J}}
+\newcommand{\lK}{\mathcal{K}}
+\newcommand{\lL}{\mathcal{L}}
 \newcommand{\mL}{\mathrm{L}}
-\newcommand{\J}{\mathcal{J}}
-\newcommand{\s}{\mathcal{S}}
+\newcommand{\lM}{\mathcal{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\mN}{\mathrm{N}}
+\newcommand{\lN}{\mathcal{N}}
+\newcommand{\fO}{\mathbf{O}}
+\newcommand{\rO}{\mathscr{O}}
+\newcommand{\lO}{\mathcal{O}}
+\newcommand{\lP}{\mathcal{P}}
+\newcommand{\bQ}{\mathbb{Q}}
 \newcommand{\bR}{\mathbb{R}}
-\newcommand{\T}{\mathcal{T}}
+\newcommand{\lR}{\mathcal{R}}
+\newcommand{\lS}{\mathcal{S}}
 \newcommand{\bS}{\mathbb{S}}
+\newcommand{\lT}{\mathcal{T}}
+\newcommand{\lU}{\mathcal{U}}
+\newcommand{\lV}{\mathcal{V}}
+\newcommand{\lX}{\mathcal{X}}
+\newcommand{\lY}{\mathcal{Y}}
 \newcommand{\bZ}{\mathbb{Z}}
 
-
-\newcommand{\set}{\mathcal{S}\mathrm{et}}
-\newcommand{\Sp}{\mathcal{S}\mathrm{p}}
-\newcommand{\PSp}{\mathcal{P}\Sp}
-\newcommand{\cat}{\mathcal{C}\mathrm{at}}
-\newcommand{\scat}{s\mathcal{C}\mathrm{at}}
-\newcommand{\sset}{s\mathcal{S}\mathrm{et}}
-\newcommand{\Fun}{\mathcal{F}\mathrm{un}}
-\newcommand{\Top}{\mathcal{T}\mathrm{op}}
-\newcommand{\Kan}{\mathcal{K}\mathrm{an}}
-\newcommand{\Ab}{\mathbf{Ab}}
-\newcommand{\Hom}{\mathrm{Hom}}
-\newcommand{\Map}{\mathrm{Map}}
-\newcommand{\BDelta}{\mathbf{\Delta}} % Bold-face Delta
-\newcommand{\im}{\mathrm{Im}} % image
 \newcommand{\op}{\mathrm{op}} % opposite
-\newcommand{\Ho}{\mathrm{Ho}} % Homotopy category 
-\newcommand{\grpd}{\mathcal{G}\mathrm{rpd}} % category of groupoids
-\newcommand{\Pshv}{\mathcal{PS}\mathrm{hv}} % category of pre-sheaves
+\newcommand{\Hom}{\lH\mathrm{om}} % enriched hom-spaces, hom-spectrum
+\newcommand{\Ho}{\mathrm{Ho}} % homotopy category
+\newcommand{\set}{\lS\mathrm{et}} % category of sets
+\newcommand{\Sp}{\lS\mathrm{p}} % category of spectra
+\newcommand{\PSp}{\lP\sp} % category of pre-spectra
+\newcommand{\Ch}{\lC\mathrm{h}} % category of chain complexes
+\newcommand{\cat}{\lC\mathrm{at}} % category of categories
+\newcommand{\scat}{\mathrm{s}\cat} % category of simplicial categories
+\newcommand{\sset}{\mathrm{s}\set} % category of simplicial sets
+\newcommand{\Fun}{\lF\mathrm{un}} % category of functors
+\newcommand{\Top}{\lT\op} % category of topological spaces 
+\newcommand{\Grpd}{\lG\mathrm{rpd}} % category of groupoids
+\newcommand{\Kan}{\lK\mathrm{an}} % category of Kan complexes
+\newcommand{\Mod}{\lM\mathrm{od}} % category of modules
+\newcommand{\Ab}{\lA\mathrm{b}} % category of abelian groups
+\newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
+\newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
 
+
+\DeclareMathOperator*\colim{colim} % colimit
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -167,23 +191,23 @@ $\infty$-categories are then defined in terms of a lifting condition, for which 
 there is a dashed arrow rendering the diagram commutative. If the above condition holds for every $0\leq i\leq n$, we call $X$ a \emph{Kan complex}.
 \end{definition}
 \begin{example}
-  Let $\C$ be a category. The \emph{nerve of $\C$}, denoted $\mN\C$, is the simplicial set where the $n$-simplices are $\Hom_{\cat}(\langle n\rangle,\C)$. This defines a functor $\mN:\cat \to \sset$.
+  Let $\lC$ be a category. The \emph{nerve of $\lC$}, denoted $\mN\lC$, is the simplicial set where the $n$-simplices are $\Hom_{\cat}(\langle n\rangle,\lC)$. This defines a functor $\mN:\cat \to \sset$.
 \end{example}
 \begin{proposition}\label{prop:nerve}
-  $\mN\C$ is a quasi-category, and a Kan complex if and only if $\C$ is a groupoid. 
+  $\mN\lC$ is a quasi-category, and a Kan complex if and only if $\lC$ is a groupoid. 
 \end{proposition}
 \begin{proof}
 Straightforward combinatorics. 
 \end{proof}
 \begin{remark}
-  The nerve is a special case of the following construction: Let $\C$ be a category, $\Gamma:\BDelta\to\C$ a functor, then define $\mN_\Gamma$ as the composition \begin{equation}
+  The nerve is a special case of the following construction: Let $\lC$ be a category, $\Gamma:\BDelta\to\lC$ a functor, then define $\mN_\Gamma$ as the composition \begin{equation}
     \begin{tikzcd}
-      \C \arrow[r] & \Hom_{\cat}(\C^{op},\set) \arrow[r] & \sset
+      \lC \arrow[r] & \Hom_{\cat}(\lC^{op},\set) \arrow[r] & \sset
     \end{tikzcd}
-  \end{equation}where the first functor is Yoneda, while the second is pre-composition with $\Gamma^\op$. In the case of the nerve, $\Gamma$ is the functor sending $\langle n\rangle$ to the linerly ordered set viewed as a category. On the other hand, assuming $\C$ is cocomplete, we can left Kan extend $\Gamma$ along the Yoneda functor $\BDelta\to\sset$, we denote by $\Ho_\Gamma$ the resulting functor $\sset\to\C$. 
+  \end{equation}where the first functor is Yoneda, while the second is pre-composition with $\Gamma^\op$. In the case of the nerve, $\Gamma$ is the functor sending $\langle n\rangle$ to the linerly ordered set viewed as a category. On the other hand, assuming $\lC$ is cocomplete, we can left Kan extend $\Gamma$ along the Yoneda functor $\BDelta\to\sset$, we denote by $\Ho_\Gamma$ the resulting functor $\sset\to\lC$. 
 \end{remark}
 \begin{proposition}
-  The pair $(\Ho_\Gamma,\mN_\Gamma):\C\to\sset$ is an adjoint pair. In the case of $\mN:\cat\to\sset$, the functor is fully faithful. 
+  The pair $(\Ho_\Gamma,\mN_\Gamma):\lC\to\sset$ is an adjoint pair. In the case of $\mN:\cat\to\sset$, the functor is fully faithful. 
 \end{proposition}
 \begin{proof}
   Abstract nonsense about left Kan extensions. Full faithfulness can be checked directly.  
@@ -192,30 +216,30 @@ Straightforward combinatorics.
   $\Ho:\sset\to\cat$ is called the \emph{homotopy category} functor. If $X$ is a quasi-category, $\Ho X$ has $X_0$ as set of objects and homotopy classes of maps as morphism, see \cite[1.2.5]{land2021introduction}. 
 \end{remark}
 \begin{remark}
-  Denote by $\scat$ the category of simplicially enriched categories. In \cite[1.1.5.1]{lurie2009htt}, Lurie constructs a cosimplicial object $\BDelta\to\scat$. The resulting nerve functor $\mN_\Delta:\scat\to\sset$ is called \emph{homotopy coherent nerve}. If $\C$ is a category enriched over $\infty$-groupoids, its homotopy coherent nerve is a $\infty$-category. The induced right adjoint is denoted $\kC$, the adjoint pair $(\kC,\mN_\Delta)$ underlies a Quillen equivalence. 
+  Denote by $\scat$ the category of simplicially enriched categories. In \cite[1.1.5.1]{lurie2009htt}, Lurie constructs a cosimplicial object $\BDelta\to\scat$. The resulting nerve functor $\mN_\Delta:\scat\to\sset$ is called \emph{homotopy coherent nerve}. If $\lC$ is a category enriched over $\infty$-groupoids, its homotopy coherent nerve is a $\infty$-category. The induced right adjoint is denoted $\kC$, the adjoint pair $(\kC,\mN_\Delta)$ underlies a Quillen equivalence. 
 \end{remark}
 Denote by $\Kan$ the category of Kan complexes. One can show that $\Kan$ is self-enriched, which motivates, together with \cref{prop:nerve}, the following definition: 
 \begin{definition}
-  $\s:=\mN_\Delta(\Kan)$ is called the \emph{quasi-category of $\infty$-groupoids}. 
+  $\lS:=\mN_\Delta(\Kan)$ is called the \emph{quasi-category of $\infty$-groupoids}. 
 \end{definition}
 
 \section{Accessible and Presentable Categories}
 
 In general, a limit, resp. colimit, preserving functor need not have a left, resp. right, adjoint. Here we wish to introduce a rather large class of quasi-categories for which the previous statement holds. Let $\kappa$ denote a regular cardinal. 
 \begin{definition}
-  A category $\I$ is \emph{$\kappa$-filtered} if, for every $\J$ with $<\kappa$ many morphisms, every diagram $\J\to\I$ has a cocone. A functor $F:\C \to \D$ is \emph{$\kappa$-accessible} if it preserves $\kappa$-filtered colimits. Given a category $\C$, an object $X$ is \emph{$\kappa$-compact} if $\Hom_{\C}(X,-):\C\to\set$ is $\kappa$-accessible. 
+  A category $\lI$ is \emph{$\kappa$-filtered} if, for every $\lJ$ with $<\kappa$ many morphisms, every diagram $\lJ\to\lI$ has a cocone. A functor $F:\lC \to \lD$ is \emph{$\kappa$-accessible} if it preserves $\kappa$-filtered colimits. Given a category $\lC$, an object $X$ is \emph{$\kappa$-compact} if $\Hom_{\lC}(X,-):\lC\to\set$ is $\kappa$-accessible. 
 \end{definition}
 \begin{definition}
-  A category $\C$ is \emph{$\kappa$-accessible} if there exists a set $S\subseteq\C_0$ of $\kappa$-compact objects that generate $\C$ under $\kappa$-filtered colimits. A category is \emph{accessible} if it is $\kappa$-accessible, for some regular cardinal $\kappa$. 
+  A category $\lC$ is \emph{$\kappa$-accessible} if there exists a set $S\subseteq\lC_0$ of $\kappa$-compact objects that generate $\lC$ under $\kappa$-filtered colimits. A category is \emph{accessible} if it is $\kappa$-accessible, for some regular cardinal $\kappa$. 
 \end{definition}
 \begin{definition}
-  A category $\C$ that is accessible and cocomplete is called \emph{locally presentable}.
+  A category $\lC$ that is accessible and cocomplete is called \emph{locally presentable}.
 \end{definition}
 \begin{theorem}
-  Let $\C$ be a category, then $\C$ is locally presentable if and only if there exists a small category $S$ such that the induced functor $\C\to\Pshv(S)$ is a fully faithful, accessible right adjoint. 
+  Let $\lC$ be a category, then $\lC$ is locally presentable if and only if there exists a small category $S$ such that the induced functor $\lC\to\lP(S)$ is a fully faithful, accessible right adjoint. 
 \end{theorem}
 \begin{theorem}
-  Let $\C,\D$ be locally presentable categories. A functor $F\colon \C \to \D$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
+  Let $\lC,\lD$ be locally presentable categories. A functor $F\colon \lC \to \lD$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
 \end{theorem}
 We now generalize this to quasi-categories.
 \begin{definition}
@@ -226,18 +250,18 @@ We now generalize this to quasi-categories.
 \end{definition}
 If $X$ is a quasi-category, so is $X^\op$. 
 \begin{definition}
-  Let $X$ be a quasi-category. The \emph{quasi-category of simplicial presheaves} is defined as $\Fun(X^\op,\s):=\Hom_{\sset}(X^{\op},\s)$.
+  Let $X$ be a quasi-category. The \emph{quasi-category of simplicial presheaves} is defined as $\Fun(X^\op,\lS):=\Hom_{\sset}(X^{\op},\lS)$.
 \end{definition}
 \begin{theorem}[Yoneda]
-  Given a quasi-category $X$, the mapping space functor $X^\op\times X\to\s$ adjoints to a functor $y:X\to\widehat{X}:=\Fun(X^\op,\s)$, called the \emph{Yoneda embedding}. Given a cocomplete quasi-category $\C$, pre-composition by $y$ induces an equivalence \begin{equation}
+  Given a quasi-category $X$, the mapping space functor $X^\op\times X\to\lS$ adjoints to a functor $y:X\to\widehat{X}:=\Fun(X^\op,\lS)$, called the \emph{Yoneda embedding}. Given a cocomplete quasi-category $\lC$, pre-composition by $y$ induces an equivalence \begin{equation}
     \begin{tikzcd}
-      \Fun^\mL(\widehat{X},\C) \arrow[r] & \Fun(X,\C)
+      \Fun^\mL(\widehat{X},\lC) \arrow[r] & \Fun(X,\lC)
     \end{tikzcd}
-  \end{equation}where $\Fun^\mL(\widehat{X},\C)$ denotes the category of colimit preserving functors $\widehat{X}\to\C$. 
+  \end{equation}where $\Fun^\mL(\widehat{X},\lC)$ denotes the category of colimit preserving functors $\widehat{X}\to\lC$. 
 \end{theorem}
 In other words, $\widehat{X}$ is the free cocompletion of $X$. The inverse equivalence if given by taking left Kan extensions. The definition of accessible category transfers directly to the $\infty$-categorical setting. 
 \begin{theorem}\label{thm:locpresquasi}
-  A quasi-category $X$ is locally presentable (cocomplete and accessible) if and only if there is a small sub-quasi-category $S$ such that $X\to\Fun(S^\op,\s)$ is a fully faithful, accessible right adjoint. 
+  A quasi-category $X$ is locally presentable (cocomplete and accessible) if and only if there is a small sub-quasi-category $S$ such that $X\to\Fun(S^\op,\lS)$ is a fully faithful, accessible right adjoint. 
 \end{theorem}
 \begin{remark}
   In view of \cref{thm:locpresquasi}, one can define a category to be \emph{locally presentable} if it is the accessible right localization of a pre-sheaf category for some small quasi-category $S$. In particular, every pre-sheaf category is locally presentable. 
@@ -252,22 +276,22 @@ We now use the $\infty$-categorical framework to study spectra. The study of spe
 \end{example}
 \nrnote{More examples?}
 \begin{definition}
-  Let $\C$ be an $\infty$-category, an object $0$ that is both initial and terminal is called 
-  \emph{zero object}. A category $\C$ with a zero object is called a \emph{pointed category}.
+  Let $\lC$ be an $\infty$-category, an object $0$ that is both initial and terminal is called 
+  \emph{zero object}. A category $\lC$ with a zero object is called a \emph{pointed category}.
 \end{definition}
 \begin{example}
-  Let $1\in\C$ be a terminal object, then the identity of $1$ is the zero object in the slice category $\C_{1/}$ of objects under $1$. In particular, the category $\s_*=\s_{*/}$ of pointed spaces is pointed. 
+  Let $1\in\lC$ be a terminal object, then the identity of $1$ is the zero object in the slice category $\lC_{1/}$ of objects under $1$. In particular, the category $\lS_*=\lS_{*/}$ of pointed spaces is pointed. 
 \end{example}
 \begin{proposition}
-  Let $\D$ be a pointed $\infty$-category. Evaluation at the 0-sphere $S^0$ induces an equivalence \begin{equation}
+  Let $\lD$ be a pointed $\infty$-category. Evaluation at the 0-sphere $S^0$ induces an equivalence \begin{equation}
     \begin{tikzcd}
-      \Fun^\mL(\s_*,\C) \arrow[r] & \C
+      \Fun^\mL(\lS_*,\lC) \arrow[r] & \lC
     \end{tikzcd}
-  \end{equation}where $\Fun^\mL(\s_*,\C)$ denotes the category of colimit preserving functors $\s_*\to\C$. 
+  \end{equation}where $\Fun^\mL(\lS_*,\lC)$ denotes the category of colimit preserving functors $\lS_*\to\lC$. 
 \end{proposition}
 We now introduce the notion of a {triangle}.
 \begin{definition}
-  Let $\C$ be a pointed $\infty$-category. A \emph{triangle} in $\C$ is a commutative diagram of the form \begin{equation}\label{eq:triangle}
+  Let $\lC$ be a pointed $\infty$-category. A \emph{triangle} in $\lC$ is a commutative diagram of the form \begin{equation}\label{eq:triangle}
     \begin{tikzcd}
       X \arrow[r] \arrow[d] & Y \arrow[d] \\
       0 \arrow[r] & Z
@@ -275,7 +299,7 @@ We now introduce the notion of a {triangle}.
   \end{equation}A triangle is \emph{exact}, resp. \emph{coexact}, if it is a pullback, resp. pushout, square. 
 \end{definition}
 \begin{definition}
-  Let $\C$ be a pointed $\infty$-category. Denote by $\C^{\Sigma}$, resp. $\C^\Omega$, the full sub-category of $\Fun(\Delta^1\times\Delta^1,\C)$ of coexact, resp. exact, triangles of the form 
+  Let $\lC$ be a pointed $\infty$-category. Denote by $\lC^{\Sigma}$, resp. $\lC^\Omega$, the full sub-category of $\Fun(\Delta^1\times\Delta^1,\lC)$ of coexact, resp. exact, triangles of the form 
   \begin{equation}\label{eq:exact}
   \begin{tikzcd}
    X \arrow[r]  \arrow[d] & 0 \arrow[d] \\ 
@@ -283,18 +307,18 @@ We now introduce the notion of a {triangle}.
   \end{tikzcd},
 \end{equation}
 \end{definition}
-If $\C$ is finitely cocomplete, resp. complete, for every object $X$, resp. $Y$, there is a contractible space of coexact, resp. exact, triangles as \cref{eq:exact}. In particular, $\C\simeq\C^\Sigma$ and $\C\simeq\C^\Omega$.  
+If $\lC$ is finitely cocomplete, resp. complete, for every object $X$, resp. $Y$, there is a contractible space of coexact, resp. exact, triangles as \cref{eq:exact}. In particular, $\lC\simeq\lC^\Sigma$ and $\lC\simeq\lC^\Omega$.  
 \begin{proposition}
-  If $\C$ is a finitely complete and cocomplete pointed $\infty$-category, define the following functors Then the functors
+  If $\lC$ is a finitely complete and cocomplete pointed $\infty$-category, define the following functors Then the functors
   \begin{equation}
     \begin{tikzcd}
-      \Sigma:\C \arrow[r] & \C^\Sigma \arrow[r,"\mathrm{ev}_{(1,1)}"] & \C  & & \Omega:\C \arrow[r] & \C^\Omega \arrow[r,"\mathrm{ev}_{(0,0)}"] & \C
+      \Sigma:\lC \arrow[r] & \lC^\Sigma \arrow[r,"\mathrm{ev}_{(1,1)}"] & \lC  & & \Omega:\lC \arrow[r] & \lC^\Omega \arrow[r,"\mathrm{ev}_{(0,0)}"] & \lC
     \end{tikzcd}
   \end{equation}are adjoint ($\Sigma$ is left adjoint to $\Omega$). 
 \end{proposition}
 
 \begin{theorem}\label{thm:stable}
-  Let $\C$ be a finitely bicomplete pointed $\infty$-category. The following are equivalent:
+  Let $\lC$ be a finitely bicomplete pointed $\infty$-category. The following are equivalent:
   \begin{enumerate}
     \item A triangle is exact if and only if it is coexact. 
     \item $(\Sigma,\Omega)$ is an adjoint equivalence.
@@ -302,14 +326,14 @@ If $\C$ is finitely cocomplete, resp. complete, for every object $X$, resp. $Y$,
   \end{enumerate}
 \end{theorem}
 \begin{definition}
-  A finite bicomplete pointed $\infty$-category $\C$ satisfying any of the equivalent conditions in \cref{thm:stable} is called \emph{stable}.
+  A finite bicomplete pointed $\infty$-category $\lC$ satisfying any of the equivalent conditions in \cref{thm:stable} is called \emph{stable}.
 \end{definition}
-In homological algebra, the derived category $\D(\fA)$ of an abelian category $\fA$ underlies the structure of a triangulated category. In higher category theory, the derived category $\D_\infty(\fA)$ is constructed as the higher categorical localization of chain complexes at quasi-isomorphisms, then $\Ho\D_\infty(\fA)\simeq\D(\fA)$ and the triangulated structure on $\D(\fA)$ is a reflection of $\D_\infty(\fA)$ being a stable $\infty$-category. 
+In homological algebra, the derived category $\lD(\bA)$ of an abelian category $\bA$ underlies the structure of a triangulated category. In higher category theory, the derived category $\lD_\infty(\bA)$ is constructed as the higher categorical localization of chain complexes at quasi-isomorphisms, then $\Ho\lD_\infty(\bA)\simeq\lD(\bA)$ and the triangulated structure on $\lD(\bA)$ is a reflection of $\lD_\infty(\bA)$ being a stable $\infty$-category. 
 \begin{proposition}[{\cite[3.11]{lurie2017ha}}]
-  If $\C$ is a stable $\infty$-category, then $\Ho\C$ has a canonical structure of a triangulated category. 
-\end{proposition}To construct the stabilization of a pointed $\infty$-category, there are several approaches, such as reduced excisive functors on $\s^\mathrm{fin}_*$, the category of pointed, finite spaces, see \cite[1.4.2.8]{lurie2017ha}. Here we consider the more explicit approach using spectrum objects.
+  If $\lC$ is a stable $\infty$-category, then $\Ho\lC$ has a canonical structure of a triangulated category. 
+\end{proposition}To construct the stabilization of a pointed $\infty$-category, there are several approaches, such as reduced excisive functors on $\lS^\mathrm{fin}_*$, the category of pointed, finite spaces, see \cite[1.4.2.8]{lurie2017ha}. Here we consider the more explicit approach using spectrum objects.
 \begin{definition}
-  Let $\C$ be a pointed $\infty$-category. A \emph{pre-spectrum object in $C$} consists of a functor $E:\bZ\times\bZ\to\C$ such that $E(n,m)\simeq0$, for all $n\neq m$. Denote by $\PSp(\C)$ the category of pre-spectrum objects. The functor $\Omega^{\infty-n}:\PSp(\C)\to\C$ is defined as evaluation at $(n,n)$. 
+  Let $\lC$ be a pointed $\infty$-category. A \emph{pre-spectrum object in $C$} consists of a functor $E:\bZ\times\bZ\to\lC$ such that $E(n,m)\simeq0$, for all $n\neq m$. Denote by $\PSp(\lC)$ the category of pre-spectrum objects. The functor $\Omega^{\infty-n}:\PSp(\lC)\to\lC$ is defined as evaluation at $(n,n)$. 
 \end{definition}
 For every $n$, the diagram \begin{equation}
   \begin{tikzcd}
@@ -318,22 +342,22 @@ For every $n$, the diagram \begin{equation}
   \end{tikzcd}
 \end{equation}determines a pair of adjoint morphisms \[\alpha_n:\Sigma E(n,n)\to E(n+1,n+1),\qquad\beta_n:E(n,n)\to\Omega E(n+1,n+1)\]
 \begin{definition}
-  Let $\C$ be a pointed $\infty$-category. A \emph{spectrum object in $\C$} consists of a pre-spectrum object $E$ such that $\beta_n$ is an equivalence, for all $n$. Denote by $\Sp(\C)\subseteq\PSp(\C)$ the full sub-category of spectrum objects. 
+  Let $\lC$ be a pointed $\infty$-category. A \emph{spectrum object in $\lC$} consists of a pre-spectrum object $E$ such that $\beta_n$ is an equivalence, for all $n$. Denote by $\Sp(\lC)\subseteq\PSp(\lC)$ the full sub-category of spectrum objects. 
 \end{definition}
 \begin{theorem}
-  Let $\C$ be a presentable pointed $\infty$-category, then $\Omega^{\infty-n}:\Sp(\C)\to\C$ admits a left adjoint $\Sigma^{\infty-n}:\C\to\Sp(\C)$, for every $n$. 
+  Let $\lC$ be a presentable pointed $\infty$-category, then $\Omega^{\infty-n}:\Sp(\lC)\to\lC$ admits a left adjoint $\Sigma^{\infty-n}:\lC\to\Sp(\lC)$, for every $n$. 
 \end{theorem}
-In particular, $\Sigma^\infty:\C\to\Sp(\C)$ has the following universal property. 
+In particular, $\Sigma^\infty:\lC\to\Sp(\lC)$ has the following universal property. 
 \begin{theorem}
- Let $\C$ be a presentable pointed $\infty$-category. Given a stable $\infty$-category $\D$, pre-composition by $\Sigma^\infty$ induces an equivalence 
+ Let $\lC$ be a presentable pointed $\infty$-category. Given a stable $\infty$-category $\lD$, pre-composition by $\Sigma^\infty$ induces an equivalence 
  \begin{equation}
   \begin{tikzcd}
-    \Fun^\mL(\Sp(\C),\D) \arrow[r] & \Fun^\mL(\C,\D)
+    \Fun^\mL(\Sp(\lC),\lD) \arrow[r] & \Fun^\mL(\lC,\lD)
   \end{tikzcd}
- \end{equation}In particular, for $\C=\s_*$, evaluation at the \emph{sphere spectrum} $\bS=\Sigma^\infty S^0$ induces an equivalence
+ \end{equation}In particular, for $\lC=\lS_*$, evaluation at the \emph{sphere spectrum} $\bS=\Sigma^\infty S^0$ induces an equivalence
  \begin{equation}
   \begin{tikzcd}
-    \Fun^\mL(\Sp(\s_*),\D) \arrow[r] & \D
+    \Fun^\mL(\Sp(\lS_*),\lD) \arrow[r] & \lD
   \end{tikzcd}
  \end{equation}
 \end{theorem}
@@ -348,18 +372,18 @@ We shall now use the language of $\infty$-categories to reformulate the concept 
   Denote by $\set^\bZ$ the category of $\bZ$-indexes families of sets. Given an object $S$ and $n\in\bZ$, denote by $\Sigma^n S$ the shifted family $(\Sigma^nS)_i=S_{i-n}$.  
 \end{remark}
 \begin{definition}[{\cite[1.4.1.6]{lurie2017ha}}]\label{def:cohthe}
-  Let $\C$ be a finitely cocomplete pointed $\infty$-category, $\Sigma_\C:\C \to \C$ the induced suspension functor. A \emph{generalized cohomology theory} is a functor $H:\Ho\C^{\op}\to\set^\bZ$ together with a natural isomorphism $\partial:\Sigma H\to H\Sigma_\C$ such that:
+  Let $\lC$ be a finitely cocomplete pointed $\infty$-category, $\Sigma_\lC:\lC \to \lC$ the induced suspension functor. A \emph{generalized cohomology theory} is a functor $H:\Ho\lC^{\op}\to\set^\bZ$ together with a natural isomorphism $\partial:\Sigma H\to H\Sigma_\lC$ such that:
   \begin{itemize}
     \item $H$ preserves arbitrary products. In particular, $H^n(0)$ is the one-point set. Given an object $X$, the unique morphism $X\to0$ induces an element $*\simeq H^n(0)\to H^n(X)$, which we denote by $0$. 
     \item Given a coexact triangle $X'\to X\to X''$, if $\eta\in H^n(X)$ has image $0\in H^n(X'')$, then it lies in the image of $H^n(X')\to H^n(X)$. 
   \end{itemize}
 \end{definition}
 \begin{theorem}[{\cite[1.4.1.10]{lurie2017ha}}]
- Let $\C$ be a nice $\infty$-category and $(H,\partial)$ a generalized cohomology theory, then, for every $n$, the functor $H^n$ is representable by an object $E(n)$. 
+ Let $\lC$ be a nice $\infty$-category and $(H,\partial)$ a generalized cohomology theory, then, for every $n$, the functor $H^n$ is representable by an object $E(n)$. 
 \end{theorem}
 The natural isomorphism $\partial$ translates into an equivalence $E(n)\simeq\Omega E(n+1)$, which is then used to construct a spectrum object representing the cohomology theory $H^n$, see \cite[1.4.1.11]{lurie2017ha}.
 \begin{remark}
-  For $\C=\s_*$, the above definition of cohomology theory reduces to the classical Eilenberg-Steenrod definition. Since $\s_*$ is nice, we thus recover the classical \emph{Brown representability theorem}. 
+  For $\lC=\lS_*$, the above definition of cohomology theory reduces to the classical Eilenberg-Steenrod definition. Since $\lS_*$ is nice, we thus recover the classical \emph{Brown representability theorem}. 
 \end{remark}
 
 {\footnotesize

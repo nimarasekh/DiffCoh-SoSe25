@@ -13,64 +13,85 @@
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
+\newcommand{\lA}{\mathcal{A}}
 \newcommand{\bA}{\mathbb{A}}
-\newcommand{\C}{\mathscr{C}}
+\newcommand{\lB}{\mathcal{B}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\lC}{\mathcal{C}}
+\newcommand{\rC}{\mathscr{C}}
 \newcommand{\bC}{\mathbb{C}}
-\newcommand{\kC}{\mathfrak{C}}
-\newcommand{\D}{\mathscr{D}}
-\newcommand{\E}{\mathscr{E}}
+\newcommand{\lD}{\mathcal{D}}
 \newcommand{\bE}{\mathbb{E}}
-\newcommand{\F}{\mathscr{F}}
-\newcommand{\G}{\mathscr{G}}
-\newcommand{\sL}{\mathscr{L}}
+\newcommand{\lE}{\mathcal{E}}
+\newcommand{\lF}{\mathcal{F}}
+\newcommand{\lG}{\mathcal{G}}
+\newcommand{\lH}{\mathcal{H}}
+\newcommand{\mH}{\mathrm{H}}
+\newcommand{\lI}{\mathcal{I}}
+\newcommand{\lJ}{\mathcal{J}}
+\newcommand{\lK}{\mathcal{K}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\lM}{\mathcal{M}}
 \newcommand{\bN}{\mathbb{N}}
 \newcommand{\mN}{\mathrm{N}}
-\newcommand{\I}{\mathscr{I}}
-\newcommand{\s}{\mathscr{S}}
-\newcommand{\T}{\mathscr{T}}
+\newcommand{\lN}{\mathcal{N}}
+\newcommand{\fO}{\mathbf{O}}
+\newcommand{\rO}{\mathscr{O}}
+\newcommand{\lO}{\mathcal{O}}
+\newcommand{\lP}{\mathcal{P}}
+\newcommand{\bQ}{\mathbb{Q}}
 \newcommand{\bR}{\mathbb{R}}
+\newcommand{\lR}{\mathcal{R}}
+\newcommand{\lS}{\mathcal{S}}
 \newcommand{\bS}{\mathbb{S}}
+\newcommand{\lT}{\mathcal{T}}
+\newcommand{\lU}{\mathcal{U}}
+\newcommand{\lV}{\mathcal{V}}
+\newcommand{\lX}{\mathcal{X}}
+\newcommand{\lY}{\mathcal{Y}}
 \newcommand{\bZ}{\mathbb{Z}}
 
+\newcommand{\op}{\mathrm{op}} % opposite
+\newcommand{\Tmf}{\mathrm{Tmf}} % global sections of the structure sheaf of the compactified moduli stack of elliptic curves
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\Hom}{\lH\mathrm{om}} % enriched hom-spaces, hom-spectrum
+\renewcommand{\hom}{\mH\mathrm{om}} % hom-set, hom-space
+\newcommand{\Ho}{\mathrm{Ho}} % homotopy category
+\newcommand{\set}{\lS\mathrm{et}} % category of sets
+\newcommand{\Mon}{\lM\mathrm{on}} % category of monoid objects
+\newcommand{\CMon}{\lC\Mon} % category of commutative monoid objects
+\newcommand{\CGrp}{\lC\lG\mathrm{on}} % category of commutative group objects
+\newcommand{\Bdl}{\lB\mathrm{dl}} % bundles
+\newcommand{\Sp}{\lS\mathrm{p}} % category of spectra
+\newcommand{\Ch}{\lC\mathrm{h}} % category of chain complexes
+\newcommand{\cat}{\lC\mathrm{at}} % category of categories
+\newcommand{\scat}{\mathrm{s}\cat} % category of simplicial categories
+\newcommand{\sset}{\mathrm{s}\set} % category of simplicial sets
+\renewcommand{\Line}{\lL\mathrm{ine}} % category of lines
+\newcommand{\LineBdl}{\Line\Bdl} % category of line bundles
+\newcommand{\Fun}{\lF\mathrm{un}} % category of functors
+\newcommand{\Top}{\lT\op} % category of topological spaces 
+\newcommand{\Grpd}{\lG\mathrm{rpd}} % category of groupoids
+\newcommand{\Grp}{\lG\mathrm{rp}} % category of groups
+\newcommand{\Euc}{\lE\mathrm{uc}} % site of Euclidean manifolds
+\newcommand{\Mfd}{\lM\mathrm{fd}} % site of smooth manifolds
+\newcommand{\Kan}{\lK\mathrm{an}} % category of Kan complexes
+\newcommand{\Vect}{\lV\mathrm{ect}} % category of vector spaces
+\newcommand{\Mod}{\lM\mathrm{od}} % category of modules
+\newcommand{\Ab}{\lA\mathrm{b}} % category of abelian groups
+\newcommand{\Shv}{\lS\mathrm{hv}} % category of sheaves
+\newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
+\newcommand{\Pic}{\lP\mathrm{ic}} % Picard category
+\newcommand{\PT}{\lP\lT} % Pontryagin-Thom
+\newcommand{\Fred}{\lF\mathrm{red}} % Fredholm
+\newcommand{\fl}{\mathrm{fl}} % flat
+\newcommand{\GrbBdl}{\lG\mathrm{rb}\Bdl} % category of bundle gerbes
+\newcommand{\cl}{\mathrm{cl}} % closed forms
+\newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
+\newcommand{\Sing}{\mathrm{Sing}} % singular simplicial set
 
-\newcommand{\Hom}{\mathrm{Hom}}
-\newcommand{\Map}{\mathrm{Map}}
-\newcommand{\Ho}{\mathrm{Ho}}
-\newcommand{\set}{\mathscr{S}\mathrm{et}}
-\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
-\newcommand{\Ch}{\mathrm{Ch}}
-\newcommand{\cCh}{\mathrm{cCh}}
-\newcommand{\cat}{\mathscr{C}\mathrm{at}}
-\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
-\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
-\newcommand{\Fun}{\mathrm{Fun}}
-\newcommand{\Nat}{\mathrm{Nat}}
-\newcommand{\colim}{\mathrm{colim}}
-\newcommand{\Top}{\mathscr{T}\mathrm{op}}
-\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
-\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
-\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
-\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
-\newcommand{\Mod}{\mathrm{Mod}}
-\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
-\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
-\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
-\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
-\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
-\newcommand{\dg}{\mathrm{dg}}
-\newcommand{\Sing}{\mathrm{Sing}}
-\newcommand{\const}{\mathrm{L}}
-\newcommand{\dr}{\mathrm{dR}}
-\newcommand{\tot}{\mathrm{tot}}
-\newcommand{\Def}{\mathrm{Def}}
-\newcommand{\Cyc}{\mathrm{Cyc}}
 
-\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
-\newcommand{\textbbe}[1]{{\bbefamily #1}}
-\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
-
-\def\DDelta{{\mathbbe{\Delta}}}
-\newcommand{\DD}{\DDelta}
+\DeclareMathOperator*\colim{colim} % colimit
 
 \newcommand{\adjun}[4]{
 \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
@@ -235,22 +256,22 @@ The essential step in the proof is the following very technical result.
 \begin{proposition}
   Assume we have the following data and assumptions:
   \begin{enumerate}
-    \item A Grothendieck site $(\C,J)$, such that $\C$ has a terminal object.
-    \item A stable $\infty$-category $\T$.
-    \item The inclusion functor $\Delta\colon \T \to \Shv_\T(\C,J)$ is fully faithful and admits a left adjoint $L_{const}$. 
+    \item A Grothendieck site $(\lC,J)$, such that $\lC$ has a terminal object.
+    \item A stable $\infty$-category $\lT$.
+    \item The inclusion functor $\Delta\colon \lT \to \Shv_\lT(\lC,J)$ is fully faithful and admits a left adjoint $L_{const}$. 
   \end{enumerate}
   Then the following holds:
   \begin{enumerate}
     % \item $\Delta$ admits a right adjoint $R_{const}$, given by evaluation at the terminal object.
-    \item The full subcategory of $\Shv_\T(\C,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\T(\C,J) \to \Shv_\T(\C,J)^\bot$.
-    \item For every sheaf $P$ in $\Shv_\T(\C,J)$, there is a pullback square
+    \item The full subcategory of $\Shv_\lT(\lC,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\lT(\lC,J) \to \Shv_\lT(\lC,J)^\bot$.
+    \item For every sheaf $P$ in $\Shv_\lT(\lC,J)$, there is a pullback square
     \[
     \begin{tikzcd}
       P \arrow[r] \arrow[d] & L^{\bot}P \arrow[d] \\
       L_{const}P \arrow[r] & L_{const}L^{\bot}P
     \end{tikzcd},
     \]
-    inside $\Shv_\T(\C,J)$, where the inclusions are left implicit.
+    inside $\Shv_\lT(\lC,J)$, where the inclusions are left implicit.
   \end{enumerate} 
 \end{proposition}
 

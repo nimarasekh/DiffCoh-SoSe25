@@ -12,50 +12,82 @@
 
 \usepackage[nameinlink,capitalise,noabbrev]{cleveref}
 
-\newcommand{\B}{\mathscr{B}}
-\newcommand{\C}{\mathscr{C}}
+\newcommand{\lA}{\mathcal{A}}
+\newcommand{\lB}{\mathcal{B}}
+\newcommand{\lC}{\mathcal{C}}
+\newcommand{\rC}{\mathscr{C}}
 \newcommand{\bC}{\mathbb{C}}
-\newcommand{\kC}{\mathfrak{C}}
-\newcommand{\D}{\mathscr{D}}
-\newcommand{\E}{\mathscr{E}}
-\newcommand{\F}{\mathscr{F}}
-\newcommand{\I}{\mathscr{I}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\s}{\mathscr{S}}
-\newcommand{\bR}{\mathbb{R}}
-\newcommand{\rP}{\mathscr{P}}
+\newcommand{\lD}{\mathcal{D}}
+\newcommand{\lE}{\mathcal{E}}
+\newcommand{\lF}{\mathcal{F}}
+\newcommand{\lG}{\mathcal{G}}
+\newcommand{\lH}{\mathcal{H}}
+\newcommand{\mH}{\mathrm{H}}
+\newcommand{\lI}{\mathcal{I}}
+\newcommand{\lJ}{\mathcal{J}}
+\newcommand{\lK}{\mathcal{K}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\lM}{\mathcal{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\mN}{\mathrm{N}}
+\newcommand{\lN}{\mathcal{N}}
+\newcommand{\fO}{\mathbf{O}}
 \newcommand{\rO}{\mathscr{O}}
+\newcommand{\lO}{\mathcal{O}}
+\newcommand{\lP}{\mathcal{P}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\lR}{\mathcal{R}}
+\newcommand{\lS}{\mathcal{S}}
 \newcommand{\bS}{\mathbb{S}}
-\newcommand{\X}{\mathscr{X}}
+\newcommand{\lT}{\mathcal{T}}
+\newcommand{\lU}{\mathcal{U}}
+\newcommand{\lV}{\mathcal{V}}
+\newcommand{\lX}{\mathcal{X}}
+\newcommand{\lY}{\mathcal{Y}}
 \newcommand{\bZ}{\mathbb{Z}}
-\newcommand{\J}{\mathscr{J}}
 
-\newcommand{\holim}{\mathrm{holim}}
-\newcommand{\Map}{\mathrm{Map}}
-\newcommand{\Hom}{\mathrm{Hom}}
-\newcommand{\Ho}{\mathrm{Ho}}
-\newcommand{\set}{\mathscr{S}\mathrm{et}}
-\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
-\newcommand{\cat}{\mathscr{C}\mathrm{at}}
-\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
-\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
-\newcommand{\Fun}{\mathrm{Fun}}
-\newcommand{\Nat}{\mathrm{Nat}}
-\newcommand{\colim}{\mathrm{colim}}
-\newcommand{\Top}{\mathscr{T}\mathrm{op}}
-\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
-\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
-\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
-\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
-% \newcommand{\Pr}{\mathscr{P}\mathrm{r}}
-\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
-\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
-\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
-\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
-\newcommand{\Mod}{\mathrm{Mod}}
-\newcommand{\disc}{\mathrm{disc}}
-\newcommand{\pos}{\mathrm{Post}}
-\newcommand{\op}{\mathrm{op}}
+\newcommand{\op}{\mathrm{op}} % opposite
+\newcommand{\Tmf}{\mathrm{Tmf}} % global sections of the structure sheaf of the compactified moduli stack of elliptic curves
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\Hom}{\lH\mathrm{om}} % enriched hom-spaces, hom-spectrum
+\renewcommand{\hom}{\mH\mathrm{om}}
+\newcommand{\Ho}{\mathrm{Ho}} % homotopy category
+\newcommand{\set}{\lS\mathrm{et}} % category of sets
+\newcommand{\Mon}{\lM\mathrm{on}} % category of monoid objects
+\newcommand{\CMon}{\lC\Mon} % category of commutative monoid objects
+\newcommand{\CGrp}{\lC\lG\mathrm{on}} % category of commutative group objects
+\newcommand{\Bdl}{\lB\mathrm{dl}} % bundles
+\newcommand{\Sp}{\lS\mathrm{p}} % category of spectra
+\newcommand{\Ch}{\lC\mathrm{h}} % category of chain complexes
+\newcommand{\cat}{\lC\mathrm{at}} % category of categories
+\newcommand{\scat}{\mathrm{s}\cat} % category of simplicial categories
+\newcommand{\sset}{\mathrm{s}\set} % category of simplicial sets
+\newcommand{\Line}{\lL\mathrm{ine}} % category of lines
+\newcommand{\LineBdl}{\Line\Bdl} % category of line bundles
+\newcommand{\Fun}{\lF\mathrm{un}} % category of functors
+\newcommand{\Top}{\lT\op} % category of topological spaces 
+\newcommand{\Grpd}{\lG\mathrm{rpd}} % category of groupoids
+\newcommand{\Grp}{\lG\mathrm{rp}} % category of groups
+\newcommand{\Euc}{\lE\mathrm{uc}} % site of Euclidean manifolds
+\newcommand{\Mfd}{\lM\mathrm{fd}} % site of smooth manifolds
+\newcommand{\Kan}{\lK\mathrm{an}} % category of Kan complexes
+\newcommand{\Vect}{\lV\mathrm{ect}} % category of vector spaces
+\newcommand{\Mod}{\lM\mathrm{od}} % category of modules
+\newcommand{\Ab}{\lA\mathrm{b}} % category of abelian groups
+\newcommand{\Shv}{\lS\mathrm{hv}} % category of sheaves
+\newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
+\newcommand{\Pic}{\lP\mathrm{ic}} % Picard category
+\newcommand{\PT}{\lP\lT} % Pontryagin-Thom
+\newcommand{\Fred}{\lF\mathrm{red}} % Fredholm
+\newcommand{\fl}{\mathrm{fl}} % flat
+\newcommand{\GrbBdl}{\lG\mathrm{rb}\Bdl} % category of bundle gerbes
+\newcommand{\cl}{\mathrm{cl}} % closed forms
+\newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
+\newcommand{\pos}{\lP\mathrm{os}} % category of Postnikov pre-towers
+
+
+\DeclareMathOperator*\colim{colim} % colimit
 
 \newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
 \newcommand{\textbbe}[1]{{\bbefamily #1}}
@@ -128,7 +160,7 @@
 	\section{Sheaves in Category Theory}
 	Let us review sheaves in classical category theory. A good reference remains \cite{maclanemoerdijk1994topos}. We start with  the case of sheaves on a topological space. 
 	\begin{definition}
-		Let $\C$ be a category. A \emph{pre-sheaf} on $\C$ is a functor $F:\C^{\op}\to\set$. 
+		Let $\lC$ be a category. A \emph{pre-sheaf} on $\lC$ is a functor $F:\lC^{\op}\to\set$. 
 	\end{definition}
 	\begin{definition}
 		Let $X$ be a topological space, we denote by $\Open_X$ the partial order of open subsets of $X$, viewed as a category. We call a pre-sheaf on $\Open_X$ a \emph{pre-sheaf on $X$}. Given $F:\Open_X^{\op}\to\set$ and $u\in F(U)$, for every $V\subseteq U$, we write $u|_V$ for the image of $u$ under the map $F(U)\to F(V)$. 
@@ -141,8 +173,8 @@
 		\end{tikzcd}
 		\]
 	\end{definition}
-	Now, we wish to extend the notion of sheaf to pre-sheaves on a generic category $\C$.
-	To do so, we first generalize the concept of cover, for examples by specifying for each object $C$ a class of families of maps $\{f_i:C_i\to C\}$ that {cover} $C$. Finally, in the sheaf condition, we replace intersections $U_i\cap U_j$ with fiber products (assuming $\C$ has the necessary limits). Then a pre-sheaf $F:\C^{\op}\to\set$ is a sheaf if, for every object $C$ and any covering family $\{f_i:C_i\to C\}_i$, the following is an equalizer diagram:\[
+	Now, we wish to extend the notion of sheaf to pre-sheaves on a generic category $\lC$.
+	To do so, we first generalize the concept of cover, for examples by specifying for each object $C$ a class of families of maps $\{f_i:C_i\to C\}$ that {cover} $C$. Finally, in the sheaf condition, we replace intersections $U_i\cap U_j$ with fiber products (assuming $\lC$ has the necessary limits). Then a pre-sheaf $F:\lC^{\op}\to\set$ is a sheaf if, for every object $C$ and any covering family $\{f_i:C_i\to C\}_i$, the following is an equalizer diagram:\[
 		\begin{tikzcd}
 			F(C) \arrow[r] & \prod_i F(C_i) \arrow[r, shift left=1] \arrow[r, shift right = 1] &   \prod_{i,j} F(C_i \times_C C_j) 
 		\end{tikzcd}
@@ -151,30 +183,30 @@
 	
 	\section{Sheaves via Grothendieck Topologies}
 	
-	We now generalize from sheaves on a topological space to sheaves on a category via the additional data of a Grothendieck topology. We begin by recalling a few definitions. Denote by $y$ the \textit{Yoneda embedding} $\C\to\PSh(\C)$, mapping $C$ to the pre-sheaf $y(C):=\Hom_\C(-,C)\colon\C^{\op}\to\set$. 
+	We now generalize from sheaves on a topological space to sheaves on a category via the additional data of a Grothendieck topology. We begin by recalling a few definitions. Denote by $y$ the \textit{Yoneda embedding} $\lC\to\lP(\lC)$, mapping $C$ to the pre-sheaf $y(C):=\Hom_\lC(-,C)\colon\lC^{\op}\to\set$. 
 	\begin{definition}
-		A \emph{sub-functor} to a pre-sheaf $F\colon\C^{\op}\to\set$ consists of a pre-sheaf $S:\C^{\op}\to\set$ such that $S(C)\subseteq F(C)$, for all objects $C$, and the subset inclusions define a natural transformation $S\to F$. The last condition is equivalent to the following: Given $f\colon D\to C$ and $u\in S(C)$, then $F(f)(u)\in S(D)$. 
+		A \emph{sub-functor} to a pre-sheaf $F\colon\lC^{\op}\to\set$ consists of a pre-sheaf $S:\lC^{\op}\to\set$ such that $S(C)\subseteq F(C)$, for all objects $C$, and the subset inclusions define a natural transformation $S\to F$. The last condition is equivalent to the following: Given $f\colon D\to C$ and $u\in S(C)$, then $F(f)(u)\in S(D)$. 
 	\end{definition}
 	\begin{definition}
-		Given a pre-sheaf $F\colon\C^{\op}\to\set$, denote by $\C_{/F}$ the category of pairs $(C,c)$, consisting of an object $C$ and an element $c\in F(C)$. A morphism $(D,d)\to(C,c)$ consists of a morphism $f\colon D\to C$ such that $F(f)(c)=d$. 
-	\end{definition}By Yoneda's lemma, an element $c\in F(C)$ corresponds to a natural transformation $y(C)\rightarrow F$. Taking the colimit over $(C,c)\in\C_{/F}$ of the pre-sheaves $y(C)$, we get a natural transformation $\colim_{(C,c)\in\C_{/F}}y(C)\rightarrow F$. 
+		Given a pre-sheaf $F\colon\lC^{\op}\to\set$, denote by $\lC_{/F}$ the category of pairs $(C,c)$, consisting of an object $C$ and an element $c\in F(C)$. A morphism $(D,d)\to(C,c)$ consists of a morphism $f\colon D\to C$ such that $F(f)(c)=d$. 
+	\end{definition}By Yoneda's lemma, an element $c\in F(C)$ corresponds to a natural transformation $y(C)\rightarrow F$. Taking the colimit over $(C,c)\in\lC_{/F}$ of the pre-sheaves $y(C)$, we get a natural transformation $\colim_{(C,c)\in\lC_{/F}}y(C)\rightarrow F$. 
 	\begin{theorem}[Density Theorem]\label{thm:density}
-		For every pre-sheaf $F$, the map $\colim_{(C,c)\in\C_{/F}}y(C)\rightarrow F$ is a natural isomorphism.
+		For every pre-sheaf $F$, the map $\colim_{(C,c)\in\lC_{/F}}y(C)\rightarrow F$ is a natural isomorphism.
 	\end{theorem}
 	\begin{definition}
-		Let $\C$ be a category. A \emph{sieve} on an object $C$ is a sub-functor of $y(C)$, with $y(C)$ being the \textit{maximal sieve}. Given a morphism $f\colon D\to C$ and a sieve $S$ on $C$, denote by $f^*(S)$ the \textit{pullback sieve}, mapping $X$ to the set of arrows $g\colon X\to D$ such that $fg\in S(X)$. 
+		Let $\lC$ be a category. A \emph{sieve} on an object $C$ is a sub-functor of $y(C)$, with $y(C)$ being the \textit{maximal sieve}. Given a morphism $f\colon D\to C$ and a sieve $S$ on $C$, denote by $f^*(S)$ the \textit{pullback sieve}, mapping $X$ to the set of arrows $g\colon X\to D$ such that $fg\in S(X)$. 
 	\end{definition}
 	\begin{definition}\label{def:generatedsieve}
-		Let ${\F}$ be a set of morphisms with codomain $C\in\C$. Define the \emph{sieve generated by $\F$} as the sieve $S_\F\subseteq\Hom_\C(-,C)$ mapping $D$ to the set of morphisms $D\to C$ that factor through some element of $\F$. 
+		Let ${\lF}$ be a set of morphisms with codomain $C\in\lC$. Define the \emph{sieve generated by $\lF$} as the sieve $S_\lF\subseteq\Hom_\lC(-,C)$ mapping $D$ to the set of morphisms $D\to C$ that factor through some element of $\lF$. 
 	\end{definition}
 	\begin{definition}
-		Let $\C$ be a category. A \emph{Grothendieck topology} on $\C$ is a collection $J(C)$ of sieves, called \textit{covering sieves}, on every object $C$ in $\C$, satisfying the following axioms:
+		Let $\lC$ be a category. A \emph{Grothendieck topology} on $\lC$ is a collection $J(C)$ of sieves, called \textit{covering sieves}, on every object $C$ in $\lC$, satisfying the following axioms:
 		\begin{enumerate}
 			\item The maximal sieve is a covering sieve.
 			\item Given a covering sieve $S$ and a morphism $f\colon D \to C$, the pullback sieve $f^*(S)$ is a covering sieve on $D$.
 			\item A sieve $S$ on $C$ is a covering sieve if, for some covering sieve $S'$ on $C$ and every map $f\in S'$, the pullback sieve $f^*(S)$ is also a covering sieve. 
 		\end{enumerate}
-		A \emph{Grothendieck site} is a pair $(\C, J)$ where $\C$ is a category and $J$ is a Grothendieck topology on $\C$.
+		A \emph{Grothendieck site} is a pair $(\lC, J)$ where $\lC$ is a category and $J$ is a Grothendieck topology on $\lC$.
 	\end{definition}
 	\begin{example}If every sieve is a covering sieve, we obtain the \emph{discrete Grothendieck topology}. If the only covering sieves are the maximal ones, we obtain the \textit{indiscrete Grothendieck topology}.
 	\end{example}
@@ -187,88 +219,88 @@
 	\begin{example}Let $\Mfd$ be the category of smooth manifolds and smooth maps. We can define a topology in the same way as \cref{ex:top}, using families of jointly surjective, smooth open embeddings. 
 	\end{example}
 	\begin{definition}\label{def:indtop}
-		Let $(\C,J)$ be a site and $\D\subseteq\C$ a full sub-category. The \emph{sub-category Grothendieck topology} on $\D$ assigns to each object $C\in\D$ the collection of sieves $S\subseteq\Hom_{\D}(-,C)$ that are the restriction to $\D$ of covering sieves of $C$ in $\C$.
+		Let $(\lC,J)$ be a site and $\lD\subseteq\lC$ a full sub-category. The \emph{sub-category Grothendieck topology} on $\lD$ assigns to each object $C\in\lD$ the collection of sieves $S\subseteq\Hom_{\lD}(-,C)$ that are the restriction to $\lD$ of covering sieves of $C$ in $\lC$.
 	\end{definition}
 	\begin{definition}\label{def:slicetop}
-		Let $(\C,J)$ be a site and $C\in\C$. Given $f:D\to C$, there is a canonical identification $\alpha_f:(\C_{/C})_{/f}\simeq\C_{/D}$. The \emph{slice Grothendieck topology} on $\C_{/C}$ assigns to each object $f:D\to C$ the collection of sieves $\D\subseteq(\C_{/C})_{/f}$ that correspond to covering sieves of $D$ under $\alpha_f$. 
+		Let $(\lC,J)$ be a site and $C\in\lC$. Given $f:D\to C$, there is a canonical identification $\alpha_f:(\lC_{/C})_{/f}\simeq\lC_{/D}$. The \emph{slice Grothendieck topology} on $\lC_{/C}$ assigns to each object $f:D\to C$ the collection of sieves $\lD\subseteq(\lC_{/C})_{/f}$ that correspond to covering sieves of $D$ under $\alpha_f$. 
 	\end{definition}
-	We are now ready to define sheaves on a Grothendieck site. Given a sieve $S$ on $C$, notice that the category $\C_{/S}$ can be identified with the full sub-category of $\C_{/C}$ spanned by morphisms $f\in S$. On the other hand, a full sub-category $\D\subseteq\C_{/C}$ determines a sieve if $f\in\D$ implies $fg\in\D$, for every $g$ composable with $f$. 
+	We are now ready to define sheaves on a Grothendieck site. Given a sieve $S$ on $C$, notice that the category $\lC_{/S}$ can be identified with the full sub-category of $\lC_{/C}$ spanned by morphisms $f\in S$. On the other hand, a full sub-category $\lD\subseteq\lC_{/C}$ determines a sieve if $f\in\lD$ implies $fg\in\lD$, for every $g$ composable with $f$. 
 	\begin{definition}\label{map}
-		Given a pre-sheaf $F\colon \C^{\op}\to\set$, denote by $\Map(\C_{/S},F)$ the limit of the following diagram:
+		Given a pre-sheaf $F\colon \lC^{\op}\to\set$, denote by $\hom(\lC_{/S},F)$ the limit of the following diagram:
 	\begin{center}
 		\begin{tikzcd}
-			(\C_{/S})^{\op}\arrow[r] & \C^{\op}\arrow[r,"F"] & \set
+			(\lC_{/S})^{\op}\arrow[r] & \lC^{\op}\arrow[r,"F"] & \set
 		\end{tikzcd}
-	\end{center}The inclusion $\C_{/S}\subseteq\C_{/C}$ induces a natural \textnormal{comparison map} $\Map(\C_{/C},F)\to\Map(\C_{/S},F)$.
+	\end{center}The inclusion $\lC_{/S}\subseteq\lC_{/C}$ induces a natural \textnormal{comparison map} $\hom(\lC_{/C},F)\to\hom(\lC_{/S},F)$.
 	\end{definition}
-	 Notice that $\Map(\C_{/C},F)$ is the limit of a diagram indexed by the category $(\C_{/C})^{\op}$, which has an initial object, the identity of $C$, therefore the limit is canonically isomorphic to $F(C)$, the value of the diagram at the initial object.
+	 Notice that $\hom(\lC_{/C},F)$ is the limit of a diagram indexed by the category $(\lC_{/C})^{\op}$, which has an initial object, the identity of $C$, therefore the limit is canonically isomorphic to $F(C)$, the value of the diagram at the initial object.
 	\begin{definition}
-		Let $(\C, J)$ be a Grothendieck site. A {pre-sheaf} $F : \C^{\op} \to \set$ is a \emph{sheaf} if, for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
-		\[ F(C)\cong\Map(\C_{/C},F) \to \Map(\C_{/S},F)\]
-		is an isomorphism. Explicitly, an object in $\Map(\C_{/S},F)$ consists of an element $x_f\in F(D)$, for every map $f\in S$ (where $D$ is the domain of $f$), such that $x_{fg}=F(g)(x_f)$, for every $f$ and $g$ composable. The canonical morphism takes $x\in F(C)$ to the tuple with $x_f:=F(f)(x)$. 
+		Let $(\lC, J)$ be a Grothendieck site. A {pre-sheaf} $F : \lC^{\op} \to \set$ is a \emph{sheaf} if, for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
+		\[ F(C)\cong\hom(\lC_{/C},F) \to \hom(\lC_{/S},F)\]
+		is an isomorphism. Explicitly, an object in $\hom(\lC_{/S},F)$ consists of an element $x_f\in F(D)$, for every map $f\in S$ (where $D$ is the domain of $f$), such that $x_{fg}=F(g)(x_f)$, for every $f$ and $g$ composable. The canonical morphism takes $x\in F(C)$ to the tuple with $x_f:=F(f)(x)$. 
 	\end{definition}Using \cref{thm:density} and Yoneda's lemma, we have the following chain of natural isomorphisms:
 	\begin{align*}
-		\Map(\C_{/S},F) &= \textrm{lim}_{(D,d)\in\C_{/S}}F(D) \\
-		&\simeq \textrm{lim}_{(D,d)\in\C_{/S}}\Nat_\C(y(D),F) \\
-		&\simeq \Nat_\C(\colim_{(D,d)\in\C_{/S}}y(D),F)\\
-		&\simeq \Nat_\C(S,F)
-	\end{align*}One can then check that under the above isomorphism, the comparison map $\Map(\C_{/C},F)\to\Map(\C_{/S},F)$ corresponds to the restriction map $\Nat_\C(y(C),F)\to\Nat_\C(S,F)$ induced by the inclusion $S\subseteq y(C)$. In particular, we can rephrase the sheaf condition as follows:
+		\hom(\lC_{/S},F) &= \textrm{lim}_{(D,d)\in\lC_{/S}}F(D) \\
+		&\simeq \textrm{lim}_{(D,d)\in\lC_{/S}}\hom_{\lP(\lC)}(y(D),F) \\
+		&\simeq \hom_{\lP(\lC)}(\colim_{(D,d)\in\lC_{/S}}y(D),F)\\
+		&\simeq \hom_{\lP(\lC)}(S,F)
+	\end{align*}One can then check that under the above isomorphism, the comparison map $\hom(\lC_{/C},F)\to\hom(\lC_{/S},F)$ corresponds to the restriction map $\hom_{\lP(\lC)}(y(C),F)\to\hom_{\lP(\lC)}(S,F)$ induced by the inclusion $S\subseteq y(C)$. In particular, we can rephrase the sheaf condition as follows:
 	\begin{corollary}
-		A pre-sheaf $F$ on a Grothendieck site $(\C, J)$ is a sheaf if and only if for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
-		\[ F(C)  \simeq \Nat_\C(y(C),F)\to \Nat_\C(S,F) \]
+		A pre-sheaf $F$ on a Grothendieck site $(\lC, J)$ is a sheaf if and only if for every object $C$ and covering sieve $S$ of $C$, the canonical morphism
+		\[ F(C)  \simeq \hom_{\lP(\lC)}(y(C),F)\to \hom_{\lP(\lC)}(S,F) \]
 		is an isomorphism. 
 	\end{corollary}
 	
 	\section{Sheaves on \texorpdfstring{$\infty$}{oo}-Categories}
-	Now that we know how  to define sheaves on 1-categories, we generalize the definition of sheaves to the case of $\infty$-categories. Here we largely follow \cite{lurie2009htt}. Recall that a sieve on $C$ determines a full sub-category of $\C_{/C}$. Conversely, a full sub-category $\D$ of $\C_{/C}$ determines a sieve if and only if $f\in\D$ implies $fg\in\D$, for every $g$ (composable with $f$). 
+	Now that we know how  to define sheaves on 1-categories, we generalize the definition of sheaves to the case of $\infty$-categories. Here we largely follow \cite{lurie2009htt}. Recall that a sieve on $C$ determines a full sub-category of $\lC_{/C}$. Conversely, a full sub-category $\lD$ of $\lC_{/C}$ determines a sieve if and only if $f\in\lD$ implies $fg\in\lD$, for every $g$ (composable with $f$). 
 	\begin{definition}
-		Let $\C$ be a $\infty$-category and $\s$ the $\infty$-category of spaces. A \textit{pre-sheaf} on $\C$ is a functor $\C^{\op}\to\s$.
+		Let $\lC$ be a $\infty$-category and $\lS$ the $\infty$-category of spaces. A \textit{pre-sheaf} on $\lC$ is a functor $\lC^{\op}\to\lS$.
 	\end{definition}
 	\begin{definition}
-		Let $\C$ be an $\infty$-category and $C$ an object of $\C$. A \textit{sieve} on $C$ is a full sub-$\infty$-category $\D$ of $\C_{/C}$ such that $f\in\D$ implies $fg\in\D$, for every $g$ (composable with $f$).  
+		Let $\lC$ be an $\infty$-category and $C$ an object of $\lC$. A \textit{sieve} on $C$ is a full sub-$\infty$-category $\lD$ of $\lC_{/C}$ such that $f\in\lD$ implies $fg\in\lD$, for every $g$ (composable with $f$).  
 	\end{definition}
-	A sieve $\D\subseteq\C_{/C}$ induces a sieve $\D'\subseteq\Ho(\C)_{/C}$ by taking homotopy classes of 1-morphisms in $\D$. 
+	A sieve $\lD\subseteq\lC_{/C}$ induces a sieve $\lD'\subseteq\Ho(\lC)_{/C}$ by taking homotopy classes of 1-morphisms in $\lD$. 
 	\begin{definition}
-		Let $\C$ be an $\infty$-category. A \emph{Grothendieck topology} on $\C$ is a collection $J(C)$ of sieves for every object $C$, such that it induces a Grothendieck topology on $\Ho(\C)$. 
+		Let $\lC$ be an $\infty$-category. A \emph{Grothendieck topology} on $\lC$ is a collection $J(C)$ of sieves for every object $C$, such that it induces a Grothendieck topology on $\Ho(\lC)$. 
 	\end{definition}
 	
 	Notice, we have the following compatibility observation.
 	\begin{lemma}
-		Let $\C$ be a $1$-category. A Grothendieck topology on $\C$ is precisely a Grothendieck topology on $\C$ seen as an $\infty$-category.
+		Let $\lC$ be a $1$-category. A Grothendieck topology on $\lC$ is precisely a Grothendieck topology on $\lC$ seen as an $\infty$-category.
 	\end{lemma}
 	\begin{definition}
-		Let $\C$ be a $\infty$-category and $C$ an object of $\C$. Given a sieve $\D\subseteq\C_{/C}$ and a pre-sheaf $F:\C^{\op}\to\s$, denote by $\Map(\D,F)$ the limit of the diagram \begin{center}
+		Let $\lC$ be a $\infty$-category and $C$ an object of $\lC$. Given a sieve $\lD\subseteq\lC_{/C}$ and a pre-sheaf $F:\lC^{\op}\to\lS$, denote by $\hom(\lD,F)$ the limit of the diagram \begin{center}
 		\begin{tikzcd}
-			\D^{\op}\arrow[r] & \C^{\op}\arrow[r,"F"] & \s
+			\lD^{\op}\arrow[r] & \lC^{\op}\arrow[r,"F"] & \lS
 		\end{tikzcd}
-	\end{center}where the first functor is the opposite of the canonical projection $\C_{/C}\to\C$ restricted to $\D$. Using the same argument as in the 1-categorical case, there is a comparison map $\Map(\C_{/C},F)\to\Map(\D,F)$ and a canonical equivalence $\Map(\C_{/C},F)\simeq F(C)$. 
+	\end{center}where the first functor is the opposite of the canonical projection $\lC_{/C}\to\lC$ restricted to $\lD$. Using the same argument as in the 1-categorical case, there is a comparison map $\hom(\lC_{/C},F)\to\hom(\lD,F)$ and a canonical equivalence $\hom(\lC_{/C},F)\simeq F(C)$. 
 	\end{definition}
 	\begin{definition}
-		Let $\C$ be an $\infty$-category. A pre-sheaf $F\colon\C^{\op}\to\s$ is a \emph{sheaf} if for every object $C$ and covering sieve $\D$ of $C$, the canonical morphism
-		\[ F(C)\simeq\Map(\C_{/C},F) \to \Map(\D,F) \]
-		is an equivalence. Denote by $\Shv(\C,J)$ the full sub-$\infty$-category of $\Fun(\C^{\op},\s)$ spanned by the sheaves on $(\C,J)$.
+		Let $\lC$ be an $\infty$-category. A pre-sheaf $F\colon\lC^{\op}\to\lS$ is a \emph{sheaf} if for every object $C$ and covering sieve $\lD$ of $C$, the canonical morphism
+		\[ F(C)\simeq\hom(\lC_{/C},F) \to \hom(\lD,F) \]
+		is an equivalence. Denote by $\Shv(\lC,J)$ the full sub-$\infty$-category of $\Fun(\lC^{\op},\lS)$ spanned by the sheaves on $(\lC,J)$.
 	\end{definition}
 	
 	Note we defined sheaves as local objects in a presentable $\infty$-category. Hence, using the formalism of presentable $\infty$-categories, we immediately have the following result. 
 	
 	\begin{proposition}
-		The $\infty$-category of sheaves on $\Shv(\C,J)$ is presentable.
+		The $\infty$-category of sheaves on $\Shv(\lC,J)$ is presentable.
 	\end{proposition}
 	
 \section{Sheaves with arbitrary Values}
 We started with sheaves valued in sets. Then generalized to $\infty$-categorical sheaves valued in spaces. However, we want $\infty$-categorical sheaves valued in spectra. Hence the next step is to generalize the values of our $\infty$-categorical sheaves. Abstractly we obtain such sheaves via the \emph{tensor product} of presentable $\infty$-categories, which we review now.
 
 \begin{theorem}[{\cite[Proposition 4.8.1.15]{lurie2017ha}}]
-  Let $\C, \D$ be presentable $\infty$-categories. Then there exists a presentable $\infty$-category $\C \otimes \D$ together with a functor $F:\C\times\D\rightarrow\C\otimes\D$ such that 
+  Let $\lC, \lD$ be presentable $\infty$-categories. Then there exists a presentable $\infty$-category $\lC \otimes \lD$ together with a functor $F:\lC\times\lD\rightarrow\lC\otimes\lD$ such that 
   \begin{enumerate}
 	\item The functor $F$ preserves colimits component-wise.
-	\item For any presentable $\infty$-category $\E$, pre-composition with $F$ induces an equivalence between the sub-$\infty$-category $\Fun^L(\C \otimes \D , \E)\subseteq\Fun(\C \otimes \D , \E)$ of colimit preserving functors, and the sub-$\infty$-category $\Fun^{L,L}(\C \times \D, \E)\subseteq\Fun(\C\times\D,\E)$ of functors preserving colimits in each component. 
+	\item For any presentable $\infty$-category $\lE$, pre-composition with $F$ induces an equivalence between the sub-$\infty$-category $\Fun^L(\lC \otimes \lD , \lE)\subseteq\Fun(\lC \otimes \lD , \lE)$ of colimit preserving functors, and the sub-$\infty$-category $\Fun^{L,L}(\lC \times \lD, \lE)\subseteq\Fun(\lC\times\lD,\lE)$ of functors preserving colimits in each component. 
   \end{enumerate}
 \end{theorem}
-\begin{theorem}[{\cite[Proposition 4.8.1.17]{lurie2017ha}}]For $\C$ and $\D$ presentable $\infty$-categories, there is a canonical equivalence between $\C\otimes\D$ and $\Fun^R(\C^{\op},\D)$, of limit preserving functors $\C^{\op}\to\D$. 
+\begin{theorem}[{\cite[Proposition 4.8.1.17]{lurie2017ha}}]For $\lC$ and $\lD$ presentable $\infty$-categories, there is a canonical equivalence between $\lC\otimes\lD$ and $\Fun^R(\lC^{\op},\lD)$, of limit preserving functors $\lC^{\op}\to\lD$. 
 \end{theorem}
 \begin{definition}
-  Let $(C,J)$ be $\C$ be a Grothendieck site, and $\D$ be a presentable $\infty$-category. A \emph{sheaf on $(\C,J)$ with values in $\D$} is a limit preserving functor $F\colon \Shv(\C,J)^{\op} \to \D$, which corresponds to an object in $\Shv(\C,J) \otimes \D$. 
+  Let $(C,J)$ be $\lC$ be a Grothendieck site, and $\lD$ be a presentable $\infty$-category. A \emph{sheaf on $(\lC,J)$ with values in $\lD$} is a limit preserving functor $F\colon \Shv(\lC,J)^{\op} \to \lD$, which corresponds to an object in $\Shv(\lC,J) \otimes \lD$. 
 \end{definition}
 
 Of course, this description is very abstract and ideally we want a more explicit description that we can use in the future. That is the aim of the next sections.
@@ -281,25 +313,25 @@ We have given a formal definition of sheaves valued in spectra, via the tensor p
  The inclusion $\Pr^L_{st} \to \Pr^L$ of stable presentable $\infty$-categories into the category of presentable $\infty$-categories admits a left adjoint, which is explicitly given by $-\otimes\Sp$.
 \end{proposition}
 
-We can recall from our previous talk that the stabilization of a presentable $\infty$-category $\C$ is given by the $\infty$-category $\Sp(\C)$ of spectrum objects in $\C$, therefore $\C\otimes\Sp  \simeq \Sp(\C)$, for every presentable $\infty$-category $\C$. In particular, the $\infty$-category $ \Shv(\C,J)\otimes \Sp$ is equivalent to the category of spectrum objects in $\Shv(\C,J)$. Finally, since the inclusion $\Shv(\C,J) \to \Fun(\C^{\op},\s)$ preserves and reflects limits, a commutative square in $\Shv(\C,J)$ is a pullback square if and only if it is a pullback square in $\Fun(\C^{\op},\s)$.
+We can recall from our previous talk that the stabilization of a presentable $\infty$-category $\lC$ is given by the $\infty$-category $\Sp(\lC)$ of spectrum objects in $\lC$, therefore $\lC\otimes\Sp  \simeq \Sp(\lC)$, for every presentable $\infty$-category $\lC$. In particular, the $\infty$-category $ \Shv(\lC,J)\otimes \Sp$ is equivalent to the category of spectrum objects in $\Shv(\lC,J)$. Finally, since the inclusion $\Shv(\lC,J) \to \Fun(\lC^{\op},\lS)$ preserves and reflects limits, a commutative square in $\Shv(\lC,J)$ is a pullback square if and only if it is a pullback square in $\Fun(\lC^{\op},\lS)$.
 
 \begin{proposition}
-  A spectrum object in sheaves on the Grothendieck site $(\C,J)$ is given by a spectrum object in pre-sheaves on $(\C,J)$ that is point-wise a sheaf.
+  A spectrum object in sheaves on the Grothendieck site $(\lC,J)$ is given by a spectrum object in pre-sheaves on $(\lC,J)$ that is point-wise a sheaf.
 \end{proposition}
 
-This gives us the following explicit description of sheaves valued in spectra. Recall that $\Omega^{\infty-n}\colon\Sp\to\s$ is the functor mapping a spectrum object into its $n$-th component.
+This gives us the following explicit description of sheaves valued in spectra. Recall that $\Omega^{\infty-n}\colon\Sp\to\lS$ is the functor mapping a spectrum object into its $n$-th component.
 \begin{theorem}
-  There is a canonical equivalence between $\Shv(\C,J)\otimes\Sp$ and the category of functors $F\colon \C^{\op} \to \Sp$ such that $\Omega^{\infty - n} F\colon \C^{\op} \to \s$ is a sheaf of spaces, for every $n$.
+  There is a canonical equivalence between $\Shv(\lC,J)\otimes\Sp$ and the category of functors $F\colon \lC^{\op} \to \Sp$ such that $\Omega^{\infty - n} F\colon \lC^{\op} \to \lS$ is a sheaf of spaces, for every $n$.
 \end{theorem}
 
 \section{An Explicit Description of Sheaves on the Site of Manifolds}
-We continue our analysis of sheaves with the aim of providing explicit descriptions. Now we focus on the case of sheaves on the site of manifolds. Recall that a sieve $S$ on a manifold $M$ is a covering sieve if an open cover $\rO$ of $M$ exists, such that every morphism in $S$ factors through the inclusion $U\subseteq M$ of some element $U\in\rO$. From the definition of the topology on $\Mfd$ we have the following: Given a covering sieve $S$ generated by an open cover $\rO$. Denote by $\I(\rO)$ the poset (viewed as a category) consisting of finite intersections of elements of $\rO$.
+We continue our analysis of sheaves with the aim of providing explicit descriptions. Now we focus on the case of sheaves on the site of manifolds. Recall that a sieve $S$ on a manifold $M$ is a covering sieve if an open cover $\rO$ of $M$ exists, such that every morphism in $S$ factors through the inclusion $U\subseteq M$ of some element $U\in\rO$. From the definition of the topology on $\Mfd$ we have the following: Given a covering sieve $S$ generated by an open cover $\rO$. Denote by $\lI(\rO)$ the poset (viewed as a category) consisting of finite intersections of elements of $\rO$.
 \begin{lemma}
-	The functor $i:\I(\rO)\rightarrow\Mfd_{/S}$ is cofinal.
+	The functor $i:\lI(\rO)\rightarrow\Mfd_{/S}$ is cofinal.
 \end{lemma}
-In particular, since $\Map(\Mfd_{/S},F)$ is defined as the limit $(\Mfd_{/S})^{\op}\to\Mfd^{\op}\xrightarrow F\s$ and $i^{\op}$ is \emph{final}, there is a canonical equivalence \[\Map(\Mfd_{/S},F)\simeq\lim(\I(\rO)^{\op}\to\Mfd^{\op}\xrightarrow F\s)=\textrm{lim}_{U\in\I(\rO)}F(U)\]
+In particular, since $\hom(\Mfd_{/S},F)$ is defined as the limit $(\Mfd_{/S})^{\op}\to\Mfd^{\op}\xrightarrow F\lS$ and $i^{\op}$ is \emph{final}, there is a canonical equivalence \[\hom(\Mfd_{/S},F)\simeq\lim(\lI(\rO)^{\op}\to\Mfd^{\op}\xrightarrow F\lS)=\textrm{lim}_{U\in\lI(\rO)}F(U)\]
 \begin{proposition}\label{pro:sheaf}
-  A pre-sheaf $F\colon \Mfd^{\op} \to \Sp$ is a sheaf if and only if for every manifold $M$ and every open cover $\rO$ of $M$, the canonical morphism $F(M) \to \lim_{U \in \I(\rO)}F(U)$ is an equivalence.
+  A pre-sheaf $F\colon \Mfd^{\op} \to \Sp$ is a sheaf if and only if for every manifold $M$ and every open cover $\rO$ of $M$, the canonical morphism $F(M) \to \lim_{U \in \lI(\rO)}F(U)$ is an equivalence.
 \end{proposition}
 
 In fact we can check the sheaf condition for sheaves on the site of manifolds with a very specific type of covering families. For a proof of the following result, we refer to \cite[Proposition 3.6.6]{amabeldebrayhaine2021diffcoh}.
@@ -322,15 +354,15 @@ In fact we can check the sheaf condition for sheaves on the site of manifolds wi
 \section{Enough Points and Equivalences of Sheaves}
 We now have established a very solid understanding of sheaves on the site of manifolds with arbitrary values as pre-sheaves with suitable limit conditions. We now want to use these explicit descriptions to better understand equivalences of sheaves on the site of manifolds.
 \begin{definition}[{\cite[Remark 6.5.4.8]{lurie2009htt}}]\label{def:point}
-	Given a $\infty$-topos $\X$, a \emph{point} of $\X$ is a functor $p:\s\to\X$ admitting a left exact left adjoint $p^*$. We say $\X$ has \emph{enough points} if the following holds: Given a morphism $f$, if $p^*(f)$ is an equivalence for every point $p$, then $f$ is an equivalence.
+	Given a $\infty$-topos $\lX$, a \emph{point} of $\lX$ is a functor $p:\lS\to\lX$ admitting a left exact left adjoint $p^*$. We say $\lX$ has \emph{enough points} if the following holds: Given a morphism $f$, if $p^*(f)$ is an equivalence for every point $p$, then $f$ is an equivalence.
 \end{definition}
-Here we are mainly interested in $\infty$-topoi of sheaves, i.e. $\X=\Shv(\C)$, for some site $\C$.
+Here we are mainly interested in $\infty$-topoi of sheaves, i.e. $\lX=\Shv(\lC)$, for some site $\lC$.
 \begin{remark}
-	A functor $p:\s\to\X$ admitting a left exact left adjoint is called a \emph{geometric morphism}, see \cite[Definition 6.3.1.1]{lurie2009htt}. 
+	A functor $p:\lS\to\lX$ admitting a left exact left adjoint is called a \emph{geometric morphism}, see \cite[Definition 6.3.1.1]{lurie2009htt}. 
 \end{remark}
 \begin{definition}\label{def:stalk}
-	Let $X$ be a topological space and $\C$ a presentable category. Given a point $x\in X$, denote by $x^*$ the functor $\Shv(X,\C)\to\C$ given by $x^*(F)=\colim_{x\in U}F(U)$. The functor $x^*$ is called 
-	\emph{stalk at $x$} and is left adjoint to the \emph{skyscraper at $x$} functor, denoted as $x_*$ and given by $x_*(S)(U)=S$, if $x\in U$, and $=1$, otherwise (where $1\in\C$ is the terminal object).
+	Let $X$ be a topological space and $\lC$ a presentable category. Given a point $x\in X$, denote by $x^*$ the functor $\Shv(X,\lC)\to\lC$ given by $x^*(F)=\colim_{x\in U}F(U)$. The functor $x^*$ is called 
+	\emph{stalk at $x$} and is left adjoint to the \emph{skyscraper at $x$} functor, denoted as $x_*$ and given by $x_*(S)(U)=S$, if $x\in U$, and $=1$, otherwise (where $1\in\lC$ is the terminal object).
 \end{definition}
 \begin{remark}\label{rmk:pointsheaf}
 	Using that filtered colimits commute with finite limits (see \cite[Example 7.3.4.7]{lurie2009htt}), one can prove that $x^*$ is left exact and $x_*$ is a point of $\Shv(X)$ according to \cref{def:point}. In particular, every point $x\in X$ induces a point of $\Shv(X)$. 
@@ -346,14 +378,14 @@ Here we are mainly interested in $\infty$-topoi of sheaves, i.e. $\X=\Shv(\C)$, 
 	\end{enumerate}One can check by induction that $\mathrm{ind} X=n$, for every $n$-dimensional topological manifold $X$.
 \end{proof}
 \begin{remark}\label{rmk:geopoints}
-	The proof of \cite[Corollary 7.2.1.17]{lurie2009htt} actually shows that the collection of points $x_*:\s\to\Shv(X)$, for all $x\in X$, is enough to detect equivalences, namely $f$ is an equivalence if $x^*(f)$ is an equivalence, for every $x\in X$. 
+	The proof of \cite[Corollary 7.2.1.17]{lurie2009htt} actually shows that the collection of points $x_*:\lS\to\Shv(X)$, for all $x\in X$, is enough to detect equivalences, namely $f$ is an equivalence if $x^*(f)$ is an equivalence, for every $x\in X$. 
 \end{remark}
 % Do smooth manifolds have finite Lebesgue dimension or am I tripping?
 \begin{theorem}\label{thm:mfdenoughpoints}
 	The $\infty$-category $\Shv(\Mfd)$ has enough points. 
 \end{theorem}
 \begin{proof}
-	Let $M$ be a smooth manifold, there is a faithful functor $\Open_M\to\Mfd$ that is a morphism of sites (see \cite[Definition A.10]{pstragowski2022syntheticspectracellularmotivic}) and satisfies the \emph{covering lifting property} (see \cite[Definition A.12]{pstragowski2022syntheticspectracellularmotivic}), therefore the restriction functor $-|_{M}:\Shv(\Mfd)\to\Shv(M)$ is a left adjoint (see \cite[Proposition A.13]{pstragowski2022syntheticspectracellularmotivic}) and a right adjoint (hence left exact). In particular, a point $p:\s\to\Shv(M)$, for any manifold $M$, induces a point of $\Shv(\Mfd)$ as the composition of $p:\s\to\Shv(M)$ with the right adjoint $\Shv(M)\to\Shv(\Mfd)$. The left adjoint is $\Shv(\Mfd)\xrightarrow{-|_M}\Shv(M)\xrightarrow{p^*}\s$. 
+	Let $M$ be a smooth manifold, there is a faithful functor $\Open_M\to\Mfd$ that is a morphism of sites (see \cite[Definition A.10]{pstragowski2022syntheticspectracellularmotivic}) and satisfies the \emph{covering lifting property} (see \cite[Definition A.12]{pstragowski2022syntheticspectracellularmotivic}), therefore the restriction functor $-|_{M}:\Shv(\Mfd)\to\Shv(M)$ is a left adjoint (see \cite[Proposition A.13]{pstragowski2022syntheticspectracellularmotivic}) and a right adjoint (hence left exact). In particular, a point $p:\lS\to\Shv(M)$, for any manifold $M$, induces a point of $\Shv(\Mfd)$ as the composition of $p:\lS\to\Shv(M)$ with the right adjoint $\Shv(M)\to\Shv(\Mfd)$. The left adjoint is $\Shv(\Mfd)\xrightarrow{-|_M}\Shv(M)\xrightarrow{p^*}\lS$. 
 	
 	Let $f$ be a morphism such that $p^*(f)$ is an equivalence for every point $p$ of $\Shv(\Mfd)$. In particular, $p^*(f|_M)$ is an equivalence for every point of $\Shv(M)$, hence $f|_M$ is an equivalence in $\Shv(M)$, by \cref{thm:enougpoints}. Finally, if $f|_M$ is an equivalence, for every $M$, then $f$ is an equivalence. 
 \end{proof}
@@ -368,52 +400,52 @@ Note, for every $n$-manifold $M$ and $x\in M$, there is an open embedding $x':\b
 
 \section{Sheaves of Manifolds via the Euclidean site}
 
-According to \cref{def:indtop}, every full sub-category $\B\subseteq\C$ of a site $\C$ inherits a Grothendieck topology. If $\B$ is \emph{dense} (see \cite[Definition 2.2.1]{johnstone2002elephanti}) then the restriction functor $\Shv(\C,\set)\to\Shv(\B,\set)$ is an equivalence, this is the \emph{comparison lemma} (\cite[Theorem 2.2.3]{johnstone2002elephanti}). However, this is no longer true with sheaves valued in $\infty$-categories, i.e. a dense sub-site $\B\subseteq\C$ does not induce an equivalence between $\infty$-categories of sheaves (see \cite[Counterexample 20.4.0.1]{lurie2018sag}). But, the comparison lemma from $\infty$-sheaves \emph{does} hold for $\C=\Mfd$ because of \emph{hypercompleteness}, as we'll show. This comparison lemma allows us to relate statements about sheaves on dense sub-categories of $\Mfd$ to statements about sheaves on all manifolds.
+According to \cref{def:indtop}, every full sub-category $\lB\subseteq\lC$ of a site $\lC$ inherits a Grothendieck topology. If $\lB$ is \emph{dense} (see \cite[Definition 2.2.1]{johnstone2002elephanti}) then the restriction functor $\Shv(\lC,\set)\to\Shv(\lB,\set)$ is an equivalence, this is the \emph{comparison lemma} (\cite[Theorem 2.2.3]{johnstone2002elephanti}). However, this is no longer true with sheaves valued in $\infty$-categories, i.e. a dense sub-site $\lB\subseteq\lC$ does not induce an equivalence between $\infty$-categories of sheaves (see \cite[Counterexample 20.4.0.1]{lurie2018sag}). But, the comparison lemma from $\infty$-sheaves \emph{does} hold for $\lC=\Mfd$ because of \emph{hypercompleteness}, as we'll show. This comparison lemma allows us to relate statements about sheaves on dense sub-categories of $\Mfd$ to statements about sheaves on all manifolds.
 
-Let $\C$ be a 1-site and $\rP_\Delta(\C)=\Fun(\C^{\op},\sset)$ the ordinary category of simplicial pre-sheaves on $\C$. Given a pre-sheaf $F:\C^{\op}\to\set$, denote by $F_\disc$ the simplicial pre-sheaf mapping $C$ to the constant simplicial set with value $F(C)$. 
+Let $\lC$ be a 1-site and $\lP_\Delta(\lC)=\Fun(\lC^{\op},\sset)$ the ordinary category of simplicial pre-sheaves on $\lC$. Given a pre-sheaf $F:\lC^{\op}\to\set$, denote by $F_\delta$ the simplicial pre-sheaf mapping $C$ to the constant simplicial set with value $F(C)$. 
 \begin{definition}\label{def:locepi}
-	Given a morphism of pre-sheaves of sets $f:F\to\Hom_\C(-,C)$, the \emph{image of $f$} is the sieve $S_f$  mapping $D$ to the image of the map of sets $F(D)\to\Hom_C(D,C)$. If $C\in\C$ and $\C$ is a site, we call $f$ a \emph{local epimorphism} if $S_f$ is a covering sieve of $C$. A morphism of pre-sheaves $F\to G$ is a local epimorphism if, for every $y(C)\to G$, the projection $y(C)\times_GF\to y(C)$ is a local epimorphism. 
+	Given a morphism of pre-sheaves of sets $f:F\to\Hom_\lC(-,C)$, the \emph{image of $f$} is the sieve $S_f$  mapping $D$ to the image of the map of sets $F(D)\to\Hom_C(D,C)$. If $C\in\lC$ and $\lC$ is a site, we call $f$ a \emph{local epimorphism} if $S_f$ is a covering sieve of $C$. A morphism of pre-sheaves $F\to G$ is a local epimorphism if, for every $y(C)\to G$, the projection $y(C)\times_GF\to y(C)$ is a local epimorphism. 
 \end{definition}
 \begin{definition}[{\cite[Lemma 4.9]{dugger2003hypercoverssimplicialpresheaves}}]
-	Given $C\in\C$, an \emph{hypercover} of $C$ consists of a simplicial pre-sheaf $U:\C^{\op}\to\sset$ together with a morphism $U\to y(C)_\disc$, called \emph{augmentation}, such that the maps $U_0\to y(C)$ and $U_n\simeq \Hom_{\sset}({\Delta^n},U)\to\Hom_{\sset}({\partial\Delta^n},U)$, for every $n$, are local epimorphisms, see \cref{def:locepi}. An hypercover has \emph{height $k$} if $U_n\to\Hom_{\sset}(\partial\Delta^n,U)$ is an isomorphism, for all $n\geq k$. 
+	Given $C\in\lC$, an \emph{hypercover} of $C$ consists of a simplicial pre-sheaf $U:\lC^{\op}\to\sset$ together with a morphism $U\to y(C)_\delta$, called \emph{augmentation}, such that the maps $U_0\to y(C)$ and $U_n\simeq \Hom_{\sset}({\Delta^n},U)\to\Hom_{\sset}({\partial\Delta^n},U)$, for every $n$, are local epimorphisms, see \cref{def:locepi}. An hypercover has \emph{height $k$} if $U_n\to\Hom_{\sset}(\partial\Delta^n,U)$ is an isomorphism, for all $n\geq k$. 
 \end{definition}
 \begin{remark}\label{rmk:cech}
 	An hypercover has height 0 if and only if it is the \v Cech nerve of the morphism $U_0\to y(C)$. 
 \end{remark}
 \begin{definition}
-	Denote by $\widehat{\Shv}(\C)\subseteq\Shv(\C)$ the full sub-$\infty$-category of sheaves satisfying \emph{hyperdescent}, meaning that, for every object $C$ and hypercover $U$ of $C$, the augmentation induced an equivalence 
-	$$F(C)\simeq\Nat_\C(y(C),F)\to\lim_n\Nat_\C(U_n,F)$$ $\Shv(\C)$ is called \emph{hypercomplete} if every sheaf satisfies hyperdescent. 
+	Denote by $\widehat{\Shv}(\lC)\subseteq\Shv(\lC)$ the full sub-$\infty$-category of sheaves satisfying \emph{hyperdescent}, meaning that, for every object $C$ and hypercover $U$ of $C$, the augmentation induced an equivalence 
+	$$F(C)\simeq\hom_{\lP(\lC)}(y(C),F)\to\lim_n\hom_{\lP(\lC)}(U_n,F)$$ $\Shv(\lC)$ is called \emph{hypercomplete} if every sheaf satisfies hyperdescent. 
 \end{definition}
 \begin{definition}[{\cite[Definition 3.12.2]{barwick2020exodromy}}]\label{def:dense}
-	Let $\C$ be a site. A full sub-category $\B\subseteq\C$ is \emph{dense} if for every object $C\in\C$ there is a family $\F$ of morphisms with codomain $C$ and domain in $\B$, such that $S_\F$ (see \cref{def:generatedsieve}) is a covering sieve. 
+	Let $\lC$ be a site. A full sub-category $\lB\subseteq\lC$ is \emph{dense} if for every object $C\in\lC$ there is a family $\lF$ of morphisms with codomain $C$ and domain in $\lB$, such that $S_\lF$ (see \cref{def:generatedsieve}) is a covering sieve. 
 \end{definition}
 \begin{theorem}\label{thm:mfdhypercomplete}
-	$\Shv(\Mfd)$ is hypercomplete. If $i:\D\subseteq\Mfd$ is a full, dense sub-site, then $\Shv(\D)$ is also hypercomplete. Moreover, the adjunction $(i_*,i^*):\Shv(\D)\to\Shv(\Mfd)$ is an equivalence.
+	$\Shv(\Mfd)$ is hypercomplete. If $i:\lD\subseteq\Mfd$ is a full, dense sub-site, then $\Shv(\lD)$ is also hypercomplete. Moreover, the adjunction $(i_*,i^*):\Shv(\lD)\to\Shv(\Mfd)$ is an equivalence.
 \end{theorem}
 \begin{proof}
 	Hypercompleteness of $\Shv(\Mfd)$ follows from \cref{thm:mfdenoughpoints}, since having enough points implies hypercompleteness, see \cite[Example 3.11.10]{barwick2020exodromy}. The second and third claims are a direct consequence of \cite[Corollary 3.12.13]{barwick2020exodromy} and the first claim. By \cite[Proposition 3.12.11]{barwick2020exodromy}, pre-sheves restriction $i^*$ preserves sheaves satisfying hyperdescent. 
-\end{proof}Recall that, given a presentable category $\E$, there is a canonical equivalence $\Shv(\C,\E)\simeq\Shv(\C)\otimes\E$. In particular, the following is a simple corollary of \cref{thm:mfdhypercomplete}:
+\end{proof}Recall that, given a presentable category $\lE$, there is a canonical equivalence $\Shv(\lC,\lE)\simeq\Shv(\lC)\otimes\lE$. In particular, the following is a simple corollary of \cref{thm:mfdhypercomplete}:
 \begin{corollary}\label{cor:equivalence}
-For every presentable category $\E$ and full, dense sub-site $\D\subseteq\Mfd$, the restriction functor $\Shv(\Mfd,\E)\to\Shv(\D,\E)$ is an equivalence. 	
+For every presentable category $\lE$ and full, dense sub-site $\lD\subseteq\Mfd$, the restriction functor $\Shv(\Mfd,\lE)\to\Shv(\lD,\lE)$ is an equivalence. 	
 \end{corollary}
 We will mainly focus on the following sub-site of $\Mfd$.
 \begin{definition}
 	Denote by $\Euc$ the full sub-category of $\Mfd$ generated by Euclidean manifolds, i.e. $\bR^n$, for every $n$. $\Euc\subseteq\Mfd$ is dense in the sense of \cref{def:dense}. 
 \end{definition}
-Related to the notion of hypercompleteness is the notion of \emph{Postnikov completeness}. A space $S$ is \emph{$n$-truncated}, $n\geq0$, if $\pi_i(S)\simeq0$, for all $i>n$. We say $S$ is \emph{$(-1)$-truncated} if $S$ if it's either empty or contractible. Denote by $\tau_{\leq n}\s\subseteq\s$ the full sub-category of $n$-truncated spaces. The inclusion functor admits a left adjoint $\tau_{\leq n}$, and so every space has a natural map $S\to\tau_{\leq n}S$. A classical result of algebraic geometry is that $S\simeq\lim_n\tau_{\leq n}S$. The notion of truncated object makes sense in a general $\infty$-category. 
+Related to the notion of hypercompleteness is the notion of \emph{Postnikov completeness}. A space $S$ is \emph{$n$-truncated}, $n\geq0$, if $\pi_i(S)\simeq0$, for all $i>n$. We say $S$ is \emph{$(-1)$-truncated} if $S$ if it's either empty or contractible. Denote by $\tau_{\leq n}\lS\subseteq\lS$ the full sub-category of $n$-truncated spaces. The inclusion functor admits a left adjoint $\tau_{\leq n}$, and so every space has a natural map $S\to\tau_{\leq n}S$. A classical result of algebraic geometry is that $S\simeq\lim_n\tau_{\leq n}S$. The notion of truncated object makes sense in a general $\infty$-category. 
 \begin{definition}[{\cite[Definition 5.5.6.1]{lurie2009htt}}]
-	Let $n\geq-1$, an object $C\in\C$ is $n$\emph{-truncated} if $\Hom_\C(D,C)$ is a $n$-truncated space, for every $D\in\C$. Denote by $\tau_{\leq n}\C$ the full sub-category of $n$-truncated objects. A morphism $f:C\to D$ \emph{exhibit $D$ as the $n$-truncation of $C$} if $D$ is $n$-truncated and the induced morphism $\tau_{\leq n}C\to D$ is an equivalence. 
+	Let $n\geq-1$, an object $C\in\lC$ is $n$\emph{-truncated} if $\Hom_\lC(D,C)$ is a $n$-truncated space, for every $D\in\lC$. Denote by $\tau_{\leq n}\lC$ the full sub-category of $n$-truncated objects. A morphism $f:C\to D$ \emph{exhibit $D$ as the $n$-truncation of $C$} if $D$ is $n$-truncated and the induced morphism $\tau_{\leq n}C\to D$ is an equivalence. 
 \end{definition}
-If $\C$ is a presentable $\infty$-category, $\tau_{\leq n}\C$ can be characterized as a class of local objects (see \cite[Proposition 5.5.6.18]{lurie2009htt}). In particular, the inclusion functor $\tau_{\leq n}\C\subseteq\C$ admits a left adjoint $\tau_{\leq n}:\C\to\tau_{\leq n}\C$. Given an object $C\in\C$, its truncations form a sequence 
+If $\lC$ is a presentable $\infty$-category, $\tau_{\leq n}\lC$ can be characterized as a class of local objects (see \cite[Proposition 5.5.6.18]{lurie2009htt}). In particular, the inclusion functor $\tau_{\leq n}\lC\subseteq\lC$ admits a left adjoint $\tau_{\leq n}:\lC\to\tau_{\leq n}\lC$. Given an object $C\in\lC$, its truncations form a sequence 
 \begin{equation}
 	\cdots\to\tau_{\leq2}C\to\tau_{\leq1}C\to\tau_{\leq0}C
 \end{equation}
 where $\tau_{\leq n+1}C\to\tau_{\leq n}C$ is the $(n+1)$-truncation of the map $C\to\tau_{\leq n}C$ together with the fact that $\tau_{\leq n+1}E\simeq E$ naturally, for every $n$-truncated $E$. Let $\bZ_{\geq0}$ be the partial order of natural numbers. 
 \begin{definition}[{\cite[Definition A.7.2.1]{lurie2018sag} and \cite[Definition 5.5.6.23]{lurie2009htt}}]
-	A \emph{Postnikov pre-tower} is a functor $X:\bZ_{\geq0}^{\op}\to\C$ such that $X_{n+1}\to X_n$ exhibits $X_n$ as the $n$-truncation of $X_{n+1}$, for every $n\geq0$. Denote by $\pos(\C)$ the category of Postnikov pre-towers, then there is a comparison functor $\tau:\C\to\pos(\C)$. We say $\C$ is \emph{Postnikov complete} if $\tau$ is an equivalence. 
-\end{definition}One can show that $\tau$ is left left adjoint to the limit functor $\lim:\Fun(\bZ_{\geq0}^\mathrm{op},\C)\to\C$ restricted to Postnikov pre-towers. In particular, if $\C$ is Postnikov complete, then $C\simeq\lim_n\tau_{\leq n}C$. Let $\X=\Shv(\C)$, for some site $\C$, and $\widehat{\X}=\widehat{\Shv(\C)}$, then $\tau_{\leq n}\X\subseteq\widehat{\X}$, for every $n$, see \cite[Lemma 6.5.2.9]{lurie2009htt}. In particular, if $\X$ is Postnikov complete, then every object $C$ is equivalent to the limit of its truncations, which implies $C$ is hypercomplete (Since $\widehat{\X}$ is a category of local objects in $\X$, it is closed under limits in $\X$).
+	A \emph{Postnikov pre-tower} is a functor $X:\bZ_{\geq0}^{\op}\to\lC$ such that $X_{n+1}\to X_n$ exhibits $X_n$ as the $n$-truncation of $X_{n+1}$, for every $n\geq0$. Denote by $\pos(\lC)$ the category of Postnikov pre-towers, then there is a comparison functor $\tau:\lC\to\pos(\lC)$. We say $\lC$ is \emph{Postnikov complete} if $\tau$ is an equivalence. 
+\end{definition}One can show that $\tau$ is left left adjoint to the limit functor $\lim:\Fun(\bZ_{\geq0}^\mathrm{op},\lC)\to\lC$ restricted to Postnikov pre-towers. In particular, if $\lC$ is Postnikov complete, then $C\simeq\lim_n\tau_{\leq n}C$. Let $\lX=\Shv(\lC)$, for some site $\lC$, and $\widehat{\lX}=\widehat{\Shv(\lC)}$, then $\tau_{\leq n}\lX\subseteq\widehat{\lX}$, for every $n$, see \cite[Lemma 6.5.2.9]{lurie2009htt}. In particular, if $\lX$ is Postnikov complete, then every object $C$ is equivalent to the limit of its truncations, which implies $C$ is hypercomplete (Since $\widehat{\lX}$ is a category of local objects in $\lX$, it is closed under limits in $\lX$).
 \begin{theorem}
-	If $\Shv(\C)$ is Postnikov complete, then it is hypercomplete. 
+	If $\Shv(\lC)$ is Postnikov complete, then it is hypercomplete. 
 \end{theorem} 
 
 

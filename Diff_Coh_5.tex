@@ -13,66 +13,86 @@
 
 \usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
 
+\newcommand{\lA}{\mathcal{A}}
 \newcommand{\bA}{\mathbb{A}}
-\newcommand{\C}{\mathscr{C}}
+\newcommand{\lB}{\mathcal{B}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\lC}{\mathcal{C}}
+\newcommand{\rC}{\mathscr{C}}
 \newcommand{\bC}{\mathbb{C}}
-\newcommand{\kC}{\mathfrak{C}}
-\newcommand{\D}{\mathscr{D}}
-\newcommand{\E}{\mathscr{E}}
+\newcommand{\lD}{\mathcal{D}}
 \newcommand{\bE}{\mathbb{E}}
-\newcommand{\F}{\mathscr{F}}
-\newcommand{\G}{\mathscr{G}}
-\newcommand{\sL}{\mathscr{L}}
+\newcommand{\lE}{\mathcal{E}}
+\newcommand{\lF}{\mathcal{F}}
+\newcommand{\lG}{\mathcal{G}}
+\newcommand{\lH}{\mathcal{H}}
+\newcommand{\mH}{\mathrm{H}}
+\newcommand{\lI}{\mathcal{I}}
+\newcommand{\lJ}{\mathcal{J}}
+\newcommand{\lK}{\mathcal{K}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\lM}{\mathcal{M}}
 \newcommand{\bN}{\mathbb{N}}
 \newcommand{\mN}{\mathrm{N}}
-\newcommand{\I}{\mathscr{I}}
+\newcommand{\lN}{\mathcal{N}}
+\newcommand{\fO}{\mathbf{O}}
 \newcommand{\rO}{\mathscr{O}}
-\newcommand{\s}{\mathscr{S}}
-\newcommand{\T}{\mathscr{T}}
+\newcommand{\lO}{\mathcal{O}}
+\newcommand{\lP}{\mathcal{P}}
+\newcommand{\bQ}{\mathbb{Q}}
 \newcommand{\bR}{\mathbb{R}}
+\newcommand{\lR}{\mathcal{R}}
+\newcommand{\lS}{\mathcal{S}}
 \newcommand{\bS}{\mathbb{S}}
+\newcommand{\lT}{\mathcal{T}}
+\newcommand{\lU}{\mathcal{U}}
+\newcommand{\lV}{\mathcal{V}}
+\newcommand{\lX}{\mathcal{X}}
+\newcommand{\lY}{\mathcal{Y}}
 \newcommand{\bZ}{\mathbb{Z}}
 
+\newcommand{\op}{\mathrm{op}} % opposite
+\newcommand{\Tmf}{\mathrm{Tmf}} % global sections of the structure sheaf of the compactified moduli stack of elliptic curves
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\Hom}{\lH\mathrm{om}} % enriched hom-spaces, hom-spectrum
+\renewcommand{\hom}{\mH\mathrm{om}} % hom-set, hom-space
+\newcommand{\Ho}{\mathrm{Ho}} % homotopy category
+\newcommand{\set}{\lS\mathrm{et}} % category of sets
+\newcommand{\Mon}{\lM\mathrm{on}} % category of monoid objects
+\newcommand{\CMon}{\lC\Mon} % category of commutative monoid objects
+\newcommand{\CGrp}{\lC\lG\mathrm{on}} % category of commutative group objects
+\newcommand{\Bdl}{\lB\mathrm{dl}} % bundles
+\newcommand{\Sp}{\lS\mathrm{p}} % category of spectra
+\newcommand{\Ch}{\lC\mathrm{h}} % category of chain complexes
+\newcommand{\cat}{\lC\mathrm{at}} % category of categories
+\newcommand{\scat}{\mathrm{s}\cat} % category of simplicial categories
+\newcommand{\sset}{\mathrm{s}\set} % category of simplicial sets
+\renewcommand{\Line}{\lL\mathrm{ine}} % category of lines
+\newcommand{\LineBdl}{\Line\Bdl} % category of line bundles
+\newcommand{\Fun}{\lF\mathrm{un}} % category of functors
+\newcommand{\Top}{\lT\op} % category of topological spaces 
+\newcommand{\Grpd}{\lG\mathrm{rpd}} % category of groupoids
+\newcommand{\Grp}{\lG\mathrm{rp}} % category of groups
+\newcommand{\Euc}{\lE\mathrm{uc}} % site of Euclidean manifolds
+\newcommand{\Mfd}{\lM\mathrm{fd}} % site of smooth manifolds
+\newcommand{\Kan}{\lK\mathrm{an}} % category of Kan complexes
+\newcommand{\Vect}{\lV\mathrm{ect}} % category of vector spaces
+\newcommand{\Mod}{\lM\mathrm{od}} % category of modules
+\newcommand{\Ab}{\lA\mathrm{b}} % category of abelian groups
+\newcommand{\Shv}{\lS\mathrm{hv}} % category of sheaves
+\newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
+\newcommand{\Pic}{\lP\mathrm{ic}} % Picard category
+\newcommand{\PT}{\lP\lT} % Pontryagin-Thom
+\newcommand{\Fred}{\lF\mathrm{red}} % Fredholm
+\newcommand{\fl}{\mathrm{fl}} % flat
+\newcommand{\GrbBdl}{\lG\mathrm{rb}\Bdl} % category of bundle gerbes
+\newcommand{\cl}{\mathrm{cl}} % closed forms
+\newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
+\newcommand{\Sing}{\mathrm{Sing}} % singular simplicial set
+\newcommand{\hi}{\mathrm{hi}} % homotopy invariant
 
-\newcommand{\Hom}{\mathrm{Hom}}
-\newcommand{\Map}{\mathrm{Map}}
-\newcommand{\Ho}{\mathrm{Ho}}
-\newcommand{\set}{\mathscr{S}\mathrm{et}}
-\newcommand{\Sp}{\mathscr{S}\mathrm{p}}
-\newcommand{\Ch}{\mathrm{Ch}}
-\newcommand{\cCh}{\mathrm{cCh}}
-\newcommand{\cat}{\mathscr{C}\mathrm{at}}
-\newcommand{\scat}{s\mathscr{C}\mathrm{at}}
-\newcommand{\sset}{s\mathscr{S}\mathrm{et}}
-\newcommand{\Fun}{\mathrm{Fun}}
-\newcommand{\Nat}{\mathrm{Nat}}
-\newcommand{\colim}{\mathrm{colim}}
-\newcommand{\Top}{\mathscr{T}\mathrm{op}}
-\newcommand{\Grp}{\mathscr{G}\mathrm{rp}}
-\newcommand{\Euc}{\mathscr{E}\mathrm{uc}}
-\newcommand{\Mfd}{\mathscr{M}\mathrm{fd}}
-\newcommand{\Kan}{\mathscr{K}\mathrm{an}}
-\newcommand{\Mod}{\mathrm{Mod}}
-\newcommand{\Ab}{\mathscr{A}\mathrm{b}}
-\newcommand{\Shv}{\mathscr{S}\mathrm{hv}}
-\newcommand{\Yon}{\mathscr{Y}\mathrm{on}}
-\newcommand{\Open}{\mathscr{O}\mathrm{pen}}
-\newcommand{\PSh}{\mathscr{P}\mathscr{S}\mathrm{h}}
-\newcommand{\dg}{\mathrm{dg}}
-\newcommand{\Sing}{\mathrm{Sing}}
-\newcommand{\const}{\mathrm{L}}
-\newcommand{\dr}{\mathrm{dR}}
-\newcommand{\tot}{\mathrm{tot}}
-\newcommand{\Def}{\mathrm{Def}}
-\newcommand{\Cyc}{\mathrm{Cyc}}
-\newcommand{\hi}{\mathrm{hi}}
 
-\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
-\newcommand{\textbbe}[1]{{\bbefamily #1}}
-\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
-
-\def\DDelta{{\mathbbe{\Delta}}}
-\newcommand{\DD}{\DDelta}
+\DeclareMathOperator*\colim{colim} % colimit
 
 \newcommand{\adjun}[4]{
 \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
@@ -150,12 +170,12 @@ We saw that the theoretical framework is fundamentally that of presentable $\inf
 As it primarily a background, for what follows we will take it for granted, and refer to the relevant sources.
 
 \section{Relation to other approaches}
-A lot of historical development of differential cohomology theories has focused on constructing them via specific data, and concretely the input often consists of an ordinary cohomology theory and some geometric data. This perspective is completely absent in the definition we just gave, so how can we reconcile them? This is the central theme of the \emph{fracture square}. This already came up so let us quickly summarize. Let $\C$ be a presentable $\infty$-category. 
+A lot of historical development of differential cohomology theories has focused on constructing them via specific data, and concretely the input often consists of an ordinary cohomology theory and some geometric data. This perspective is completely absent in the definition we just gave, so how can we reconcile them? This is the central theme of the \emph{fracture square}. This already came up so let us quickly summarize. Let $\lC$ be a presentable $\infty$-category. 
 
 \begin{definition}
-  A pre-sheaf $F$ is called \emph{$\mathbb{R}$-invariant} if, for any manifold $M$, the projection $M\times\bR\to M$ induces an equivalence $F(M)\to F(M\times\bR)$. Denote by $\PSh_{\bR}(\Mfd,\C)$ the full sub-category of $\bR$-invariant pre-sheaves, and $\Shv_\bR(\Mfd,\C)$ the full sub-category of $\bR$-invariant sheaves. 
+  A pre-sheaf $F$ is called \emph{$\mathbb{R}$-invariant} if, for any manifold $M$, the projection $M\times\bR\to M$ induces an equivalence $F(M)\to F(M\times\bR)$. Denote by $\lP_{\bR}(\Mfd,\lC)$ the full sub-category of $\bR$-invariant pre-sheaves, and $\Shv_\bR(\Mfd,\lC)$ the full sub-category of $\bR$-invariant sheaves. 
 \end{definition}
-Recall from \cite{berkenhagen2025diffcoh3} that the restriction $\Shv(\Mfd,\C)\to\Shv(\Euc,\C)$. 
+Recall from \cite{berkenhagen2025diffcoh3} that the restriction $\Shv(\Mfd,\lC)\to\Shv(\Euc,\lC)$. 
 \begin{lemma}\label{lem:inv}
   A sheaf $F$ is $\bR$-invariant if and only if every smooth map $\bR^n\to\bR^m$ induces an equivalence $F(\bR^m)\to F(\bR^n)$. 
 \end{lemma}
@@ -167,18 +187,18 @@ Recall from \cite{berkenhagen2025diffcoh3} that the restriction $\Shv(\Mfd,\C)\t
     \end{tikzcd}
   \end{equation}implying $f^*$ is an equivalence. 
 
-  On the other hand, let $F$ be a sheaf such that, for every smooth map $f$ of Euclidean manifolds, $f^*$ is an equivalence. Let $M$ be a smooth manifold and $\rO$ a differentiably good open cover (see \cite[Theorem 5.4]{nanto2025diffcoh4}), then $\{U\times\bR|U\in\rO\}$ is a differentiably good open cover of $M\times\bR$ and there is a commutative square \begin{equation}
+  On the other hand, let $F$ be a sheaf such that, for every smooth map $f$ of Euclidean manifolds, $f^*$ is an equivalence. Let $M$ be a smooth manifold and $\lO$ a differentiably good open cover (see \cite[Theorem 5.4]{nanto2025diffcoh4}), then $\{U\times\bR|U\in\lO\}$ is a differentiably good open cover of $M\times\bR$ and there is a commutative square \begin{equation}
     \begin{tikzcd}
-      F(M) \arrow[r,"\simeq"] \arrow[d] & \lim_{U\in\I(\rO)}F(U) \arrow[d,"\simeq"] \\
-      F(M\times\bR) \arrow[r,"\simeq"] & \lim_{U\in\I(\rO)} F(U\times\bR) 
+      F(M) \arrow[r,"\simeq"] \arrow[d] & \lim_{U\in\lI(\lO)}F(U) \arrow[d,"\simeq"] \\
+      F(M\times\bR) \arrow[r,"\simeq"] & \lim_{U\in\lI(\lO)} F(U\times\bR) 
     \end{tikzcd}
   \end{equation}The horizontal maps are equivalences by the sheaf condition, while the right-vertical map is an equivalence because $U\times\bR\to U$ is a smooth map of Euclidean manifolds, we then conclude that $F(M)\to F(M\times\bR)$ is an equivalence. 
 \end{proof}
-Recall from \cite{nanto2025diffcoh4} that the left adjoint $\flat:\C\to\Shv(\Mfd,\C)$ to the global section functor $\Gamma$ has the following description: Given an object $C\in\C$, $\flat C$ maps $M$ to $C^{\Sing M}$, where $\Sing M$ denotes the (smooth) singular simplicial set of $M$.
+Recall from \cite{nanto2025diffcoh4} that the left adjoint $\flat:\lC\to\Shv(\Mfd,\lC)$ to the global section functor $\Gamma$ has the following description: Given an object $C\in\lC$, $\flat C$ maps $M$ to $C^{\Sing M}$, where $\Sing M$ denotes the (smooth) singular simplicial set of $M$.
 \begin{corollary}\label{cor:equiv}
-  The functor $\flat:\C\to\Shv(\Mfd,\C)$ factors through $\Shv_\bR(\Mfd,\C)$. The adjunction \begin{equation}
+  The functor $\flat:\lC\to\Shv(\Mfd,\lC)$ factors through $\Shv_\bR(\Mfd,\lC)$. The adjunction \begin{equation}
     \begin{tikzcd}
-      \C \arrow[rr,shift right,"\flat"'] & & \Shv_\bR(\Mfd,\C) \arrow[ll,shift right,"\Gamma"']
+      \lC \arrow[rr,shift right,"\flat"'] & & \Shv_\bR(\Mfd,\lC) \arrow[ll,shift right,"\Gamma"']
     \end{tikzcd}
   \end{equation}is an equivalence. 
 \end{corollary}
@@ -191,40 +211,40 @@ Recall from \cite{nanto2025diffcoh4} that the left adjoint $\flat:\C\to\Shv(\Mfd
   There is a 3-terms adjunction 
   \begin{equation}\label{eq:adjunction}
     \begin{tikzcd}
-      \Shv(\Mfd,\C) \arrow[rr,shift left=2.5,"\Pi_\infty"] \arrow[rr,shift right=2.5,"\Gamma"'] & & \C \arrow[ll,hook,"\flat" description]
+      \Shv(\Mfd,\lC) \arrow[rr,shift left=2.5,"\Pi_\infty"] \arrow[rr,shift right=2.5,"\Gamma"'] & & \lC \arrow[ll,hook,"\flat" description]
     \end{tikzcd}
   \end{equation}
   where $\Gamma$ is the global sections function, i.e. evaluation at $\bR^0$, $\flat$ is the locally constant sheaf functor, $\Pi_\infty$ is in the proof below. There is an induced 3-terms adjunction \begin{equation}
     \begin{tikzcd}
-      \Shv(\Mfd,\C) \arrow[rr,shift left=2.5,"L_\hi"] \arrow[rr,shift right=2.5,"R_\hi"'] & & \Shv_\bR(\Mfd,\C) \arrow[ll,hook]
+      \Shv(\Mfd,\lC) \arrow[rr,shift left=2.5,"L_\hi"] \arrow[rr,shift right=2.5,"R_\hi"'] & & \Shv_\bR(\Mfd,\lC) \arrow[ll,hook]
     \end{tikzcd}
   \end{equation}where $L_\hi(F)$, resp. $R_\hi(F)$, is the locally constant sheaf associated to $\Pi_\infty(F)$, resp. $\Gamma(F)=F(\bR^0)$. 
 \end{theorem}
 \begin{proof}
-  Since the composition $\C\xrightarrow{\flat}\Shv(\Mfd,\C)\to\Shv(\Euc,\C)$ is the constant functor, it has as left adjoint the colimit functor $\Shv(\Euc,\C)\to\C$. Define $\Gamma_\sharp$ as the pre-composition of the colimit functor with $-|_{\Euc}$. The induced adjunction comes from composing the adjunction in \cref{eq:adjunction} with the adjoint equivalence \begin{equation}
+  Since the composition $\lC\xrightarrow{\flat}\Shv(\Mfd,\lC)\to\Shv(\Euc,\lC)$ is the constant functor, it has as left adjoint the colimit functor $\Shv(\Euc,\lC)\to\lC$. Define $\Gamma_\sharp$ as the pre-composition of the colimit functor with $-|_{\Euc}$. The induced adjunction comes from composing the adjunction in \cref{eq:adjunction} with the adjoint equivalence \begin{equation}
     \begin{tikzcd}
-      \C \arrow[rr,shift left=2.5,"\flat"] \arrow[rr,shift right=2.5,"\flat"'] & & \Shv_\bR(\Mfd,\C) \arrow[ll,"\Gamma" description]
+      \lC \arrow[rr,shift left=2.5,"\flat"] \arrow[rr,shift right=2.5,"\flat"'] & & \Shv_\bR(\Mfd,\lC) \arrow[ll,"\Gamma" description]
     \end{tikzcd}
   \end{equation}
 \end{proof}
 \begin{remark}
-  In particular, $\Shv_\bR(\Mfd,\C)$ is both a reflective and coreflective sub-category of $\Shv(\Mfd,\C)$. Reflectivity could also be deduced from the definition of $\bR$-invariant sheaves as local objects with respect to the class of projections $M\times\bR\to M$. 
+  In particular, $\Shv_\bR(\Mfd,\lC)$ is both a reflective and coreflective sub-category of $\Shv(\Mfd,\lC)$. Reflectivity could also be deduced from the definition of $\bR$-invariant sheaves as local objects with respect to the class of projections $M\times\bR\to M$. 
 \end{remark}
 \begin{definition}
-  Let $\C$ be a category, $\D\subseteq\C$ a full sub-category. An object $C$ is \emph{right orthogonal to $\D$} if $\Hom_\C(D,C)$ is contractible, for every $D\in\D$. Denote by $\D^\perp$ the full sub-category of objects right orthogonal to $\D$. 
+  Let $\lC$ be a category, $\lD\subseteq\lC$ a full sub-category. An object $C$ is \emph{right orthogonal to $\lD$} if $\hom_\lC(D,C)$ is contractible, for every $D\in\lD$. Denote by $\lD^\perp$ the full sub-category of objects right orthogonal to $\lD$. 
 \end{definition}
 \begin{definition}
-  A right orthogonal sheaf to $\Shv_\bR(\Mfd,\C)$ is called \emph{pure}.
+  A right orthogonal sheaf to $\Shv_\bR(\Mfd,\lC)$ is called \emph{pure}.
 \end{definition}
 \begin{lemma}
   $F$ is pure if and only if $\Gamma(F)$ is terminal. 
 \end{lemma}
 \begin{proof}
-  By \cref{cor:equiv}, every $\bR$-invariant sheaf is of the form $\flat C$, therefore $F$ is pure if and only if $\Hom_{\Shv(\Mfd,\C)}(\flat C,F)\simeq\Hom_{\C}(C,\Gamma(F))$ is contractible, for all $C$, which is equivalent to $\Gamma(F)$ being terminal. 
+  By \cref{cor:equiv}, every $\bR$-invariant sheaf is of the form $\flat C$, therefore $F$ is pure if and only if the space $\hom_{\Shv(\Mfd,\lC)}(\flat C,F)\simeq\hom_{\lC}(C,\Gamma(F))$ is contractible, for all $C$, which is equivalent to $\Gamma(F)$ being terminal. 
 \end{proof}
 %---------------TO BE CONTINUED------------------
 \begin{definition}
-  Given a sheaf $F$, denote by $\Def(F)$ the fiber of the unit $F\to L_\hi(F)$. 
+  Given a sheaf $F$, denote by $\mathrm{Def}(F)$ the fiber of the unit $F\to L_\hi(F)$. 
 \end{definition}
   
 \begin{definition}
@@ -237,13 +257,13 @@ Similarly, the category of pure sheaves is closed under limits and colimits, so 
  There is a diagram of adjunctions
  \[
  \begin{tikzcd}[column sep=2cm]
- \Shv_{\mathrm{pure}}(\Mfd) \arrow[r, shift left = 2, "\Def", hookrightarrow] \arrow[r, leftarrow, "\Cyc" description] \arrow[r, shift right = 2, hookrightarrow] & \Shv(\Mfd)
+ \Shv_{\mathrm{pure}}(\Mfd) \arrow[r, shift left = 2, "\mathrm{Def}", hookrightarrow] \arrow[r, leftarrow, "\mathrm{Cyc}" description] \arrow[r, shift right = 2, hookrightarrow] & \Shv(\Mfd)
  \end{tikzcd}
  \]
 \end{theorem}
 
 \begin{remark}
-  The notational choice is not coincidental. The left adjoint to $\Cyc$ is precisely the functor $\Def$, where the domain is restricted to pure sheaves.
+  The notational choice is not coincidental. The left adjoint to $\mathrm{Cyc}$ is precisely the functor $\mathrm{Def}$, where the domain is restricted to pure sheaves.
 \end{remark}
 
 Notice we obviously have the following result.
@@ -261,8 +281,8 @@ Notice in both adjunction diagrams there is one fully faithful functor that is n
  Let $E$ be a differential cohomology theory. Then the following is a pullback square
  \[
   \begin{tikzcd}
-    E \arrow[r] \arrow[d] & \Cyc E \arrow[d] \\ 
-    L_{hi}E \arrow[r] & L_{hi}\Cyc E
+    E \arrow[r] \arrow[d] & \mathrm{Cyc} E \arrow[d] \\ 
+    L_{hi}E \arrow[r] & L_{hi}\mathrm{Cyc} E
   \end{tikzcd}
  \]
 \end{theorem}
@@ -270,9 +290,9 @@ Notice in both adjunction diagrams there is one fully faithful functor that is n
 In fact we can further expand this pullback square to several other pullback squares:
  \[
   \begin{tikzcd}
-    \Sigma^{-1}L_{hi}\Cyc E \arrow[d] \arrow[r] & R_{hi}E \arrow[r] \arrow[d] & 0 \arrow[d] \\ 
-    \Def E \arrow[r] \arrow[d] & E \arrow[r] \arrow[d] & \Cyc E \arrow[d] \\ 
-    0 \arrow[r] & L_{hi}E \arrow[r] & L_{hi}\Cyc E
+    \Sigma^{-1}L_{hi}\mathrm{Cyc} E \arrow[d] \arrow[r] & R_{hi}E \arrow[r] \arrow[d] & 0 \arrow[d] \\ 
+    \mathrm{Def} E \arrow[r] \arrow[d] & E \arrow[r] \arrow[d] & \mathrm{Cyc} E \arrow[d] \\ 
+    0 \arrow[r] & L_{hi}E \arrow[r] & L_{hi}\mathrm{Cyc} E
   \end{tikzcd}
  \]
 
@@ -280,8 +300,8 @@ We can restructure this diagram to more resemble the fracture square, which is t
 \[
 \begin{tikzcd}
  & R_{hi}(E) \arrow[dr] \arrow[rr] & & L_{hi}(E) \arrow[dr] & \\
- \Sigma^{-1}L_{hi}\Cyc E \arrow[ur] \arrow[dr ]& & E \arrow[ur] \arrow[dr] & & L_{hi}\Cyc E \\
-  & \Def(E) \arrow[ur] \arrow[rr] & & \Cyc E \arrow[ur] & 
+ \Sigma^{-1}L_{hi}\mathrm{Cyc} E \arrow[ur] \arrow[dr ]& & E \arrow[ur] \arrow[dr] & & L_{hi}\mathrm{Cyc} E \\
+  & \mathrm{Def}(E) \arrow[ur] \arrow[rr] & & \mathrm{Cyc} E \arrow[ur] & 
 \end{tikzcd}
 \]
 
@@ -414,22 +434,22 @@ The essential step in the proof is the following very technical result.
 \begin{proposition}
   Assume we have the following data and assumptions:
   \begin{enumerate}
-    \item A Grothendieck site $(\C,J)$, such that $\C$ has a terminal object.
-    \item A stable $\infty$-category $\T$.
-    \item The inclusion functor $\Delta\colon \T \to \Shv_\T(\C,J)$ is fully faithful and admits a left adjoint $L_{const}$. 
+    \item A Grothendieck site $(\lC,J)$, such that $\lC$ has a terminal object.
+    \item A stable $\infty$-category $\lT$.
+    \item The inclusion functor $\Delta\colon \lT \to \Shv_\lT(\lC,J)$ is fully faithful and admits a left adjoint $L_{const}$. 
   \end{enumerate}
   Then the following holds:
   \begin{enumerate}
     % \item $\Delta$ admits a right adjoint $R_{const}$, given by evaluation at the terminal object.
-    \item The full subcategory of $\Shv_\T(\C,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\T(\C,J) \to \Shv_\T(\C,J)^\bot$.
-    \item For every sheaf $P$ in $\Shv_\T(\C,J)$, there is a pullback square
+    \item The full subcategory of $\Shv_\lT(\lC,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\lT(\lC,J) \to \Shv_\lT(\lC,J)^\bot$.
+    \item For every sheaf $P$ in $\Shv_\lT(\lC,J)$, there is a pullback square
     \[
     \begin{tikzcd}
       P \arrow[r] \arrow[d] & L^{\bot}P \arrow[d] \\
       L_{const}P \arrow[r] & L_{const}L^{\bot}P
     \end{tikzcd},
     \]
-    inside $\Shv_\T(\C,J)$, where the inclusions are left implicit.
+    inside $\Shv_\lT(\lC,J)$, where the inclusions are left implicit.
   \end{enumerate} 
 \end{proposition}
 
