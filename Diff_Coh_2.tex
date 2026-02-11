@@ -151,27 +151,10 @@ $(\infty,1)$-categories have different models that capture its essence. The firs
   Given $0\leq i\leq n$, the \emph{$i$-face map} is the unique injective map $\delta^i_n:\langle n-1\rangle\to\langle n\rangle$ missing $i$. The \emph{$i$-degeneracy map} is the unique surjective map $\sigma^i_n:\langle n+1\rangle\to\langle n\rangle$ such that $i$ and $i+1$ have the same image. 
 \end{definition}
 \begin{theorem}
-  As a category, $\BDelta$ is generated from the face and degeneracy maps subject to the \emph{simplicial identities}, i.e. 
-  \begin{equation}
-    \delta_{n+1}^i\delta_n^j=\delta_{n+1}^{j+1}\delta_n^i,\qquad i\leq j
-  \end{equation}
-  \begin{equation}
-    \sigma_{n-1}^j\sigma_n^i=\sigma_{n-1}^i\sigma_{n}^{j+1},
-    \qquad i\leq j
-  \end{equation}
-  \begin{equation}
-    \sigma_{n}^j\delta_{n+1}^i=\left\{\begin{array}{ll}
-      \delta_{n}^i\sigma_{n-1}^{j-1}, & i<j \\ 
-      1, & i=j\\ 
-      \delta_n^{i-1}\sigma_{n-1}^j, & i>j
-    \end{array}\right.
-  \end{equation}
+  As a category, $\BDelta$ is generated from the face and degeneracy maps subject to the \emph{simplicial identities} (see \cite[I.4]{goerssjardine1999simplicialhomotopytheory}). 
 \end{theorem}
-\begin{proof}
-  Omitted.
-\end{proof}
 \begin{definition}
-  A \emph{simplicial set} is a contravariant functor $X:\BDelta^{\op} \to \set$. Denote by $\sset$ the category of simplicial sets. $X_n:=X(\langle n\rangle)$ is the set of \emph{$n$-simplices}. 
+  A \emph{simplicial set} is a contravariant functor $X:\BDelta^{\op} \to \set$. Denote by $\sset$ the category of simplicial sets. The representable simplicial set $\hom_{\BDelta}(-,\langle n\rangle)$ is denoted as $\Delta^n$. The set of \emph{$n$-simplices}, denoted by $X_n$, is the image of $\langle n\rangle$. By Yoneda lemma, we identify a $n$-simplex with the corresponding map of simplicial sets $\Delta^n\to X$. Let $d^n_i:X_{n}\to X_{n-1}$ be the map of sets induced by the $i$-face map $\delta^i_n$, which we also call \emph{$i$-face map}.
 \end{definition}
 By only representing the face maps, we can depict a simplicial set as follows: 
 \begin{equation}
@@ -181,57 +164,70 @@ By only representing the face maps, we can depict a simplicial set as follows:
 \end{equation}
 $\infty$-categories are then defined in terms of a lifting condition, for which we need to define horns.
 \begin{definition}
-  Let $\Delta^n$ denote the representable functor associated to $\langle n\rangle$. The face map $\delta^i_n$ induces a map of simplicial sets $d^i_n:\Delta^{n-1}\to\Delta^n$. The image of $d^i_n$ is called the \emph{$i$-face}. The \emph{$i$-horn} $\Lambda^{i,n}$ is the union of all faces, except the $i$-face. 
+  Given $i\in\langle n\rangle$, the $i$-horn is the simplicial sub-set $\Lambda^n_i\subseteq\Delta^n$ defined as follows: A monotone map $f:\langle k\rangle\to\langle n\rangle$ is a $k$-simplex of $\Lambda^n_i$ if there is $j\neq i$ that does not belong in the image of $f$. 
+\end{definition}
+\begin{definition}A simplicial set $X$ is called a \emph{quasi-category} if every inner horn $\Lambda^n_i\to X$, i.e. $0<i<n$, can be extended to a $n$-simplex $\Delta^n\to X$. If every horn $\Lambda^n_i\to X$ admits an extension, $X$ is called a \emph{$\infty$-groupoid}. 
 \end{definition}
 \begin{remark}
-  Another characterization of $\Lambda^{i,n}$ is the following: A $t$-simplex $f:\langle t\rangle\to\langle n\rangle$ is a $t$-simplex for $\Lambda^{i,n}$ if and only if there is $j\neq i$ not in the image of $f$.
-\end{remark}
-\begin{definition}A simplicial set $X$ is called a \emph{Kan complex} if for every solid diagram like the following \begin{equation}
-  \begin{tikzcd}
-    \Lambda^{i,n} \arrow[d]\arrow[r] & X \\
-    \Delta^n \arrow[ru,dashed]
-  \end{tikzcd}
-\end{equation}
-there is a dashed arrow rendering the diagram commutative. If a dashed arrow exists only for diagrams with $i\neq0,n$, we call $X$ a \emph{quasi-category}.
-\end{definition}
-\begin{example}
-  Let $\lC$ be a category. The \emph{nerve of $\lC$}, denoted $\mN\lC$, is the simplicial set with functors $\langle n\rangle\to\lC$ as $n$-simplices. This defines a functor $\mN:\cat \to \sset$.
-\end{example}
-\begin{proposition}\label{prop:nerve}
-  $\mN\lC$ is a quasi-category, it is a Kan complex if and only if $\lC$ is a groupoid. 
-\end{proposition}
-\begin{proof}
-Straightforward combinatorics. 
-\end{proof}
-\begin{remark}
-  The nerve is a special case of the following construction: Let $\lC$ be a category, $\Gamma:\BDelta\to\lC$ a cosimplicial object, then define $\mN_\Gamma$ as the composition \begin{equation}
-    \begin{tikzcd}
-      \lC \arrow[r] & \Fun(\lC^{\op},\set) \arrow[r] & \sset
-    \end{tikzcd}
-  \end{equation}where the first functor is Yoneda, while the second is pre-composition with $\Gamma^\op$. In the case of the nerve, $\Gamma$ is the functor sending $\langle n\rangle$ to the linerly ordered set viewed as a category. On the other hand, assuming $\lC$ is cocomplete, we can left Kan extend $\Gamma$ along the Yoneda functor $\BDelta\to\sset$, we denote by $\Ho_\Gamma$ the resulting functor $\sset\to\lC$. 
-\end{remark}
-\begin{proposition}
-  The pair $(\Ho_\Gamma,\mN_\Gamma):\lC\to\sset$ is an adjoint pair. In the case of $\mN:\cat\to\sset$, the functor is fully faithful. 
-\end{proposition}
-\begin{proof}
-  Abstract nonsense about left Kan extensions. Full faithfulness can be checked directly.  
-\end{proof}
-\begin{remark}
-  $\Ho:\sset\to\cat$ is called the \emph{homotopy category} functor. If $X$ is a quasi-category, $\Ho(X)$ is equivalent to the category with $X_0$ as set of objects and homotopy classes of 1-simplices as morphism, see \cite[1.2.5]{land2021introduction}. 
-\end{remark}
-\begin{remark}
-  Denote by $\scat$ the category of simplicially enriched categories. In \cite[1.1.5.1]{lurie2009htt}, Lurie constructs a cosimplicial object $\BDelta\to\scat$. The resulting nerve functor $\mN_\Delta:\scat\to\sset$ is called \emph{homotopy coherent nerve}. If $\lC$ is a category enriched over Kan complexes, then $\mN_\Delta\lC$ is a quasi-category. The left adjoint to $\mN_\Delta$ is denoted $\kC$, and called \emph{rigidification} in \cite{duggerspivak2011rigidification}. 
-\end{remark}
-\begin{remark}
-  $\sset$ underlies two model structures with the same cofibrations, but different acyclic cofibrations. In both model structures, monomorphisms are the cofibrations. In the \emph{Quillen model structure}, the fibrant-cofibrant objects are Kan complexes. On $\Top$ there is a similar model structure, lifting the singular simplicial set and geometric realization functors to a Quillen equivalence. In the \emph{Joyal model structure}, the fibrant-cofibrant objects are quasi-categories. On $\scat$ there is the \emph{Dwyer-Kan model structure}, lifting the homotopy coherent nerve and rigidification functors to a Quillen equivalence.
-\end{remark}
-\begin{remark}
-  We shall refer to quasi-categories as \emph{$\infty$-categories}, or simply as \emph{categories}. Similarly, we shall refer to Kan complexes as \emph{$\infty$-groupoids}, \emph{groupoids}, or simply as \emph{spaces}.  
-\end{remark}
-Denote by $\Kan$ the simplicially enriched category of Kan complexes. One can show that $\Kan$ is self-enriched, which motivates, together with \cref{prop:nerve}, the following definition: 
+  The nerve of a category $\lC$ is a quasi-category (one can simply check the horn filling condition directly). Moreover, the nerve is a $\infty$-groupoid if and only if $\lC$ is a groupoid. The nerve functor $\mN:\cat\to\sset$ has a left adjoint, the  \emph{homotopy category} functor $\Ho$. If $X$ is a quasi-category, $\Ho(X)$ has an explicit construction where objects are the 0-simplices of $X$ and morphisms are homotopy classes of 1-simplices, see \cite[1.2.5]{land2021introduction} and \cite[Proposition 1.15]{groth2010inftycats}.
+\end{remark} 
 \begin{definition}
-  $\lS:=\mN_\Delta(\Kan)$ is called the \emph{$\infty$-category of spaces}. 
+  Let $X$ be a quasi-category, a 1-simplex $f:x\to y$ is an \emph{equivalence} if there are 2-simplices of the following form: 
+  \begin{equation}
+    \begin{tikzcd}
+      & x \arrow[dr,"f"] \arrow[d,Rightarrow] & \\
+      y \arrow[ru] \arrow[rr,no head,double line] & {} & y
+    \end{tikzcd}\qquad \begin{tikzcd}
+      & y \arrow[dr] \arrow[d,Rightarrow] & \\
+      x \arrow[ru,"f"] \arrow[rr,no head,double line] & {} & x
+    \end{tikzcd}
+  \end{equation}where the bottom 1-simplices are the image of $y$ and $x$, respectively, under the function $X_0\to X_1$ induced by $\sigma^0_0$. 
 \end{definition}
+The following theorem shows that Kan complex have the same relation with quasi-categories, as groupoids have with categories. 
+\begin{theorem}
+  A quasi-category $X$ is a $\infty$-groupoid if and only if every 1-simplex is an equivalence. 
+\end{theorem}
+\begin{remark}
+  \cite{groth2010inftycats} approaches $\infty$-groupoids in the other direction, namely defining a $\infty$-groupoid as a quasi-category where every 1-simplex is an equivalence, then characterizing $\infty$-groupoids as quasi-categories satisfying the horn filling condition for every horn. 
+\end{remark}
+A strict model for $\infty$-categories is given by simplicially enriched categories. 
+\begin{definition}
+  Denote by $\scat$ the category of simplicially enriched categories. 
+\end{definition}
+\begin{remark}
+  Lurie constructs in \cite[1.1.5.1]{lurie2009htt} a functor $\mN_\Delta:\scat\to\sset$, called the \emph{homotopy coherent nerve}. Similarly to the ordinary nerve, it admits a left adjoint, denoted $\kC$ and called \emph{rigidification}, see \cite{duggerspivak2011rigidification}. 
+\end{remark}
+\begin{theorem}
+  $\sset$ and $\scat$ underlie model structures, called \emph{Joyal} and \emph{Dwyer-Kan-Bergner}, respectively, such that fibrant-cofibrant objects are quasi-categories and categories enriched over $\infty$-groupoids, respectively, and the adjunction \begin{equation}
+    \begin{tikzcd}
+      \scat \arrow[r,shift left,"\mN_\Delta"] & \sset \arrow[l,shift left,"\kC"] 
+    \end{tikzcd}
+  \end{equation}lifts to a Quillen equivalence. 
+\end{theorem}
+\begin{definition}
+  The category $\Kan$ of $\infty$-groupoids is a self-enriched category, so $\lS:=\mN_\Delta(\Kan)$ is a quasi-category, namely the \emph{quasi-category of $\infty$-groupoids}.
+\end{definition}
+Let $\Top$ be the category of compactly generated topological spaces.
+\begin{theorem}\label{thm:quillen}
+  $\sset$ and $\Top$ underlie model structures, both called \emph{Quillen}, such that fibrant-cofibrant are $\infty$-groupoids and retracts of cellular complexes, respectively, and the adjunction \begin{equation}
+    \begin{tikzcd}
+      \Top \arrow[r,shift left,"\Sing"] & \sset \arrow[l,shift left] 
+    \end{tikzcd}
+  \end{equation}lifts to a Quillen equivalence. 
+\end{theorem}
+
+\section{Basic constructions}
+
+\begin{remark}
+  Recall that $\sset$ is self-enriched. More specifically, given simplicial sets $X,Y$, the simplicial set $\hom_{\sset}(X,Y)$ is characterized as follows: A $n$-simplex is a map of simplicial sets $\Delta^n\times X\to Y$.
+\end{remark}
+\begin{lemma}
+  If $X$ is a simplicial set and $\lC$ a $\infty$-category, then $\hom_{\sset}(X,\lC)$ is a $\infty$-category. 
+\end{lemma}
+\begin{definition}
+  Let $\lC$ and $\lD$ be $\infty$-categories, denote by $\Fun(\lC,\lD)$ the \emph{$\infty$-category of functors $\lC\to\lD$}.  
+\end{definition}
+\nrnote{Definition of opposite $\infty$-category, slice $\infty$-category}
 
 \section{Accessible and Presentable Categories}
 
@@ -251,14 +247,6 @@ In general, a limit, resp. colimit, preserving functor need not have a left, res
 \begin{theorem}
   Let $\lC,\lD$ be locally presentable categories. A functor $F\colon \lC \to \lD$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
 \end{theorem}
-We now generalize this to $\infty$-categories.
-\begin{definition}
-  Given a simplicial set $X$, denote by $X^\op$ the simplicial set obtained by reversing the structure maps: $X^\op_n=X_n$, for all $n$, and \[\begin{array}{c}
-    (d_i:X^\op_n\to X^\op_{n-1})=(d_{n-i}:X_n\to X_{n-1})\\
-    (s_i:X^{\op}_n\to X^\op_{n+1})=(s_{n-i}:X_n\to X_{n+1})
-\end{array}\]
-\end{definition}
-If $X$ is a $\infty$-category, so is $X^\op$. 
 \begin{definition}
   Let $X$ be a $\infty$-category. The \emph{$\infty$-category of pre-sheaves of spaces} is defined as $\lP(X):=\hom_{\sset}(X^{\op},\lS)$.
 \end{definition}
