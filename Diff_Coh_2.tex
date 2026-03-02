@@ -16,7 +16,6 @@
 \newcommand{\lA}{\mathcal{A}}
 \newcommand{\bA}{\mathbb{A}}
 \newcommand{\lB}{\mathcal{B}}
-\newcommand{\kC}{\mathfrak{C}}
 \newcommand{\lC}{\mathcal{C}}
 \newcommand{\rC}{\mathscr{C}}
 \newcommand{\bC}{\mathbb{C}}
@@ -41,6 +40,7 @@
 \newcommand{\lP}{\mathcal{P}}
 \newcommand{\bQ}{\mathbb{Q}}
 \newcommand{\bR}{\mathbb{R}}
+\newcommand{\mR}{\mathrm{R}}
 \newcommand{\lR}{\mathcal{R}}
 \newcommand{\lS}{\mathcal{S}}
 \newcommand{\bS}{\mathbb{S}}
@@ -71,6 +71,7 @@
 \newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
 \newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
 \newcommand{\Sing}{\mathrm{Sing}} % singular simplicial set 
+\newcommand{\Path}{\mathrm{Path}} % path 
 
 
 \DeclareMathOperator*\colim{colim} % colimit
@@ -143,91 +144,176 @@ In this lecture we want to learn the basics of $\infty$-category theory. For the
 
 \section{Basics on \texorpdfstring{$(\infty,1)$}{(oo,1)}-categories}
 
-$(\infty,1)$-categories have different models that capture its essence. The first model are \emph{quasi-categories}. 
+There are a pletora of models for $\infty$-categories, here we focus on two. The first of such models, \emph{quasi-categories}, requires a bit of background on simplicial sets, which we recall now. 
 \begin{definition}
-  Given a natural number $n$, let $\langle n\rangle$ denote the linearly ordered set $\{0,\cdots,n\}$. The \emph{simplex category} $\BDelta$ is the category of finite linerly ordered sets $\langle n\rangle$, for every $n$, and monotone functions.
+  Given a natural number $n$, denote by $\langle n\rangle$ the partially ordered set $\{0,\cdots,n\}$. The \emph{simplex category} $\BDelta$ is the category of finite linerly ordered sets of the form $\langle n\rangle$, for any $n$, and monotone functions.
 \end{definition}
+We single out two classes of functions in $\BDelta$: 
 \begin{definition}
-  Given $0\leq i\leq n$, the \emph{$i$-face map} is the unique injective map $\delta^i_n:\langle n-1\rangle\to\langle n\rangle$ missing $i$. The \emph{$i$-degeneracy map} is the unique surjective map $\sigma^i_n:\langle n+1\rangle\to\langle n\rangle$ such that $i$ and $i+1$ have the same image. 
+  Given $0\leq i\leq n$, the \emph{$i$-coface map} is the unique injective monotone function $\delta^i_n:\langle n-1\rangle\to\langle n\rangle$ such that $i$ does not belong in the image of $\delta^i_n$. The \emph{$i$-codegeneracy map} is the unique surjective monotone function $\sigma^i_n:\langle n+1\rangle\to\langle n\rangle$ such that $i$ and $i+1$ have the same image. 
 \end{definition}
-\begin{theorem}
-  As a category, $\BDelta$ is generated from the face and degeneracy maps subject to the \emph{simplicial identities} (see \cite[I.4]{goerssjardine1999simplicialhomotopytheory}). 
+\begin{theorem}[{\cite[I.4]{goerssjardine1999simplicialhomotopytheory}}]
+  As a category, $\BDelta$ is generated from the face and degeneracy maps subject to the \emph{simplicial identities}. 
 \end{theorem}
 \begin{definition}
-  A \emph{simplicial set} is a contravariant functor $X:\BDelta^{\op} \to \set$. Denote by $\sset$ the category of simplicial sets. The representable simplicial set $\hom_{\BDelta}(-,\langle n\rangle)$ is denoted as $\Delta^n$. The set of \emph{$n$-simplices}, denoted by $X_n$, is the image of $\langle n\rangle$. By Yoneda lemma, we identify a $n$-simplex with the corresponding map of simplicial sets $\Delta^n\to X$. Let $d^n_i:X_{n}\to X_{n-1}$ be the map of sets induced by the $i$-face map $\delta^i_n$, which we also call \emph{$i$-face map}.
+  A \emph{simplicial set} is a contravariant functor $X:\BDelta^{\op} \to \set$. The category of simplicial sets is denoted by $\sset$. An element of $X_n=X(\langle n\rangle)$ is called a \emph{$n$-simplex}. The function $X_n\to X_{n-1}$, resp $X_n\to X_{n+1}$, induced by $\delta^i_n$, resp. $X(\sigma^i_n)$, is called the \emph{$i$-face map}, resp. \emph{$i$-degeneracy map}, and denoted $d^n_i$, resp. $s^n_i$. 
 \end{definition}
-By only representing the face maps, we can depict a simplicial set as follows: 
+A simplicial set can be depicted as follows: 
 \begin{equation}
-  \begin{tikzcd}
-    X_0  & X_1 \arrow[l,shift right]\arrow[l,shift left] & X_2 \arrow[l,shift right=2]\arrow[l]\arrow[l,shift left=2] & \cdots \arrow[l,shift right=3]\arrow[l,shift right=1]\arrow[l,shift left=1]\arrow[l,shift left=3]
-  \end{tikzcd}
+\simpset{X_0}{X_1}{X_2}{}{}{}{}  
 \end{equation}
-$\infty$-categories are then defined in terms of a lifting condition, for which we need to define horns.
 \begin{definition}
-  Given $i\in\langle n\rangle$, the $i$-horn is the simplicial sub-set $\Lambda^n_i\subseteq\Delta^n$ defined as follows: A monotone map $f:\langle k\rangle\to\langle n\rangle$ is a $k$-simplex of $\Lambda^n_i$ if there is $j\neq i$ that does not belong in the image of $f$. 
+  Given $0\leq i\leq n$, the \emph{$i$-horn} is the simplicial sub-set $\Lambda^n_i\subseteq\Delta^n$ defined as follows: A monotone map $f:\langle k\rangle\to\langle n\rangle$ is a $k$-simplex of $\Lambda^n_i$ if there is $j\neq i$ that does not belong in the image of $f$. A horn $\Lambda^n_i$ is \emph{inner} if $0<i<n$. 
 \end{definition}
-\begin{definition}A simplicial set $X$ is called a \emph{quasi-category} if every inner horn $\Lambda^n_i\to X$, i.e. $0<i<n$, can be extended to a $n$-simplex $\Delta^n\to X$. If every horn $\Lambda^n_i\to X$ admits an extension, $X$ is called a \emph{$\infty$-groupoid}. 
+\begin{definition}A simplicial set $X$ is called a \emph{$\infty$-category} if, for every $n$ and $0<i<n$, every map of simplicial sets $\Lambda^n_i\to X$ admits an extension to a map $\Delta^n\to X$. If the condition is verified for every $n$ and $0\leq i\leq n$, $X$ is called a \emph{$\infty$-groupoid}.
 \end{definition}
 \begin{remark}
-  The nerve of a category $\lC$ is a quasi-category (one can simply check the horn filling condition directly). Moreover, the nerve is a $\infty$-groupoid if and only if $\lC$ is a groupoid. The nerve functor $\mN:\cat\to\sset$ has a left adjoint, the  \emph{homotopy category} functor $\Ho$. If $X$ is a quasi-category, $\Ho(X)$ has an explicit construction where objects are the 0-simplices of $X$ and morphisms are homotopy classes of 1-simplices, see \cite[1.2.5]{land2021introduction} and \cite[Proposition 1.15]{groth2010inftycats}.
-\end{remark} 
-\begin{definition}
-  Let $X$ be a quasi-category, a 1-simplex $f:x\to y$ is an \emph{equivalence} if there are 2-simplices of the following form: 
-  \begin{equation}
+  A map of simplicial sets $f:X\to Y$ is called a \emph{Kan fibration} if it has the \emph{horn lifting property}: For every $n$ and every $0\leq i\leq n$, every diagram \begin{equation}
     \begin{tikzcd}
-      & x \arrow[dr,"f"] \arrow[d,Rightarrow] & \\
-      y \arrow[ru] \arrow[rr,no head,double line] & {} & y
-    \end{tikzcd}\qquad \begin{tikzcd}
-      & y \arrow[dr] \arrow[d,Rightarrow] & \\
-      x \arrow[ru,"f"] \arrow[rr,no head,double line] & {} & x
+      \Lambda^i_n \arrow[r] \arrow[d] & X \arrow[d,"f"] \\
+      \Delta^n \arrow[ru,dashed] \arrow[r] & Y
     \end{tikzcd}
-  \end{equation}where the bottom 1-simplices are the image of $y$ and $x$, respectively, under the function $X_0\to X_1$ induced by $\sigma^0_0$. 
-\end{definition}
-The following theorem shows that Kan complex have the same relation with quasi-categories, as groupoids have with categories. 
-\begin{theorem}
-  A quasi-category $X$ is a $\infty$-groupoid if and only if every 1-simplex is an equivalence. 
-\end{theorem}
-\begin{remark}
-  \cite{groth2010inftycats} approaches $\infty$-groupoids in the other direction, namely defining a $\infty$-groupoid as a quasi-category where every 1-simplex is an equivalence, then characterizing $\infty$-groupoids as quasi-categories satisfying the horn filling condition for every horn. 
+  \end{equation}admits a dashed arrow making both triangles commute. A map $f$ is a \emph{inner Kan fibration} if the horn lifting property holds only for inner horns, i. e. $0<i<n$. A simplicial set $X$ is a $\infty$-groupoid, resp. $\infty$-category, if and only if the terminal map $X\to\Delta^0$ is a Kan fibration, resp. inner Kan fibration. 
 \end{remark}
-A strict model for $\infty$-categories is given by simplicially enriched categories. 
 \begin{definition}
-  Denote by $\scat$ the category of simplicially enriched categories. 
+  Given a category $\lC$, its \emph{nerve} is the simplicial set $\mN\lC$ defined as follows: For $n\geq1$, a $n$-simplex of $\mN\lC$ consists of a $n$-tuple of composable arrows. The objects of $\lC$ are the $0$-simplices. 
+\end{definition}
+\begin{proposition}
+  $\mN\lC$ is a $\infty$-category. 
+\end{proposition}
+Viewed as a functor from categories to $\infty$-categories, the nerve functor admits a left adjoint called the \emph{homotopy category} functor $\Ho$. We will sketch the construction of $\Ho X$, refering to \cite{land2021introduction} and \cite{groth2010inftycats} for more details. 
+\begin{remark}
+  Given a 1-simplex $f$, we write $f:x\to y$ to mean that $d^1_1(f)=x$ and $d^1_0(f)=y$. The 1-simplex $s^0_0(x)$ is written as \begin{equation}
+    \begin{tikzcd}
+      x \arrow[r,no head,double line] & x
+    \end{tikzcd}
+  \end{equation} 
+\end{remark}
+\begin{definition}
+  Given a simplicial set $X$, two 1-simplices $f,g:x\to y$ are \emph{homotopic} if there is a 2-simplex of the form: 
+  \begin{center}
+    \begin{tikzcd}
+      & y \arrow[dr,no head,double line] & \\
+      x \arrow[ru,"f"] \arrow[rr,"g"'] & {} & y 
+    \end{tikzcd}
+  \end{center}
+  Given 0-simplices $x,y$, denote by $\hom_{\Ho(X)}(x,y)$ the set of 1-simplices $x\to y$ modulo the equivalence relation generated by being homotopic. Given a 1-simplex $f:x\to y$, its homotopy class in $\hom_{\Ho X}(x,y)$ is denoted $[f]$. 
+\end{definition}
+\begin{lemma}[{\cite{kerodon2026homcat}}]\label{lem:homcat}
+  Let $X$ be an $\infty$-category, then: 
+  \begin{enumerate}
+    \item For every pair $x,y$ of 0-simplices, being homotopic is an equivalence relation on the set of 1-simplices $x\to y$. 
+    \item For every pair $f:x\to y$ and $g:y\to z$, there is a 2-simplex of the form \begin{equation}\label{eq:comp}
+      \begin{tikzcd}
+        & y \arrow[dr,"g"] & \\
+        x \arrow[ru,"f"] \arrow[rr,"h"'] & & z
+      \end{tikzcd}
+    \end{equation} 
+    \item The homotopy class of $h$ in \cref{eq:comp} only depends on the homotopy classes of $f$ and $g$.
+    \item For every triple $x,y,z$ of $0$-simplices, there is a composition law \begin{equation}
+      \begin{tikzcd}
+        \hom_{\Ho X}(x,y) \times \hom_{\Ho X}(y,z) \arrow[r,"\circ_{x,y,z}"] & \hom_{\Ho X}(x,z)
+      \end{tikzcd}
+    \end{equation}defined as follows: Given $f:x\to y,g:y\to z$, let $h$ be a 1-simplex as in \cref{eq:comp}, then $[g]\circ[f]:=[h]$. 
+    \item The composition laws $\circ_{x,y,z}$ are associative. 
+    \item Given a 0-simplex $x$, the left homotopy class of $s^0_0(x)$ acts as the left and right identity with respect to the composition laws above. 
+  \end{enumerate}
+\end{lemma}
+\begin{definition}
+  Let $X$ be a $\infty$-category, the \emph{homotopy category}, denoted $\Ho X$, is the category defined as follows: 
+  \begin{enumerate}
+    \item The set of objects is $X_0$.
+    \item Given a pair of objects $x,y$, let $\hom_{\Ho X}(x,y)$ be the set of morphisms $x\to y$. 
+    \item Take $\circ_{x,y,z}$ from \cref{lem:homcat} as composition laws.
+  \end{enumerate} 
+\end{definition}
+\begin{definition}
+  Let $X$ be a $\infty$-category, a 1-simplex $f:x\to y$ is an \emph{equivalence} if $[f]$ is an isomorphism in $\Ho X$.
+\end{definition}
+The following theorem shows that $\infty$-groupoids have a relation to $\infty$-categories similar to that of ordinary groupoids to ordinary categories. 
+\begin{theorem}[\cite{kerodon2026joyal}]
+  A quasi-category $X$ is a $\infty$-groupoid if and only if $\Ho X$ is a groupoid. 
+\end{theorem}
+$\infty$-groupoids naturally form a full sub-category of $\sset$. To construct the $\infty$-category of $\infty$-groupoids, we use the simplicial nerve of Lurie. 
+\begin{definition}
+  Denote by $\scat$ the category of simplicially enriched categories. A simplicially enriched category is called \emph{locally fibrant} if its hom-simplicial sets are $\infty$-groupoids.  
+\end{definition}
+Recall that $\sset$ is self-enriched as follows: 
+\begin{definition}
+   Given two simplicial sets $X,Y$, the \emph{hom-simplicial set} $\hom^\Delta_{\sset}(X,Y)$ is defined as follows: A $n$-simplex consists of a map of simplicial sets $\Delta^n\times X\to Y$. 
+\end{definition}
+\begin{lemma}\label{lem:functinfgrpd}
+  If $X$ is a $\infty$-groupoid, then $\hom^\Delta_{\sset}(B,X)$ is a $\infty$-groupoid, for every simplicial set $B$. 
+\end{lemma}
+\begin{proof}
+  Corollary of \cite{kerodon2026exponential} by taking $f$ the terminal map $X\to\Delta^0$ and $i$ the initial map $\emptyset\to B$. 
+\end{proof}
+\begin{definition}
+  Let $(P,\leq)$ be a partially ordered set, denote by $\Path(P)$ the following simplicial category: 
+  \begin{enumerate}
+    \item Objects are the elements of $P$. 
+    \item Given $x,y\in P$, let $[x,y]:=\{z\in P|x\leq z\leq y\}$ and $P_{x,y}$ the set of sub-sets $S\subseteq[x,y]$ that are finite, linearly ordered, and contain $\{x,y\}$. We order $P_{x,y}$ by reverse inclusion ($S\leq T$ if $S\supseteq T$). Finally, let $\hom_{\Path(P)}(x,y)$ be the nerve of $(P_{x,y},\supseteq)$. 
+    \item Given $x,y,z\in P$, composition \begin{equation}
+      \begin{tikzcd}
+        \hom_{\Path(P)}(x,y)\times\hom_{\Path(P)}(y,z) \arrow[r] & \hom_{\Path(P)}(x,z)
+      \end{tikzcd}
+    \end{equation} is the nerve of the union map $\cup:P_{x,y}\times P_{y,z}\to P_{x,z}$. 
+  \end{enumerate}
+  Given a monotone map $f:P\to Q$, let $\Path(f):\Path(P)\to\Path(Q)$ denote the following functor: 
+  \begin{enumerate}
+    \item On objects, it is simply $f$.
+    \item Given $x,y\in P$, define $\Path(f)$ as the nerve of the functor $f_*:P_{x,y}\to Q_{f(x),f(y)}$ given by taking direct images (i. e. $f_*(S)=f(S)$). 
+  \end{enumerate}
+Restricting to $\BDelta$, we obtain a cosimplicial simplicial category $\Path:\BDelta\to\scat$. 
+\end{definition}
+\begin{definition}
+  Given a simplicial category $\lC$, its \emph{simplicial nerve} is the simplicial set $\mN_\Delta\lC$ defined as follows:  A $n$-simplex of $\mN_\Delta\lC$ consists of a functor $\Path_n:=\Path(\langle n\rangle)\to\lC$. 
+\end{definition}
+\begin{remark}$\Path_0$ and $\Path_1$ are the categories $\langle0\rangle$ and $\langle 1\rangle$ viewed as simplicially enriched categories with discrete hom-simplicial sets, therefore a functor $\Path_0\to\lC$, resp. $\Path_1\to\lC$, is determined by a single object, resp. 1-morphism. $\Path_2$ admits the following description:
+\begin{enumerate}
+    \item Its set of objects is $\langle2\rangle$.
+    \item $P_{0,1}$ and $P_{1,2}$ are both singletons, hence $\hom_{\Path_2}(0,1)\cong\hom_{\Path_2}(1,2)\cong\Delta^0$. 
+    \item $P_{0,2}=\{[0,2]\leq\{0,2\}\}$ (recall that $P_{i,j}$ is ordered by reversed inclusion), so $\hom_{\Path_2}(0,2)\cong\Delta^1$. Moreover, $[0,2]$ is the composition $\{1,2\}\circ\{0,1\}$.  
+  \end{enumerate}
+  We can conclude that a functor $\Path_2\to\lC$ is determined by the following data: A triple of 1-morphisms $f:x\to y,g:y\to z$, and $h:x\to y$, together with a 1-simplex $g\circ f\Rightarrow h$ in $\hom_{\lC}(x,z)$. 
+\end{remark}
+\begin{definition}
+  Denote also by $\Path$ the functor $\sset\to\scat$ obtained by left Kan extension of $\Path:\BDelta\to\scat$. 
+\end{definition}
+\begin{theorem}
+  The functor $\Path$ is left adjoint to $\mN_\Delta$ and form a Quillen equivalence between the \emph{Dwyer-Kan-Bergner} model structure on $\scat$ and the \emph{Joyal} model structure on $\sset$. The fibrant objects in the $\sset_\mathrm{Joyal}$, resp. $\scat_\mathrm{DKB}$, are $\infty$-categories, resp. locally fibrant categories. In particular, $\mN_\Delta\lC$ is a $\infty$-category if $\lC$ is locally fibrant.
+\end{theorem}
+By \cref{lem:functinfgrpd}, we know that the full sub-category $\infty\Grpd\subseteq\sset$ of $\infty$-groupoids is self-enriched, therefore we give the following definition.
+\begin{definition}
+  Denote by $\lS:=\mN_\Delta(\infty\Grpd)$ the \emph{$\infty$-category of $\infty$-groupoids}.
 \end{definition}
 \begin{remark}
-  Lurie constructs in \cite[1.1.5.1]{lurie2009htt} a functor $\mN_\Delta:\scat\to\sset$, called the \emph{homotopy coherent nerve}. Similarly to the ordinary nerve, it admits a left adjoint, denoted $\kC$ and called \emph{rigidification}, see \cite{duggerspivak2011rigidification}. 
+  In view of \cite{kerodon2026topspc}, we will also use the term \emph{space} to mean $\infty$-groupoid. 
 \end{remark}
-\begin{theorem}
-  $\sset$ and $\scat$ underlie model structures, called \emph{Joyal} and \emph{Dwyer-Kan-Bergner}, respectively, such that fibrant-cofibrant objects are quasi-categories and categories enriched over $\infty$-groupoids, respectively, and the adjunction \begin{equation}
-    \begin{tikzcd}
-      \scat \arrow[r,shift left,"\mN_\Delta"] & \sset \arrow[l,shift left,"\kC"] 
-    \end{tikzcd}
-  \end{equation}lifts to a Quillen equivalence. 
-\end{theorem}
-\begin{definition}
-  The category $\Kan$ of $\infty$-groupoids is a self-enriched category, so $\lS:=\mN_\Delta(\Kan)$ is a quasi-category, namely the \emph{quasi-category of $\infty$-groupoids}.
-\end{definition}
-Let $\Top$ be the category of compactly generated topological spaces.
-\begin{theorem}\label{thm:quillen}
-  $\sset$ and $\Top$ underlie model structures, both called \emph{Quillen}, such that fibrant-cofibrant are $\infty$-groupoids and retracts of cellular complexes, respectively, and the adjunction \begin{equation}
-    \begin{tikzcd}
-      \Top \arrow[r,shift left,"\Sing"] & \sset \arrow[l,shift left] 
-    \end{tikzcd}
-  \end{equation}lifts to a Quillen equivalence. 
-\end{theorem}
 
 \section{Basic constructions}
 
-\begin{remark}
-  Recall that $\sset$ is self-enriched. More specifically, given simplicial sets $X,Y$, the simplicial set $\hom_{\sset}(X,Y)$ is characterized as follows: A $n$-simplex is a map of simplicial sets $\Delta^n\times X\to Y$.
-\end{remark}
-\begin{lemma}
-  If $X$ is a simplicial set and $\lC$ a $\infty$-category, then $\hom_{\sset}(X,\lC)$ is a $\infty$-category. 
+Recall that $\sset$ and $\infty\Grpd$ are self-enriched. Similar to \cref{lem:functinfgrpd}, we have the following: 
+\begin{lemma}[\cite{kerodon2026funccat}]
+  If $X$ is a $\infty$-category, then $\hom_{\sset}^\Delta(B,X)$ is a $\infty$-category, for every simplicial set $B$. 
 \end{lemma}
 \begin{definition}
-  Let $\lC$ and $\lD$ be $\infty$-categories, denote by $\Fun(\lC,\lD)$ the \emph{$\infty$-category of functors $\lC\to\lD$}.  
+  Given a $\infty$-category $X$ and simplicial set $B$, denote by $\Fun(B,X)$ the \emph{$\infty$-category of functors} $\hom_{\sset}^\Delta(B,X)$. 
 \end{definition}
-\nrnote{Definition of opposite $\infty$-category, slice $\infty$-category}
+\begin{definition}
+  Denote by $\op$ the following endo-functor of $\BDelta$: 
+  \begin{enumerate}
+    \item On objects,  $\op(\langle n\rangle)=\langle n\rangle$. 
+    \item Given $f:\langle k\rangle\to\langle n\rangle$, let $\op(f):\langle k\rangle\to\langle n\rangle$ be the function $\op(f)(i)=n-f(k-i)$. 
+  \end{enumerate}Given a simplicial set $X$, denote by $X^\op$ the pre-composition of $X$ with $\op$. 
+\end{definition}
+\begin{lemma}
+  If $X$ is a $\infty$-category, $X^\op$ is also an $\infty$-category. 
+\end{lemma}
+\begin{definition}
+  Given a $\infty$-category $X$, we call $X^\op$ the \emph{opposite $\infty$-category}.  
+\end{definition}
+\nrnote{Slice $\infty$-categories?}
 
 \section{Accessible and Presentable Categories}
 
@@ -267,11 +353,8 @@ In general, a limit, resp. colimit, preserving functor need not have a left, res
   Let $X,Y$ be presentable $\infty$-categories, then a functor $f:X\to Y$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
 \end{theorem}
 \section{Stable \texorpdfstring{$\infty$}{oo}-Categories and Spectra}
-We now use the $\infty$-categorical framework to study spectra. The study of spectra originates from the study of \emph{stable phenomena}, i.e. patterns appearing after repeated application of the suspension functor $\Sigma:\Top_*\to\Top_*$.
-\begin{example}
-  Let $(\Sigma,\Omega):\Top_{*/}\to\Top_{*/}$ be the suspension-loop adjunction on pointed topological spaces. \emph{Freudenthal Suspension Theorem} states that, if $X$ is a $n$-connected space, the adjunction unit $X\to\Omega\Sigma X$ is $2n$-connected. If $X$ is connected, $S^n\wedge X$ is $n$-connected, so $\Sigma^nX\to\Omega\Sigma^{n+1}X$ is $2n$-connected. In particular, $\pi_i(\Sigma^nX)\to\pi_{i+1}(\Sigma^{n+1}X)$ is an isomorphism, for all $i<2n$. The group $\pi_i(\Sigma^nX)$ is denoted $\pi_{n-i}^s(X)$, called the \emph{$(n-i)$-stable homotopy group of $X$}. 
-\end{example}
-\nrnote{More examples?}
+We now use the $\infty$-categorical framework to study spectra. Here are some result that justify the study of spectra. 
+\nrnote{Examples of stable phenomena? Freudenthal's suspension theorem, Alexander duality of manifolds, etc.}
 \begin{definition}
   Let $\lC$ be an $\infty$-category, an object $0$ that is both initial and terminal is called 
   \emph{zero object}. A category $\lC$ with a zero object is called a \emph{pointed category}.

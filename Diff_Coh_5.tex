@@ -1,6 +1,6 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts}
-\usepackage[mathscr]{euscript}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathrsfs}
+\usepackage{eucal}
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{enumitem}
@@ -155,16 +155,16 @@
 In this talk we summarize what we covered until now and discuss possible future directions.
 
 \section {Summary}
-We established that in the modern point of view a differential cohomology theory is an $\infty$-categorical sheaf on the site of manifolds valued in the $\infty$-category of spectra. This approach naturally leads to several relevant questions, that were the focus of our talks:
+
+We have established that the classical differential cohomology theory called \emph{Deligne cohomology} can be captured in the language of sheaves on the site $\Mfd$ and valued in the stable $\infty$-category of spectra. This naturally leads to several relevant questions, that were the focus of our talks:
 \begin{enumerate}
-  \item What kind of theoretical framework is needed to work with such a theory?
-  \item How does this framework relate to other approaches to differential cohomology?
-  \item How can we construct differential cohomology theories in this framework?
-  \item[] There are also questions, we did not address, but could be focus of future talks:
-  \item What are concrete benefits of this approach in contrast to others?
-\end{enumerate} 
+  \item How do sheaves of spectra related to other frameworks for differential cohomology, namely Hopkins and Singer's hexagon diagram\nrnote{citation}?
+  \item How, given a ordinary cohomology theory $E$, can we construct an interesting differential cohomology refining $E$ in our framework?
+  \item What are concrete benefits of this approach in contrast to others? 
+\end{enumerate} We shall postpone discussing the last point to a later talk. 
 
 \section{Theoretical framework}
+
 We saw that the theoretical framework is fundamentally that of presentable $\infty$-categories, stable $\infty$-categories, and $\infty$-categorical sheaves, as developed by Lurie \cite{lurie2009htt}, among others. 
 
 As it primarily a background, for what follows we will take it for granted, and refer to the relevant sources.
@@ -175,7 +175,7 @@ A lot of historical development of differential cohomology theories has focused 
 \begin{definition}
   A pre-sheaf $F$ is called \emph{$\mathbb{R}$-invariant} if, for any manifold $M$, the projection $M\times\bR\to M$ induces an equivalence $F(M)\to F(M\times\bR)$. Denote by $\lP_{\bR}(\Mfd,\lC)$ the full sub-category of $\bR$-invariant pre-sheaves, and $\Shv_\bR(\Mfd,\lC)$ the full sub-category of $\bR$-invariant sheaves. 
 \end{definition}
-Recall from \cite{berkenhagen2025diffcoh3} that the restriction $\Shv(\Mfd,\lC)\to\Shv(\Euc,\lC)$. 
+Recall from \cite{berkenhagen2025diffcoh3} that the restriction $\Shv(\Mfd,\lC)\to\Shv(\Euc,\lC)$ is an equivalence. 
 \begin{lemma}\label{lem:inv}
   A sheaf $F$ is $\bR$-invariant if and only if every smooth map $\bR^n\to\bR^m$ induces an equivalence $F(\bR^m)\to F(\bR^n)$. 
 \end{lemma}
