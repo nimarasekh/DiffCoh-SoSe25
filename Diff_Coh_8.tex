@@ -194,22 +194,11 @@ Let us have a look at some examples of Thom spectra.
 	\end{tikzcd}
 \end{equation}is also cocontinuous and sends $*$ to $E$. We conclude that the colimit of $E_X$, for every space $X$, is equivalent to $E\wedge\Sigma^\infty_+X$. 
 \end{example}
-For the next example, we require some preliminary lemmas. 
-\begin{definition}
-	Given a vector bundle $V\to B$, the \emph{Thom space} of $V$, denoted by $S^V$, is the homotopy cofiber of $V_0\subseteq V$, where $V_0$ is the complement of the zero section. 
-\end{definition}
-\begin{example}
-	Let $B=*$ and $V=\bR^n$, then $S^V$ is homotopy equivalent to the $n$-sphere $S^n$. 
-\end{example}
-\begin{lemma}
-	Let $\lC$ be a (small) category and $y:\lC\to\Fun(\lC^\op,\lS)$ the $\infty$-categorical Yoneda embedding. The colimit of $y$ is the terminal pre-sheaf, i.e. the pre-sheaf with constant value $*$.
-\end{lemma}
-\begin{proof}
-	Apply the density theorem to the terminal pre-sheaf. 
-\end{proof}
+For the next example, let $G$ be a simplicial group, $\lB G$ the corresponding simplicial category. Since $G$ is a Kan complex (\cite[Lemma I.3.4]{goerssjardine1999simplicialhomotopytheory}), $BG:=\mN_\Delta\lB G$ is a $\infty$-category, and a $\infty$-groupoid, since $\Ho BG$ is a groupoid. Our notation $BG$ is sensible, since \cite{arakawa2023classifying} shows that $BG$ is equivalent to the delooping of $G$ (constructed using the $\overline{W}$-functor, see \cite{goerssjardine1999simplicialhomotopytheory}). 
+
 
 %--------------TO BE CONTINUED-----------------
-We now proceed to define twisted cohomology theories.
+
 
 \begin{definition}[{Twisted cohomology}] \label{def:twistedcohomology}
 	Let $R$ be a ring spectrum, $X$ be a space, $p\colon X \to *$ the terminal functor, and $f\colon X^{\op} \to \Line_R$ a $R$-line bundle over $X$.  The \emph{$f$-twisted $R$-cohomology of $X$} is defined as the mapping spectrum 
