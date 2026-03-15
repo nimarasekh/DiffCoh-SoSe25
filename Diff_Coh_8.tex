@@ -32,6 +32,7 @@
 \newcommand{\lJ}{\mathcal{J}}
 \newcommand{\lK}{\mathcal{K}}
 \newcommand{\lL}{\mathcal{L}}
+\newcommand{\bL}{\mathbb{L}}
 \newcommand{\lM}{\mathcal{M}}
 \newcommand{\bN}{\mathbb{N}}
 \newcommand{\mN}{\mathrm{N}}
@@ -56,6 +57,7 @@
 \newcommand{\ch}{\mathrm{ch}}
 \newcommand{\Hom}{\lH\mathrm{om}} % enriched hom-spaces, hom-spectrum
 \renewcommand{\hom}{\mH\mathrm{om}} % hom-set, hom-space
+\newcommand{\shom}{\mathrm{s}\hom}
 \newcommand{\Ho}{\mathrm{Ho}} % homotopy category
 \newcommand{\set}{\lS\mathrm{et}} % category of sets
 \newcommand{\Mon}{\lM\mathrm{on}} % category of monoid objects
@@ -89,6 +91,7 @@
 \newcommand{\cl}{\mathrm{cl}} % closed forms
 \newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
 \newcommand{\Sing}{\mathrm{Sing}} % singular simplicial set
+\newcommand{\sP}{\mathrm{s}\lP} % category of simplicial pre-sheaves 
 
 
 \DeclareMathOperator*\colim{colim} % colimit
@@ -184,18 +187,17 @@ We now proceed to the Thom construction. We introduce it to full generality.
 \begin{remark}The colimit of a functor $F:\lC\to\lX$ is the left Kan extension of $F$ along the terminal functor $p:\lC\to*$. If $\lX$ is cocomplete, a functor $\pi:\lC\to\lD$ induces a pullback functor $\pi^*:\Fun(\lD,\lX)\to\Fun(\lC,\lX)$, which is cocontinuous, therefore using left Kan extension along $\pi$ we can construct a left adjoint $\pi_!$.  
 \end{remark}
 Let us have a look at some examples of Thom spectra. 
-\begin{example}[Trivial twist] We begin by identifying the Thom spectrum of $R_X$. By the universal property of colimits, the Thom spectrum functor is left adjoint to the functor $\Mod_R\to\lS/\Mod_R$ sending a module $E$ to the corresponding functor $*\to\Mod_R$. In particular, the Thom spectrum functor is cocontinuous. Next, consider a $R$-module $E$ and the functor $\lS\to\lS/\Mod_R$ sending a space $X$ to the constant functor $E_X:X^\op\to\Mod_R$ with value $E$. This functor is also cocontinuous, by the way colimits are calculated in $\lS/\Mod_R$. Therefore, the composition \begin{equation}
+\begin{example}[Trivial twist] A functor $f:\lX\to\lY$ induces a post-composition functor $f_*:\lS/\lX\to\lS/\lY$ that is left adjoint to $f^*$ sending $F:\lC\to\lY$ to the canonical projection $\lX\times_{\lY}\lC\to\lX$. If $\lX=*$, we can identify $\lS/\lX$ with $\lS$, and $f$ with an object $E\in\lY$. If $\lY$ is cocomplete, there is a colimit functor $\pi_!:\lS/\lY\to\lY$ and the composition \begin{equation}
 	\begin{tikzcd}
-		\lS \arrow[r] & \lS/\Mod_R \arrow[r] & \Mod_R
+		\lS \arrow[r,"f_*"] & \lS/\lY \arrow[r,"\pi_!"] & \lY
 	\end{tikzcd}
-\end{equation}is cocontinuous, and so completely determined by the value of the one-point space $*$, which is $E$. On the other hand, the following composition \begin{equation}
+\end{equation}preserves colimits, therefore it is identified by the image of the one-point space, which is $E$. If $\lY=\Mod_R$, then $f$ corresponds to a $R$-module $E$. The composition \begin{equation}
 	\begin{tikzcd}
 		\lS \arrow[r,"\Sigma^\infty_+"] & \Sp \arrow[r,"E\wedge-"] & \Mod_R
 	\end{tikzcd}
-\end{equation}is also cocontinuous and sends $*$ to $E$. We conclude that the colimit of $E_X$, for every space $X$, is equivalent to $E\wedge\Sigma^\infty_+X$. 
+\end{equation}also preserves colimits and maps the one-point space to $E$, therefore the Thom spectrum of $E_X$ is $E\wedge\Sigma^\infty_+X$, for every space $X$. 
 \end{example}
-For the next example, let $G$ be a simplicial group, $\lB G$ the corresponding simplicial category. Since $G$ is a Kan complex (\cite[Lemma I.3.4]{goerssjardine1999simplicialhomotopytheory}), $BG:=\mN_\Delta\lB G$ is a $\infty$-category, and a $\infty$-groupoid, since $\Ho BG$ is a groupoid. Our notation $BG$ is sensible, since \cite{arakawa2023classifying} shows that $BG$ is equivalent to the delooping of $G$ (constructed using the $\overline{W}$-functor, see \cite{goerssjardine1999simplicialhomotopytheory}). 
-
+% In Diff_Coh_2, include some background on homotopy colimits vs oo-colimits. In particular, that a functor BG->S is modelled by a G-simplicial set X, and its colimit by the homotopy quotient X/G
 
 %--------------TO BE CONTINUED-----------------
 
