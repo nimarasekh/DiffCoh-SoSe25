@@ -291,8 +291,73 @@ We are now ready to give the main definition of twisted differential cohomology.
 
 As a next step we can explore applications and examples of this abstract setup, in particular in the context of differential twisted $K$-theory.
 
-% \section{Differential Twisted Refinements of \texorpdfstring{$K$}{K}-Theory}
+\section{Differential Twisted Refinements of \texorpdfstring{$K$}{K}-Theory}
 % We now want to apply the previous definitions to the case of complex $K$-theory
+This section is some experimental effort towards understanding twisted differential $K$-theory and how we get classes via bundle gerbes.
+
+Recall that for $K$-theory, $GL_1K = BS^1 \times \bZ/2\bZ \times BSU$, as by definition we have the pullback diagram 
+\[ 
+\begin{tikzcd}
+ GL_1K \arrow[r] \arrow[d] & \Omega^\infty KU \arrow[d] \\
+ \pi_0(KU)^\times \arrow[r] & \pi_0(KU)
+\end{tikzcd},
+\]
+where $\bZ \times BU \simeq \Omega^\infty K \simeq \Hom_{\lS}(*, K) \simeq \Hom_{\Mod K}(K,K)$.
+
+So for a given bundle gerbe, meaning a map $X \to K(\bZ,3)$, we get via post-composition with $K(\bZ,3) \to BGL_1K$, a twist of $K$-theory. So we have bijection between homotopy classes of maps from $X$ into $\tau_3 BGL_1 K$ (the $3$-truncation of $BGL_1K$) and homotopy classes of super bundle gerbes on $X$
+\[[X, \tau_3 BGL_1 K] \cong \pi_0 sBldGrb(X).\]
+
+More generally, we also have a bijection between homotopy classes of maps from $X$ into $\tau_3\Pic_K$ (the $3$-truncation of $\Pic_K$) and homotopy classes of $2$-line bundles on $X$
+\[[X, \tau_3\Pic_K] \cong \pi_0 2LineBdl(X).\]
+
+We now have differential refinements of $K(\bZ,3)$ and $BGL_1K$ given by Deligne cohomology and the Hopkins-Singer model of differential $K$-theory, respectively. So we can ask whether the map $K(\bZ,3) \to BGL_1K$ admits a differential refinement. Recall that this model of differential $K$-theory is given by the pullback
+\[ 
+\begin{tikzcd}
+ \hat{K} \arrow[r] \arrow[d] & H\Omega^*(-, \bR[u,u^{-1}]) \arrow[d] \\
+ \underline{K} \arrow[r] & \underline{H\bR[u,u^{-1}]} 
+\end{tikzcd},
+\]
+where $|u| = -2$.
+
+Similarly, Deligne cohomology is given by the pullback
+\[
+\begin{tikzcd}
+ \bZ(3) \arrow[r] \arrow[d] & H\Omega^*(-)^{\geq 3} \arrow[d] \\
+ \underline{H\bZ} \arrow[r] & \underline{H\bR} 
+\end{tikzcd}.
+\]
+
+Now given a commutative ring spectrum $R$, we can consider the corresponding differential refinements, as a DGCA $A$ and an equivalence $c\colon R \wedge H\bR \to HA$. This gives us a diagram 
+\[ 
+\begin{tikzcd}
+ \widehat{R(n)} \arrow[r] \arrow[d] & H\Omega^*(-,A)^{\geq n} \arrow[d] \\ 
+ \underline{R} \arrow[r] & \underline{HA} 
+\end{tikzcd}
+\]
+and we have 
+\[
+\hat{R}^n(M) = \pi_{-n}(\widehat{R(n)}(M)).
+\]
+
+A twist of $\hat{R} = (R,A,c)$ over $X$ consists of
+\begin{enumerate}
+  \item a topological twist $E\Sing X \to  \Pic_R$,
+  \item a sheaf $\lM$ of $\Pic^{wloc,flat, ...}_{\Omega^*A}|_X \Omega^*(-,A)|_X$-modules on $X$,
+  \item an equivalence $\tau\colon\underline{E} \wedge H A \to Hi\lM$ in $\Pic^{loc}_{\underline{HA}}(X)$. Here $i\colon \Ch(\bR) \to \lD(\bR)$ is the localization functor. Here $\underline{E}$ is the locally constant sheaf of $R$-modules associated to $E$ (i.e., the sheafification of the constant sheaf).
+\end{enumerate}
+
+Let us now see how we can go from twisted Deligne cohomology to twisted differential $K$-theory. 
+\begin{example}
+  Let $\omega \in \Omega^3(M)$, and take $(\Omega^*(-,\bR[u,u^{-1}]), d + u\omega)$. Now given a bundle gerbe with connection, we get a degree $3$-form $\omega$ as curvature, and the bundle gerbe gives us the map $E\colon M \to BGL_1K$. From the perspective of the definition 
+  \begin{enumerate}
+    \item $\hat{R} = \hat{K} = (K,\bR[u,u^{-1}], \text{chern character})$
+    \item $E$ is obtained from the bundle gerbe, as explained above,
+    \item $\lM$ is the sheaf of $\Omega^*(-,\bR[u,u^{-1}])$-modules given by $(\Omega^*(-,\bR[u,u^{-1}]), d + u\omega)$, and $\tau$ is the equivalence given by the Chern character, which is an equivalence of sheaves of $H\bR$-modules, as the Chern character is an equivalence after tensoring with $\bR$.
+  \end{enumerate}
+ Note here we have the computation on $(\Omega^*A, d + \lambda)$
+ \[(d + u \omega)(a x) = da \cdot x \pm a \cdot dx + u\omega a x = d a \cdot x \pm a (d + u\omega) x \]
+\end{example}
+
 
 {\footnotesize
  \bibliographystyle{alpha}
