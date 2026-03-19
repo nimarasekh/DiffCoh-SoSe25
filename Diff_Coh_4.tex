@@ -1,146 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mathrsfs}
-\usepackage{eucal}
-\usepackage{tikz}
-\usepackage{tikz-cd}
-\usepackage{enumitem}
-\usepackage[colorlinks=true, linkcolor=red, citecolor = blue]{hyperref}
-\usepackage[margin=2.5cm]{geometry}
-\setlength{\marginparwidth}{2cm}
-\usepackage{circledsteps}
-
-\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
-
-\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
-
-\newcommand{\lA}{\mathcal{A}}
-\newcommand{\bA}{\mathbb{A}}
-\newcommand{\bB}{\mathbb{B}}
-\newcommand{\lB}{\mathcal{B}}
-\newcommand{\lC}{\mathcal{C}}
-\newcommand{\rC}{\mathscr{C}}
-\newcommand{\bC}{\mathbb{C}}
-\newcommand{\lD}{\mathcal{D}}
-\newcommand{\lE}{\mathcal{E}}
-\newcommand{\bE}{\mathbb{E}}
-\newcommand{\lF}{\mathcal{F}}
-\newcommand{\lG}{\mathcal{G}}
-\newcommand{\lH}{\mathcal{H}}
-\newcommand{\mH}{\mathrm{H}}
-\newcommand{\lI}{\mathcal{I}}
-\newcommand{\lJ}{\mathcal{J}}
-\newcommand{\lK}{\mathcal{K}}
-\newcommand{\lL}{\mathcal{L}}
-\newcommand{\lM}{\mathcal{M}}
-\newcommand{\bN}{\mathbb{N}}
-\newcommand{\mN}{\mathrm{N}}
-\newcommand{\lN}{\mathcal{N}}
-\newcommand{\fO}{\mathbf{O}}
-\newcommand{\rO}{\mathscr{O}}
-\newcommand{\lO}{\mathcal{O}}
-\newcommand{\lP}{\mathcal{P}}
-\newcommand{\bQ}{\mathbb{Q}}
-\newcommand{\bR}{\mathbb{R}}
-\newcommand{\lR}{\mathcal{R}}
-\newcommand{\lS}{\mathcal{S}}
-\newcommand{\bS}{\mathbb{S}}
-\newcommand{\lT}{\mathcal{T}}
-\newcommand{\lU}{\mathcal{U}}
-\newcommand{\lV}{\mathcal{V}}
-\newcommand{\lX}{\mathcal{X}}
-\newcommand{\lY}{\mathcal{Y}}
-\newcommand{\bZ}{\mathbb{Z}}
-
-\newcommand{\op}{\mathrm{op}} % opposite
-\newcommand{\Tmf}{\mathrm{Tmf}} % global sections of the structure sheaf of the compactified moduli stack of elliptic curves
-\newcommand{\ch}{\mathrm{ch}}
-\newcommand{\Hom}{\lH\mathrm{om}} % enriched hom-spaces, hom-spectrum
-\newcommand{\Ho}{\mathrm{Ho}} % homotopy category
-\newcommand{\set}{\lS\mathrm{et}} % category of sets
-\newcommand{\Mon}{\lM\mathrm{on}} % category of monoid objects
-\newcommand{\CMon}{\lC\Mon} % category of commutative monoid objects
-\newcommand{\CGrp}{\lC\lG\mathrm{on}} % category of commutative group objects
-\newcommand{\Bdl}{\lB\mathrm{dl}} % bundles
-\newcommand{\Sp}{\lS\mathrm{p}} % category of spectra
-\newcommand{\Ch}{\lC\mathrm{h}} % category of chain complexes
-\newcommand{\cat}{\lC\mathrm{at}} % category of categories
-\newcommand{\scat}{\mathrm{s}\cat} % category of simplicial categories
-\newcommand{\sset}{\mathrm{s}\set} % category of simplicial sets
-\renewcommand{\Line}{\lL\mathrm{ine}} % category of lines
-\newcommand{\LineBdl}{\Line\Bdl} % category of line bundles
-\newcommand{\Fun}{\lF\mathrm{un}} % category of functors
-\newcommand{\Top}{\lT\op} % category of topological spaces 
-\newcommand{\Grpd}{\lG\mathrm{rpd}} % category of groupoids
-\newcommand{\Grp}{\lG\mathrm{rp}} % category of groups
-\newcommand{\Euc}{\lE\mathrm{uc}} % site of Euclidean manifolds
-\newcommand{\Mfd}{\lM\mathrm{fd}} % site of smooth manifolds
-\newcommand{\Kan}{\lK\mathrm{an}} % category of Kan complexes
-\newcommand{\Vect}{\lV\mathrm{ect}} % category of vector spaces
-\newcommand{\Mod}{\lM\mathrm{od}} % category of modules
-\newcommand{\Ab}{\lA\mathrm{b}} % category of abelian groups
-\newcommand{\Shv}{\lS\mathrm{hv}} % category of sheaves
-\newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
-\newcommand{\Pic}{\lP\mathrm{ic}} % Picard category
-\newcommand{\PT}{\lP\lT} % Pontryagin-Thom
-\newcommand{\Fred}{\lF\mathrm{red}} % Fredholm
-\newcommand{\fl}{\mathrm{fl}} % flat
-\newcommand{\GrbBdl}{\lG\mathrm{rb}\Bdl} % category of bundle gerbes
-\newcommand{\cl}{\mathrm{cl}} % closed forms
-\newcommand{\BDelta}{\mathbf{\Delta}} % simplex category
-\newcommand{\Sing}{\mathrm{Sing}} % singular simplicial set
-\newcommand{\sm}{\mathrm{sm}} % smooth
-
-\DeclareMathOperator*\colim{colim} % colimit
-
-\newcommand{\adjun}[4]{
-\begin{tikzcd}[row sep=0.5in, column sep=0.5in]
- #1  \arrow[r, shift left=1.8, "#3"] \pgfmatrixnextcell
- #2 \arrow[l, shift left=1.6, "#4", "\bot"'] 
-\end{tikzcd}
-}
-
-\newcommand{\simpset}[7]{
- \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
-   #1 \arrow[r, shorten >=1ex,shorten <=1ex]
-   \pgfmatrixnextcell #2 
-   \arrow[l, shift left=1.2, "#5"] \arrow[l, shift right=1.2, "#4"'] 
-   \arrow[r, shift right, shorten >=1ex,shorten <=1ex ] \arrow[r, shift left, shorten >=1ex,shorten <=1ex] 
-   \pgfmatrixnextcell #3 
-   \arrow[l] \arrow[l, shift left=2, "#7"] \arrow[l, shift right=2, "#6 "'] Top
-   \arrow[r, shorten >=1ex,shorten <=1ex] \arrow[r, shift left=2, shorten >=1ex,shorten <=1ex] \arrow[r, shift right=2, 
-   shorten >=1ex,shorten <=1ex]
-   \pgfmatrixnextcell \cdots 
-   \arrow[l, shift right=1] \arrow[l, shift left=1] \arrow[l, shift right=3] \arrow[l, shift left=3] 
- \end{tikzcd}
-}
-
-
-%% N.R. notes
-\newcommand{\nrnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
-\newcommand{\nrmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
-  size=\tiny]{#1}}
-\newcommand{\nrnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
-
-\newtheorem{theorem}[equation]{Theorem}
-\newtheorem{lemma}[equation]{Lemma}
-\newtheorem{proposition}[equation]{Proposition}
-\newtheorem{corollary}[equation]{Corollary}
-% \newtheorem{statement}[section]{Statement}
-
-\theoremstyle{definition}
-\newtheorem{definition}[equation]{Definition}
-\newtheorem{example}[equation]{Example}
-% \newtheorem{attone}[section]{Attention}
-
-\theoremstyle{remark}
-\newtheorem{remark}[equation]{Remark}
-% \newtheorem{intone}[section]{Intuition}
-\newtheorem{notation}[equation]{Notation}
-% \newtheorem{queone}[section]{Question}
-% \newtheorem{conjone}[section]{Conjecture}
-\newtheorem{warning}[equation]{Warning}
-
-\numberwithin{equation}{section}
+\usepackage{Diff_Coh}
 
 \title{Differential Cohomology Seminar 4 (Draft)}
 \date{03.06.2025 $\&$ 18.06.2025}
@@ -249,7 +108,7 @@ Explicitly, given an object $C\in\lC$, the associated pre-sheaf $\flat C$ maps a
   $\Sing$ is a cosheaf. In particular,
   $\flat$ factors through $\Shv(\Mfd,\lC)\subseteq\Fun(\Mfd^{\op},\lC)$.
 \end{lemma}
-\cref{lem:flatsheaf} is essentially the consequence of a generalized version of Seifert-van Kampen theorem, namely \cite[Proposition A.3.2]{lurie2017ha}, stating that, given a topological space $X$ and a covering sieve $\mathscr{O}$, the space $\widehat{\Sing}(X)$ is the colimit of $\widehat{\Sing}(U)$, over $U\in\lI(\mathscr{O})$.
+\cref{lem:flatsheaf} is essentially the consequence of a generalized version of Seifert-van Kampen theorem, namely \cite[Proposition A.3.2]{lurie2017ha}, stating that, given a topological space $X$ and a covering sieve $\rO$, the space $\widehat{\Sing}(X)$ is the colimit of $\widehat{\Sing}(U)$, over $U\in\lI(\rO)$.
 \begin{theorem}\label{thm:leftadjoint}
   $\flat:\lC\to\Shv(\Mfd,\lC)$ is left adjoint to $\Gamma$.
 \end{theorem}
@@ -330,8 +189,8 @@ Since both inner squares are pullbacks, ${\bZ}(k)$ is equivalent to the fiber of
 It is immediate to see that a cocycle in $\bB(k)^n(M)$ (for $n\geq k$) determines a differential character of degree $n$. 
 \subsection{Interlude}\label{int:goodcover}
 \begin{definition}
-  Given a full sub-site $\lB\subseteq\Mfd$ and a manifold $M$, a $\lB$\emph{-good open cover} of $M$ consists of an open cover $\mathscr{O}$ such that every finite intersection of elements in $\mathscr{O}$ is either empty or diffeomorphic to an object of $\lB$. If $\lB=\Euc$ the sub-site of Euclidean spaces, we call a $\lB$-good open cover a \emph{differentiably good open cover}, see \cite[Definition 6.3.9]{fiorenza2011cechcocyclesdifferentialcharacteristic}.
-\end{definition}If $\lB$ is the sub-site of contractible manifolds, we recover the notion of a \emph{good open cover}. Let $V$ be a sheaf on manifolds and $W$ a sheaf on $\lB$ together with an equivalence $V|_\lB\simeq W$, then $V$ can be evaluated on a manifold $M$ using $W$, provided that $M$ admits a $\lB$-good open cover, since \[V(M)\simeq\lim_{U\in\lI(\mathscr{O})}V(U)\simeq\lim_{U\in\lI(\mathscr{O})}W(U)\]
+  Given a full sub-site $\lB\subseteq\Mfd$ and a manifold $M$, a $\lB$\emph{-good open cover} of $M$ consists of an open cover $\rO$ such that every finite intersection of elements in $\rO$ is either empty or diffeomorphic to an object of $\lB$. If $\lB=\Euc$ the sub-site of Euclidean spaces, we call a $\lB$-good open cover a \emph{differentiably good open cover}, see \cite[Definition 6.3.9]{fiorenza2011cechcocyclesdifferentialcharacteristic}.
+\end{definition}If $\lB$ is the sub-site of contractible manifolds, we recover the notion of a \emph{good open cover}. Let $V$ be a sheaf on manifolds and $W$ a sheaf on $\lB$ together with an equivalence $V|_\lB\simeq W$, then $V$ can be evaluated on a manifold $M$ using $W$, provided that $M$ admits a $\lB$-good open cover, since \[V(M)\simeq\lim_{U\in\lI(\rO)}V(U)\simeq\lim_{U\in\lI(\rO)}W(U)\]
 If every manifolds admits a $\lB$-good open cover, then $V$ is completely determined by $W$. Since we mainly care for $\lB=\Euc$, we need the following result. 
 \begin{theorem}[{\cite[Theorem A.1]{fiorenza2011cechcocyclesdifferentialcharacteristic}}]
   Every paracompact smooth manifold admits a differentiably good open cover. 
@@ -348,7 +207,7 @@ Since $\bZ(k)|_\lB\simeq\bC(k)^*$, we can use the argument from \cref{int:goodco
   \]
   The limit is then equivalent to the limit of the cosimplicial object $\bC(k)^{*,*}:\Delta\to\lD(\bZ)$ defined as follows:
   \begin{enumerate}
-    \item $\bC(k)^{*,n}$ is the product of all $\bC(k)^*(U_0\cap\cdots\cap U_n)$, ranging over the $(n+1)$-tuples of $\mathscr{O}^{n+1}$. 
+    \item $\bC(k)^{*,n}$ is the product of all $\bC(k)^*(U_0\cap\cdots\cap U_n)$, ranging over the $(n+1)$-tuples of $\rO^{n+1}$. 
     \item Given a monotone map $\alpha:\langle n\rangle\to\langle m\rangle$, define $\alpha^*:\bC(k)^{*,n}\to\bC(k)^{*,m}$ as follows: Given $\theta\in\bC(k)^{*,n}$, the $(U_0,\cdots,U_m)$-component of $\alpha^*(\theta)$ is the $(U_{\alpha(0)},\cdots,U_{\alpha(n)})$-component of $\theta$ restricted to $U_0\cap\cdots\cap U_m$.
   \end{enumerate}
   We can evaluate the limit by lifting $\bC(k)^{*,*}$ to a cosimplicial object in $\Ch$ and apply \cite[Lemma 7.10]{bunkenikolausvoelkl2016diffcoh}, the limit is then equivalent to (the image under localization $\Ch\to\lD(\bZ)$ of) the total complex of the cochain bicomplex $\cdots\to 0\to \bC(k)^{*,0}\to\bC(k)^{*,1}\to\cdots$, with differential \[\delta^{*,n}=\sum_{\ell=0}^{n+1}(-1)^\ell(\ell\mbox{-th face map})^*:\bC(k)^{*,n}\to\bC(k)^{*,n+1}\] 
