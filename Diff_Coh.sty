@@ -7,7 +7,7 @@
 \RequirePackage{mathrsfs}
 \RequirePackage{enumerate}
 \RequirePackage{mathtools}
-\RequirePackage[T1]{fontenc}
+% \RequirePackage[T1]{fontenc}
 \RequirePackage{circledsteps}
 \setlength{\marginparwidth}{2cm}
 \RequirePackage[margin=2.5cm]{geometry}
@@ -59,24 +59,28 @@
 \newcommand{\bZ}{\mathbb{Z}}
 
 \newcommand{\op}{\mathrm{op}} % opposite
+\newcommand{\im}{\mathrm{im}} % image
+\newcommand{\id}{\mathrm{id}} % identity
 \newcommand{\set}{\lS\mathrm{et}} % category of sets
+\newcommand{\poset}{\lP\lO\set} % category of partially ordered sets
 \newcommand{\Grpd}{\lG\mathrm{rpd}} % category of groupoids
 \newcommand{\cat}{\lC\mathrm{at}} % category of categories
 \newcommand{\Fun}{\lF\mathrm{un}} % category of functors
 \newcommand{\Shv}{\lS\mathrm{hv}} % category of sheaves
 \newcommand{\hi}{\mathrm{hi}} % homotopy invariant
-\newcommand{\Ho}{\mathrm{Ho}} % homotopy category
+\newcommand{\Ho}{\mathrm{h}} % homotopy category
 \newcommand{\BDelta}{\bm{\Delta}} % simplex category
 \newcommand{\sset}{\mathrm{s}\set} % category of simplicial sets
 \newcommand{\Top}{\lT\op} % category of topological spaces 
 \newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
-\newcommand{\Sing}{\mathrm{Sing}}
+\newcommand{\Sing}{\lS\mathrm{ing}} % singular simplicial set
 \newcommand{\scat}{\mathrm{s}\cat} % category of simplicial categories
 \newcommand{\Path}{\mathrm{Path}} % path (simplicial category)
 \newcommand{\PSp}{\lP\Sp} % pre-spectra
 \newcommand{\Sp}{\lS\mathrm{p}} % category of spectra
 \newcommand{\st}{\mathrm{st}} % stable
 \newcommand{\Hom}{\lH\mathrm{om}} % enriched hom-spaces, hom-spectrum
+\renewcommand{\hom}{\mathrm{Hom}} % hom-set, hom-space
 \newcommand{\Mon}{\lM\mathrm{on}} % category of monoid objects
 \newcommand{\CMon}{\lC\Mon} % category of commutative monoid objects
 \newcommand{\Grp}{\lG\mathrm{rp}} % category of groups
@@ -102,12 +106,13 @@
 
 \DeclareMathOperator*\colim{colim} % colimit
 
-% \newcommand{\adjun}[4]{
-% \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
-% #1  \arrow[r, shift left=1.8, "#3"] \pgfmatrixnextcell
-% #2 \arrow[l, shift left=1.6, "#4", "\bot"'] 
-% \end{tikzcd}
-% }
+% left adjoint on top of right adjoint: 
+\newcommand{\adjun}[4]{
+\begin{tikzcd}[column sep=2cm,ampersand replacement=\&]
+  #1 \arrow[r,shift left,"#3"] \&
+  #2 \arrow[l,shift left,"#4"] 
+  \end{tikzcd}
+}
 
 \newcommand{\simpset}[7]{
  \begin{tikzcd}[row sep=0.5in, column sep=0.5in]
@@ -144,7 +149,7 @@
 \theoremstyle{remark}
 \newtheorem{remark}[equation]{Remark}
 % \newtheorem{intone}[equation]{Intuition}
-% \newtheorem{notation}[equation]{Notation}
+\newtheorem{notation}[equation]{Notation}
 \newtheorem{question}[equation]{Question}
 % \newtheorem{conjone}[equation]{Conjecture}
 % \newtheorem{warning}[equation]{Warning}

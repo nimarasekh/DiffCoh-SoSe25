@@ -14,100 +14,76 @@ In this lecture we want to learn the basics of $\infty$-category theory. For the
 
 \section{Basics on \texorpdfstring{$(\infty,1)$}{(oo,1)}-categories}
 
-There are a pletora of models for $\infty$-categories, here we focus on two. We begin by recalling some definitions about simplicial sets. 
+There are a pletora of models for $\infty$-categories, here we focus on two, namely simplicial sets satisfying a filling condition, and categories enriched over simplicial sets.
+
+
+\subsection{Simplicial sets}
+We begin by recalling some definitions about simplicial sets. Denote by $\poset$ the category of finite, linearly ordered sets, and $\BDelta\subseteq\poset$ the full sub-category of sets $[n]=\{0,\cdots,n\}$ (with natural ordering), for every natural number $n$. Given a category $\lC$, a \emph{simplicial object} is a functor $S:\BDelta^\op\to\lC$, the value at $[n]$ is denoted by $S_n$. Simplicial objects in $\lC=\set$ are called \emph{simplicial sets}, the category of simplicial sets is depicted as $\sset$. 
 \begin{definition}
-  Given a natural number $n$, denote by $\langle n\rangle$ the partially ordered set $\{0,\cdots,n\}$. The \emph{simplex category} $\BDelta$ is the category of finite linerly ordered sets of the form $\langle n\rangle$, for any $n$, and monotone functions.
-\end{definition}
-We single out two classes of functions in $\BDelta$: 
-\begin{definition}
-  Given $0\leq i\leq n$, the \emph{$i$-coface map} is the unique injective monotone function $\delta^i_n:\langle n-1\rangle\to\langle n\rangle$ such that $i$ does not belong in the image of $\delta^i_n$. The \emph{$i$-codegeneracy map} is the unique surjective monotone function $\sigma^i_n:\langle n+1\rangle\to\langle n\rangle$ such that $i$ and $i+1$ have the same image. 
-\end{definition}
-\begin{theorem}[{\cite[I.4]{goerssjardine1999simplicialhomotopytheory}}]
-  As a category, $\BDelta$ is generated from the face and degeneracy maps subject to the \emph{simplicial identities}. 
-\end{theorem}
-\begin{definition}
-  A \emph{simplicial set} is a contravariant functor $X:\BDelta^{\op} \to \set$. The category of simplicial sets is denoted by $\sset$. An element of $X_n=X(\langle n\rangle)$ is called a \emph{$n$-simplex}. The function $X_n\to X_{n-1}$, resp $X_n\to X_{n+1}$, induced by $\delta^i_n$, resp. $X(\sigma^i_n)$, is called the \emph{$i$-face map}, resp. \emph{$i$-degeneracy map}, and denoted $d^n_i$, resp. $s^n_i$. 
-\end{definition}
-A simplicial set can be depicted as follows: 
-\begin{equation}
-\simpset{X_0}{X_1}{X_2}{}{}{}{}  
-\end{equation}
-\begin{definition}
-  Given $0\leq i\leq n$, the \emph{$i$-horn} is the simplicial sub-set $\Lambda^n_i\subseteq\Delta^n$ defined as follows: A monotone map $f:\langle k\rangle\to\langle n\rangle$ is a $k$-simplex of $\Lambda^n_i$ if there is $j\neq i$ that does not belong in the image of $f$. A horn $\Lambda^n_i$ is \emph{inner} if $0<i<n$. 
-\end{definition}
-\begin{definition}A simplicial set $X$ is called a \emph{$\infty$-category} if, for every $n$ and $0<i<n$, every map of simplicial sets $\Lambda^n_i\to X$ admits an extension to a map $\Delta^n\to X$. If the condition is verified for every $n$ and $0\leq i\leq n$, $X$ is called a \emph{$\infty$-groupoid}.
-\end{definition}
-\begin{remark}
-  A map of simplicial sets $f:X\to Y$ is called a \emph{Kan fibration} if it has the \emph{horn lifting property}: For every $n$ and every $0\leq i\leq n$, every diagram \begin{equation}
-    \begin{tikzcd}
-      \Lambda^i_n \arrow[r] \arrow[d] & X \arrow[d,"f"] \\
-      \Delta^n \arrow[ru,dashed] \arrow[r] & Y
-    \end{tikzcd}
-  \end{equation}admits a dashed arrow making both triangles commute. A map $f$ is a \emph{inner Kan fibration} if the horn lifting property holds only for inner horns, i. e. $0<i<n$. A simplicial set $X$ is a $\infty$-groupoid, resp. $\infty$-category, if and only if the terminal map $X\to\Delta^0$ is a Kan fibration, resp. inner Kan fibration. 
-\end{remark}
-\begin{definition}
-  Given a category $\lC$, its \emph{nerve} is the simplicial set $\mN\lC$ defined as follows: For $n\geq1$, a $n$-simplex of $\mN\lC$ consists of a $n$-tuple of composable arrows. The objects of $\lC$ are the $0$-simplices. 
-\end{definition}
-\begin{proposition}
-  $\mN\lC$ is a $\infty$-category. 
-\end{proposition}
-Viewed as a functor from categories to $\infty$-categories, the nerve functor admits a left adjoint called the \emph{homotopy category} functor $\Ho$. We will sketch the construction of $\Ho X$, refering to \cite{land2021introduction} and \cite{groth2010inftycats} for more details. 
-\begin{remark}
-  Given a 1-simplex $f$, we write $f:x\to y$ to mean that $d^1_1(f)=x$ and $d^1_0(f)=y$. The 1-simplex $s^0_0(x)$ is written as \begin{equation}
-    \begin{tikzcd}
-      x \arrow[r,no head,double line] & x
-    \end{tikzcd}
-  \end{equation} 
-\end{remark}
-\begin{definition}
-  Given a simplicial set $X$, two 1-simplices $f,g:x\to y$ are \emph{homotopic} if there is a 2-simplex of the form: 
-  \begin{center}
-    \begin{tikzcd}
-      & y \arrow[dr,no head,double line] & \\
-      x \arrow[ru,"f"] \arrow[rr,"g"'] & {} & y 
-    \end{tikzcd}
-  \end{center}
-  Given 0-simplices $x,y$, denote by $\hom_{\Ho(X)}(x,y)$ the set of 1-simplices $x\to y$ modulo the equivalence relation generated by being homotopic. Given a 1-simplex $f:x\to y$, its homotopy class in $\hom_{\Ho X}(x,y)$ is denoted $[f]$. 
-\end{definition}
-\begin{lemma}[{\cite{kerodon2026homcat}}]\label{lem:homcat}
-  Let $X$ be an $\infty$-category, then: 
-  \begin{enumerate}
-    \item For every pair $x,y$ of 0-simplices, being homotopic is an equivalence relation on the set of 1-simplices $x\to y$. 
-    \item For every pair $f:x\to y$ and $g:y\to z$, there is a 2-simplex of the form \begin{equation}\label{eq:comp}
-      \begin{tikzcd}
-        & y \arrow[dr,"g"] & \\
-        x \arrow[ru,"f"] \arrow[rr,"h"'] & & z
-      \end{tikzcd}
-    \end{equation} 
-    \item The homotopy class of $h$ in \cref{eq:comp} only depends on the homotopy classes of $f$ and $g$.
-    \item For every triple $x,y,z$ of $0$-simplices, there is a composition law \begin{equation}
-      \begin{tikzcd}
-        \hom_{\Ho X}(x,y) \times \hom_{\Ho X}(y,z) \arrow[r,"\circ_{x,y,z}"] & \hom_{\Ho X}(x,z)
-      \end{tikzcd}
-    \end{equation}defined as follows: Given $f:x\to y,g:y\to z$, let $h$ be a 1-simplex as in \cref{eq:comp}, then $[g]\circ[f]:=[h]$. 
-    \item The composition laws $\circ_{x,y,z}$ are associative. 
-    \item Given a 0-simplex $x$, the left homotopy class of $s^0_0(x)$ acts as the left and right identity with respect to the composition laws above. 
+  Let $0\leq i\leq n$. Given a simplicial object $S$, Then \begin{enumerate}
+    \item The \emph{$i$-face map} $d_i:S_n\to S_{n-1}$ is the one induced by the unique injective, monotone function $f:[n-1]\to[n]$ such that $i$ doesn't belong in the image of $f$. 
+    \item The \emph{$i$-degeneracy map} $s_j:S_{n}\to S_{n+1}$ is the one induced by the unique surjective, monotone function $f:[n+1]\to[n]$ such that $f(i)=f(i+1)=i$. 
   \end{enumerate}
-\end{lemma}
+\end{definition}
+We also use the following special notation: 
+\begin{notation}
+  0-simplices are called \emph{vertices}, while 1-simplices are called \emph{edges}. The 1-face, resp. 0-face, map $S_1\to S_0$ is called \emph{source}, resp. \emph{target}, and denoted $s$, resp. $t$. Given an edge $f$, we write $f:X\to Y$ to mean $X$ is the source and $Y$ the target. 
+\end{notation}
+Face and generacy maps (and objects $S_n$, for every $n$) fully determine the simplicial object $S$, see \cite[I.4]{goerssjardine1999simplicialhomotopytheory}. By only depicting face and degeneracy maps, we can represent a simplicial object as follows:
+\begin{equation}
+\simpset{S_0}{S_1}{S_2}{}{}{}{}  
+\end{equation}
+\begin{example}
+  Given a natural number $n$, denote by $\Delta^n$ the simplicial set represented by $[n]$. In particular, $(\Delta^n)_k$ is the set of monotone functions $[k]\to[n]$. By Yoneda, given a simplicial set $S$, we can (and will) identify the set $S_n$ with $\hom_{\sset}(\Delta^n,S)$. An element $\in S_n$ is called a \emph{$n$-simplex}. 
+\end{example}
+\begin{example}
+  Given a natural number $n$, denote by $\partial\Delta^n\subseteq\Delta^n$ the \emph{boundary} of $\Delta^n$, defined as follows: $f:[k]\to[n]$ in $(\Delta^n)_k$ belongs to $(\partial\Delta^n)_k$ if $f$ is non-surjective. 
+\end{example}
+\begin{example}
+  Given $0\leq i\leq n$, denote by $\Lambda^n_i\subseteq\Delta^n$ the \emph{$i$-horn}, defined as follows: $f:[k]\to[n]$ in $(\Delta^n)_k$ belongs to $(\Lambda^n_i)_k$ if $\{i\}\cup f([k])\neq[n]$. \emph{Right}, resp. \emph{left}, horns are all horns $\Lambda^n_i$ with $0<i\leq n$, resp. $0\leq i<n$. \emph{Inner} horns are all horns $\Lambda^n_i$ with $0<i<n$.  
+\end{example}
+
+\subsection{\texorpdfstring{$\infty$}{oo}-Categories} 
 \begin{definition}
-  Let $X$ be a $\infty$-category, the \emph{homotopy category}, denoted $\Ho X$, is the category defined as follows: 
-  \begin{enumerate}
-    \item The set of objects is $X_0$.
-    \item Given a pair of objects $x,y$, let $\hom_{\Ho X}(x,y)$ be the set of morphisms $x\to y$. 
-    \item Take $\circ_{x,y,z}$ from \cref{lem:homcat} as composition laws.
-  \end{enumerate} 
+  Let $\lC$ be a category, $f:X\to Y$ has the \emph{right lifting property} against $i:A\to B$ if for every solid diagram \begin{equation}
+    \begin{tikzcd}
+      A \arrow[d,"i"']\arrow[r] & X \arrow[d,"f"] \\
+      B \arrow[ru,dashed,"\exists" description]\arrow[r] & Y
+    \end{tikzcd}
+  \end{equation}there is a dashed arrow making the diagram commute. 
 \end{definition}
 \begin{definition}
-  Let $X$ be a $\infty$-category, a 1-simplex $f:x\to y$ is an \emph{equivalence} if $[f]$ is an isomorphism in $\Ho X$.
+  A (\emph{inner}/\emph{right}/\emph{left}) \emph{fibration} is a morphism of simplicial sets $f:X\to Y$ that has the right lifting property against all (inner/right/left) horn inclusions. A simplicial set $X$ is called an \emph{$\infty$-category}, resp. \emph{$\infty$-groupoid}, if the terminal map $X\to\Delta^0$ is an inner fibration, resp. a fibration. 
 \end{definition}
-The following theorem shows that $\infty$-groupoids have a relation to $\infty$-categories similar to that of ordinary groupoids to ordinary categories. 
+\begin{example}
+  The nerve of a category, resp. groupoid, is an $\infty$-category, resp. $\infty$-groupoid. 
+\end{example}
+We recall briefly the construction of the \emph{homotopy category} $\Ho S$ of a $\infty$-category $S$, details can be found in \cite{lurie2009htt,kerodon2026homcat}. The objects of $\Ho S$ are the vertices of $S$. Given a vertex $X$, denote by $\id_X$ the image of $X$ under $s_0:S_0\to S_1$. Given two vertices $X,Y$ and edges $f,g:X\to Y$, we say $f$ is \emph{left homotopic} to $g$ if there is a 2-simplex with the following boundary: 
+\begin{equation}
+    \begin{tikzcd}
+      & Y \arrow[dr,"\id_Y"] & \\
+      X \arrow[ru,"f"] \arrow[rr,"g"'] & {} & Y 
+    \end{tikzcd}
+\end{equation}For $S$ an $\infty$-category, being left homotopic is an equivalence relation on the set of edges $X\to Y$. Denote by $\hom_{\Ho S}(X,Y)$ the set of edges $X\to Y$ modulo being left homotopic. Given an edge $f$, we write $[f]$ for its left homotopy class. Two edges $f:X\to Y$ and $g:Y\to Z$ determine a map $\Phi:\Lambda^2_1\to S$. By definition, there is a 2-simplex $\sigma$ such that $\sigma|_{\Lambda^2_1}=\Phi$, then \begin{equation}
+  [g]\circ[f]:=[d_1(\sigma)]
+\end{equation}
+This composition is well-defined, associative, and unital (with $[\id_X]$ acting as the identity of $X$). 
+% -----------TO BE CONTINUED-----------
+\begin{definition}
+  Let $S$ be a $\infty$-category, an edge $f$ is an \emph{equivalence} if $[f]$ is an isomorphism in $\Ho S$.
+\end{definition}
 \begin{theorem}[\cite{kerodon2026joyal}]
-  A quasi-category $X$ is a $\infty$-groupoid if and only if $\Ho X$ is a groupoid. 
+  A $\infty$-category $S$ is a $\infty$-groupoid if and only if $\Ho S$ is a groupoid. 
 \end{theorem}
-$\infty$-groupoids naturally form a full sub-category of $\sset$. To construct the $\infty$-category of $\infty$-groupoids, we use the simplicial nerve of Lurie. 
+
+\subsection{Simplicial categories}
+
 \begin{definition}
-  Denote by $\scat$ the category of simplicially enriched categories. A simplicially enriched category is called \emph{locally fibrant} if its hom-simplicial sets are $\infty$-groupoids.  
+  A \emph{simplicial category} is a category enriched over simplicial sets. Denote by $\scat$ the category of simplicial categories. 
 \end{definition}
+
+%-----------TO BE CONTINUED-----------
+
 Recall that $\sset$ is self-enriched as follows: 
 \begin{definition}
    Given two simplicial sets $X,Y$, the \emph{hom-simplicial set} $\hom^\Delta_{\sset}(X,Y)$ is defined as follows: A $n$-simplex consists of a map of simplicial sets $\Delta^n\times X\to Y$. 
