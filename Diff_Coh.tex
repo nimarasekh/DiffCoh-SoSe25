@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{book}
+\documentclass[a4paper]{book}
 \usepackage{bm}
 \usepackage{tikz}
 \usepackage{eucal}
@@ -8,9 +8,9 @@
 \usepackage{enumerate}
 \usepackage{mathtools}
 \usepackage{circledsteps}
-\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,stmaryrd}
 \usepackage{hyperref}
-\usepackage[textwidth=2cm, textsize=small, colorinlistoftodos]{todonotes}
+\usepackage[textwidth=2cm,textsize=small,colorinlistoftodos]{todonotes}
 
 \usepackage[nameinlink,capitalise,noabbrev]{cleveref}
 
@@ -38,6 +38,7 @@
 \newcommand{\bB}{\mathbb{B}}
 \newcommand{\lC}{\mathcal{C}}
 \newcommand{\rC}{\mathscr{C}}
+\newcommand{\kC}{\mathfrak{C}}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\lD}{\mathcal{D}}
 \newcommand{\lE}{\mathcal{E}}
@@ -60,6 +61,7 @@
 \newcommand{\lO}{\mathcal{O}}
 \newcommand{\lP}{\mathcal{P}}
 \newcommand{\bP}{\mathbb{P}}
+\newcommand{\kP}{\mathfrak{P}}
 \newcommand{\bQ}{\mathbb{Q}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\mR}{\mathrm{R}}
@@ -71,6 +73,7 @@
 \newcommand{\lV}{\mathcal{V}}
 \newcommand{\lX}{\mathcal{X}}
 \newcommand{\lY}{\mathcal{Y}}
+\newcommand{\lW}{\mathcal{W}}
 \newcommand{\bZ}{\mathbb{Z}}
 
 \newcommand{\op}{\mathrm{op}} 
@@ -81,12 +84,14 @@
 \newcommand{\Grpd}{\lG\mathrm{rpd}} % category of groupoids
 \newcommand{\cat}{\lC\mathrm{at}} % category of categories
 \newcommand{\Fun}{\lF\mathrm{un}} % category of functors
+\newcommand{\Psh}{\lP\Shv} % category of pre-sheaves
 \newcommand{\Shv}{\lS\mathrm{hv}} % category of sheaves
 \newcommand{\hi}{\mathrm{hi}}
 \newcommand{\Ho}{\mathrm{h}} % homotopy category
-\newcommand{\BDelta}{\bm{\Delta}} % simplex category
 \newcommand{\sset}{\mathrm{s}\set} % category of simplicial sets
 \newcommand{\Top}{\lT\op} % category of topological spaces 
+\newcommand{\Kan}{\lK\mathrm{an}} % category of Kan complexes
+\newcommand{\WKan}{\lW\Kan} % category of weak Kan complexes
 \newcommand{\Open}{\lO\mathrm{pen}} % category of open subspaces
 \newcommand{\Sing}{\lS\mathrm{ing}} % singular simplicial set
 \newcommand{\scat}{\mathrm{s}\cat} % category of simplicial categories
@@ -283,173 +288,257 @@ If $M = G$ is a Lie group, then WZW model is not globally defined i.e. $dB = H =
 
 In this lecture we introduce the machinery of higher category theory needed for those talks that come after. For the $\infty$-categorical background, we mainly follow \cite{lurie2009htt} and \cite{land2021introduction}. 
 
-\section{Model Categories}
+\section{Background}
 
-\section{Basics on \texorpdfstring{$(\infty,1)$}{(oo,1)}-categories}
+\subsection{Model Categories}
+
+We recall some definitions regarding model categories. For more details, see \cite{hirschhorn2003modelcategories} (we will also refer to chapter 11 of \cite{riehl2014categoricalhomotopytheory}). A \emph{model category} consists of a complete and cocomplete category $\lC$ together with three classes of maps, called \emph{weak equivalences, fibrations}, and \emph{cofibrations}. The standard axioms (\cite[Definition 7.1.3]{hirschhorn2003modelcategories}) on these data are the following:  
+\begin{itemize}
+	\item Weak equivalences contain all isomorphisms and satifying $2003$ (2-out-of-3), i.e., for every pair $f,g$ of composable morphisms, if any two of $f,g$ and $gf$ are weak equivalences, so is the third.
+	\item All classes are closed under retracts, i.e., $f$ is a retract of $g$ (\cite[Definition 7.1.1]{hirschhorn2003modelcategories}) and $g$ is a weak equivalence, fibration, or cofibration, the so is $f$.
+	\item For every solid diagram \begin{equation}\label{diag:lifting}
+    \begin{tikzcd}
+      X \arrow[d,"f"']\arrow[r] & Y\arrow[d,"g"]  \\
+      Z\arrow[ru,dashed]\arrow[r] & W
+    \end{tikzcd}
+  \end{equation}there is a dashed arrow making the diagram commute if $f$, resp. $g$, is a cofibration, resp. fibration, and either one is a weak equivalence. 
+  \item Every morphism admits a factorization consisting of a cofibrantion followed by an acyclic fibration, and a factorization consisting of an acyclic cofibration followed by a fibration. 
+\end{itemize}
+If a pair $f,g$ satisfies the condition that for every diagram like (\ref{diag:lifting}), there is a dashed arrow making the diagram commute, we say $g$, resp. $f$, has the \emph{right lifting property}, resp. \emph{left lifting property}, against $f$, resp. $g$. The last three axioms are equivalent to saying that acyclic cofibration with fibrations, and cofibrations with acyclic fibrations, form a \emph{weak factorization system} (\cite[Definition 11.2.1]{riehl2014categoricalhomotopytheory}), see \cite[\S 11.3]{riehl2014categoricalhomotopytheory}. 
+
+Denote by $\emptyset$, resp. $1$, the initial, resp. terminal, object. An object $X$ is \emph{cofibrant}, resp. \emph{fibrant}, if the canonical morphism $\emptyset\to X$, resp. $X\to1$, is a cofibration, resp. fibration. An object both cofibrant and fibrant is called \emph{bifibrant}. The full sub-category of bifibrant objects is denoted as $\lC^\circ$. 
 
 \subsection{Simplicial Sets}
 
-We introduce some notations, definitions, and constructions regarding simplicial sets. For more details, see \cite{goerssjardine1999simplicialhomotopytheory}. For each natural number $n$, we denote by $[n]$ the linearly ordered set $\{0,\cdots,n\}$. Let $\BDelta$ denote the category of linearly ordered sets $[n]$ and (non-strict) monotone functions between them. The following notations/nomenclature will be used throughout:
+We introduce some notations, definitions, and constructions regarding simplicial sets. For more details, see \cite{hovey1999modelcategories,goerssjardine1999simplicialhomotopytheory}, or \cite[Tag 0004]{kerodon2026}. For each natural number $n$, we denote by $[n]$ the linearly ordered set $\{0,\cdots,n\}$. Let $\Delta$ denote the category of linearly ordered sets $[n]$ and (non-strict) monotone functions between them. Functors $\Delta^\op\to\set$ are called \emph{simplicial sets}. The category of simplicial sets is denoted as $\sset$. 
+
+Simplicial sets are connected to topological spaces via the singular simplicial set and geometric realization functors. Given $n$, denote by $|\Delta^n|$ the sub-space $\subseteq[0,1]^{n+1}$ of tuples $(t_0,\cdots,t_n)$ such that $t_0+\cdots+t_n=1$. Given a topological space $X$, denote by $\Sing X$ its \emph{singular simplicial set}. The nerve functor admits a left adjoint, sending a simplicial set $S$ to its \emph{geometric realization} $|S|$.
+
+On the other hand, simplicial sets are connected to categories via the nerve functor. Given $n$, denote by $[n]$ the category associated to the linearly ordered set $[n]$. Given a category $\lC$, denote by $\mN\lC$ its \emph{nerve}. The nerve functor admits a left adjoint, sending a simplicial set $S$ to its \emph{homotopy category} $\pi(S)$, see \cite[Definition 1.2.5]{land2021introduction} or \cite[Tag 004M]{kerodon2026}. As we'll see, the homotopy category admits a simpler description for a special class of simplicial sets. 
+
+Among the morphisms of $\Delta$, there are two special classes: 
 \begin{itemize}
-	\item Given a category $\lC$, a \emph{simplicial}, resp. \emph{cosimplicial}, \emph{object} consists of a functor $\BDelta^\op\to\lC$. resp. $\BDelta\to\lC$. Simplicial objects in $\set$ are called \emph{simplicial sets}. The category of simplicial sets is denoted as $\sset$. 
-	\item Given a simplicial set $S$, we write $S_n$ for $S([n])$. Elements of $S_n$ are called \emph{$n$-simplices of $S$}. 
-	\item Given $n$, we write $\Delta^n$ for the simplicial set represented by $[n]$. Explicitly, a $k$-simplex of $\Delta^n$ is a monotone function $[k]\to[n]$. Appealing to Yoneda's Lemma, we identify $n$-simplices of $S$ with morphisms of simplicial sets $\Delta^n\to S$. 
 	\item Given $0\leq i\leq n$, we denote by $d^i_n$ the unique injective, monotone function $[n-1]\to[n]$ such that $i$ is not contained in the image. Given a simplicial object $S$, we'll write $d_i$ for the map $S_n\to S_{n-1}$, called \emph{face map}, induced by $d^i_n$ (leaving implicit the dependency on $S$ and $n$).
 	\item Given $0\leq i\leq n$, we denote by $s^i_n$ the unique surjective, monotone function $[n+1]\to[n]$ such that $i,i+1$ are mapped to $i$. Given a simplicial object $S$, we'll write $s_i$ for the map $S_{n+1}\to S_n$, called \emph{degeneracy map}, induced by $s^i_n$ (leaving implicit the dependency on $S$ and $n$). 
-	\item Given $n$, a simplicial set $S$, and a $0$-simplex $X$, we'll abuse notation and denote by $X$ the image of $X$ under the map $S_0\to S_n$ induced by the terminal function $[n]\to[0]$.  
-	\item Simplicial sets are connected to topological spaces via the singular simplicial set and geometric realization functors. Given $n$, denote by $|\Delta^n|$ the sub-space $\subseteq[0,1]^{n+1}$ of tuples $(t_0,\cdots,t_n)$ such that $t_0+\cdots+t_n=1$. The space $|\Delta^n|$ is called \emph{geometric $n$-simplex}. Given a topological space $X$, denote by $\Sing X$ its \emph{singular simplicial set}, the $n$-simplices of which are continuous maps $|\Delta^n|\to X$. On the other hand, given a simplicial set $S$, denote by $|S|$ its \emph{geometric realization}. 
-	\item Simplicial sets are connected to categories via the nerve functor. Given $n$, denote by $[n]$ the category associated to the linearly ordered set $[n]$. Given a category $\lC$, denote by $\mN\lC$ its \emph{nerve}, the $n$-simplices of which are functors $[n]\to\lC$.
-\end{itemize}
+\end{itemize}The sets $S_n$, for every $n\geq0$, together with face and degeneracy maps, completely determine a simplicial set, see \cite[Tag 04FW]{kerodon2026} (see also \cite[\S VII.5, Proposition 2]{maclane1998categories}, for a vintage reference). 
+\begin{remark}
+	The category $\sset$ is closed cartesian, hence self-enriched. We use the exponential notation for the internal homs of $\sset$, i.e., given simplicial sets $X,Y$, we write $Y^X$ for the simplicial set of morphisms from $X$ to $Y$. 
+\end{remark}
+\begin{remark}
+	Given a partially ordered set $J$, denote by $\Delta^J$ the simplicial set represented by $J$, i.e., a $n$-simplex consists of a monotone function $[n]\to J$.  
+\end{remark}
+\begin{remark}
+Given $n$, a simplicial set $S$, and a $0$-simplex $X$, we'll abuse notation and denote by $X$ the image of $X$ under the map $S_0\to S_n$ induced by the terminal function $[n]\to[0]$. Given a 1-simplex $f$, we'll write $f:X\to Y$ to mean $X$, resp. $Y$, is the 1-face, resp. 0-face, of $f$.
+\end{remark}
 \begin{definition}
-	Given $0\leq i\leq n$, denote by $\Lambda^n_i$ the \emph{$i$-th horn}, characterized as follows: A $k$-simplex of $\Lambda^n_i$ is a monotone function $f:[k]\to[n]$ such that $\{i\}\cup f([k])\neq[n]$.
+	Given $0\leq i\leq n$, denote by $\Lambda^n_i$ the \emph{$i$-th horn}, characterized as follows: A $k$-simplex of $\Lambda^n_i$ is a monotone function $f:[k]\to[n]$ such that $\{i\}\cup f([k])\neq[n]$. Horn corresponding to $0\leq i<n$, resp. $0<i\leq n$, are called \emph{left}, resp. \emph{right}. Horns that are both left and right are called \emph{inner}. 
 \end{definition}
 \begin{definition}
-	Given $n$, denote by $\partial\Delta^n$ the \emph{$n$-boundary}, characterized as follows: A $k$-simplex of $\partial\Delta^n$ is a monotone function $f:[k]\to[n]$ such that $f([k])\neq[n]$. 
-\end{definition}
-
-\subsection{\texorpdfstring{$\infty$}{oo}-Categories} 
-
-\begin{definition}
-	A simplicial set $S$ is called a \emph{$\infty$-category} if the following condition holds: For every $0< i< n$ and solid diagram \begin{equation}\label{eq:diag}
+	A simplicial set $S$ is called a \emph{Kan complex} if the following condition holds: For every $0\leq i\leq n$ and solid diagram \begin{equation}
     \begin{tikzcd}
       \Lambda^n_i \arrow[d,hook]\arrow[r] & S  \\
       \Delta^n \arrow[ru,dashed]
     \end{tikzcd}
-  \end{equation}there is a dashed arrow making the diagram commute. 
+  \end{equation}there is a dashed arrow making the diagram commute. Denote by $\Kan$ the full sub-category of $\sset$ consisting of Kan complexes. 
+\end{definition}
+
+% \begin{definition}
+%	Given $n$, denote by $\partial\Delta^n$ the \emph{$n$-boundary}, characterized as follows: A $k$-simplex of $\partial\Delta^n$ is a monotone function $f:[k]\to[n]$ such that $f([k])\neq[n]$. 
+% \end{definition}
+% \begin{definition}
+%	A morphism of simplicial sets is called a \emph{weak homotopy equivalence} if its geometric realization is a weak homotopy equivalence of topological spaces. 
+% \end{definition}
+% The geometric realization of $\Lambda^n_i\subseteq\Delta^n$ is (up to homeomorphism, see \cite[Tag 050E]{kerodon2026}) a deformation retract (see \cite[Tag 002K]{kerodon2026}), therefore horn inclusions are weak homotopy equivalences.  
+
+\section{Models of Higher Category Theory}
+
+\subsection{\texorpdfstring{$\infty$}{oo}-Categories} 
+
+\begin{definition}
+	A simplicial set $S$ is called a \emph{$\infty$-category} if the following condition holds: For every $0< i< n$ and solid diagram \begin{equation}
+    \begin{tikzcd}\label{eq:diag}
+      \Lambda^n_i \arrow[d,hook]\arrow[r] & S  \\
+      \Delta^n \arrow[ru,dashed]
+    \end{tikzcd}
+  \end{equation}there is a dashed arrow making the diagram commute. Denote by $\WKan$ the full sub-category of $\sset$ consisting of $\infty$-categories. 
 \end{definition}
 \begin{example}
-  The nerve of a category is an $\infty$-category. In fact, an $\infty$-category is (isomorphic to) the nerve of a ordinary category if and only if, for every solid diagram such as (\ref{eq:diag}), there is a \emph{unique} dashed arrow making the diagram commute (\cite[Proposition 1.1.2.2]{lurie2009htt}). 
+  The nerve of a category is an $\infty$-category. Conversely, an $\infty$-category is isomorphic to the nerve of a category if and only if, for every solid diagram like (\ref{eq:diag}), there is a \emph{unique} dashed arrow making the diagram commute (see \cite[Proposition 1.1.2.2]{lurie2009htt} or \cite[Theorem 1.1.52]{land2021introduction}). 
 \end{example}
-We recall briefly the construction of the \emph{homotopy category} $\Ho S$ of a $\infty$-category $S$, details can be found in \cite{lurie2009htt,kerodon2026homcat}:
-\begin{itemize}
-	\item Objects of $\Ho S$ are the 0-simplices of $S$.
-	\item 
-\end{itemize}
-\newpage
-. The objects of $\Ho S$ are the vertices of $S$. Given a vertex $X$, denote by $\id_X$ the image of $X$ under $s_0:S_0\to S_1$. Given two vertices $X,Y$ and edges $f,g:X\to Y$, we say $f$ is \emph{left homotopic} to $g$ if there is a 2-simplex with the following boundary: 
+\begin{definition}
+	Given a simplicial set $S$ and 1-simplices $f:X\to Y,g:Y\to Z,h:X\to Z$, we say \emph{$h$ is a composition of $f$ and $g$} if there is a 2-simplex with boundary 
 \begin{equation}
     \begin{tikzcd}
-      & Y \arrow[dr,"\id_Y"] & \\
-      X \arrow[ru,"f"] \arrow[rr,"g"'] & {} & Y 
+      & Y \arrow[dr,"g"] & \\
+      X \arrow[ru,"f"] \arrow[rr,"h"'] & {} & Z 
     \end{tikzcd}
-\end{equation}For $S$ an $\infty$-category, being left homotopic is an equivalence relation on the set of edges $X\to Y$. Denote by $\hom_{\Ho S}(X,Y)$ the set of edges $X\to Y$ modulo being left homotopic. Given an edge $f$, we write $[f]$ for its left homotopy class. Two edges $f:X\to Y$ and $g:Y\to Z$ determine a map $\Phi:\Lambda^2_1\to S$. By definition, there is a 2-simplex $\sigma$ such that $\sigma|_{\Lambda^2_1}=\Phi$, then \begin{equation}
-  [g]\circ[f]:=[d_1(\sigma)]
-\end{equation}
-This composition is well-defined, associative, and unital (with $[\id_X]$ acting as the identity of $X$). 
-% -----------TO BE CONTINUED-----------
-\begin{definition}
-  Let $S$ be a $\infty$-category, an edge $f$ is an \emph{equivalence} if $[f]$ is an isomorphism in $\Ho S$.
+\end{equation}Given 1-simplices $f,h:X\to Y$, we say \emph{$h$ is homotopic to $f$} if $h$ is a composition of $f$ and $Y$ (viewed as a 1-simplex).  
 \end{definition}
-\begin{theorem}[\cite{kerodon2026joyal}]
-  A $\infty$-category $S$ is a $\infty$-groupoid if and only if $\Ho S$ is a groupoid. 
-\end{theorem}
-
-\subsection{Simplicial categories}
-
-\begin{definition}
-  A \emph{simplicial category} is a category enriched over simplicial sets. Denote by $\scat$ the category of simplicial categories. 
-\end{definition}
-
-%-----------TO BE CONTINUED-----------
-
-Recall that $\sset$ is self-enriched as follows: 
-\begin{definition}
-   Given two simplicial sets $X,Y$, the \emph{hom-simplicial set} $\hom^\Delta_{\sset}(X,Y)$ is defined as follows: A $n$-simplex consists of a map of simplicial sets $\Delta^n\times X\to Y$. 
-\end{definition}
-\begin{lemma}\label{lem:functinfgrpd}
-  If $X$ is a $\infty$-groupoid, then $\hom^\Delta_{\sset}(B,X)$ is a $\infty$-groupoid, for every simplicial set $B$. 
-\end{lemma}
-\begin{proof}
-  Corollary of \cite{kerodon2026exponential} by taking $f$ the terminal map $X\to\Delta^0$ and $i$ the initial map $\emptyset\to B$. 
-\end{proof}
-\begin{definition}
-  Let $(P,\leq)$ be a partially ordered set, denote by $\Path(P)$ the following simplicial category: 
-  \begin{enumerate}
-    \item Objects are the elements of $P$. 
-    \item Given $x,y\in P$, let $[x,y]:=\{z\in P|x\leq z\leq y\}$ and $P_{x,y}$ the set of sub-sets $S\subseteq[x,y]$ that are finite, linearly ordered, and contain $\{x,y\}$. We order $P_{x,y}$ by reverse inclusion ($S\leq T$ if $S\supseteq T$). Finally, let $\hom_{\Path(P)}(x,y)$ be the nerve of $(P_{x,y},\supseteq)$. 
-    \item Given $x,y,z\in P$, composition \begin{equation}
-      \begin{tikzcd}
-        \hom_{\Path(P)}(x,y)\times\hom_{\Path(P)}(y,z) \arrow[r] & \hom_{\Path(P)}(x,z)
-      \end{tikzcd}
-    \end{equation} is the nerve of the union map $\cup:P_{x,y}\times P_{y,z}\to P_{x,z}$. 
-  \end{enumerate}
-  Given a monotone map $f:P\to Q$, let $\Path(f):\Path(P)\to\Path(Q)$ denote the following functor: 
-  \begin{enumerate}
-    \item On objects, it is simply $f$.
-    \item Given $x,y\in P$, define $\Path(f)$ as the nerve of the functor $f_*:P_{x,y}\to Q_{f(x),f(y)}$ given by taking direct images (i. e. $f_*(S)=f(S)$). 
-  \end{enumerate}
-Restricting to $\BDelta$, we obtain a cosimplicial simplicial category $\Path:\BDelta\to\scat$. 
-\end{definition}
-\begin{definition}
-  Given a simplicial category $\lC$, its \emph{simplicial nerve} is the simplicial set $\mN_\Delta\lC$ defined as follows:  A $n$-simplex of $\mN_\Delta\lC$ consists of a functor $\Path_n:=\Path(\langle n\rangle)\to\lC$. 
-\end{definition}
-\begin{remark}$\Path_0$ and $\Path_1$ are the categories $\langle0\rangle$ and $\langle 1\rangle$ viewed as simplicially enriched categories with discrete hom-simplicial sets, therefore a functor $\Path_0\to\lC$, resp. $\Path_1\to\lC$, is determined by a single object, resp. 1-morphism. $\Path_2$ admits the following description:
-\begin{enumerate}
-    \item Its set of objects is $\langle2\rangle$.
-    \item $P_{0,1}$ and $P_{1,2}$ are both singletons, hence $\hom_{\Path_2}(0,1)\cong\hom_{\Path_2}(1,2)\cong\Delta^0$. 
-    \item $P_{0,2}=\{[0,2]\leq\{0,2\}\}$ (recall that $P_{i,j}$ is ordered by reversed inclusion), so $\hom_{\Path_2}(0,2)\cong\Delta^1$. Moreover, $[0,2]$ is the composition $\{1,2\}\circ\{0,1\}$.  
-  \end{enumerate}
-  We can conclude that a functor $\Path_2\to\lC$ is determined by the following data: A triple of 1-morphisms $f:x\to y,g:y\to z$, and $h:x\to y$, together with a 1-simplex $g\circ f\Rightarrow h$ in $\hom_{\lC}(x,z)$. 
+We recall briefly the construction of the category $\Ho S$ of a $\infty$-category $S$ (details can be found in \cite{lurie2009htt}, \cite[Tag 0049]{kerodon2026}, or \cite[Definition 1.2.5]{land2021introduction}):
+\begin{itemize}
+	\item Objects of $\Ho S$ are the 0-simplices of $S$.
+	\item Given 0-simplices $X,Y$, being homotopic is an equivalence relation on 1-simplices from $X$ to $Y$ (\cite[Tag 003Z]{kerodon2026}). Denote by $\hom_{\Ho S}(X,Y)$ the homotopy classes of 1-simplices from $X$ to $Y$.
+	\item Given 1-simplices $f:X\to Y,g:Y\to Z$, there is a 1-simplex $h:X\to Z$, unique up to homotopy, such that $h$ is a composition of $f$ and $g$ (\cite[Tag 0043]{kerodon2026}). Moreover, the homotopy class of $h$ only depends on the homotopy classes of $f$ and $g$ (\cite[Tag 0048]{kerodon2026}). Therefore, there is a unique function \begin{equation}
+		\begin{tikzcd}[column sep=1.5cm]
+			\hom_{\Ho S}(X,Y)\times\hom_{\Ho S}(Y,Z) \arrow[r,"\circ_{X,Y,Z}"] & \hom_{\Ho S}(X,Z)
+		\end{tikzcd}
+	\end{equation}  such that $[h]=[g]\circ[f]$ whenever $h$ is a composition of $f$ and $g$. 
+	\item The composition laws $\circ_{X,Y,Z}$ are associative and, given a 0-simplex $X$, the homotopy class of $X$ (viewed as a 1-simplex) acts as the identity morphism of $X$ (\cite[004B]{kerodon2026}).
+\end{itemize}The following is a special case of \cite[Corollary 1.2.13]{land2021introduction}. 
+\begin{theorem}Given an $\infty$-category $S$, the category $\Ho S$ is isomorphic to $\pi(S)$.
+\end{theorem}We will also refer to $\Ho S$ as the \emph{homotopy category} of $S$. 
+\begin{remark}
+	We switch to using calligraphic upper-case letters to denote $\infty$-categories. Given a $\infty$-category $\lC$, we refer to 0-simplices, resp. 1-simplices, as \emph{objects}, resp. \emph{morphisms}. 
 \end{remark}
 \begin{definition}
-  Denote also by $\Path$ the functor $\sset\to\scat$ obtained by left Kan extension of $\Path:\BDelta\to\scat$. 
+	Given a $\infty$-category $\lC$, a morphism is called an \emph{equivalence} if its image in $\Ho\lC$ is an isomorphism. 
+\end{definition}
+\begin{definition}
+	A $\infty$-category $\lC$ is called an \emph{$\infty$-groupoid} if $\Ho\lC$ is a groupoid, i.e., every morphism is an equivalence. 
+\end{definition}
+The following is a result of A. Joyal.
+\begin{theorem} A $\infty$-category $\lC$ is a Kan complex if and only if it is a $\infty$-groupoid. 
+\end{theorem}
+For the proof, see \cite[Corollary 1.4]{joyal2002quasicatkancomplexes}, \cite[Tag 019D]{kerodon2026}, \cite[Proposition 1.2.5.1]{lurie2009htt}, or \cite[Corollary 2.1.12]{land2021introduction}.
+\begin{theorem}
+	Given a simplicial set $S$ and $\infty$-category $\lC$, the hom simplicial set $\lC^S$ is an $\infty$-category. 
+\end{theorem}
+For the proof, see \cite[Corollary 1.3.38]{land2021introduction}, \cite[Tag 0066]{kerodon2026}, or \cite[Corollary 2.3.2.5]{lurie2009htt}.
+\begin{definition}
+	Given $\infty$-categories $\lC,\lD$, denote by $\Fun(\lC,\lD)$ the simplicial set $\lD^\lC$, called the \emph{$\infty$-category of functors from $\lC$ to $\lD$}.  
+\end{definition}
+\begin{definition}
+	Given $\infty$-categories $\lC,\lD$, a functor $F:\lC\to\lD$ is called an \emph{Joyal equivalence} if there is $G:\lD\to\lC$ such that $F\circ G$, resp. $G\circ F$, is equivalent to the identity of $\lD$, resp. $\lC$. 
+\end{definition}
+Given a simplicial set $S$, denote by $S^\op$ the simplicial set having, for every $n$, $S^\op_n=S_n$, and for every $0\leq i\leq n$, \begin{equation}
+		\begin{tikzcd}[row sep=0.25cm]
+		(S^\op_n \arrow[r,"d_i^\op"] &  S^\op_{n-1}):=(S_n\arrow[r,"d_{n-i}"] &  S_{n-1})\\
+		(S^\op_n \arrow[r,"s_i^\op"] &  S^\op_{n+1}):=(S_n\arrow[r,"s_{n-i}"] &  S_{n+1})
+		\end{tikzcd}
+	\end{equation}
+\begin{theorem}[{\cite[Tag 003S]{kerodon2026}}]
+Given an $\infty$-category $\lC$, the simplicial set $\lC^\op$ is an $\infty$-category. 
+\end{theorem} 
+\begin{definition}
+	Given an $\infty$-category $\lC$, we call $\lC^\op$ the \emph{opposite $\infty$-category of $\lC$}. 
+\end{definition}
+Given a linearly ordered set $I$, a \emph{cut} consists of a partition $J,J'$ of $I$ such that $j<j'$, for every pair $j\in J$ and $j'\in J'$. The cuts $(\emptyset,I)$ and $(I,\emptyset)$ are allowed. Notice that a cut of $I$ is equivalent to a monotone function $I\to[1]$. 
+\begin{definition}
+	Given a pair of simplicial sets $X,Y$, denote by $X\star Y$ the \emph{join of $X$ and $Y$}, characterized as follows: A $n$-simplex of $X\star Y$ is a triple consisting of a cut $(J,J')$ of $[n]$ and morphisms of simplicial sets $\Delta^{J}\to X$ and $\Delta^{J'}\to Y$. Given a monotone function $p:[k]\to[n]$, the corresponding function on simplices sends a triple \begin{equation}
+		\begin{tikzcd}
+			(J,J') & \Delta^{J} \arrow[r,"\sigma"] & X & \Delta^{J'} \arrow[r,"\sigma'"] & Y
+		\end{tikzcd}
+	\end{equation}to
+	\begin{equation}
+		\begin{tikzcd}
+			(p^{-1}(J),p^{-1}(J')) & \Delta^{p^{-1}(J)} \arrow[d]\arrow[r] & X & \Delta^{p^{-1}(J')} \arrow[d]\arrow[r] & Y\\
+			& \Delta^{J} \arrow[ru,"\sigma"'] & & \Delta^{J'} \arrow[ru,"\sigma'"']
+		\end{tikzcd}
+	\end{equation}where the vertical arrows are induced by the restriction of $p$ to $p^{-1}(J)$ and $p^{-1}(J')$. 
+\end{definition}
+It can be checked directly that $\star$ underlies a monoidal structure on $\sset$, with monoidal unit $\emptyset$ (see \cite[Tag 016K]{kerodon2026}). 
+\begin{definition}
+Given a simplicial set $X$, denote by $\iota_X$ the initial functor $\emptyset\to X$ and, given a simplicial set $S$, denote by $\iota_X^\ell$, resp. $\iota_X^r$, the composition \begin{equation}
+	\begin{tikzcd}
+		S\cong S\star\emptyset \arrow[r,"S\star\iota_X"] & S\star X
+	\end{tikzcd}\text{, resp.}\qquad
+	\begin{tikzcd}
+		S\cong \emptyset\star S \arrow[r,"\iota_X\star S"] & X\star S
+	\end{tikzcd}
+\end{equation}
+The construction $S\star -$, resp. $-\star S$, induces a functor $\sset\to\sset_{S/}$ sending $X$ to $\iota^\ell_X$, resp. $\iota^r_X$.	
+\end{definition}
+
+\begin{definition}
+	Given a morphism of simplicial sets $\alpha:S\to X$, denote by $X_{\alpha/}$, resp. $X_{/\alpha}$, the simplicial set characterized as follows: A $n$-simplex of $X_{\alpha/}$, resp. $X_{/\alpha}$, is a commutative triangle \begin{equation}
+		\begin{tikzcd}[row sep=1cm]
+			& S \arrow[dl,"\iota^\ell_{\Delta^n}"']\arrow[dr,"\alpha"]  \\
+			S\star\Delta^n \arrow[rr] & & X
+		\end{tikzcd}\text{, resp.}\qquad
+		\begin{tikzcd}[row sep=1cm]
+			& S \arrow[dl,"\iota^r_{\Delta^n}"']\arrow[dr,"\alpha"] \\
+			\Delta^n\star S \arrow[rr] & & X
+		\end{tikzcd}
+	\end{equation}
 \end{definition}
 \begin{theorem}
-  The functor $\Path$ is left adjoint to $\mN_\Delta$ and form a Quillen equivalence between the \emph{Dwyer-Kan-Bergner} model structure on $\scat$ and the \emph{Joyal} model structure on $\sset$. The fibrant objects in the $\sset_\mathrm{Joyal}$, resp. $\scat_\mathrm{DKB}$, are $\infty$-categories, resp. locally fibrant categories. In particular, $\mN_\Delta\lC$ is a $\infty$-category if $\lC$ is locally fibrant.
-\end{theorem}
-By \cref{lem:functinfgrpd}, we know that the full sub-category $\infty\Grpd\subseteq\sset$ of $\infty$-groupoids is self-enriched, therefore we give the following definition.
+	Given a $\infty$-category $\lC$ and morphism of simplicial sets $\alpha:S\to\lC$, the simplicial sets $\lC_{\alpha/}$ and $\lC_{/\alpha}$ are $\infty$-categories. 
+\end{theorem}For the proof, see \cite[Corollary 2.1.2.2]{lurie2009htt}, or \cite[Corollary 1.4.24]{land2021introduction}.
 \begin{definition}
-  Denote by $\lS:=\mN_\Delta(\infty\Grpd)$ the \emph{$\infty$-category of $\infty$-groupoids}.
+	Given a $\infty$-category $\lC$ and morphism of simplicial sets $\alpha:S\to\lC$, we call $\lC_{\alpha/}$, resp. $\lC_{/\alpha}$, the \emph{$\infty$-category of objects under}, resp. \emph{over}, $\alpha$. 
+\end{definition}
+
+\subsection{Simplicial Categories}
+
+\begin{definition}
+	Categories enriched over $\sset$ (with cartesian monoidal structure) are called \emph{simplicial categories}. Denote by $\cat_{\sset}$ the category of simplicial categories. 
 \end{definition}
 \begin{remark}
-  In view of \cite{kerodon2026topspc}, we will also use the term \emph{space} to mean $\infty$-groupoid. 
+	The functor $\delta:\set\to\sset$ sending a set $S$ to $\coprod_{S}\Delta^0$ is fully faithful onto discrete simplicial sets. Since $\delta$ is strong monoidal, it allows us to identify locally small categories with simplicial categories having discrete hom simplicial sets. 
 \end{remark}
+\begin{remark}
+	The functor $\pi_0:\sset\to\set$ is strong symmetric monoidal (see \cite[Lemma 1.2.47]{land2021introduction} or \cite[Tag 00GX]{kerodon2026}), hence it induces a change of enrichment $\pi_*:\cat_{\sset}\to\cat$. Given a simplicial category $\lC$, there is a natural functor $\lC\to\pi_*\lC$.
+\end{remark}
+We recall briefly the construction of the \emph{simplicial nerve} of a simplicial category $\lC$ (details can be found in \cite[\S 1.1.5]{lurie2009htt} and \cite[Tag 00KM]{kerodon2026}). Given a partial ordered set $J$, define the simplicial category $\kC^J$ as follows: 
+\begin{itemize}
+	\item Objects of $\kC^J$ are the elements of $J$. 
+	\item Given a pair of objects $i,j$, let $\hom_{\kC^J}(i,j)$ be the nerve of the (category associated to the) partially ordered set $\kP_{i,j}$ of $I\subseteq\{k\in J|i\leq k\leq j\}$ containing $\{i,j\}$, ordered by reversed inclusion $\supseteq$.
+	\item Given a triple of objects $i,j,k$, composition is defined as the nerve applied to the monotone map \begin{equation}
+		\begin{tikzcd}[column sep=1.5cm]
+			\kP_{i,j}\times\kP_{j,k} \arrow[r,"\cup"] & \kP_{i,k}
+		\end{tikzcd}
+	\end{equation}
+	\item Given an object $i$, the singleton $\{i\}$ acts as the identity. 
+\end{itemize}
+Given a simplicial category $\lC$, denote by $\mN\lC$ its \emph{simplicial nerve}, the $n$-simplices of which are enriched functors $\kC[\Delta^n]\to\lC$. 
+\begin{remark}
+	The simplicial nerve of a category is isomorphic to the ordinary nerve, see \cite[Tag 00KZ]{kerodon2026} or \cite[Lemma 1.2.64]{land2021introduction}.
+\end{remark}
+\begin{theorem} Given a simplicial set $S$ and a Kan complex $\lC$, the hom simplicial set $\lC^S$ is a Kan complex. 
+\end{theorem}For the proof, see {\cite[Corollary 1.3.38]{land2021introduction}}. In particular, $\Kan$ is self-enriched. The following is a result of Cordier and Porter.
+\begin{theorem}
+	Given a category $\lC$ enriched over Kan complex, the simplicial nerve $\mN\lC$ is an $\infty$-category. 
+\end{theorem}
+For the proof, see \cite[Lemma 1.2.70]{land2021introduction}, \cite[Proposition 1.1.5.10]{lurie2009htt}, or \cite[Tag 00LJ]{kerodon2026}.
+\begin{theorem}
+	Given a simplicial category $\lC$, the nerve of $\lC\to\pi_*\lC$ factors through an isomorphism $\pi(\mN\lC)\to\pi_*\lC$.
+\end{theorem}For the proof (if $\lC$ is enriched over Kan complexes), see {\cite[Tag 00M4]{kerodon2026}}. The general case is \cite[Exercise 50]{land2021introduction}, which can be solved using the same argument as \cite[Tag 00M4]{kerodon2026}, as a consequence of \cite[Observation 1.2.8 and Lemma 1.2.70]{land2021introduction}. 
+\begin{definition}
+	Denote by $\lS$ the $\infty$-category $\mN\Kan$, called the \emph{$\infty$-category of $\infty$-groupoids}.
+\end{definition}
+\begin{definition}[{\cite[Definition 5.1.0.1]{lurie2009htt}}]
+	Given a $\infty$-category $\lC$, denote by $\Psh(\lC)$ the $\infty$-category of functors $\lC^\op\to\lS$, called the \emph{$\infty$-category of pre-sheaves on $\lC$}. 
+\end{definition}
 
-\section{Basic constructions}
+% To Do: Yoneda embedding. Straightening and Unstraightening. Twisted arrow category. 
 
-Recall that $\sset$ and $\infty\Grpd$ are self-enriched. Similar to \cref{lem:functinfgrpd}, we have the following: 
-\begin{lemma}[\cite{kerodon2026funccat}]
-  If $X$ is a $\infty$-category, then $\hom_{\sset}^\Delta(B,X)$ is a $\infty$-category, for every simplicial set $B$. 
-\end{lemma}
-\begin{definition}
-  Given a $\infty$-category $X$ and simplicial set $B$, denote by $\Fun(B,X)$ the \emph{$\infty$-category of functors} $\hom_{\sset}^\Delta(B,X)$. 
-\end{definition}
-\begin{definition}
-  Denote by $\op$ the following endo-functor of $\BDelta$: 
-  \begin{enumerate}
-    \item On objects,  $\op(\langle n\rangle)=\langle n\rangle$. 
-    \item Given $f:\langle k\rangle\to\langle n\rangle$, let $\op(f):\langle k\rangle\to\langle n\rangle$ be the function $\op(f)(i)=n-f(k-i)$. 
-  \end{enumerate}Given a simplicial set $X$, denote by $X^\op$ the pre-composition of $X$ with $\op$. 
-\end{definition}
-\begin{lemma}
-  If $X$ is a $\infty$-category, $X^\op$ is also an $\infty$-category. 
-\end{lemma}
-\begin{definition}
-  Given a $\infty$-category $X$, we call $X^\op$ the \emph{opposite $\infty$-category}.  
-\end{definition}
-\nrnote{Slice $\infty$-categories?}
+\section{Limits in Higher Category Theory}
 
 \section{Accessible and Presentable Categories}
 
-In general, a limit, resp. colimit, preserving functor need not have a left, resp. right, adjoint. Here we wish to introduce a rather large class of $\infty$-categories for which the previous statement holds. We begin by recalling the definition of locally presentable 1-categories. Let $\kappa$ denote a regular cardinal. 
+% Bla Bla, adjoint functor theorem, presentable categories, bla bla... Definition of regular cardinal. 
+Let $\kappa$ be a regular cardinal. A $\infty$-category $\lI$ is \emph{$\kappa$-filtered} if every diagram in $\lI$ has a cocone when indexed by a $\infty$-category with $(<\kappa)$-many simplices. The colimit of a diagram indexed by a $\kappa$-filtered $\infty$-category is called a \emph{$\kappa$-filtered colimit}.   
 \begin{definition}
-  A category $\lI$ is \emph{$\kappa$-filtered} if, for every $\lJ$ with $<\kappa$ many morphisms, every diagram $\lJ\to\lI$ has a cocone. A functor $F:\lC \to \lD$ is \emph{$\kappa$-accessible} if it preserves $\kappa$-filtered colimits. Given a category $\lC$, an object $X$ is \emph{$\kappa$-compact} if $\hom_{\lC}(X,-):\lC\to\set$ is $\kappa$-accessible. 
+  A functor $F:\lC \to \lD$ is \emph{$\kappa$-accessible} if it preserves $\kappa$-filtered colimits. Given an $\infty$-category $\lC$, an object $X$ is \emph{$\kappa$-compact} if $\hom_{\lC}(X,-):\lC\to\lS$ is $\kappa$-accessible.
 \end{definition}
 \begin{definition}
-  A category $\lC$ is \emph{$\kappa$-accessible} if there exists a set $S\subseteq\lC_0$ of $\kappa$-compact objects that generate $\lC$ under $\kappa$-filtered colimits. A category is \emph{accessible} if it is $\kappa$-accessible, for some regular cardinal $\kappa$. 
+  An $\infty$-category $\lC$ is \emph{$\kappa$-accessible} if there exists a set $S\subseteq\lC_0$ of $\kappa$-compact objects that generate $\lC$ under $\kappa$-filtered colimits. An $\infty$-category is \emph{accessible} if it is $\kappa$-accessible, for some regular cardinal $\kappa$. 
 \end{definition}
 \begin{definition}
-  A category $\lC$ that is accessible and cocomplete is called \emph{locally presentable}.
+	An $\infty$-category $\lC$ is \emph{presentable} if accessible and cocomplete. 
 \end{definition}
+
+\newpage
+
+%-----------TO BE CONTINUED----------
+
+
 \begin{theorem}
   Let $\lC$ be a category, then $\lC$ is locally presentable if and only if there exists a small category $S$ such that the induced functor $\lC\to\lP(S)$ is a fully faithful, accessible right adjoint. 
 \end{theorem}
 \begin{theorem}
   Let $\lC,\lD$ be locally presentable categories. A functor $F\colon \lC \to \lD$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
 \end{theorem}
-\begin{definition}
-  Let $X$ be a $\infty$-category. The \emph{$\infty$-category of pre-sheaves of spaces} is defined as $\lP(X):=\hom_{\sset}(X^{\op},\lS)$.
-\end{definition}
 \begin{theorem}[Yoneda]
   Given a $\infty$-category $X$, there is a fully faithful functor $y:X\to\lP(X)$, called the \emph{Yoneda embedding}, such that: Given a cocomplete $\infty$-category $Y$, pre-composition by $y$ induces an equivalence \begin{equation}
     \begin{tikzcd}
@@ -582,10 +671,11 @@ The natural isomorphism $\partial$ translates into an equivalence $E(n)\simeq\Om
 
 \chapter{Descent in(to) Higher Category Theory \texorpdfstring{\\}{ } \normalsize \emph{Talk by Hannes Berkenhagen}}
 
-In this lecture we cover the basics of sheaf theory and learn about differential cohomology theories as sheaves of spectra. 
+In this lecture we cover the basics of sheaf theory and learn about differential cohomology theories as sheaves of spectra. We begin by recalling the basics of $\set$-valued sheaves over an ordinary category or topological space, progressing then to sheaves of spaces over an $\infty$-category, and finally to sheaves of spectra. At the end, we'll take a closer look to sheaves over the site of smooth manifolds.  
 	
 \section{Sheaves in Category Theory}
-	Let us review sheaves in classical category theory. A good reference remains \cite{maclanemoerdijk1994topos}. We start with  the case of sheaves on a topological space. 
+
+	Let us review sheaves in classical category theory. A good reference remains \cite{maclanemoerdijk1994topos}.
 	\begin{definition}
 		Let $\lC$ be a category. A \emph{pre-sheaf} on $\lC$ is a functor $F:\lC^{\op}\to\set$. 
 	\end{definition}
@@ -612,7 +702,7 @@ In this lecture we cover the basics of sheaf theory and learn about differential
 	
 	We now generalize from sheaves on a topological space to sheaves on a category via the additional data of a Grothendieck topology. We begin by recalling a few definitions. Denote by $y$ the \textit{Yoneda embedding} $\lC\to\lP(\lC)$, mapping $C$ to the pre-sheaf $y(C):=\hom_\lC(-,C)\colon\lC^{\op}\to\set$. 
 	\begin{definition}
-		A \emph{sub-functor} to a pre-sheaf $F\colon\lC^{\op}\to\set$ consists of a pre-sheaf $S:\lC^{\op}\to\set$ such that $S(C)\subseteq F(C)$, for all objects $C$, and the subset inclusions define a natural transformation $S\to F$. The last condition is equivalent to the following: Given $f\colon D\to C$ and $u\in S(C)$, then $F(f)(u)\in S(D)$. 
+		A \emph{sub-functor} to a pre-sheaf $F\colon\lC^{\op}\to\set$ consists of a pre-sheaf $S:\lC^{\op}\to\set$ such that $S(C)\subseteq F(C)$, for all objects $C$, and the sub-set inclusions define a natural transformation $S\to F$. The last condition is equivalent to the following: Given $f\colon D\to C$ and $u\in S(C)$, then $F(f)(u)\in S(D)$. 
 	\end{definition}
 	\begin{definition}
 		Given a pre-sheaf $F\colon\lC^{\op}\to\set$, denote by $\lC_{/F}$ the category of pairs $(C,c)$, consisting of an object $C$ and a morphism of pre-sheaves $y(C)\xrightarrow{c} F$.
@@ -1194,7 +1284,7 @@ Recall from \cite{nanto2025diffcoh4} that the left adjoint $\flat:\lC\to\Shv(\Mf
 \end{definition}
   
 \begin{definition}
-  A sheaf is \emph{pure} if the value at the point is the terminal spectrum. We denote the full subcategory of pure sheaves by $\Shv_{\mathrm{pure}}(\Mfd)$.
+  A sheaf is \emph{pure} if the value at the point is the terminal spectrum. We denote the full sub-category of pure sheaves by $\Shv_{\mathrm{pure}}(\Mfd)$.
 \end{definition}
 
 Similarly, the category of pure sheaves is closed under limits and colimits, so we have the following result:
@@ -1221,7 +1311,7 @@ Notice we obviously have the following result.
 So, pure and $\bR$-invariant sheaves are ``disjoint''. Even better, they cover everything, which is the gist of the fracture square.
 
 \begin{remark}
-Notice in both adjunction diagrams there is one fully faithful functor that is not named and we will abuse notation and directly consider objects in the full subcategory as objects in the larger category.
+Notice in both adjunction diagrams there is one fully faithful functor that is not named and we will abuse notation and directly consider objects in the full sub-category as objects in the larger category.
 \end{remark}
 \begin{theorem}
  Let $E$ be a differential cohomology theory. Then the following is a pullback square
@@ -1387,7 +1477,7 @@ The essential step in the proof is the following very technical result.
   Then the following holds:
   \begin{enumerate}
     % \item $\Delta$ admits a right adjoint $R_{const}$, given by evaluation at the terminal object.
-    \item The full subcategory of $\Shv_\lT(\lC,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\lT(\lC,J) \to \Shv_\lT(\lC,J)^\bot$.
+    \item The full sub-category of $\Shv_\lT(\lC,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\lT(\lC,J) \to \Shv_\lT(\lC,J)^\bot$.
     \item For every sheaf $P$ in $\Shv_\lT(\lC,J)$, there is a pullback square
     \[
     \begin{tikzcd}
@@ -1548,7 +1638,7 @@ The essential step in the proof is the following very technical result.
   Then the following holds:
   \begin{enumerate}
     % \item $\Delta$ admits a right adjoint $R_{const}$, given by evaluation at the terminal object.
-    \item The full subcategory of $\Shv_\lT(\lC,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\lT(\lC,J) \to \Shv_\lT(\lC,J)^\bot$.
+    \item The full sub-category of $\Shv_\lT(\lC,J)$ consisting of sheaves $P$, such that $P(*)$ is the point admits a left adjoint $L^{\bot}\colon \Shv_\lT(\lC,J) \to \Shv_\lT(\lC,J)^\bot$.
     \item For every sheaf $P$ in $\Shv_\lT(\lC,J)$, there is a pullback square
     \[
     \begin{tikzcd}
