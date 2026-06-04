@@ -5,6 +5,7 @@
 \usepackage{tikz-cd}
 \usepackage{fancyhdr}
 \usepackage{mathrsfs}
+\usepackage{graphicx}
 \usepackage{enumerate}
 \usepackage{mathtools}
 \usepackage{circledsteps}
@@ -85,7 +86,7 @@
 \newcommand{\cat}{\lC\mathrm{at}} % category of categories
 \newcommand{\Fun}{\lF\mathrm{un}} % category of functors
 \newcommand{\Psh}{\lP\Shv} % category of pre-sheaves
-\newcommand{\Shv}{\lS\mathrm{hv}} % category of sheaves
+\newcommand{\Shv}{\lS\mathrm{h}} % category of sheaves
 \newcommand{\hi}{\mathrm{hi}}
 \newcommand{\Ho}{\mathrm{h}} % homotopy category
 \newcommand{\sset}{\mathrm{s}\set} % category of simplicial sets
@@ -122,6 +123,7 @@
 \newcommand{\cl}{\mathrm{cl}}
 \newcommand{\pos}{\lP\mathrm{os}}
 \newcommand{\Fred}{\lF\mathrm{red}}
+\newcommand{\Ind}{\mathrm{Ind}} % Ind 
 \newcommand{\PT}{\lP\lT} % Pontryagin-Thom collapse map
 
 \DeclareMathOperator*\colim{colim} % colimit
@@ -293,34 +295,42 @@ In this lecture we introduce the machinery of higher category theory needed for 
 \subsection{Model Categories}
 
 We recall some definitions regarding model categories. For more details, see \cite{hirschhorn2003modelcategories} (we will also refer to chapter 11 of \cite{riehl2014categoricalhomotopytheory}). A \emph{model category} consists of a complete and cocomplete category $\lC$ together with three classes of maps, called \emph{weak equivalences, fibrations}, and \emph{cofibrations}. The standard axioms (\cite[Definition 7.1.3]{hirschhorn2003modelcategories}) on these data are the following:  
-\begin{itemize}
+\begin{enumerate}
 	\item Weak equivalences contain all isomorphisms and satifying $2003$ (2-out-of-3), i.e., for every pair $f,g$ of composable morphisms, if any two of $f,g$ and $gf$ are weak equivalences, so is the third.
 	\item All classes are closed under retracts, i.e., $f$ is a retract of $g$ (\cite[Definition 7.1.1]{hirschhorn2003modelcategories}) and $g$ is a weak equivalence, fibration, or cofibration, the so is $f$.
 	\item For every solid diagram \begin{equation}\label{diag:lifting}
     \begin{tikzcd}
-      X \arrow[d,"f"']\arrow[r] & Y\arrow[d,"g"]  \\
+      X \arrow[d,"i"']\arrow[r] & Y\arrow[d,"f"]  \\
       Z\arrow[ru,dashed]\arrow[r] & W
     \end{tikzcd}
-  \end{equation}there is a dashed arrow making the diagram commute if $f$, resp. $g$, is a cofibration, resp. fibration, and either one is a weak equivalence. 
+  \end{equation}there is a dashed arrow making the diagram commute if $i$, resp. $f$, is a cofibration, resp. fibration, and either one is a weak equivalence. 
   \item Every morphism admits a factorization consisting of a cofibrantion followed by an acyclic fibration, and a factorization consisting of an acyclic cofibration followed by a fibration. 
-\end{itemize}
-If a pair $f,g$ satisfies the condition that for every diagram like (\ref{diag:lifting}), there is a dashed arrow making the diagram commute, we say $g$, resp. $f$, has the \emph{right lifting property}, resp. \emph{left lifting property}, against $f$, resp. $g$. The last three axioms are equivalent to saying that acyclic cofibration with fibrations, and cofibrations with acyclic fibrations, form a \emph{weak factorization system} (\cite[Definition 11.2.1]{riehl2014categoricalhomotopytheory}), see \cite[\S 11.3]{riehl2014categoricalhomotopytheory}. 
+\end{enumerate}
+\begin{definition}
+	Given a pair of morphisms $i,f$, we say $f$ is \emph{right orthogonal to $i$} and $i$ is \emph{left orthogonal to $f$}, if for every solid diagram \begin{equation}
+    \begin{tikzcd}
+      X \arrow[d,"i"']\arrow[r] & Y\arrow[d,"f"]  \\
+      Z\arrow[ru,dashed]\arrow[r] & W
+    \end{tikzcd}
+  \end{equation}there is a dashed arrow making the diagram commute
+\end{definition}
+The last three axioms are equivalent to saying that acyclic cofibration with fibrations, and cofibrations with acyclic fibrations, form a \emph{weak factorization system} (\cite[Definition 11.2.1]{riehl2014categoricalhomotopytheory}), see \cite[\S 11.3]{riehl2014categoricalhomotopytheory}. 
 
 Denote by $\emptyset$, resp. $1$, the initial, resp. terminal, object. An object $X$ is \emph{cofibrant}, resp. \emph{fibrant}, if the canonical morphism $\emptyset\to X$, resp. $X\to1$, is a cofibration, resp. fibration. An object both cofibrant and fibrant is called \emph{bifibrant}. The full sub-category of bifibrant objects is denoted as $\lC^\circ$. 
 
 \subsection{Simplicial Sets}
 
-We introduce some notations, definitions, and constructions regarding simplicial sets. For more details, see \cite{hovey1999modelcategories,goerssjardine1999simplicialhomotopytheory}, or \cite[Tag 0004]{kerodon2026}. For each natural number $n$, we denote by $[n]$ the linearly ordered set $\{0,\cdots,n\}$. Let $\Delta$ denote the category of linearly ordered sets $[n]$ and (non-strict) monotone functions between them. Functors $\Delta^\op\to\set$ are called \emph{simplicial sets}. The category of simplicial sets is denoted as $\sset$. 
+We introduce some notations, definitions, and constructions regarding simplicial sets. For more details, see \cite{hovey1999modelcategories,goerssjardine1999simplicialhomotopytheory}, or \cite[Tag 0004]{kerodon2026}. For each natural number $n$, denote by $[n]$ the linearly ordered set $\{0,\cdots,n\}$. Let $\Delta$ denote the category of linearly ordered sets $[n]$ and (non-strict) monotone functions between them. Functors $\Delta^\op\to\set$ are called \emph{simplicial sets}. The category of simplicial sets is denoted as $\sset$. 
 
 Simplicial sets are connected to topological spaces via the singular simplicial set and geometric realization functors. Given $n$, denote by $|\Delta^n|$ the sub-space $\subseteq[0,1]^{n+1}$ of tuples $(t_0,\cdots,t_n)$ such that $t_0+\cdots+t_n=1$. Given a topological space $X$, denote by $\Sing X$ its \emph{singular simplicial set}. The nerve functor admits a left adjoint, sending a simplicial set $S$ to its \emph{geometric realization} $|S|$.
 
 On the other hand, simplicial sets are connected to categories via the nerve functor. Given $n$, denote by $[n]$ the category associated to the linearly ordered set $[n]$. Given a category $\lC$, denote by $\mN\lC$ its \emph{nerve}. The nerve functor admits a left adjoint, sending a simplicial set $S$ to its \emph{homotopy category} $\pi(S)$, see \cite[Definition 1.2.5]{land2021introduction} or \cite[Tag 004M]{kerodon2026}. As we'll see, the homotopy category admits a simpler description for a special class of simplicial sets. 
 
 Among the morphisms of $\Delta$, there are two special classes: 
-\begin{itemize}
+\begin{enumerate}
 	\item Given $0\leq i\leq n$, we denote by $d^i_n$ the unique injective, monotone function $[n-1]\to[n]$ such that $i$ is not contained in the image. Given a simplicial object $S$, we'll write $d_i$ for the map $S_n\to S_{n-1}$, called \emph{face map}, induced by $d^i_n$ (leaving implicit the dependency on $S$ and $n$).
 	\item Given $0\leq i\leq n$, we denote by $s^i_n$ the unique surjective, monotone function $[n+1]\to[n]$ such that $i,i+1$ are mapped to $i$. Given a simplicial object $S$, we'll write $s_i$ for the map $S_{n+1}\to S_n$, called \emph{degeneracy map}, induced by $s^i_n$ (leaving implicit the dependency on $S$ and $n$). 
-\end{itemize}The sets $S_n$, for every $n\geq0$, together with face and degeneracy maps, completely determine a simplicial set, see \cite[Tag 04FW]{kerodon2026} (see also \cite[\S VII.5, Proposition 2]{maclane1998categories}, for a vintage reference). 
+\end{enumerate}The sets $S_n$, for every $n\geq0$, together with face and degeneracy maps, completely determine a simplicial set, see \cite[Tag 04FW]{kerodon2026} (see also \cite[\S VII.5, Proposition 2]{maclane1998categories}, for a vintage reference). 
 \begin{remark}
 	The category $\sset$ is closed cartesian, hence self-enriched. We use the exponential notation for the internal homs of $\sset$, i.e., given simplicial sets $X,Y$, we write $Y^X$ for the simplicial set of morphisms from $X$ to $Y$. 
 \end{remark}
@@ -375,16 +385,16 @@ Given $n$, a simplicial set $S$, and a $0$-simplex $X$, we'll abuse notation and
 \end{equation}Given 1-simplices $f,h:X\to Y$, we say \emph{$h$ is homotopic to $f$} if $h$ is a composition of $f$ and $Y$ (viewed as a 1-simplex).  
 \end{definition}
 We recall briefly the construction of the category $\Ho S$ of a $\infty$-category $S$ (details can be found in \cite{lurie2009htt}, \cite[Tag 0049]{kerodon2026}, or \cite[Definition 1.2.5]{land2021introduction}):
-\begin{itemize}
+\begin{enumerate}
 	\item Objects of $\Ho S$ are the 0-simplices of $S$.
 	\item Given 0-simplices $X,Y$, being homotopic is an equivalence relation on 1-simplices from $X$ to $Y$ (\cite[Tag 003Z]{kerodon2026}). Denote by $\hom_{\Ho S}(X,Y)$ the homotopy classes of 1-simplices from $X$ to $Y$.
 	\item Given 1-simplices $f:X\to Y,g:Y\to Z$, there is a 1-simplex $h:X\to Z$, unique up to homotopy, such that $h$ is a composition of $f$ and $g$ (\cite[Tag 0043]{kerodon2026}). Moreover, the homotopy class of $h$ only depends on the homotopy classes of $f$ and $g$ (\cite[Tag 0048]{kerodon2026}). Therefore, there is a unique function \begin{equation}
 		\begin{tikzcd}[column sep=1.5cm]
 			\hom_{\Ho S}(X,Y)\times\hom_{\Ho S}(Y,Z) \arrow[r,"\circ_{X,Y,Z}"] & \hom_{\Ho S}(X,Z)
 		\end{tikzcd}
-	\end{equation}  such that $[h]=[g]\circ[f]$ whenever $h$ is a composition of $f$ and $g$. 
-	\item The composition laws $\circ_{X,Y,Z}$ are associative and, given a 0-simplex $X$, the homotopy class of $X$ (viewed as a 1-simplex) acts as the identity morphism of $X$ (\cite[004B]{kerodon2026}).
-\end{itemize}The following is a special case of \cite[Corollary 1.2.13]{land2021introduction}. 
+	\end{equation}  such that $[h]=[g]\circ_{X,Y,Z}[f]$ whenever $h$ is a composition of $f$ and $g$. 
+	\item The composition laws $\circ_{X,Y,Z}$ are associative and, given a 0-simplex $X$, the homotopy class of $X$ (viewed as a 1-simplex) acts as the identity morphism of $X$ (\cite[Tag 004B]{kerodon2026}).
+\end{enumerate}The following is a special case of \cite[Corollary 1.2.13]{land2021introduction}. 
 \begin{theorem}Given an $\infty$-category $S$, the category $\Ho S$ is isomorphic to $\pi(S)$.
 \end{theorem}We will also refer to $\Ho S$ as the \emph{homotopy category} of $S$. 
 \begin{remark}
@@ -406,6 +416,21 @@ For the proof, see \cite[Corollary 1.4]{joyal2002quasicatkancomplexes}, \cite[Ta
 For the proof, see \cite[Corollary 1.3.38]{land2021introduction}, \cite[Tag 0066]{kerodon2026}, or \cite[Corollary 2.3.2.5]{lurie2009htt}.
 \begin{definition}
 	Given $\infty$-categories $\lC,\lD$, denote by $\Fun(\lC,\lD)$ the simplicial set $\lD^\lC$, called the \emph{$\infty$-category of functors from $\lC$ to $\lD$}.  
+\end{definition}
+\begin{definition}
+	Given a simplicial set $S$ and simplices $X,Y$, denote by $\hom_S(X,Y)$ the pullback of the following diagram: \begin{equation}
+		\begin{tikzcd}
+			& S^{\Delta^1} \arrow[d,"{(d_1,d_0)}"]\\
+			\Delta^0 \arrow[r,"{(X,Y)}"'] & S\times S
+		\end{tikzcd}
+	\end{equation}
+\end{definition}
+\begin{theorem}
+	Given an $\infty$-category $\lC$ and objects $X,Y$, the simplicial set $\hom_\lC(X,Y)$ is an $\infty$-groupoid.
+\end{theorem}
+For the proof, see \cite[Corollary 2.2.4]{land2021introduction}, or \cite[Tag 01P1]{kerodon2026}. 
+\begin{definition}
+	Given an $\infty$-category $\lC$ and objects $X,Y$, we call $\hom_\lC(X,Y)$ the \emph{mapping space from $X$ to $Y$}.
 \end{definition}
 \begin{definition}
 	Given $\infty$-categories $\lC,\lD$, a functor $F:\lC\to\lD$ is called an \emph{Joyal equivalence} if there is $G:\lD\to\lC$ such that $F\circ G$, resp. $G\circ F$, is equivalent to the identity of $\lD$, resp. $\lC$. 
@@ -436,31 +461,26 @@ Given a linearly ordered set $I$, a \emph{cut} consists of a partition $J,J'$ of
 		\end{tikzcd}
 	\end{equation}where the vertical arrows are induced by the restriction of $p$ to $p^{-1}(J)$ and $p^{-1}(J')$. 
 \end{definition}
-It can be checked directly that $\star$ underlies a monoidal structure on $\sset$, with monoidal unit $\emptyset$ (see \cite[Tag 016K]{kerodon2026}). 
+It can be checked directly that $\star$ underlies a monoidal structure on $\sset$, with monoidal unit $\emptyset$ (see \cite[Tag 016K]{kerodon2026}). Given a simplicial set $X$, denote by $\emptyset_X$ the initial functor $\emptyset\to X$
 \begin{definition}
-Given a simplicial set $X$, denote by $\iota_X$ the initial functor $\emptyset\to X$ and, given a simplicial set $S$, denote by $\iota_X^\ell$, resp. $\iota_X^r$, the composition \begin{equation}
-	\begin{tikzcd}
-		S\cong S\star\emptyset \arrow[r,"S\star\iota_X"] & S\star X
-	\end{tikzcd}\text{, resp.}\qquad
-	\begin{tikzcd}
-		S\cong \emptyset\star S \arrow[r,"\iota_X\star S"] & X\star S
-	\end{tikzcd}
-\end{equation}
-The construction $S\star -$, resp. $-\star S$, induces a functor $\sset\to\sset_{S/}$ sending $X$ to $\iota^\ell_X$, resp. $\iota^r_X$.	
-\end{definition}
-
-\begin{definition}
-	Given a morphism of simplicial sets $\alpha:S\to X$, denote by $X_{\alpha/}$, resp. $X_{/\alpha}$, the simplicial set characterized as follows: A $n$-simplex of $X_{\alpha/}$, resp. $X_{/\alpha}$, is a commutative triangle \begin{equation}
+	Given a morphism of simplicial sets $\alpha:S\to X$, denote by $X_{\alpha/}$, resp. $X_{/\alpha}$, the simplicial set characterized as follows: A $n$-simplex of $X_{\alpha/}$, resp. $X_{/\alpha}$, is a commutative square \begin{equation}
 		\begin{tikzcd}[row sep=1cm]
-			& S \arrow[dl,"\iota^\ell_{\Delta^n}"']\arrow[dr,"\alpha"]  \\
-			S\star\Delta^n \arrow[rr] & & X
+			S\star\emptyset\arrow[r,"\cong"]\arrow[d,"S\star\emptyset_{\Delta^n}"'] & S \arrow[d,"\alpha"]  \\
+			S\star\Delta^n \arrow[r] & X
 		\end{tikzcd}\text{, resp.}\qquad
 		\begin{tikzcd}[row sep=1cm]
-			& S \arrow[dl,"\iota^r_{\Delta^n}"']\arrow[dr,"\alpha"] \\
-			\Delta^n\star S \arrow[rr] & & X
+			\emptyset\star S \arrow[r,"\cong"]\arrow[d,"\emptyset_{\Delta^n}\star S"'] & S \arrow[d,"\alpha"] \\
+			\Delta^n\star S \arrow[r] & X
 		\end{tikzcd}
 	\end{equation}
 \end{definition}
+\begin{remark}
+	Notice that $X_{\alpha/}$ has a canonical projection to $X$, sending a $n$-simplex to the following composition \begin{equation}
+		\begin{tikzcd}[column sep=1cm]
+			\Delta^n \arrow[r,"\cong"] & \emptyset\star\Delta^n \arrow[r,"\emptyset_S\star\Delta^n"] & S\star\Delta^n \arrow[r] & X
+		\end{tikzcd}
+	\end{equation}A similar projection exists for $X_{/\alpha}$. 
+\end{remark}
 \begin{theorem}
 	Given a $\infty$-category $\lC$ and morphism of simplicial sets $\alpha:S\to\lC$, the simplicial sets $\lC_{\alpha/}$ and $\lC_{/\alpha}$ are $\infty$-categories. 
 \end{theorem}For the proof, see \cite[Corollary 2.1.2.2]{lurie2009htt}, or \cite[Corollary 1.4.24]{land2021introduction}.
@@ -479,8 +499,15 @@ The construction $S\star -$, resp. $-\star S$, induces a functor $\sset\to\sset_
 \begin{remark}
 	The functor $\pi_0:\sset\to\set$ is strong symmetric monoidal (see \cite[Lemma 1.2.47]{land2021introduction} or \cite[Tag 00GX]{kerodon2026}), hence it induces a change of enrichment $\pi_*:\cat_{\sset}\to\cat$. Given a simplicial category $\lC$, there is a natural functor $\lC\to\pi_*\lC$.
 \end{remark}
+\begin{definition}
+	A functor of $\infty$-categories is called a \emph{categorical equivalence} if it is an isomorphism in $\pi_*\WKan$. A morphism of simplicial sets $f:X\to S$ is called a \emph{categorical equivalence} if, for every $\infty$-category $\lC$, the induced functor \begin{equation}
+		\begin{tikzcd}
+			\Fun(S,\lC) \arrow[r,"f^*"] & \Fun(X,\lC)
+		\end{tikzcd}
+	\end{equation}is a categorical equivalence. 
+\end{definition}
 We recall briefly the construction of the \emph{simplicial nerve} of a simplicial category $\lC$ (details can be found in \cite[\S 1.1.5]{lurie2009htt} and \cite[Tag 00KM]{kerodon2026}). Given a partial ordered set $J$, define the simplicial category $\kC^J$ as follows: 
-\begin{itemize}
+\begin{enumerate}
 	\item Objects of $\kC^J$ are the elements of $J$. 
 	\item Given a pair of objects $i,j$, let $\hom_{\kC^J}(i,j)$ be the nerve of the (category associated to the) partially ordered set $\kP_{i,j}$ of $I\subseteq\{k\in J|i\leq k\leq j\}$ containing $\{i,j\}$, ordered by reversed inclusion $\supseteq$.
 	\item Given a triple of objects $i,j,k$, composition is defined as the nerve applied to the monotone map \begin{equation}
@@ -489,7 +516,7 @@ We recall briefly the construction of the \emph{simplicial nerve} of a simplicia
 		\end{tikzcd}
 	\end{equation}
 	\item Given an object $i$, the singleton $\{i\}$ acts as the identity. 
-\end{itemize}
+\end{enumerate}
 Given a simplicial category $\lC$, denote by $\mN\lC$ its \emph{simplicial nerve}, the $n$-simplices of which are enriched functors $\kC[\Delta^n]\to\lC$. 
 \begin{remark}
 	The simplicial nerve of a category is isomorphic to the ordinary nerve, see \cite[Tag 00KZ]{kerodon2026} or \cite[Lemma 1.2.64]{land2021introduction}.
@@ -512,59 +539,159 @@ For the proof, see \cite[Lemma 1.2.70]{land2021introduction}, \cite[Proposition 
 
 % To Do: Yoneda embedding. Straightening and Unstraightening. Twisted arrow category. 
 
-\section{Limits in Higher Category Theory}
+\subsection{Group Actions on Spaces}
+
+The following is a result of Moore. 
+\begin{theorem}
+	The underlying simplicial set of a simplicial group is a Kan complex. 
+\end{theorem}For a proof, see \cite[Ch. 1, Lemma 3.4]{goerssjardine1999simplicialhomotopytheory}. In particular, given a simplicial groupoid $\lC$ with a single object, $\mN\lC$ is a $\infty$-groupoid.
+
+
+% Definition of G-torsor
+
+% Simplicial groups are Kan complexes, the corresponding oo-category with one object is a oo-groupoid and is the delooping of the group, i.e., equivalent to the W-bar construction of G. Given a simplicial group G, there is a canonical equivalence between cofibrant-fibrant G-simplicial sets (projective model structure) and functors BG->S. The quotient functor -/G is then equivalent to the colimit functor Fun(BG,S)->S. 
 
 \section{Accessible and Presentable Categories}
 
 % Bla Bla, adjoint functor theorem, presentable categories, bla bla... Definition of regular cardinal. 
-Let $\kappa$ be a regular cardinal. A $\infty$-category $\lI$ is \emph{$\kappa$-filtered} if every diagram in $\lI$ has a cocone when indexed by a $\infty$-category with $(<\kappa)$-many simplices. The colimit of a diagram indexed by a $\kappa$-filtered $\infty$-category is called a \emph{$\kappa$-filtered colimit}.   
+
 \begin{definition}
-  A functor $F:\lC \to \lD$ is \emph{$\kappa$-accessible} if it preserves $\kappa$-filtered colimits. Given an $\infty$-category $\lC$, an object $X$ is \emph{$\kappa$-compact} if $\hom_{\lC}(X,-):\lC\to\lS$ is $\kappa$-accessible.
+	Given a cardinal $\kappa$, a simplicial set is called \emph{$\kappa$-small} if the set of all its non-degenerate simplices has cardinality $<\kappa$. A $\infty$-category is called $\kappa$-small if its underlying simplicial set is. 
+\end{definition}
+Let $\kappa$ be a regular cardinal. 
+\begin{definition}
+	A $\infty$-category $\lC$ is \emph{$\kappa$-filtered} if every diagram indexed by a $\kappa$-small $\infty$-category has a cocone. The colimit of a diagram indexed by a small $\kappa$-filtered $\infty$-category is called a \emph{$\kappa$-filtered colimit}. 
 \end{definition}
 \begin{definition}
-  An $\infty$-category $\lC$ is \emph{$\kappa$-accessible} if there exists a set $S\subseteq\lC_0$ of $\kappa$-compact objects that generate $\lC$ under $\kappa$-filtered colimits. An $\infty$-category is \emph{accessible} if it is $\kappa$-accessible, for some regular cardinal $\kappa$. 
+	A functor of $\infty$-categories $F:\lC\to\lD$ is called \emph{$\kappa$-accessible} if it preserves all $\kappa$-filtered colimits. Denote by $\Fun^\kappa(\lC,\lD)$ the full sub-category of $\Fun(\lC,\lD)$ consisting $\kappa$-accessible functors.
+\end{definition}
+\begin{remark}
+	$\kappa$-accessible functors are called \emph{$\kappa$-finitary functors} in \cite{kerodon2026} (see Tag 05Y6). 
+\end{remark}
+\begin{definition}
+	Given an $\infty$-category $\lC$, an object $X$ is called \emph{$\kappa$-compact} if $\hom_\lC(X,-)$ is $\kappa$-accessible. Denote by $\lC^\kappa$ the full sub-category of $\lC$ consisting of $\kappa$-compact objects. 
 \end{definition}
 \begin{definition}
-	An $\infty$-category $\lC$ is \emph{presentable} if accessible and cocomplete. 
+	A $\infty$-category $\lC$ is called \emph{$\kappa$-compactly generated} if the following hold: 
+	\begin{enumerate}
+		\item $\lC$ admits all small $\kappa$-filtered colimits. 
+		\item Every objects can be written as a small $\kappa$-filtered colimit of $\kappa$-compact objects. 
+	\end{enumerate}
+\end{definition}
+\begin{definition}
+	Given  a functor of $\infty$-categories $F:\lC\to\lD$, we say \emph{$F$ exhibits $\lD$ as the $\Ind_\kappa$-completion of $\lC$} if the following hold:
+	\begin{enumerate}
+		\item $\lD$ admits all small $\kappa$-filtered colimits.
+		\item For every $\infty$-category $\lX$ that admits all small $\kappa$-filtered colimit, pre-composition with $F$ induces an equivalence \begin{equation}
+			\begin{tikzcd}
+				\Fun^\kappa(\lD,\lX) \arrow[r,"F^*"] & \Fun(\lC,\lX)
+			\end{tikzcd}
+		\end{equation}
+	\end{enumerate}
+	Given a $\kappa$-accessible functor $G:\lD\to\lX$ and functor $H:\lC\to\lX$, an equivalence $\eta:H\to GF$ is said to \emph{exhibit $G$ as the $\Ind_\kappa$-extension of $H$}.  
+\end{definition}The following is \cite[Tag 0653]{kerodon2026}. 
+\begin{theorem}\label{thm:condind}
+	A functor of $\infty$-categories $F:\lC\to\lD$ exhibits $\lD$ as the $\Ind_\kappa$-completion of $\lC$ if and only if the following hold: 
+	\begin{enumerate}
+		\item The $\infty$-category $\lD$ admits small $\kappa$-filtered colimits. 
+		\item The functor $F$ is fully faithful. 
+		\item For every object $X\in\lC$, its image $F(X)$ is $\kappa$-compact. 
+		\item The $\infty$-category $\lD$ is generated under small $\kappa$-filtered colimits by the image of $F$. 
+	\end{enumerate}
+\end{theorem}
+\begin{proposition}
+	Given a $\infty$-category $\lC$, the following are equivalent:
+	\begin{enumerate}
+		\item $\lC$ is $\kappa$-compactly generated. 
+		\item The inclusion $\lC^\kappa\hookrightarrow\lC$ exhibits $\lC$ as the $\Ind_\kappa$-completion of $\lC^\kappa$. 
+	\end{enumerate}
+\end{proposition}
+For the proof, see \cite[Tag 067B]{kerodon2026}. 
+\begin{proposition}
+	Given a $\kappa$-compactly generated $\infty$-category $\lC$, the restricted Yoneda embedding $h:\lC\to\Psh(\lC^\kappa)$ is $\kappa$-accessible and fully faithful. 
+\end{proposition}
+\begin{proof}
+	$\kappa$-accessibility of the restricted Yoneda embedding comes from $\lC^\kappa$ being a full sub-category of $\kappa$-compact objects. By definition, there is an equivalence $\eta:h^\kappa\to h|_{\lC^\kappa}$, where $h^\kappa$ denotes the Yoneda embedding of $\lC^\kappa$, then $\eta$ exhibits $h$ as the $\Ind_\kappa$-extension of $h^\kappa$. By \cite[Tag 0651]{kerodon2026}, we conclude that $h$ is fully faithful, since $h^\kappa$ is fully faithful. 
+\end{proof}
+\begin{definition}
+	A $\infty$-category is called \emph{$\kappa$-accessible} if there is a small category $\lD$ together with a functor $F:\lD\to\lC$ exhibiting $\lC$ as the $\Ind_\kappa$-completion of $\lD$.
+\end{definition}
+\begin{proposition}
+	Given a $\kappa$-accessible $\infty$-category $\lC$, the full sub-category $\lC^\kappa$ is essentially small. 
+\end{proposition}
+For the proof, see \cite[Tag 06K7]{kerodon2026}.
+\begin{definition}
+	An $\infty$-category $\lC$ is ($\kappa$-)\emph{presentable} if ($\kappa$-)accessible and cocomplete. 
+\end{definition}
+\begin{definition}
+	A functor of $\infty$-categories $F:\lC\to\lD$ is called a \emph{localization} if it admits a fully faithful left adjoint. If the left adjoint to $F$ is ($\kappa$-)accessible, we call $F$ a ($\kappa$-)\emph{accessible localization}.
+\end{definition}
+\begin{theorem}
+	Given a $\kappa$-presentable $\infty$-category, there is a $\kappa$-accessible localization $F:\Psh(\lC^\kappa)\to\lC$. 
+\end{theorem}
+\begin{proof}
+	We already know that the restricted Yoneda emebdding $h:\lC\to\Psh(\lC^\kappa)$ is $\kappa$-accessible and fully faithful. By completeness and $\lC^\kappa$ being essentially small, $h$ admits a left adjoint $F$, given by left Kan extension of the identity of $\lC$ along $h$. We conclude that $F$ is the desired $\kappa$-accessible localization. 
+\end{proof}
+\begin{theorem}\label{thm:locpres}
+	Let $\lD\subseteq\lC$ be a full sub-category such that the inclusion $G$ is $\kappa$-accessible and admits a left adjoint $F:\lC\to\lD$. If $\lC$ is presentable, then $\lD$ is presentable. 
+\end{theorem}
+\begin{lemma}\label{lem:imofcompact}
+	Under the hypotheses of Theorem \ref{thm:locpres}, the image under $F$ of a $\kappa$-compact object is $\kappa$-compact. 
+\end{lemma}
+\begin{proof}
+	By adjunction, $\hom_{\lD}(F(X),-)$ is equivalent to $\hom_{\lC}(X,G(-))$, which preserves small $\kappa$-filtered colimits if $X$ is $\kappa$-compact (since $G$ is $\kappa$-accessible). 
+\end{proof}
+\begin{lemma}\label{lem:indcompletion}
+	Under the hypotheses of Theorem \ref{thm:locpres}, let $\lX$ be a small $\infty$-category and $F:\lX\to\lC$ exhibit $\lC$ as the $\Ind_\kappa$-completion of $\lX$. Let $\lY$ be the full sub-category of $\lD$ consisting of the images under $F$ of objects in (the image of) $\lX$, then the inclusion $\lY\subseteq\lD$ exhibits $\lD$ as the $\Ind_\kappa$-completion of $\lY$.  
+\end{lemma}
+\begin{proof}
+	We wish to apply Theorem \ref{thm:condind}. Condition (2) holds by definition of $\lY$. By \cite[Tag 04JW]{kerodon2026}, we know $\lD$ is cocomplete, so condition (1) holds. Lemma \ref{lem:imofcompact} implies that condition (3) holds. Since $G$ is fully faithful, the counit $FG(X)\to X$ is an equivalence (see \cite[Tag 02FF]{kerodon2026}). Finally, sub-category generated by $\lY$ under small $\kappa$-filtered colimits contains the essential image of $F$ (since $F$ is cocontinuous), which is $\lD$, so conditions (4) holds.
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{thm:locpres}] By \cite[Tag 04JW]{kerodon2026}, we know $\lD$ is cocomplete. By Lemma \ref{lem:indcompletion}, $\lD$ is the $\Ind_\kappa$-completion of a small $\infty$-category, therefore $\lD$ is $\kappa$-accessible.
+\end{proof}
+\begin{definition}
+	Given an $\infty$-category $\lC$ and a class of morphisms $S$ and a functor $F:\lC\to\lD$, we say \emph{$F$ exhibits $\lD$ as the localization of $\lC$ at $S$} if the following hold: 
+	\begin{enumerate}
+		\item $F$ sends every morphism in $S$ to an equivalence in $\lD$.
+		\item For every $\infty$-category $\lX$, pre-composition with $F$ induces a fully faithful functor \begin{equation}
+			\begin{tikzcd}
+				\Fun(\lD,\lX) \arrow[r,"F^*"] & \Fun(\lC,\lX)
+			\end{tikzcd}
+		\end{equation}with essential image consisting of functors sending every morphism in $S$ to an equivalence in $\lX$. 
+	\end{enumerate}
+\end{definition}
+\begin{theorem}
+	Given a functor of presentable $\infty$-categories $F:\lC\to\lD$, the following are equivalent: 
+	\begin{enumerate}
+		\item $F$ is a localization. 
+		\item $F$ is cocontinuous and there is a class of morphisms $S$ of $\lC$ such that $F$ exhibits $\lD$ as the localization of $\lC$ at $S$. 
+	\end{enumerate}
+\end{theorem}
+For the proof, see \cite[Tag 06UW]{kerodon2026}. Finally, we state the central property of presentable $\infty$-categories. 
+\begin{theorem}[Adjoint Functor Theorem]
+	Given a functor of presentable $\infty$-categories $F:\lC\to\lD$, the following hold: 
+	\begin{enumerate}
+		\item $F$ admits a right adjoint if and only if it preserves small colimits. 
+		\item $F$ admits a left adjoint if and only if it is accessible and preserves small limits. 
+	\end{enumerate}
+\end{theorem}
+For the proof, see \cite[Corollary 5.5.2.9]{lurie2009htt}, \cite[Tag 06Q4]{kerodon2026joyal}, or \cite[Theorem 5.2.14]{land2021introduction} (see \cite[Remark 5.2.16]{land2021introduction}).
+
+
+\section{Stable \texorpdfstring{$\infty$}{oo}-Categories and Spectra}
+
+% Stable homotopy theory is the study of homotopy types once the (suspension,loop) adjunction is made into an equivalence.
+
+\begin{definition}
+  Let $\lC$ be an $\infty$-category, an object is called \emph{zero} if both initial and terminal. An $\infty$-category $\lC$ with a zero object is called \emph{pointed}. 
 \end{definition}
 
 \newpage
 
-%-----------TO BE CONTINUED----------
-
-
-\begin{theorem}
-  Let $\lC$ be a category, then $\lC$ is locally presentable if and only if there exists a small category $S$ such that the induced functor $\lC\to\lP(S)$ is a fully faithful, accessible right adjoint. 
-\end{theorem}
-\begin{theorem}
-  Let $\lC,\lD$ be locally presentable categories. A functor $F\colon \lC \to \lD$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
-\end{theorem}
-\begin{theorem}[Yoneda]
-  Given a $\infty$-category $X$, there is a fully faithful functor $y:X\to\lP(X)$, called the \emph{Yoneda embedding}, such that: Given a cocomplete $\infty$-category $Y$, pre-composition by $y$ induces an equivalence \begin{equation}
-    \begin{tikzcd}
-      \Fun^\mL(\lP(X),Y) \arrow[r] & \Fun(X,Y)
-    \end{tikzcd}
-  \end{equation}where $\Fun^\mL$ denotes the category of colimit preserving functors. 
-\end{theorem} The definition of accessible category transfers directly to the $\infty$-categorical setting. 
-\begin{theorem}\label{thm:locpresquasi}
-  A $\infty$-category $X$ is locally presentable (cocomplete and accessible) if and only if there is a small sub-$\infty$-category $S$ such that $X\to\Fun(S^\op,\lS)$ is a fully faithful, accessible right adjoint. 
-\end{theorem}
-\begin{remark}
-  In view of \cref{thm:locpresquasi}, one can define a category to be \emph{locally presentable} if it is the accessible right localization of a pre-sheaf category for some small $\infty$-category $S$. In particular, every pre-sheaf category is locally presentable. 
-\end{remark}
-\begin{theorem}
-  Let $X,Y$ be presentable $\infty$-categories, then a functor $f:X\to Y$ is a left, resp. right, adjoint if and only if it preserves colimits, resp. it preserves limits and is accessible.
-\end{theorem}
-\section{Stable \texorpdfstring{$\infty$}{oo}-Categories and Spectra}
+\section{Uhmmmm}
 We now use the $\infty$-categorical framework to study spectra. Here are some result that justify the study of spectra. 
 \nrnote{Examples of stable phenomena? Freudenthal's suspension theorem, Alexander duality of manifolds, etc.}
-\begin{definition}
-  Let $\lC$ be an $\infty$-category, an object $0$ that is both initial and terminal is called 
-  \emph{zero object}. A category $\lC$ with a zero object is called a \emph{pointed category}.
-\end{definition}
-\begin{example}
-  Let $1\in\lC$ be a terminal object, then the identity of $1$ is the zero object in the slice category $\lC_{1/}$ of objects under $1$. In particular, the category $\lS_*=\lS_{*/}$ of pointed spaces is pointed. 
-\end{example}
+
 \begin{proposition}
   Let $\lD$ be a pointed $\infty$-category. Evaluation at the 0-sphere $S^0$ induces an equivalence \begin{equation}
     \begin{tikzcd}
@@ -656,10 +783,10 @@ We shall now use the language of $\infty$-categories to reformulate the concept 
 \end{remark}
 \begin{definition}[{\cite[1.4.1.6]{lurie2017ha}}]\label{def:cohthe}
   Let $\lC$ be a finitely cocomplete pointed $\infty$-category, $\Sigma_\lC:\lC \to \lC$ the induced suspension functor. A \emph{generalized cohomology theory} is a functor $H:\Ho\lC^{\op}\to\set^\bZ$ together with a natural isomorphism $\partial:\Sigma H\to H\Sigma_\lC$ such that:
-  \begin{itemize}
+  \begin{enumerate}
     \item $H$ preserves arbitrary products. In particular, $H^n(0)$ is the one-point set. Given an object $X$, the unique morphism $X\to0$ induces an element $*\simeq H^n(0)\to H^n(X)$, which we denote by $0$. 
     \item Given a coexact triangle $X'\to X\to X''$, if $\eta\in H^n(X)$ has image $0\in H^n(X'')$, then it lies in the image of $H^n(X')\to H^n(X)$. 
-  \end{itemize}
+  \end{enumerate}
 \end{definition}
 \begin{theorem}[{\cite[1.4.1.10]{lurie2017ha}}]
  Let $\lC$ be a nice $\infty$-category and $(H,\partial)$ a generalized cohomology theory, then, for every $n$, the functor $H^n$ is representable by an object $E(n)$. 
@@ -1453,11 +1580,11 @@ Understanding this approach can help us understand ways to extract cohomological
 We already saw Deligne cohomology as a differential refinement of singular cohomology. However, many other cohomologies also admit differential refinements, that merit further study.
 \begin{enumerate}
   \item We could look at differential $K$-theory. It is understood as the differential refinement of $ku$, the $K$-theory spectrum. Following the algorithm we want:
-  \begin{itemize}
+  \begin{enumerate}
    \item A pure sheaf $\Omega^{\geq k}(- ;\mathbb{C}[u^{\pm 1}])$.
    \item The computation $L_{hi}\Omega^{\geq k}(- ;\mathbb{C}[u^{\pm 1}]) \simeq H\bC[u^{\pm 1}]$.
    \item A map of spectra $ku \to H\bC[u^{\pm 1}]$, which is the \emph{Chern character}.
-  \end{itemize}
+  \end{enumerate}
   This was studied with classical means by Hopkins--Singer \cite{hopkinssinger2005diffcoh}.
   \item There are further differential refinements, such as \emph{differential algebraic $K$-theory} \cite{bunkegepner2021diffktheory} or \emph{differential complex cobordism} \cite{bunkeschickschroederwiethaup2009landweber}, however, they seem to have been studied before the sheaf-theoretic framework was developed.
 \end{enumerate}
@@ -1532,12 +1659,12 @@ This talk is a quick review and plans for this semester.
 
 \section{Summary}
 In our last talk we already did a rather detailed summary of what we covered until now \cite{rasekh2025diffcoh5}, so here do a quick bullet point summary.
-\begin{itemize}
+\begin{enumerate}
   \item Differential cohomology theories should be defined as sheaves valued in the $\infty$-category of spectra valued on the site of manifolds. 
   \item We can use abstract $\infty$-topos theoretic properties to prove that every differential cohomology theory decomposes into an $\bR$-invariant part (a purely homotopical differential cohomology) and a pure part (a purely geometric differential cohomology), via a pullback square called the \emph{fracture square}. 
   \item This fracture square relates the original definition to the ``hexagon approach'' going back to Simons--Sullivan and others \cite{simonssullivan2008diffcoh,bunkeschick2009smoothk}.
   \item Using this abstract approach we can construct examples of interest, such as Deligne cohomology, which refines integral homology.
-\end{itemize}
+\end{enumerate}
 
 \section{Talk Topics}
 Here is an overview of the possible talk topics we can cover this semester. There is some dependency, but many talks are independent of each other giving us significant flexibility, if we want to rearrange things.
@@ -1588,10 +1715,10 @@ This topics would involve two parts (and hence probably two talks):
 \subsection{Differential Cohomology in Cohesive \texorpdfstring{$\infty$}{oo}-Topoi} \label{subsec:cohesion}
 Schreiber has introduced a notion of differential cohomology in the abstract concept of a cohesive $\infty$-topos \cite{schreiber2013differentialcohomology}. This has then be applied to physical settings \cite{fiorenzasatischreiber2024charactermap}. This suggest a $2$-part talk with the following topics:
 
-\begin{itemize}
+\begin{enumerate}
   \item Background on $\infty$-topos theory and cohesion, introducing differential cohomology in this setting, comparison to our approach \cite{lurie2009htt,schreiber2013differentialcohomology}
   \item Applications to physics \cite{fiorenzasatischreiber2024charactermap}
-\end{itemize}
+\end{enumerate}
 
 \subsection{Differential Cohomology of Lie Groupoids} \label{subsec:liegroupoids}
 While differential cohomology theories of manifolds are well-defined and studied extensively, the same cannot be said for Lie groupoids. Concretely, we can imagine several definitions in this context.
@@ -2950,11 +3077,11 @@ The goal of this talk is to compare different models of twisted $K$-theory. Conc
 
 \begin{remark}
 	Throughout this talk we adopt the following notational conventions:
-	\begin{itemize}
+	\begin{enumerate}
 		\item For an $\infty$-category $\lC$ and objects $X,Y \in \lC$, we denote by $\hom_{\lC}(X,Y)$ the mapping \emph{space} from $X$ to $Y$ in $\lC$. 
 		\item If an $\infty$-category $\lC$ is enriched over spectra (e.g. if $\lC$ is stable), denote the \emph{mapping	spectrum} from $X$ to $Y$ by $\Hom_{\lC}(X,Y)$. 
   \item Note, in this case we have the relationship $\Omega^{\infty} \Hom_{\lC}(X,Y) \simeq \hom_{\lC}(X,Y)$, i.e., the underlying space of this mapping spectrum is then equivalent to the mapping space $\hom_{\lC}(X,Y)$.
-	\end{itemize}
+	\end{enumerate}
 \end{remark}
 
 \section{Reviewing the \texorpdfstring{$\infty$}{oo}-categorical Approach to twisted Cohomology}
@@ -3316,12 +3443,12 @@ How can we do this in the non-abelian case? We first review relevant definitions
 
 \begin{example}
 	Let $\Mfd$ be the category of smooth manifolds with the usual open cover topology. Then the $\infty$-topos of sheaves of $\infty$-groupoids on $\Mfd$ is cohesive, where
-	\begin{itemize}
+	\begin{enumerate}
 		\item $\Pi$ is given by taking the fundamental $\infty$-groupoid,
 		\item $\mathrm{Disc}$ is given by regarding an $\infty$-groupoid as a constant sheaf,
 		\item $\Gamma$ is given by taking global sections,
 		\item $\mathrm{Codisc}$ is given by regarding an $\infty$-groupoid as a codiscrete sheaf.
-	\end{itemize}
+	\end{enumerate}
 \end{example}
 
 We can now define an analogue of the de Rham complex in the setting of a cohesive $\infty$-topos.
@@ -3447,11 +3574,11 @@ We first review some notations and definition. Let $\Ch(\bR)$ be the $1$-categor
 
 \begin{definition}
   Let $X$ be a spectrum. A \emph{differential refinement of $X$} is a triple $(V, c\colon R \wedge X \to HV)$, where 
-  \begin{itemize}
+  \begin{enumerate}
     \item $V$ is a chain complex of real vector spaces,
     \item $HV$ is the Eilenberg-MacLane spectrum associated to $V$, via the stable Dold-Kan correspondence,
     \item $\alpha$ is an equivalence of spectra.
-  \end{itemize}
+  \end{enumerate}
 \end{definition}
 
 Before we can proceed, we need to introduce further notation. Let $V$ be a chain complex of real vector spaces. Let $\Omega^*V$ be the sheaf of differential forms with values in $V$. 
@@ -3508,10 +3635,10 @@ Here the left hand side is the category of differential graded commutative algeb
 
 \begin{definition}
   Let $R$ be a commutative ring spectrum, A \emph{differential (ring) refinement} of $R$ is a triple $(A, c, R)$ where
-  \begin{itemize}
+  \begin{enumerate}
     \item $A$ is a CDGA over $\bR$,
     \item $c\colon R \wedge H\bR \to HA$ is an equivalence of commutative $H\bR$-algebras.
-  \end{itemize}
+  \end{enumerate}
 \end{definition}
 
 We can in fact make this definition more categorical.
@@ -3542,21 +3669,21 @@ We now want to define a notion of ``differential twists'' and ``differential mod
 
 \begin{definition}
   Let $A$ be a CDGA over $\bR$. Let $\Pic^{wloc, fl}_A(M)$ be the full sub-$\infty$-groupoid of $\Mod_{\Omega^\bullet A}(M)$ spanned by the sheaves $\lM$ of $\Omega^\bullet A$-modules which are
-  \begin{itemize}
+  \begin{enumerate}
     \item \emph{weakly locally constant}, i.e. locally equivalent to a constant sheaf of $\Omega^\bullet A$-modules, as a sheaf valued in $\lD(\bR)$,
     \item \emph{$K$-flat}, i.e. such that the functor $\lM \otimes_{\Omega^\bullet A} -$ preserves quasi-isomorphisms,
     \item \emph{invertible}, i.e. there exists $\lN$ such that $\lM \otimes_{\Omega^\bullet A} \lN \cong \Omega^\bullet A$ as sheaves valued in $\Ch(\bR)$.
-  \end{itemize} 
+  \end{enumerate} 
 \end{definition}
 
 We are now ready to give the main definition of twisted differential cohomology.
 
 \begin{definition}
   Let $E$ be a topological twist in $\Pic^{loc}_{\underline{R}}(M)$, a \emph{differential module refinement of $E$} is a triple $(E, \lM, c)$ where
-  \begin{itemize}
+  \begin{enumerate}
     \item $\lM \in \Pic^{wloc, fl}_A(M)$,
     \item $c\colon E \wedge H\bR \to H\lM$ is an equivalence in $\Pic^{loc}_{\underline{HA}}(M)$.
-  \end{itemize}
+  \end{enumerate}
 \end{definition}
 
 \begin{definition}
