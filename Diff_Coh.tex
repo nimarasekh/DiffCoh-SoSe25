@@ -551,22 +551,22 @@ The following is a result of Moore.
 
 % Simplicial groups are Kan complexes, the corresponding oo-category with one object is a oo-groupoid and is the delooping of the group, i.e., equivalent to the W-bar construction of G. Given a simplicial group G, there is a canonical equivalence between cofibrant-fibrant G-simplicial sets (projective model structure) and functors BG->S. The quotient functor -/G is then equivalent to the colimit functor Fun(BG,S)->S. 
 
-\section{Accessible and Presentable Categories}
+\section{Accessible and Presentable \texorpdfstring{$\infty$}{oo}-Categories}
 
-% Bla Bla, adjoint functor theorem, presentable categories, bla bla... Definition of regular cardinal. 
+% Bla Bla, adjoint functor theorem, presentable categories, bla bla...
 
 \begin{definition}
 	Given a cardinal $\kappa$, a simplicial set is called \emph{$\kappa$-small} if the set of all its non-degenerate simplices has cardinality $<\kappa$. A $\infty$-category is called $\kappa$-small if its underlying simplicial set is. 
 \end{definition}
 Let $\kappa$ be a regular cardinal. 
 \begin{definition}
-	A $\infty$-category $\lC$ is \emph{$\kappa$-filtered} if every diagram indexed by a $\kappa$-small $\infty$-category has a cocone. The colimit of a diagram indexed by a small $\kappa$-filtered $\infty$-category is called a \emph{$\kappa$-filtered colimit}. 
+	A $\infty$-category $\lC$ is \emph{$\kappa$-filtered} if every diagram indexed by a $\kappa$-small simplicial set has a cocone. The colimit of a diagram indexed by a small $\kappa$-filtered $\infty$-category is called a \emph{$\kappa$-filtered colimit}. 
 \end{definition}
 \begin{definition}
 	A functor of $\infty$-categories $F:\lC\to\lD$ is called \emph{$\kappa$-accessible} if it preserves all $\kappa$-filtered colimits. Denote by $\Fun^\kappa(\lC,\lD)$ the full sub-category of $\Fun(\lC,\lD)$ consisting $\kappa$-accessible functors.
 \end{definition}
 \begin{remark}
-	$\kappa$-accessible functors are called \emph{$\kappa$-finitary functors} in \cite{kerodon2026} (see Tag 05Y6). 
+	$\kappa$-accessible functors are called \emph{$\kappa$-finitary functors} (\cite[Tag 05Y6]{kerodon2026}). 
 \end{remark}
 \begin{definition}
 	Given an $\infty$-category $\lC$, an object $X$ is called \emph{$\kappa$-compact} if $\hom_\lC(X,-)$ is $\kappa$-accessible. Denote by $\lC^\kappa$ the full sub-category of $\lC$ consisting of $\kappa$-compact objects. 
@@ -588,17 +588,17 @@ Let $\kappa$ be a regular cardinal.
 			\end{tikzcd}
 		\end{equation}
 	\end{enumerate}
-	Given a $\kappa$-accessible functor $G:\lD\to\lX$ and functor $H:\lC\to\lX$, an equivalence $\eta:H\to GF$ is said to \emph{exhibit $G$ as the $\Ind_\kappa$-extension of $H$}.  
-\end{definition}The following is \cite[Tag 0653]{kerodon2026}. 
+	Given a $\kappa$-accessible functor $G:\lD\to\lX$ and functor $H:\lC\to\lX$, an equivalence $\eta:H\to G\circ F$ is said to \emph{exhibit $G$ as the $\Ind_\kappa$-extension of $H$}.  
+\end{definition} 
 \begin{theorem}\label{thm:condind}
 	A functor of $\infty$-categories $F:\lC\to\lD$ exhibits $\lD$ as the $\Ind_\kappa$-completion of $\lC$ if and only if the following hold: 
 	\begin{enumerate}
-		\item The $\infty$-category $\lD$ admits small $\kappa$-filtered colimits. 
+		\item The $\infty$-category $\lD$ admits all small $\kappa$-filtered colimits. 
 		\item The functor $F$ is fully faithful. 
-		\item For every object $X\in\lC$, its image $F(X)$ is $\kappa$-compact. 
+		\item For every object $X\in\lC$, its image is $\kappa$-compact. 
 		\item The $\infty$-category $\lD$ is generated under small $\kappa$-filtered colimits by the image of $F$. 
 	\end{enumerate}
-\end{theorem}
+\end{theorem}For the proof, see \cite[Tag 0653]{kerodon2026}. 
 \begin{proposition}
 	Given a $\infty$-category $\lC$, the following are equivalent:
 	\begin{enumerate}
@@ -624,33 +624,35 @@ For the proof, see \cite[Tag 06K7]{kerodon2026}.
 	An $\infty$-category $\lC$ is ($\kappa$-)\emph{presentable} if ($\kappa$-)accessible and cocomplete. 
 \end{definition}
 \begin{definition}
-	A functor of $\infty$-categories $F:\lC\to\lD$ is called a \emph{localization} if it admits a fully faithful left adjoint. If the left adjoint to $F$ is ($\kappa$-)accessible, we call $F$ a ($\kappa$-)\emph{accessible localization}.
+	A functor of $\infty$-categories $F:\lC\to\lD$ is called a \emph{localization} if it admits a fully faithful right adjoint. If the right adjoint to $F$ is ($\kappa$-)accessible, we call $F$ a ($\kappa$-)\emph{accessible localization}.
 \end{definition}
+\begin{theorem}\label{thm:loccomplete}
+	The localization of a cocomplete category is cocomplete. 
+\end{theorem}
+For the proof, see \cite[Tag 04JW]{kerodon2026}.
+\begin{theorem}\label{lem:imofcompact}
+	Given a $\kappa$-accessible localization $F:\lC\to\lD$, the image of a $\kappa$-compact object is $\kappa$-compact. 
+\end{theorem}
+\begin{proof}
+	Let $G$ be the $\kappa$-accessible right adjoint to $F$. For every object $X\in\lC$, the functor $\hom_\lD(F(X),-)$ is equivalent to $\hom_\lC(X,G(-))$, which is $\kappa$-accessible if $X$ is $\kappa$-compact. 
+\end{proof}
 \begin{theorem}
 	Given a $\kappa$-presentable $\infty$-category, there is a $\kappa$-accessible localization $F:\Psh(\lC^\kappa)\to\lC$. 
 \end{theorem}
 \begin{proof}
 	We already know that the restricted Yoneda emebdding $h:\lC\to\Psh(\lC^\kappa)$ is $\kappa$-accessible and fully faithful. By completeness and $\lC^\kappa$ being essentially small, $h$ admits a left adjoint $F$, given by left Kan extension of the identity of $\lC$ along $h$. We conclude that $F$ is the desired $\kappa$-accessible localization. 
 \end{proof}
-\begin{theorem}\label{thm:locpres}
-	Let $\lD\subseteq\lC$ be a full sub-category such that the inclusion $G$ is $\kappa$-accessible and admits a left adjoint $F:\lC\to\lD$. If $\lC$ is presentable, then $\lD$ is presentable. 
+\begin{theorem}\label{lem:indcompletion}
+	The $\kappa$-accessible localization of a $\kappa$-accessible $\infty$-category is $\kappa$-accessible.  
 \end{theorem}
-\begin{lemma}\label{lem:imofcompact}
-	Under the hypotheses of Theorem \ref{thm:locpres}, the image under $F$ of a $\kappa$-compact object is $\kappa$-compact. 
-\end{lemma}
 \begin{proof}
-	By adjunction, $\hom_{\lD}(F(X),-)$ is equivalent to $\hom_{\lC}(X,G(-))$, which preserves small $\kappa$-filtered colimits if $X$ is $\kappa$-compact (since $G$ is $\kappa$-accessible). 
+	Let $F:\lC\to\lD$ be a $\kappa$-accessible localization, with fully faithful left adjoint $G$. Let $\lC$ be the $\Ind_\kappa$-completion of a small sub-category $\lX$. Denote by $\lY$ the full sub-category of $\lD$ consisting of the images under $F$ of objects in $\lX$. By Theorem \ref{lem:imofcompact}, $\lY$ is a full sub-category of $\kappa$-compact objects. Since $G$ is fully faithful, $F$ is essentially surjective (see \cite[Tag 02FF]{kerodon2026}). Since $F$ preserves colimits, $\lD$ is generated under small $\kappa$-filtered colimits by $\lY$. The conclusion follows from Theorem \ref{thm:condind}.
 \end{proof}
-\begin{lemma}\label{lem:indcompletion}
-	Under the hypotheses of Theorem \ref{thm:locpres}, let $\lX$ be a small $\infty$-category and $F:\lX\to\lC$ exhibit $\lC$ as the $\Ind_\kappa$-completion of $\lX$. Let $\lY$ be the full sub-category of $\lD$ consisting of the images under $F$ of objects in (the image of) $\lX$, then the inclusion $\lY\subseteq\lD$ exhibits $\lD$ as the $\Ind_\kappa$-completion of $\lY$.  
-\end{lemma}
-\begin{proof}
-	We wish to apply Theorem \ref{thm:condind}. Condition (2) holds by definition of $\lY$. By \cite[Tag 04JW]{kerodon2026}, we know $\lD$ is cocomplete, so condition (1) holds. Lemma \ref{lem:imofcompact} implies that condition (3) holds. Since $G$ is fully faithful, the counit $FG(X)\to X$ is an equivalence (see \cite[Tag 02FF]{kerodon2026}). Finally, sub-category generated by $\lY$ under small $\kappa$-filtered colimits contains the essential image of $F$ (since $F$ is cocontinuous), which is $\lD$, so conditions (4) holds.
-\end{proof}
-\begin{proof}[Proof of Theorem \ref{thm:locpres}] By \cite[Tag 04JW]{kerodon2026}, we know $\lD$ is cocomplete. By Lemma \ref{lem:indcompletion}, $\lD$ is the $\Ind_\kappa$-completion of a small $\infty$-category, therefore $\lD$ is $\kappa$-accessible.
-\end{proof}
+\begin{theorem}\label{thm:locpres}
+	The $\kappa$-accessible localization of a $\kappa$-presentable $\infty$-category is $\kappa$-presentable. 
+\end{theorem}
 \begin{definition}
-	Given an $\infty$-category $\lC$ and a class of morphisms $S$ and a functor $F:\lC\to\lD$, we say \emph{$F$ exhibits $\lD$ as the localization of $\lC$ at $S$} if the following hold: 
+	Given an $\infty$-category $\lC$, a class of morphisms $S$, and a functor $F:\lC\to\lD$, we say \emph{$F$ exhibits $\lD$ as the localization of $\lC$ at $S$} if the following hold: 
 	\begin{enumerate}
 		\item $F$ sends every morphism in $S$ to an equivalence in $\lD$.
 		\item For every $\infty$-category $\lX$, pre-composition with $F$ induces a fully faithful functor \begin{equation}
